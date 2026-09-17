@@ -5,28 +5,171 @@ import {
   Eye,
   EyeOff,
   Briefcase,
-  CalendarDays,
-  ShoppingBag,
   BookOpen,
   Layers,
+  ShoppingBag,
   SlidersHorizontal,
   CheckCircle2,
   AlertTriangle,
 } from 'lucide-react';
 
-type LayoutPreset = 'BUSINESS' | 'EVENTS' | 'STORE' | 'EDITORIAL' | 'SHOWCASE';
+type LayoutPreset = 'EQUAL' | 'SPLIT' | 'DASHBOARD' | 'MODULAR' | 'HERO';
 
 interface PresetOption {
   id: LayoutPreset;
   label: string;
   category: string;
   icon: React.ComponentType<{ className?: string }>;
-  defaultCols: number;
   description: string;
 }
 
+interface WireframeBoxProps {
+  label: string;
+  tag?: string;
+  span: number;
+  totalCols: number;
+  startCol: number;
+  gutter: number;
+  variant?: 'primary' | 'secondary' | 'dark';
+  compact?: boolean;
+}
+
+const WireframeBox: React.FC<WireframeBoxProps> = ({
+  label,
+  tag,
+  span,
+  totalCols,
+  startCol,
+  gutter,
+  variant = 'primary',
+  compact = false,
+}) => {
+  const percent = Math.round((span / totalCols) * 100);
+  const endCol = startCol + span - 1;
+
+  return (
+    <div
+      className={`relative rounded-xl border p-2 sm:p-3 flex flex-col justify-between transition-all duration-200 shadow-2xs overflow-hidden group ${
+        variant === 'dark'
+          ? 'bg-[#11100E] text-[#F5F1E8] border-[#11100E]'
+          : variant === 'secondary'
+          ? 'bg-[#FAF7F2] text-[#11100E] border-[#11100E]/20 hover:border-[#11100E]'
+          : 'bg-white text-[#11100E] border-[#11100E]/20 hover:border-[#11100E]'
+      }`}
+      style={{
+        gridColumn: `span ${span}`,
+      }}
+    >
+      {/* Top Header: Box Title + Span Pill */}
+      <div
+        className="flex items-center justify-between gap-1 border-b pb-1.5 font-mono text-[10px] sm:text-xs"
+        style={{
+          borderColor: variant === 'dark' ? 'rgba(245, 241, 232, 0.12)' : 'rgba(17, 16, 14, 0.1)',
+        }}
+      >
+        <div className="flex items-center gap-1.5 truncate">
+          <span className="font-bold uppercase tracking-wider truncate">{label}</span>
+          {tag && !compact && (
+            <span
+              className={`text-[8px] px-1 py-0.2 rounded font-bold uppercase shrink-0 ${
+                variant === 'dark' ? 'bg-white/15 text-white' : 'bg-[#11100E]/10 text-[#77736B]'
+              }`}
+            >
+              {tag}
+            </span>
+          )}
+        </div>
+        <span
+          className={`font-mono font-bold text-[9px] sm:text-[10px] px-1.5 py-0.5 rounded border shrink-0 ${
+            variant === 'dark'
+              ? 'bg-white/10 border-white/20 text-[#F59E0B]'
+              : 'bg-[#F5F1E8] border-[#11100E]/15 text-[#B45309]'
+          }`}
+        >
+          {totalCols <= 8 || span > 1 ? `SPAN ${span} / ${totalCols}` : `S${span}`}
+        </span>
+      </div>
+
+      {/* Middle: Architectural Blueprint / Wireframe Placeholder (NO CONTENT) */}
+      <div className="my-1.5 flex-1 flex flex-col justify-center gap-1 min-h-[44px]">
+        {/* Metric & Column Range */}
+        <div className="flex items-baseline justify-between font-mono">
+          <span className="text-base sm:text-lg md:text-xl font-black tabular-nums tracking-tight">
+            {percent}%
+          </span>
+          <span
+            className={`text-[9px] font-bold ${
+              variant === 'dark' ? 'text-[#E9E1D3]/70' : 'text-[#77736B]'
+            }`}
+          >
+            {startCol === endCol ? `COL ${startCol}` : `C${startCol}–${endCol}`}
+          </span>
+        </div>
+
+        {/* Minimalist Wireframe Skeleton Lines (NO CONTENT) */}
+        <div className="w-full space-y-1 my-0.5">
+          <div
+            className={`h-1.5 rounded-full ${
+              variant === 'dark' ? 'bg-white/20' : 'bg-[#11100E]/15'
+            }`}
+            style={{ width: `${Math.max(25, Math.min(100, span * 20))}%` }}
+          />
+          {span >= 3 && !compact && (
+            <div
+              className={`h-1 rounded-full ${
+                variant === 'dark' ? 'bg-white/10' : 'bg-[#11100E]/8'
+              }`}
+              style={{ width: '80%' }}
+            />
+          )}
+        </div>
+
+        {/* Column Division Ticks: Shows the underlying grid columns inside this box */}
+        {span > 1 && (
+          <div
+            className="grid h-3.5 w-full rounded border overflow-hidden mt-0.5"
+            style={{
+              gridTemplateColumns: `repeat(${span}, minmax(0, 1fr))`,
+              borderColor: variant === 'dark' ? 'rgba(255,255,255,0.15)' : 'rgba(17,16,14,0.12)',
+              gap: '1px',
+              backgroundColor:
+                variant === 'dark' ? 'rgba(255,255,255,0.08)' : 'rgba(17,16,14,0.06)',
+            }}
+            title={`${span} columns covered by this box`}
+          >
+            {Array.from({ length: span }).map((_, i) => (
+              <div
+                key={i}
+                className={`flex items-center justify-center font-mono text-[7px] font-bold ${
+                  variant === 'dark'
+                    ? 'bg-[#1E1C1A] text-[#E9E1D3]/70'
+                    : 'bg-[#F5F1E8] text-[#77736B]'
+                }`}
+              >
+                {startCol + i}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Bottom Footer: Column Span Units & Active Gutter */}
+      <div
+        className="flex items-center justify-between text-[9px] font-mono pt-1 border-t"
+        style={{
+          borderColor: variant === 'dark' ? 'rgba(245, 241, 232, 0.12)' : 'rgba(17, 16, 14, 0.1)',
+          color: variant === 'dark' ? '#E9E1D3' : '#77736B',
+        }}
+      >
+        <span>{span} {span === 1 ? 'Col' : 'Cols'}</span>
+        <span>Gap {gutter}px</span>
+      </div>
+    </div>
+  );
+};
+
 export const SlideGridSystem: React.FC = () => {
-  const [activePreset, setActivePreset] = useState<LayoutPreset>('BUSINESS');
+  const [activePreset, setActivePreset] = useState<LayoutPreset>('EQUAL');
   const [cols, setCols] = useState<number>(12);
   const [gutter, setGutter] = useState<number>(16);
   const [showColumns, setShowColumns] = useState<boolean>(true);
@@ -35,54 +178,49 @@ export const SlideGridSystem: React.FC = () => {
 
   const presets: PresetOption[] = [
     {
-      id: 'BUSINESS',
-      label: 'Business',
-      category: 'Dashboard',
-      icon: Briefcase,
-      defaultCols: 12,
-      description: 'Sidebar navigation, metrics summary, and live activity stream',
+      id: 'EQUAL',
+      label: '1:1 Columns',
+      category: 'Rhythm',
+      icon: LayoutGrid,
+      description: '1 box per column — direct visual 1-to-1 reflection of grid count',
     },
     {
-      id: 'EVENTS',
-      label: 'Events',
-      category: 'Conference',
-      icon: CalendarDays,
-      defaultCols: 12,
-      description: 'Hero announcement, registration card, and 4-slot agenda',
-    },
-    {
-      id: 'STORE',
-      label: 'Store',
-      category: 'Marketplace',
-      icon: ShoppingBag,
-      defaultCols: 12,
-      description: 'Category filters with a balanced 3-column product catalog',
-    },
-    {
-      id: 'EDITORIAL',
-      label: 'Editorial',
-      category: 'Article',
+      id: 'SPLIT',
+      label: 'Split 2:1',
+      category: 'Asymmetric',
       icon: BookOpen,
-      defaultCols: 12,
-      description: 'Long-form reading column paired with side index and notes',
+      description: 'Major reading column (67%) paired with aside index (33%)',
     },
     {
-      id: 'SHOWCASE',
-      label: 'Showcase',
-      category: 'Agency',
+      id: 'DASHBOARD',
+      label: 'Dashboard',
+      category: 'App Shell',
+      icon: Briefcase,
+      description: 'Sidebar nav (25%), main canvas (50%), and utility inspector (25%)',
+    },
+    {
+      id: 'MODULAR',
+      label: 'Modular Grid',
+      category: 'Cards',
+      icon: ShoppingBag,
+      description: 'Hierarchical multi-box layout testing card gutters and alignment',
+    },
+    {
+      id: 'HERO',
+      label: 'Hero + Shelf',
+      category: 'Showcase',
       icon: Layers,
-      defaultCols: 12,
-      description: 'Asymmetric feature display with project notes and live link',
+      description: 'Full-width banner spanning all columns over balanced sub-blocks',
     },
   ];
 
   const spacingTokens = [
-    { name: '4px', label: 'Micro', use: 'Icon gaps, badge padding' },
-    { name: '8px', label: 'Compact', use: 'Input interior padding, card gap' },
-    { name: '16px', label: 'Standard', use: 'Container padding, element margins' },
-    { name: '24px', label: 'Comfortable', use: 'Section padding, grid gutters' },
-    { name: '32px', label: 'Spacious', use: 'Card separations, hero padding' },
-    { name: '48px', label: 'Monumental', use: 'Page margins, major layout breaks' },
+    { name: '4px', label: 'Micro', use: 'Icon gaps, badge padding', px: 4 },
+    { name: '8px', label: 'Compact', use: 'Input interior padding, card gap', px: 8 },
+    { name: '16px', label: 'Standard', use: 'Container padding, element margins', px: 16 },
+    { name: '24px', label: 'Comfortable', use: 'Section padding, grid gutters', px: 24 },
+    { name: '32px', label: 'Spacious', use: 'Card separations, hero padding', px: 32 },
+    { name: '48px', label: 'Monumental', use: 'Page margins, major breaks', px: 48 },
   ];
 
   const handleSelectPreset = (preset: PresetOption) => {
@@ -98,9 +236,73 @@ export const SlideGridSystem: React.FC = () => {
     }
   };
 
-  // Helper column spans based on current cols count
-  const getColSpan = (ratio: number) => {
-    return Math.max(1, Math.round(cols * ratio));
+  // Helper calculations for dynamic layout box spans
+  const getSplitSpans = () => {
+    const major = Math.max(1, Math.round(cols * 0.67));
+    const minor = Math.max(1, cols - major);
+    return { major, minor };
+  };
+
+  const getDashboardSpans = () => {
+    if (cols <= 2) {
+      return { nav: 1, main: 1, rail: 0 };
+    }
+    if (cols === 3) {
+      return { nav: 1, main: 1, rail: 1 };
+    }
+    const nav = Math.max(1, Math.floor(cols * 0.25));
+    const main = Math.max(1, Math.round(cols * 0.5));
+    const rail = Math.max(1, cols - nav - main);
+    return { nav, main, rail };
+  };
+
+  const getModularSpans = () => {
+    const r1Left = Math.floor(cols / 2);
+    const r1Right = cols - r1Left;
+
+    if (cols < 4) {
+      return {
+        r1Left,
+        r1Right,
+        row2: [{ label: 'CARD 01', span: 1, startCol: 1 }, { label: 'CARD 02', span: cols - 1, startCol: 2 }],
+      };
+    }
+
+    const c1 = Math.floor(cols / 3);
+    const c2 = Math.floor(cols / 3);
+    const c3 = cols - c1 - c2;
+    return {
+      r1Left,
+      r1Right,
+      row2: [
+        { label: 'CARD 01', span: c1, startCol: 1 },
+        { label: 'CARD 02', span: c2, startCol: c1 + 1 },
+        { label: 'CARD 03', span: c3, startCol: c1 + c2 + 1 },
+      ],
+    };
+  };
+
+  const getHeroSpans = () => {
+    if (cols <= 2) {
+      return {
+        hero: cols,
+        subs: [
+          { label: 'SHELF 01', span: 1, startCol: 1 },
+          { label: 'SHELF 02', span: 1, startCol: 2 },
+        ],
+      };
+    }
+    const s1 = Math.floor(cols / 3);
+    const s2 = Math.floor(cols / 3);
+    const s3 = cols - s1 - s2;
+    return {
+      hero: cols,
+      subs: [
+        { label: 'SHELF 01', span: s1, startCol: 1 },
+        { label: 'SHELF 02', span: s2, startCol: s1 + 1 },
+        { label: 'SHELF 03', span: s3, startCol: s1 + s2 + 1 },
+      ],
+    };
   };
 
   return (
@@ -118,7 +320,7 @@ export const SlideGridSystem: React.FC = () => {
         <div className="flex items-center gap-2 font-mono text-xs">
           {/* Draggable Column Progress Bar */}
           <div className="flex items-center gap-2 sm:gap-3 bg-white border border-[#11100E]/20 px-3 py-1.5 rounded-xl shadow-xs">
-            <div className="flex items-center gap-1.5 text-[11px] font-bold text-[#11100E] min-w-[66px]">
+            <div className="flex items-center gap-1.5 text-[11px] font-bold text-[#11100E] min-w-[68px]">
               <SlidersHorizontal className="w-3.5 h-3.5 text-[#B45309]" />
               <span className="tabular-nums">{cols} COLS</span>
             </div>
@@ -134,7 +336,9 @@ export const SlideGridSystem: React.FC = () => {
                 onChange={(e) => handleSetCols(Number(e.target.value))}
                 className="grid-progress-slider w-full"
                 style={{
-                  background: `linear-gradient(to right, #11100E 0%, #11100E ${((cols - 2) / 14) * 100}%, #E5E0D6 ${((cols - 2) / 14) * 100}%, #E5E0D6 100%)`
+                  background: `linear-gradient(to right, #11100E 0%, #11100E ${
+                    ((cols - 2) / 14) * 100
+                  }%, #E5E0D6 ${((cols - 2) / 14) * 100}%, #E5E0D6 100%)`,
                 }}
                 aria-label="Drag to adjust grid columns"
                 title={`Columns: ${cols}`}
@@ -145,6 +349,24 @@ export const SlideGridSystem: React.FC = () => {
             <span className="hidden sm:inline-block px-1.5 py-0.5 rounded bg-[#F5F1E8] border border-[#11100E]/10 text-[10px] font-bold text-[#77736B] uppercase">
               {cols <= 4 ? 'Mobile' : cols <= 8 ? 'Tablet' : cols <= 12 ? 'Desktop' : 'Wide'}
             </span>
+          </div>
+
+          {/* Quick Preset Column Chips */}
+          <div className="hidden lg:flex items-center gap-1 bg-white border border-[#11100E]/20 px-1.5 py-1 rounded-xl shadow-xs">
+            {[2, 4, 8, 12, 16].map((c) => (
+              <button
+                key={c}
+                onClick={() => handleSetCols(c)}
+                className={`px-1.5 py-0.5 rounded-lg text-[10px] font-bold transition-colors cursor-pointer ${
+                  cols === c
+                    ? 'bg-[#11100E] text-[#F5F1E8]'
+                    : 'text-[#77736B] hover:text-[#11100E] hover:bg-[#F5F1E8]'
+                }`}
+                title={`Set ${c} columns`}
+              >
+                {c}
+              </button>
+            ))}
           </div>
 
           {/* Grid Guides Toggle */}
@@ -160,7 +382,11 @@ export const SlideGridSystem: React.FC = () => {
             }`}
             title="Toggle column guides overlay"
           >
-            {showColumns ? <Eye className="w-3.5 h-3.5 text-[#F59E0B]" /> : <EyeOff className="w-3.5 h-3.5 text-[#77736B]" />}
+            {showColumns ? (
+              <Eye className="w-3.5 h-3.5 text-[#F59E0B]" />
+            ) : (
+              <EyeOff className="w-3.5 h-3.5 text-[#77736B]" />
+            )}
             <span>{showColumns ? 'GRID: ON' : 'GRID: OFF'}</span>
           </button>
         </div>
@@ -175,11 +401,11 @@ export const SlideGridSystem: React.FC = () => {
               LAYOUT PRESETS & 8PX GRID.
             </h2>
             <p className="text-xs text-[#77736B] font-medium mt-0.5">
-              Select a real-world layout style to test column rhythm and spacing fit:
+              Select a pure wireframe layout style to test column rhythm, spans, and gutters without content clutter:
             </p>
           </div>
 
-          {/* Real-World Layout Buttons (Button-like style for best fit) */}
+          {/* Wireframe Layout Preset Buttons */}
           <div className="flex flex-wrap items-center gap-1.5 font-mono text-xs">
             {presets.map((p) => {
               const Icon = p.icon;
@@ -193,8 +419,11 @@ export const SlideGridSystem: React.FC = () => {
                       ? 'bg-[#11100E] text-[#F5F1E8] border-[#11100E] shadow-sm -translate-y-0.5'
                       : 'bg-white text-[#11100E] border-[#11100E]/15 hover:border-[#F59E0B] hover:bg-[#F5F1E8]'
                   }`}
+                  title={p.description}
                 >
-                  <Icon className={`w-3.5 h-3.5 ${isSelected ? 'text-[#F59E0B]' : 'text-[#77736B]'}`} />
+                  <Icon
+                    className={`w-3.5 h-3.5 ${isSelected ? 'text-[#F59E0B]' : 'text-[#77736B]'}`}
+                  />
                   <span>{p.label}</span>
                 </button>
               );
@@ -207,7 +436,18 @@ export const SlideGridSystem: React.FC = () => {
           {spacingTokens.map((t) => (
             <div
               key={t.name}
-              className="p-1.5 px-2 rounded-xl bg-white border border-[#11100E]/10 flex flex-col justify-between"
+              onClick={() => {
+                if (t.px === 8 || t.px === 16 || t.px === 24) {
+                  sound.playClick(1.1);
+                  setGutter(t.px);
+                }
+              }}
+              className={`p-1.5 px-2 rounded-xl bg-white border transition-all ${
+                gutter === t.px
+                  ? 'border-[#11100E] shadow-xs bg-[#FAF7F2]'
+                  : 'border-[#11100E]/10'
+              } flex flex-col justify-between cursor-pointer`}
+              title={`${t.name} spacing token — click to test gutter`}
             >
               <div className="flex justify-between items-center">
                 <span className="font-bold text-xs text-[#11100E]">{t.name}</span>
@@ -218,398 +458,210 @@ export const SlideGridSystem: React.FC = () => {
           ))}
         </div>
 
-        {/* Interactive Responsive Grid Stage (Strictly Theme Colors) */}
-        <div className="p-3 sm:p-4 rounded-2xl bg-[#EFEAE0] border border-[#11100E]/15 shadow-inner min-h-[280px] max-h-[380px] flex flex-col justify-between overflow-hidden">
-          {/* Cards & Overlay Stage */}
+        {/* Interactive Responsive Grid Stage: Pure Wireframe Boxes (NO CONTENT) */}
+        <div className="p-3 sm:p-4 rounded-2xl bg-[#EFEAE0] border border-[#11100E]/15 shadow-inner min-h-[300px] h-[330px] sm:h-[350px] flex flex-col justify-between overflow-hidden">
+          {/* Main Stage: Underlay Grid Tracks + Dynamic Wireframe Boxes */}
           <div className="relative flex-1 min-h-[220px] flex items-stretch my-0.5">
-            {/* Column Grid Overlay in Theme Amber */}
-            {showColumns && (
-              <div
-                className="absolute inset-0 pointer-events-none z-10 flex"
-                style={{ gap: `${gutter}px` }}
-              >
-                {Array.from({ length: cols }).map((_, idx) => (
-                  <div
-                    key={idx}
-                    className="flex-1 h-full bg-[#F59E0B]/10 border-x border-[#F59E0B]/25 flex flex-col justify-between items-center py-1 rounded-2xs"
+            {/* Background Column Grid (Guaranteed Pixel-Perfect Alignment) */}
+            <div
+              className="absolute inset-0 pointer-events-none z-10 grid"
+              style={{
+                gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
+                gap: isUnaligned ? '13px' : `${gutter}px`,
+                padding: isUnaligned ? '11px' : '0px',
+              }}
+            >
+              {Array.from({ length: cols }).map((_, idx) => (
+                <div
+                  key={idx}
+                  className={`h-full flex flex-col justify-between items-center py-1.5 rounded-sm transition-colors ${
+                    showColumns
+                      ? 'bg-[#F59E0B]/12 border-x border-[#F59E0B]/30'
+                      : 'bg-[#11100E]/[0.02] border-x border-[#11100E]/[0.06]'
+                  }`}
+                >
+                  <span
+                    className={`font-mono text-[9px] font-bold ${
+                      showColumns ? 'text-[#B45309]' : 'text-[#77736B]/50'
+                    }`}
                   >
-                    <span className="font-mono text-[9px] font-bold text-[#B45309]">{idx + 1}</span>
-                    <span className="font-mono text-[8px] text-[#B45309]/60">COL</span>
-                  </div>
-                ))}
-              </div>
-            )}
+                    {String(idx + 1).padStart(2, '0')}
+                  </span>
+                  <span
+                    className={`font-mono text-[8px] uppercase tracking-tighter ${
+                      showColumns ? 'text-[#B45309]/80' : 'text-[#77736B]/30'
+                    }`}
+                  >
+                    COL
+                  </span>
+                </div>
+              ))}
+            </div>
 
             {/* 8pt Dots Matrix Overlay */}
             {show8pt && (
               <div className="absolute inset-0 bg-grid-subtle opacity-75 pointer-events-none z-15" />
             )}
 
-            {/* Mock Layout Containers (Dynamically Responsive to cols and preset) */}
+            {/* Wireframe Layout Box Container: Adapts Dynamically & Reflects Cleanly */}
             <div
-              className={`relative z-20 flex-1 grid my-auto items-stretch font-mono text-xs transition-all duration-300 ${
-                isUnaligned ? 'p-[11px] gap-[13px] translate-x-2' : ''
-              }`}
+              className={`relative z-20 flex-1 grid items-stretch font-mono text-xs transition-all duration-200 ${
+                activePreset === 'MODULAR' || activePreset === 'HERO' ? 'grid-rows-2' : ''
+              } ${isUnaligned ? 'p-[11px] gap-[13px] translate-x-2' : ''}`}
               style={{
                 gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
                 gap: isUnaligned ? '13px' : `${gutter}px`,
               }}
             >
-            {/* BUSINESS PRESET */}
-            {activePreset === 'BUSINESS' && (
-              <>
-                {/* Sidebar Navigation */}
-                <div
-                  className="bg-white border border-[#11100E]/15 rounded-xl p-3 flex flex-col justify-between shadow-xs"
-                  style={{ gridColumn: `span ${Math.min(cols, Math.max(1, getColSpan(0.25)))}` }}
-                >
-                  <div>
-                    <div className="flex items-center justify-between text-[10px] text-[#77736B] font-bold uppercase mb-1">
-                      <span>Console Nav</span>
-                      <span className="text-[#B45309]">SPAN {Math.min(cols, Math.max(1, getColSpan(0.25)))}</span>
-                    </div>
-                    <div className="font-bold text-xs text-[#11100E]">Acme Workspace</div>
-                  </div>
-                  <div className="space-y-1 my-2 text-[10px] text-[#77736B]">
-                    <div className="p-1.5 bg-[#F5F1E8] rounded font-semibold text-[#11100E]">Dashboard Home</div>
-                    <div className="p-1.5 rounded">Deployments (14)</div>
-                    <div className="p-1.5 rounded">Security Keys</div>
-                  </div>
-                  <div className="pt-2 border-t border-[#11100E]/10 text-[9px] text-[#77736B]">
-                    Strict 8px margins
-                  </div>
-                </div>
-
-                {/* Main Dashboard & Metrics */}
-                <div
-                  className="bg-white border border-[#11100E]/15 rounded-xl p-3.5 flex flex-col justify-between shadow-xs"
-                  style={{ gridColumn: `span ${Math.min(cols, Math.max(1, getColSpan(0.5)))}` }}
-                >
-                  <div className="flex justify-between items-center border-b border-[#11100E]/10 pb-2">
-                    <div>
-                      <span className="font-bold text-xs text-[#11100E]">Revenue & Flow Performance</span>
-                      <div className="text-[10px] text-[#77736B]">Live metrics locked to 16px gutter</div>
-                    </div>
-                    <span className="font-mono text-[10px] text-[#B45309] font-bold">
-                      SPAN {Math.min(cols, Math.max(1, getColSpan(0.5)))}
-                    </span>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-2 my-2">
-                    <div className="p-2.5 rounded-lg bg-[#F5F1E8] border border-[#11100E]/10">
-                      <div className="text-[9px] text-[#77736B] uppercase font-bold">Monthly Recurring</div>
-                      <div className="text-base font-black text-[#11100E] mt-0.5 tabular-nums">$34,800</div>
-                      <div className="text-[9px] text-[#16A34A] font-bold mt-0.5">+18.4% this month</div>
-                    </div>
-                    <div className="p-2.5 rounded-lg bg-[#F5F1E8] border border-[#11100E]/10">
-                      <div className="text-[9px] text-[#77736B] uppercase font-bold">Active Seats</div>
-                      <div className="text-base font-black text-[#11100E] mt-0.5 tabular-nums">1,420 / 1,500</div>
-                      <div className="text-[9px] text-[#77736B] mt-0.5">99.8% retention</div>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center justify-between text-[10px] text-[#77736B]">
-                    <span>Standardized container padding (16px)</span>
-                    <span className="font-bold text-[#11100E]">100% 8pt Aligned</span>
-                  </div>
-                </div>
-
-                {/* Live Activity & Action */}
-                <div
-                  className="bg-white border border-[#11100E]/15 rounded-xl p-3 flex flex-col justify-between shadow-xs"
-                  style={{
-                    gridColumn: `span ${Math.min(
-                      cols,
-                      Math.max(1, cols - getColSpan(0.25) - getColSpan(0.5))
-                    )}`,
-                  }}
-                >
-                  <div>
-                    <div className="flex items-center justify-between text-[10px] text-[#77736B] font-bold uppercase mb-1">
-                      <span>Actions</span>
-                      <span className="text-[#B45309]">
-                        SPAN {Math.min(cols, Math.max(1, cols - getColSpan(0.25) - getColSpan(0.5)))}
-                      </span>
-                    </div>
-                    <div className="font-bold text-xs text-[#11100E]">Quick Actions</div>
-                  </div>
-
-                  <div className="space-y-1.5 my-2 text-[10px]">
-                    <div className="p-2 rounded bg-[#F5F1E8] text-[#11100E]">
-                      <div className="font-bold text-[10px]">Cluster Sync: OK</div>
-                      <div className="text-[9px] text-[#77736B]">All nodes responding</div>
-                    </div>
-                  </div>
-
-                  <button
-                    onClick={() => sound.playClick(1.2)}
-                    className="w-full py-1.5 rounded-lg bg-[#11100E] hover:bg-black text-[#F5F1E8] font-mono text-[10px] font-bold cursor-pointer transition-colors"
-                  >
-                    Deploy Update
-                  </button>
-                </div>
-              </>
-            )}
-
-            {/* EVENTS PRESET */}
-            {activePreset === 'EVENTS' && (
-              <>
-                {/* Event Hero Banner */}
-                <div
-                  className="bg-[#11100E] text-[#F5F1E8] rounded-xl p-4 flex flex-col justify-between shadow-sm"
-                  style={{ gridColumn: `span ${Math.min(cols, Math.max(1, getColSpan(0.67)))}` }}
-                >
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <div className="text-[10px] text-[#F59E0B] font-mono uppercase font-bold tracking-wider">
-                        ANNUAL KEYNOTE · OCT 24, 2026
-                      </div>
-                      <h3 className="text-base sm:text-lg font-black tracking-tight text-white mt-1">
-                        CodeGeeks Summit: Craft & Judgment
-                      </h3>
-                      <p className="text-[11px] text-[#E9E1D3]/80 mt-1 max-w-md">
-                        Grand Arena Hall · 1,500 Designers and Builders exploring human-centered UI/UX.
-                      </p>
-                    </div>
-                    <span className="font-mono text-[10px] text-[#F59E0B] font-bold shrink-0">
-                      SPAN {Math.min(cols, Math.max(1, getColSpan(0.67)))}
-                    </span>
-                  </div>
-
-                  <div className="flex items-center gap-4 text-[10px] text-[#E9E1D3]/70 pt-2 border-t border-white/10 mt-3">
-                    <span>Keynote: Arron Parejas</span>
-                    <span>•</span>
-                    <span>12 Live Interactive Workshops</span>
-                  </div>
-                </div>
-
-                {/* Ticket Pass Card */}
-                <div
-                  className="bg-white border border-[#11100E]/15 rounded-xl p-4 flex flex-col justify-between shadow-xs"
-                  style={{ gridColumn: `span ${Math.min(cols, Math.max(1, cols - getColSpan(0.67)))}` }}
-                >
-                  <div className="flex items-center justify-between text-[10px] text-[#77736B] font-bold uppercase">
-                    <span>Admission</span>
-                    <span className="text-[#B45309]">SPAN {Math.min(cols, Math.max(1, cols - getColSpan(0.67)))}</span>
-                  </div>
-
-                  <div>
-                    <div className="text-xs font-bold text-[#11100E] mt-1">Full-Access Pass</div>
-                    <div className="text-xl font-black text-[#11100E] mt-0.5">$249</div>
-                    <div className="text-[10px] text-[#77736B]">Badge, seating, and afterparty entry</div>
-                  </div>
-
-                  <button
-                    onClick={() => sound.playClick(1.2)}
-                    className="w-full py-2 rounded-lg bg-[#F59E0B] hover:bg-[#D97706] text-[#11100E] font-bold text-xs shadow-xs cursor-pointer transition-colors"
-                  >
-                    Claim Pass
-                  </button>
-                </div>
-
-                {/* 4 Agenda Cards */}
-                {['09:00 AM · Opening', '11:00 AM · UI/UX Lab', '02:00 PM · Agentic Flow', '04:30 PM · Showcase'].map(
-                  (slot, i) => (
-                    <div
-                      key={slot}
-                      className="bg-white border border-[#11100E]/15 rounded-xl p-2.5 flex flex-col justify-between shadow-xs"
-                      style={{ gridColumn: `span ${Math.max(1, Math.floor(cols / 4))}` }}
-                    >
-                      <div className="text-[9px] text-[#B45309] font-bold uppercase">Track 0{i + 1}</div>
-                      <div className="text-[11px] font-bold text-[#11100E] mt-0.5 truncate">{slot}</div>
-                      <div className="text-[9px] text-[#77736B] mt-1">Hall A · 60m</div>
-                    </div>
-                  )
-                )}
-              </>
-            )}
-
-            {/* STORE PRESET */}
-            {activePreset === 'STORE' && (
-              <>
-                {/* Category Sidebar */}
-                <div
-                  className="bg-white border border-[#11100E]/15 rounded-xl p-3 flex flex-col justify-between shadow-xs"
-                  style={{ gridColumn: `span ${Math.min(cols, Math.max(1, getColSpan(0.25)))}` }}
-                >
-                  <div>
-                    <div className="flex items-center justify-between text-[10px] text-[#77736B] font-bold uppercase mb-1">
-                      <span>Filters</span>
-                      <span className="text-[#B45309]">SPAN {Math.min(cols, Math.max(1, getColSpan(0.25)))}</span>
-                    </div>
-                    <div className="font-bold text-xs text-[#11100E]">Categories</div>
-                  </div>
-
-                  <div className="space-y-1 my-2 text-[10px] text-[#77736B]">
-                    <div className="p-1.5 bg-[#F5F1E8] font-bold text-[#11100E] rounded">All Hardware (48)</div>
-                    <div className="p-1.5 rounded">Tactile Switches (16)</div>
-                    <div className="p-1.5 rounded">Desk Mats (12)</div>
-                    <div className="p-1.5 rounded">Keycaps (20)</div>
-                  </div>
-
-                  <div className="text-[9px] text-[#77736B] pt-2 border-t border-[#11100E]/10">
-                    Filter by actuation weight
-                  </div>
-                </div>
-
-                {/* 3 Store Product Cards */}
-                {[
-                  { title: 'Tactile Panda Switches', price: '$38.00', desc: '5-pin mechanical switch pack' },
-                  { title: 'Minimal Felt Desk Mat', price: '$29.00', desc: '900×400mm waterproof wool' },
-                  { title: 'Cream Carbon Keycaps', price: '$54.00', desc: 'PBT dye-sublimated set' },
-                ].map((item, idx) => (
-                  <div
-                    key={item.title}
-                    className="bg-white border border-[#11100E]/15 rounded-xl p-3.5 flex flex-col justify-between shadow-xs"
-                    style={{
-                      gridColumn: `span ${Math.max(
-                        1,
-                        Math.floor((cols - getColSpan(0.25)) / 3)
-                      )}`,
-                    }}
-                  >
-                    <div>
-                      <div className="flex items-center justify-between text-[10px] text-[#B45309] font-bold">
-                        <span>ITEM 0{idx + 1}</span>
-                        <span>
-                          SPAN {Math.max(1, Math.floor((cols - getColSpan(0.25)) / 3))}
-                        </span>
-                      </div>
-                      <div className="font-bold text-xs text-[#11100E] mt-1">{item.title}</div>
-                      <div className="text-[10px] text-[#77736B] mt-0.5">{item.desc}</div>
-                    </div>
-
-                    <div className="pt-3 mt-2 border-t border-[#11100E]/10 flex items-center justify-between">
-                      <span className="font-black text-sm text-[#11100E]">{item.price}</span>
-                      <button
-                        onClick={() => sound.playClick(1.2)}
-                        className="px-2.5 py-1 rounded-lg bg-[#11100E] hover:bg-black text-[#F5F1E8] text-[10px] font-bold cursor-pointer transition-colors"
-                      >
-                        Add
-                      </button>
-                    </div>
-                  </div>
+              {/* PRESET 1: 1:1 COLUMNS (Every column is an individual box) */}
+              {activePreset === 'EQUAL' &&
+                Array.from({ length: cols }).map((_, idx) => (
+                  <WireframeBox
+                    key={idx}
+                    label={`COL ${String(idx + 1).padStart(2, '0')}`}
+                    tag="1:1"
+                    span={1}
+                    totalCols={cols}
+                    startCol={idx + 1}
+                    gutter={gutter}
+                    variant={idx % 2 === 0 ? 'primary' : 'secondary'}
+                    compact={cols > 8}
+                  />
                 ))}
-              </>
-            )}
 
-            {/* EDITORIAL PRESET */}
-            {activePreset === 'EDITORIAL' && (
-              <>
-                {/* Main Article Hero Column */}
-                <div
-                  className="bg-white border border-[#11100E]/15 rounded-xl p-4 flex flex-col justify-between shadow-xs"
-                  style={{ gridColumn: `span ${Math.min(cols, Math.max(1, getColSpan(0.67)))}` }}
-                >
-                  <div>
-                    <div className="flex items-center justify-between text-[10px] text-[#77736B] font-bold uppercase mb-1">
-                      <span>ESSAY · ISSUE #14</span>
-                      <span className="text-[#B45309]">SPAN {Math.min(cols, Math.max(1, getColSpan(0.67)))}</span>
-                    </div>
-                    <h3 className="text-base sm:text-lg font-black tracking-tight text-[#11100E]">
-                      The Return of Human Taste in Software
-                    </h3>
-                    <p className="text-[11px] text-[#77736B] leading-relaxed mt-2">
-                      When anyone can generate thousands of lines of code in seconds, the only differentiator left is
-                      human restraint. Knowing what to delete, why spacing matters, and how a button feels under the
-                      finger.
-                    </p>
-                  </div>
+              {/* PRESET 2: SPLIT 2:1 (Major reading column + aside) */}
+              {activePreset === 'SPLIT' && (
+                <>
+                  <WireframeBox
+                    label="BOX A"
+                    tag="PRIMARY"
+                    span={getSplitSpans().major}
+                    totalCols={cols}
+                    startCol={1}
+                    gutter={gutter}
+                    variant="primary"
+                  />
+                  <WireframeBox
+                    label="BOX B"
+                    tag="ASIDE"
+                    span={getSplitSpans().minor}
+                    totalCols={cols}
+                    startCol={getSplitSpans().major + 1}
+                    gutter={gutter}
+                    variant="secondary"
+                  />
+                </>
+              )}
 
-                  <div className="pt-3 border-t border-[#11100E]/10 flex items-center justify-between text-[10px] text-[#77736B]">
-                    <span>By Arron Parejas</span>
-                    <span>8 Min Read · Aligned to 8pt Baseline</span>
-                  </div>
-                </div>
+              {/* PRESET 3: DASHBOARD (Nav + Main Canvas + Inspector) */}
+              {activePreset === 'DASHBOARD' && (
+                <>
+                  <WireframeBox
+                    label="NAV"
+                    tag="SIDEBAR"
+                    span={getDashboardSpans().nav}
+                    totalCols={cols}
+                    startCol={1}
+                    gutter={gutter}
+                    variant="secondary"
+                  />
+                  <WireframeBox
+                    label="MAIN"
+                    tag="CANVAS"
+                    span={getDashboardSpans().main}
+                    totalCols={cols}
+                    startCol={getDashboardSpans().nav + 1}
+                    gutter={gutter}
+                    variant="primary"
+                  />
+                  {getDashboardSpans().rail > 0 && (
+                    <WireframeBox
+                      label="INSPECTOR"
+                      tag="RAIL"
+                      span={getDashboardSpans().rail}
+                      totalCols={cols}
+                      startCol={getDashboardSpans().nav + getDashboardSpans().main + 1}
+                      gutter={gutter}
+                      variant="secondary"
+                    />
+                  )}
+                </>
+              )}
 
-                {/* Side Table of Contents */}
-                <div
-                  className="bg-white border border-[#11100E]/15 rounded-xl p-4 flex flex-col justify-between shadow-xs"
-                  style={{ gridColumn: `span ${Math.min(cols, Math.max(1, cols - getColSpan(0.67)))}` }}
-                >
-                  <div>
-                    <div className="flex items-center justify-between text-[10px] text-[#77736B] font-bold uppercase mb-1">
-                      <span>Outline</span>
-                      <span className="text-[#B45309]">SPAN {Math.min(cols, Math.max(1, cols - getColSpan(0.67)))}</span>
-                    </div>
-                    <div className="font-bold text-xs text-[#11100E]">In This Issue</div>
-                  </div>
+              {/* PRESET 4: MODULAR GRID (Multi-row wireframe card rhythm) */}
+              {activePreset === 'MODULAR' && (
+                <>
+                  {/* Row 1 */}
+                  <WireframeBox
+                    label="HERO A"
+                    tag="ROW 1"
+                    span={getModularSpans().r1Left}
+                    totalCols={cols}
+                    startCol={1}
+                    gutter={gutter}
+                    variant="primary"
+                    compact
+                  />
+                  <WireframeBox
+                    label="HERO B"
+                    tag="ROW 1"
+                    span={getModularSpans().r1Right}
+                    totalCols={cols}
+                    startCol={getModularSpans().r1Left + 1}
+                    gutter={gutter}
+                    variant="dark"
+                    compact
+                  />
 
-                  <div className="space-y-1.5 my-2 text-[10px] text-[#77736B]">
-                    <div className="p-1 rounded font-semibold text-[#11100E]">I. The Illusion of Speed</div>
-                    <div className="p-1 rounded">II. Grid as Architecture</div>
-                    <div className="p-1 rounded">III. Tactile Sound Design</div>
-                  </div>
+                  {/* Row 2 */}
+                  {getModularSpans().row2.map((c, i) => (
+                    <WireframeBox
+                      key={c.label}
+                      label={c.label}
+                      tag="ROW 2"
+                      span={c.span}
+                      totalCols={cols}
+                      startCol={c.startCol}
+                      gutter={gutter}
+                      variant={i % 2 === 0 ? 'secondary' : 'primary'}
+                      compact
+                    />
+                  ))}
+                </>
+              )}
 
-                  <div className="text-[9px] text-[#77736B] pt-2 border-t border-[#11100E]/10">
-                    Typography hierarchy without fluff
-                  </div>
-                </div>
-              </>
-            )}
+              {/* PRESET 5: HERO + SHELF (Full-width banner + sub-blocks) */}
+              {activePreset === 'HERO' && (
+                <>
+                  {/* Row 1: Full-width Hero Banner */}
+                  <WireframeBox
+                    label="BANNER"
+                    tag="FULL SPAN"
+                    span={getHeroSpans().hero}
+                    totalCols={cols}
+                    startCol={1}
+                    gutter={gutter}
+                    variant="dark"
+                    compact
+                  />
 
-            {/* SHOWCASE PRESET */}
-            {activePreset === 'SHOWCASE' && (
-              <>
-                {/* Large Project Feature */}
-                <div
-                  className="bg-[#11100E] text-[#F5F1E8] rounded-xl p-4 flex flex-col justify-between shadow-sm"
-                  style={{ gridColumn: `span ${Math.min(cols, Math.max(1, getColSpan(0.58)))}` }}
-                >
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <div className="text-[10px] text-[#F59E0B] font-mono uppercase font-bold tracking-wider">
-                        FLAGSHIP WORK · 2026
-                      </div>
-                      <h3 className="text-base sm:text-lg font-black tracking-tight text-white mt-1">
-                        DomoDomo: Tactile Web Utilities
-                      </h3>
-                      <p className="text-[11px] text-[#E9E1D3]/80 mt-1 max-w-sm">
-                        230+ online tools built for speed and privacy. Designed without unnecessary clutter.
-                      </p>
-                    </div>
-                    <span className="font-mono text-[10px] text-[#F59E0B] font-bold shrink-0">
-                      SPAN {Math.min(cols, Math.max(1, getColSpan(0.58)))}
-                    </span>
-                  </div>
-
-                  <div className="pt-3 border-t border-white/10 flex items-center justify-between text-[10px] text-[#E9E1D3]/70 mt-3">
-                    <span>50K+ Monthly Users</span>
-                    <a
-                      href="https://domodomo.site"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[#F59E0B] hover:underline font-bold"
-                    >
-                      Visit domodomo.site ↗
-                    </a>
-                  </div>
-                </div>
-
-                {/* Studio Philosophy & Quote */}
-                <div
-                  className="bg-white border border-[#11100E]/15 rounded-xl p-4 flex flex-col justify-between shadow-xs"
-                  style={{ gridColumn: `span ${Math.min(cols, Math.max(1, cols - getColSpan(0.58)))}` }}
-                >
-                  <div>
-                    <div className="flex items-center justify-between text-[10px] text-[#77736B] font-bold uppercase mb-1">
-                      <span>Philosophy</span>
-                      <span className="text-[#B45309]">SPAN {Math.min(cols, Math.max(1, cols - getColSpan(0.58)))}</span>
-                    </div>
-                    <div className="text-xs font-bold text-[#11100E] mt-1">Design Thesis</div>
-                  </div>
-
-                  <blockquote className="my-2 text-[11px] text-[#11100E] italic border-l-2 border-[#F59E0B] pl-2 font-serif">
-                    “Software should feel like an instrument, not a transaction.”
-                  </blockquote>
-
-                  <div className="text-[10px] text-[#77736B] pt-2 border-t border-[#11100E]/10">
-                    Asymmetric layout with clear visual hierarchy
-                  </div>
-                </div>
-              </>
-            )}
-          </div>
+                  {/* Row 2: Shelf Sub-Cards */}
+                  {getHeroSpans().subs.map((s, i) => (
+                    <WireframeBox
+                      key={s.label}
+                      label={s.label}
+                      tag="SHELF"
+                      span={s.span}
+                      totalCols={cols}
+                      startCol={s.startCol}
+                      gutter={gutter}
+                      variant={i % 2 === 0 ? 'primary' : 'secondary'}
+                      compact
+                    />
+                  ))}
+                </>
+              )}
+            </div>
           </div>
 
           {/* Bottom Live Status Bar */}
@@ -639,6 +691,8 @@ export const SlideGridSystem: React.FC = () => {
                   </button>
                 ))}
               </div>
+
+              {/* 8pt Dots Matrix Toggle */}
               <button
                 onClick={() => {
                   sound.playClick(1.05);
@@ -650,7 +704,7 @@ export const SlideGridSystem: React.FC = () => {
               </button>
             </div>
 
-            {/* Subtle Alignment Mode Switch (Theme Colors Only) */}
+            {/* Subtle Alignment Mode Switch */}
             <button
               onClick={() => {
                 if (!isUnaligned) sound.playSlopAlert();
@@ -663,8 +717,14 @@ export const SlideGridSystem: React.FC = () => {
                   : 'bg-white text-[#11100E] border-[#11100E]/20 hover:border-[#11100E]'
               }`}
             >
-              {isUnaligned ? <AlertTriangle className="w-3 h-3 text-[#F59E0B]" /> : <CheckCircle2 className="w-3 h-3 text-[#B45309]" />}
-              <span>{isUnaligned ? 'TESTING: UNALIGNED RANDOM PADDING' : 'LOCKED TO 8PT SYSTEM'}</span>
+              {isUnaligned ? (
+                <AlertTriangle className="w-3 h-3 text-[#F59E0B]" />
+              ) : (
+                <CheckCircle2 className="w-3 h-3 text-[#B45309]" />
+              )}
+              <span>
+                {isUnaligned ? 'TESTING: UNALIGNED RANDOM PADDING' : 'LOCKED TO 8PT SYSTEM'}
+              </span>
             </button>
           </div>
         </div>
