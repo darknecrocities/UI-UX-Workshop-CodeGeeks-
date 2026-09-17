@@ -123,17 +123,26 @@ export const Slide10Premium: React.FC = () => {
               <div className="font-bold text-sm text-[#11100E] border-b border-[#11100E]/10 pb-2">
                 {current.title}
               </div>
-              <div className="p-3 rounded-lg bg-[#FAF7F2] border border-[#11100E]/15">
-                <div className="text-[10px] text-[#77736B] font-bold mb-1">✗ WITHOUT INTENTION</div>
-                <div className="text-[#11100E]">{current.bad}</div>
+              <div className="p-3.5 rounded-xl bg-rose-50 border border-rose-200 shadow-xs">
+                <div className="text-[10px] text-rose-700 font-bold mb-1 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-500" />
+                  <span>✗ WITHOUT INTENTION (SLOP RISK)</span>
+                </div>
+                <div className="text-rose-950 font-medium">{current.bad}</div>
               </div>
-              <div className="p-3 rounded-lg bg-white border border-[#11100E]/20">
-                <div className="text-[10px] text-[#11100E] font-bold mb-1">✓ WITH CRAFT</div>
-                <div className="text-[#11100E]">{current.good}</div>
+              <div className="p-3.5 rounded-xl bg-emerald-50 border border-emerald-300 shadow-xs">
+                <div className="text-[10px] text-emerald-700 font-bold mb-1 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
+                  <span>✓ WITH CRAFT & DISCIPLINE</span>
+                </div>
+                <div className="text-emerald-950 font-semibold">{current.good}</div>
               </div>
-              <div className="p-3 rounded-lg bg-[#E9E1D3] border border-[#11100E]/10">
-                <div className="text-[10px] text-[#77736B] font-bold mb-1">IMPACT</div>
-                <div className="text-[#11100E] font-medium">{current.impact}</div>
+              <div className="p-3.5 rounded-xl bg-blue-50 border border-blue-200 shadow-xs">
+                <div className="text-[10px] text-blue-700 font-bold mb-1 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
+                  <span>MEASURABLE USER IMPACT</span>
+                </div>
+                <div className="text-blue-950 font-medium">{current.impact}</div>
               </div>
             </div>
           </div>
