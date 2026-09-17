@@ -1,6 +1,6 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { sound } from '../audio/sound';
-import { Sparkles, CheckCircle2, AlertTriangle, ArrowRight, Grid3X3, Command } from 'lucide-react';
+import { Sparkles, ArrowRight, Grid3X3, Command } from 'lucide-react';
 
 export const BeforeAfterSlider: React.FC = () => {
   const [sliderPos, setSliderPos] = useState<number>(50); // percentage 0-100
@@ -163,15 +163,6 @@ export const BeforeAfterSlider: React.FC = () => {
           </div>
         </div>
 
-        {/* Floating Labels */}
-        <div className="absolute top-3 left-3 bg-[#DC2626]/90 text-white font-mono text-[9px] font-bold px-2 py-0.5 rounded-full pointer-events-none z-30 shadow-xs flex items-center gap-1">
-          <AlertTriangle className="w-3 h-3" />
-          <span>RAW AI SLOP</span>
-        </div>
-        <div className="absolute top-3 right-3 bg-[#16A34A] text-white font-mono text-[9px] font-bold px-2 py-0.5 rounded-full pointer-events-none z-30 shadow-xs flex items-center gap-1">
-          <CheckCircle2 className="w-3 h-3" />
-          <span>INTENTIONAL CRAFT</span>
-        </div>
       </div>
 
       {/* Interactive Controls Bar Below Slider */}

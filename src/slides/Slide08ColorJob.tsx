@@ -25,7 +25,10 @@ export const Slide08ColorJob: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'PALETTE' | 'RULES'>('PALETTE');
   const [selectedColor, setSelectedColor] = useState<string>('BEIGE');
   const [selectedRule, setSelectedRule] = useState<number>(0);
-  const [appState, setAppState] = useState<'IDLE' | 'WARNING' | 'SUCCESS'>('IDLE');
+  // color-theory combinator
+  const [bgPick, setBgPick] = useState<string>('BLACK');
+  const [textPick, setTextPick] = useState<string>('BEIGE');
+  const [mixMode, setMixMode] = useState<'MONO' | 'SPLIT' | 'ACCENT'>('MONO');
 
   const swatches: Swatch[] = [
     {
@@ -252,52 +255,95 @@ export const Slide08ColorJob: React.FC = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center font-mono">
-                <div className="md:col-span-8 space-y-2">
+                <div className="md:col-span-8 space-y-3">
                   <p className="text-xs font-medium text-[#11100E] leading-relaxed">
                     {activeSwatch.roleDescription}
                   </p>
-                  <div className="flex flex-wrap gap-2 text-xs">
-                    <button
-                      onClick={() => {
-                        sound.playClick();
-                        setAppState('IDLE');
-                      }}
-                      className="px-3 py-1.5 rounded-lg bg-[#11100E] text-[#F5F1E8] font-bold cursor-pointer hover:bg-black active:translate-y-0.5"
-                    >
-                      Trigger Normal Action
-                    </button>
-                    <button
-                      onClick={() => {
-                        sound.playSlopAlert();
-                        setAppState('WARNING');
-                      }}
-                      className="px-3 py-1.5 rounded-lg bg-[#DC2626]/10 text-[#DC2626] border border-[#DC2626]/30 font-bold cursor-pointer hover:bg-[#DC2626]/20 active:translate-y-0.5"
-                    >
-                      Trigger Error Alert (Red)
-                    </button>
-                    <button
-                      onClick={() => {
-                        sound.playSuccess();
-                        setAppState('SUCCESS');
-                      }}
-                      className="px-3 py-1.5 rounded-lg bg-[#16A34A]/10 text-[#16A34A] border border-[#16A34A]/30 font-bold cursor-pointer hover:bg-[#16A34A]/20 active:translate-y-0.5"
-                    >
-                      Trigger Success Event (Green)
-                    </button>
+
+                  {/* Color Theory Combinator */}
+                  <div className="space-y-2">
+                    <div className="text-[10px] font-bold text-[#77736B] uppercase tracking-wider">Color Combo Builder — pick bg + text, see harmony:</div>
+                    <div className="flex flex-wrap gap-1.5">
+                      {/* Mix Mode chips */}
+                      {(['MONO', 'SPLIT', 'ACCENT'] as const).map((m) => (
+                        <button
+                          key={m}
+                          onClick={() => { sound.playClick(1.1); setMixMode(m); }}
+                          className={`px-2 py-0.5 rounded text-[10px] font-bold border cursor-pointer transition-all ${
+                            mixMode === m
+                              ? 'bg-[#11100E] text-[#F5F1E8] border-[#11100E]'
+                              : 'bg-white text-[#11100E] border-[#11100E]/20 hover:border-[#11100E]'
+                          }`}
+                        >
+                          {m === 'MONO' ? 'Monochrome' : m === 'SPLIT' ? 'Split Tone' : 'Accent Pop'}
+                        </button>
+                      ))}
+                    </div>
+
+                    <div className="flex gap-3 items-start">
+                      <div className="space-y-1">
+                        <div className="text-[9px] font-bold text-[#77736B] uppercase">Background</div>
+                        <div className="flex gap-1 flex-wrap">
+                          {swatches.slice(0, mixMode === 'MONO' ? 2 : 8).map((s) => (
+                            <button
+                              key={'bg-' + s.id}
+                              onClick={() => { sound.playClick(1.0); setBgPick(s.id); }}
+                              title={s.name}
+                              className={`w-6 h-6 rounded-md border-2 transition-all cursor-pointer ${
+                                bgPick === s.id ? 'border-[#F59E0B] scale-110 shadow-md' : 'border-transparent hover:border-[#11100E]/40'
+                              }`}
+                              style={{ backgroundColor: s.hex }}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                      <div className="space-y-1">
+                        <div className="text-[9px] font-bold text-[#77736B] uppercase">Text / Foreground</div>
+                        <div className="flex gap-1 flex-wrap">
+                          {swatches.slice(0, mixMode === 'MONO' ? 2 : 8).map((s) => (
+                            <button
+                              key={'txt-' + s.id}
+                              onClick={() => { sound.playClick(1.0); setTextPick(s.id); }}
+                              title={s.name}
+                              className={`w-6 h-6 rounded-md border-2 transition-all cursor-pointer ${
+                                textPick === s.id ? 'border-[#F59E0B] scale-110 shadow-md' : 'border-transparent hover:border-[#11100E]/40'
+                              }`}
+                              style={{ backgroundColor: s.hex }}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                <div
-                  className="md:col-span-4 p-4 rounded-xl border border-black/10 flex flex-col justify-center items-center text-center space-y-1 shadow-xs"
-                  style={{ backgroundColor: activeSwatch.hex }}
-                >
-                  <span className={`text-[10px] uppercase font-bold tracking-wider ${activeSwatch.textClass}`}>
-                    ACTIVE ROLE SURFACE
-                  </span>
-                  <div className={`text-base font-bold ${activeSwatch.textClass}`}>
-                    {appState === 'IDLE' ? 'All Good' : appState === 'WARNING' ? 'Attention Needed' : 'Action Succeeded'}
-                  </div>
-                </div>
+                {/* Live Preview Card */}
+                {(() => {
+                  const bgSwatch = swatches.find(s => s.id === bgPick) || swatches[1];
+                  const txtSwatch = swatches.find(s => s.id === textPick) || swatches[0];
+                  const accentSwatch = mixMode === 'ACCENT' ? (swatches.find(s => s.id === selectedColor) || swatches[7]) : null;
+                  return (
+                    <div
+                      className="md:col-span-4 p-4 rounded-xl border border-black/10 flex flex-col justify-between space-y-2 shadow-xs min-h-[100px]"
+                      style={{ backgroundColor: bgSwatch.hex }}
+                    >
+                      <div className="text-[9px] font-mono font-bold uppercase tracking-wider" style={{ color: txtSwatch.hex }}>
+                        ACTIVE ROLE SURFACE
+                      </div>
+                      <div className="text-base font-bold leading-tight" style={{ color: txtSwatch.hex }}>
+                        {bgSwatch.name}
+                        {accentSwatch && (
+                          <span className="ml-1.5 px-1.5 py-0.5 rounded text-[10px] font-bold" style={{ backgroundColor: accentSwatch.hex, color: bgSwatch.hex }}>
+                            +{accentSwatch.name.split(' ')[0]}
+                          </span>
+                        )}
+                      </div>
+                      <div className="text-[10px] font-mono" style={{ color: txtSwatch.hex, opacity: 0.7 }}>
+                        {bgSwatch.hex} × {txtSwatch.hex}
+                      </div>
+                    </div>
+                  );
+                })()}
               </div>
             </div>
           </div>

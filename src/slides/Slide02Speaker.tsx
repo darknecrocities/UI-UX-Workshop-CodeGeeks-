@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { UnoProductStack } from '../components/UnoProductStack';
 import { sound } from '../audio/sound';
-import { Award, GitFork, ExternalLink, Sparkles, User } from 'lucide-react';
+import { User } from 'lucide-react';
 
 export const Slide02Speaker: React.FC = () => {
   const [appCount, setAppCount] = useState<number>(70);
   const [activeBadge, setActiveBadge] = useState<number | null>(null);
 
   const badges = [
-    { title: '8× Hackathons', subtitle: 'Champion', icon: Award, color: 'text-[#D97706]' },
-    { title: 'Shipaton 2026', subtitle: 'Winner', icon: Sparkles, color: 'text-[#16A34A]' },
-    { title: 'Top 11 in PH', subtitle: 'GitHub Rank', icon: GitFork, color: 'text-[#2563EB]' },
-    { title: 'GDG Campus Lead', subtitle: 'HAU Chapter', icon: User, color: 'text-[#11100E]' },
+    { title: '8× Hackathons', subtitle: 'Champion' },
+    { title: 'Shipaton 2026', subtitle: 'Winner' },
+    { title: 'Top 11 in PH', subtitle: 'GitHub Rank' },
+    { title: 'GDG Campus Lead', subtitle: 'HAU Chapter' },
   ];
 
   return (
@@ -44,10 +44,9 @@ export const Slide02Speaker: React.FC = () => {
             </p>
           </div>
 
-          {/* Compact Tactile Squircle Badges (Not stretched rectangles!) */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 font-mono text-xs">
+          {/* Minimalist Stat Cards — beige × black only */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-[#11100E]/20 rounded-2xl overflow-hidden border border-[#11100E]/20 font-mono text-xs">
             {badges.map((b, idx) => {
-              const Icon = b.icon;
               const isSelected = activeBadge === idx;
               return (
                 <button
@@ -56,19 +55,31 @@ export const Slide02Speaker: React.FC = () => {
                     sound.playClick(1.2);
                     setActiveBadge(isSelected ? null : idx);
                   }}
-                  className={`p-3 rounded-xl border text-left flex flex-col justify-between transition-all cursor-pointer ${
+                  className={`relative p-4 flex flex-col justify-between text-left cursor-pointer transition-all duration-200 min-h-[88px] ${
                     isSelected
-                      ? 'bg-[#11100E] text-[#F5F1E8] border-[#11100E] shadow-md scale-102'
-                      : 'bg-[#F5F1E8] text-[#11100E] border-[#11100E]/15 hover:border-[#11100E]'
+                      ? 'bg-[#11100E]'
+                      : 'bg-[#F5F1E8] hover:bg-[#EFEAE0]'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 ${isSelected ? 'text-[#F59E0B]' : b.color}`} />
-                  <div className="mt-2">
-                    <div className="font-bold text-xs">{b.title}</div>
-                    <div className={`text-[10px] mt-0.5 ${isSelected ? 'text-white/70' : 'text-[#77736B]'}`}>
+                  {/* Index number */}
+                  <span className={`text-[10px] font-bold tracking-widest ${isSelected ? 'text-[#F5F1E8]/40' : 'text-[#11100E]/30'}`}>
+                    {String(idx + 1).padStart(2, '0')}
+                  </span>
+
+                  {/* Main stat */}
+                  <div className="mt-3">
+                    <div className={`text-sm font-black leading-none tracking-tight ${isSelected ? 'text-[#F5F1E8]' : 'text-[#11100E]'}`}>
+                      {b.title}
+                    </div>
+                    <div className={`text-[10px] mt-1 uppercase tracking-widest ${isSelected ? 'text-[#F5F1E8]/50' : 'text-[#77736B]'}`}>
                       {b.subtitle}
                     </div>
                   </div>
+
+                  {/* Active indicator */}
+                  {isSelected && (
+                    <div className="absolute top-3 right-3 w-1.5 h-1.5 rounded-full bg-[#F5F1E8]/60" />
+                  )}
                 </button>
               );
             })}
@@ -105,7 +116,7 @@ export const Slide02Speaker: React.FC = () => {
               className="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-xs font-mono transition-colors flex items-center gap-1.5 cursor-pointer"
             >
               <span>arronparejas.dev</span>
-              <ExternalLink className="w-3.5 h-3.5" />
+              <span className="text-[11px]">↗</span>
             </a>
           </div>
         </div>

@@ -93,3 +93,56 @@
 .slide-transition-backward {
   animation: slideInBackward 260ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
+
+/* Tactile Grid Progress Slider */
+.grid-progress-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 8px;
+  border-radius: 9999px;
+  outline: none;
+  cursor: grab;
+}
+.grid-progress-slider:active {
+  cursor: grabbing;
+}
+.grid-progress-slider::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 9999px;
+}
+.grid-progress-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #11100E;
+  border: 2px solid #F59E0B;
+  box-shadow: 0 1px 4px rgba(17, 16, 14, 0.35);
+  cursor: grab;
+  margin-top: -5px;
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.15s ease;
+}
+.grid-progress-slider:active::-webkit-slider-thumb {
+  cursor: grabbing;
+  transform: scale(1.2);
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.45);
+}
+.grid-progress-slider::-moz-range-track {
+  height: 8px;
+  border-radius: 9999px;
+}
+.grid-progress-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #11100E;
+  border: 2px solid #F59E0B;
+  box-shadow: 0 1px 4px rgba(17, 16, 14, 0.35);
+  cursor: grab;
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.grid-progress-slider:active::-moz-range-thumb {
+  cursor: grabbing;
+  transform: scale(1.2);
+}

@@ -9,8 +9,7 @@ import {
   ShoppingBag,
   BookOpen,
   Layers,
-  Plus,
-  Minus,
+  SlidersHorizontal,
   CheckCircle2,
   AlertTriangle,
 } from 'lucide-react';
@@ -92,8 +91,11 @@ export const SlideGridSystem: React.FC = () => {
   };
 
   const handleSetCols = (c: number) => {
-    sound.playClick(1.1);
-    setCols(Math.max(2, Math.min(16, c)));
+    const nextCols = Math.max(2, Math.min(16, c));
+    if (nextCols !== cols) {
+      sound.playClick(0.85 + (nextCols / 16) * 0.4);
+      setCols(nextCols);
+    }
   };
 
   // Helper column spans based on current cols count
@@ -112,74 +114,53 @@ export const SlideGridSystem: React.FC = () => {
           </span>
         </div>
 
-        {/* Global Grid Controls */}
+        {/* Global Grid Controls: Draggable Progress Toggle Bar */}
         <div className="flex items-center gap-2 font-mono text-xs">
-          {/* Column Quick Selectors */}
-          <div className="flex items-center gap-0.5 bg-white border border-[#11100E]/20 p-0.5 rounded-lg shadow-2xs">
-            <button
-              onClick={() => handleSetCols(cols - 1)}
-              className="p-1 rounded text-[#77736B] hover:text-[#11100E] hover:bg-[#11100E]/5 transition-colors cursor-pointer"
-              title="Decrease columns"
-            >
-              <Minus className="w-3 h-3" />
-            </button>
+          {/* Draggable Column Progress Bar */}
+          <div className="flex items-center gap-2 sm:gap-3 bg-white border border-[#11100E]/20 px-3 py-1.5 rounded-xl shadow-xs">
+            <div className="flex items-center gap-1.5 text-[11px] font-bold text-[#11100E] min-w-[66px]">
+              <SlidersHorizontal className="w-3.5 h-3.5 text-[#B45309]" />
+              <span className="tabular-nums">{cols} COLS</span>
+            </div>
 
-            {[4, 8, 12, 16].map((num) => (
-              <button
-                key={num}
-                onClick={() => handleSetCols(num)}
-                className={`px-2 py-0.5 rounded text-[11px] font-bold cursor-pointer transition-colors ${
-                  cols === num
-                    ? 'bg-[#11100E] text-[#F5F1E8]'
-                    : 'text-[#77736B] hover:text-[#11100E]'
-                }`}
-              >
-                {num}C
-              </button>
-            ))}
-
-            <button
-              onClick={() => handleSetCols(cols + 1)}
-              className="p-1 rounded text-[#77736B] hover:text-[#11100E] hover:bg-[#11100E]/5 transition-colors cursor-pointer"
-              title="Increase columns"
-            >
-              <Plus className="w-3 h-3" />
-            </button>
-          </div>
-
-          {/* Gutter Selector */}
-          <div className="hidden sm:flex items-center gap-1 bg-white border border-[#11100E]/20 p-0.5 rounded-lg text-[11px]">
-            {[8, 16, 24].map((g) => (
-              <button
-                key={g}
-                onClick={() => {
-                  sound.playClick(1.05);
-                  setGutter(g);
+            {/* Draggable Range / Progress Track */}
+            <div className="relative flex items-center w-28 sm:w-44 md:w-56">
+              <input
+                type="range"
+                min="2"
+                max="16"
+                step="1"
+                value={cols}
+                onChange={(e) => handleSetCols(Number(e.target.value))}
+                className="grid-progress-slider w-full"
+                style={{
+                  background: `linear-gradient(to right, #11100E 0%, #11100E ${((cols - 2) / 14) * 100}%, #E5E0D6 ${((cols - 2) / 14) * 100}%, #E5E0D6 100%)`
                 }}
-                className={`px-1.5 py-0.5 rounded cursor-pointer ${
-                  gutter === g
-                    ? 'bg-[#11100E] text-[#F5F1E8] font-bold'
-                    : 'text-[#77736B] hover:text-[#11100E]'
-                }`}
-              >
-                {g}px
-              </button>
-            ))}
+                aria-label="Drag to adjust grid columns"
+                title={`Columns: ${cols}`}
+              />
+            </div>
+
+            {/* Breakpoint Hint */}
+            <span className="hidden sm:inline-block px-1.5 py-0.5 rounded bg-[#F5F1E8] border border-[#11100E]/10 text-[10px] font-bold text-[#77736B] uppercase">
+              {cols <= 4 ? 'Mobile' : cols <= 8 ? 'Tablet' : cols <= 12 ? 'Desktop' : 'Wide'}
+            </span>
           </div>
 
-          {/* Grid Guides Toggle (Theme Colors Only) */}
+          {/* Grid Guides Toggle */}
           <button
             onClick={() => {
               sound.playClick(1.2);
               setShowColumns(!showColumns);
             }}
-            className={`px-2.5 py-1 rounded-lg border cursor-pointer font-bold flex items-center gap-1 text-[11px] ${
+            className={`px-2.5 py-1.5 rounded-xl border cursor-pointer font-bold flex items-center gap-1.5 text-[11px] shadow-xs transition-colors ${
               showColumns
                 ? 'bg-[#11100E] text-[#F5F1E8] border-[#11100E]'
-                : 'bg-[#F5F1E8] text-[#11100E] border-[#11100E]/20'
+                : 'bg-white text-[#11100E] border-[#11100E]/20 hover:border-[#11100E]'
             }`}
+            title="Toggle column guides overlay"
           >
-            {showColumns ? <Eye className="w-3.5 h-3.5" /> : <EyeOff className="w-3.5 h-3.5 text-[#77736B]" />}
+            {showColumns ? <Eye className="w-3.5 h-3.5 text-[#F59E0B]" /> : <EyeOff className="w-3.5 h-3.5 text-[#77736B]" />}
             <span>{showColumns ? 'GRID: ON' : 'GRID: OFF'}</span>
           </button>
         </div>
@@ -635,8 +616,29 @@ export const SlideGridSystem: React.FC = () => {
           <div className="relative z-20 pt-2 border-t border-[#11100E]/10 flex flex-wrap items-center justify-between font-mono text-[11px] text-[#77736B] gap-2">
             <div className="flex items-center gap-3">
               <span>
-                Active System: <strong className="text-[#11100E]">{cols} Columns</strong> ({gutter}px Gutters)
+                Active System: <strong className="text-[#11100E]">{cols} Columns</strong>
               </span>
+
+              {/* Gutter Selector */}
+              <div className="flex items-center gap-1 bg-white border border-[#11100E]/20 px-1.5 py-0.5 rounded-lg text-[10px]">
+                <span className="text-[#77736B]">Gutter:</span>
+                {[8, 16, 24].map((g) => (
+                  <button
+                    key={g}
+                    onClick={() => {
+                      sound.playClick(1.05);
+                      setGutter(g);
+                    }}
+                    className={`px-1 py-0.5 rounded cursor-pointer transition-colors ${
+                      gutter === g
+                        ? 'bg-[#11100E] text-[#F5F1E8] font-bold'
+                        : 'text-[#77736B] hover:text-[#11100E]'
+                    }`}
+                  >
+                    {g}px
+                  </button>
+                ))}
+              </div>
               <button
                 onClick={() => {
                   sound.playClick(1.05);
