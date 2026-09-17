@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg: #E9E1D3;
+    --ink: #11100E;
+    --paper: #F5F1E8;
+    --muted: #77736B;
+    --border: rgba(17, 16, 14, 0.14);
+    --border-strong: rgba(17, 16, 14, 0.8);
+    --accent-red: #DC2626;
+    --accent-green: #16A34A;
+    --accent-yellow: #D97706;
+    --accent-blue: #2563EB;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--ink);
+    background-color: var(--bg);
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  code, kbd, pre, .font-mono {
+    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+}
+
+/* Subtle Paper Texture via procedural SVG data URI */
+.paper-texture {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+/* Architectural Grid lines */
+.bg-grid-subtle {
+  background-size: 48px 48px;
+  background-image: 
+    linear-gradient(to right, rgba(17, 16, 14, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(17, 16, 14, 0.04) 1px, transparent 1px);
+}
+
+/* Custom minimal scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(17, 16, 14, 0.2);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(17, 16, 14, 0.4);
+}
+
+/* Accessible focus ring */
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
