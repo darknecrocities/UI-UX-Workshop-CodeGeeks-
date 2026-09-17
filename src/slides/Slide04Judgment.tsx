@@ -8,32 +8,28 @@ export const Slide04Judgment: React.FC = () => {
 
   const noiseItems = [
     {
-      id: 'Purple Orbs',
-      label: 'Purple Orbs',
-      icon: '🔮',
-      desc: 'Gaudy radial gradient glow behind canvas',
-      badgeClass: 'bg-purple-600/20 text-purple-900 border-purple-400/50',
+      id: 'Chaotic Glow Orbs',
+      label: 'Chaotic Glow Orbs',
+      icon: '◎',
+      desc: 'Unnecessary decorative radial gradients',
     },
     {
       id: 'Floating Blobs',
       label: 'Floating Blobs',
-      icon: '🫧',
-      desc: 'Irrelevant floating decorative vector blob',
-      badgeClass: 'bg-pink-500/20 text-pink-900 border-pink-400/50',
+      icon: '◇',
+      desc: 'Amorphous floating vector shapes',
     },
     {
       id: 'Fake Testimonials',
       label: 'Fake Testimonials',
-      icon: '⭐',
-      desc: '"10x my velocity!" — Unverified bot quote',
-      badgeClass: 'bg-amber-500/20 text-amber-900 border-amber-400/50',
+      icon: '★',
+      desc: '"10x velocity!" — Unverified bot quote',
     },
     {
       id: 'Generic Dashboards',
       label: 'Generic Dashboards',
-      icon: '📈',
+      icon: '▤',
       desc: '+842% AI synergy circular chart widget',
-      badgeClass: 'bg-emerald-500/20 text-emerald-900 border-emerald-400/50',
     },
   ];
 
@@ -94,7 +90,7 @@ export const Slide04Judgment: React.FC = () => {
           }}
           className="px-3 py-1 rounded-lg bg-[#11100E] text-[#F5F1E8] font-mono text-xs flex items-center gap-1.5 cursor-pointer hover:bg-[#11100E]/90 transition-colors"
         >
-          <ArrowRightLeft className="w-3 h-3" />
+          <ArrowRightLeft className="w-3 h-3 text-[#F5F1E8]" />
           <span>Focus: {activeSide}</span>
         </button>
       </div>
@@ -114,9 +110,9 @@ export const Slide04Judgment: React.FC = () => {
           </p>
         </div>
 
-        {/* Modular Squircle Columns */}
+        {/* Modular Columns — Pure Beige & Black */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* AI Column with Live Noise Layer */}
+          {/* AI Column with Live Noise Layer (Beige & Black Only) */}
           <div
             onClick={() => {
               setActiveSide('AI');
@@ -128,25 +124,20 @@ export const Slide04Judgment: React.FC = () => {
                 : 'bg-[#F5F1E8]/60 border-[#11100E]/15 opacity-85'
             }`}
           >
-            {/* Live Purple Orb Glow when NOT removed */}
-            {!removedElements.includes('Purple Orbs') && (
-              <div className="absolute -top-12 -right-12 w-56 h-56 rounded-full bg-purple-600/25 blur-2xl pointer-events-none animate-pulse transition-opacity duration-300 z-0" />
-            )}
-
             <div className="relative z-10 flex items-center justify-between mb-3 pb-2 border-b border-[#11100E]/10">
               <div className="flex items-center gap-2">
-                <Bot className="w-4 h-4 text-[#77736B]" />
+                <Bot className="w-4 h-4 text-[#11100E]" />
                 <h3 className="font-mono font-bold text-xs uppercase tracking-wider text-[#11100E]">
                   WHAT AI GENERATES
                 </h3>
               </div>
 
-              {/* Live Noise Level Pill */}
+              {/* Live Noise Level Pill — Beige & Black */}
               <span
                 className={`font-mono text-[10px] font-bold px-2 py-0.5 rounded-md border transition-all ${
                   allSubtracted
-                    ? 'bg-[#16A34A] text-white border-[#16A34A]'
-                    : 'bg-[#11100E]/10 text-[#11100E] border-[#11100E]/20'
+                    ? 'bg-[#11100E] text-[#F5F1E8] border-[#11100E]'
+                    : 'bg-white text-[#11100E] border-[#11100E]/20'
                 }`}
               >
                 {allSubtracted
@@ -168,19 +159,19 @@ export const Slide04Judgment: React.FC = () => {
               ))}
             </div>
 
-            {/* Live Active Noise Layer: Direct Visual Proof of Subtraction */}
+            {/* Live Active Noise Layer: Direct Visual Proof of Subtraction (Beige & Black Only) */}
             <div className="relative z-10 mt-3 pt-2.5 border-t border-[#11100E]/10 font-mono text-xs">
               <div className="flex items-center justify-between text-[10px] text-[#77736B] mb-1.5 font-bold uppercase">
                 <span>Active Slop Layer:</span>
-                <span className="text-[#B45309]">
+                <span className="text-[#11100E]">
                   {allSubtracted ? 'All Subtracted' : 'Click Badge to Cut'}
                 </span>
               </div>
 
               {allSubtracted ? (
-                <div className="p-2 rounded-xl bg-[#16A34A]/15 border border-[#16A34A]/30 text-[#16A34A] flex items-center justify-between text-[11px] font-bold">
+                <div className="p-2 rounded-xl bg-white border border-[#11100E]/20 text-[#11100E] flex items-center justify-between text-[11px] font-bold">
                   <div className="flex items-center gap-1.5">
-                    <Check className="w-3.5 h-3.5" />
+                    <Check className="w-3.5 h-3.5 text-[#11100E]" />
                     <span>Pure Intentional Craft Restored — Zero Slop</span>
                   </div>
                   <button
@@ -188,7 +179,7 @@ export const Slide04Judgment: React.FC = () => {
                       e.stopPropagation();
                       restoreAll();
                     }}
-                    className="underline text-[10px] text-[#11100E] hover:text-[#B45309] cursor-pointer"
+                    className="underline text-[10px] text-[#77736B] hover:text-[#11100E] cursor-pointer"
                   >
                     Reset
                   </button>
@@ -205,14 +196,14 @@ export const Slide04Judgment: React.FC = () => {
                           e.stopPropagation();
                           toggleSubtract(n.id);
                         }}
-                        className={`p-1.5 px-2 rounded-lg border flex items-center justify-between gap-1 text-[10px] shadow-xs cursor-pointer hover:scale-[0.98] transition-all group ${n.badgeClass}`}
+                        className="p-1.5 px-2 rounded-lg border border-[#11100E]/20 bg-white text-[#11100E] flex items-center justify-between gap-1 text-[10px] shadow-xs cursor-pointer hover:border-[#11100E] transition-all group"
                         title={`Click to subtract ${n.label}`}
                       >
-                        <div className="flex items-center gap-1 truncate">
-                          <span>{n.icon}</span>
+                        <div className="flex items-center gap-1.5 truncate font-mono">
+                          <span className="text-[11px] opacity-70">{n.icon}</span>
                           <span className="font-bold truncate">{n.label}</span>
                         </div>
-                        <span className="text-[9px] font-bold opacity-60 group-hover:opacity-100 shrink-0">
+                        <span className="text-[9px] font-bold opacity-50 group-hover:opacity-100 shrink-0">
                           ✕ CUT
                         </span>
                       </div>
@@ -223,7 +214,7 @@ export const Slide04Judgment: React.FC = () => {
             </div>
           </div>
 
-          {/* Human Column */}
+          {/* Human Column — Pure Beige & Black */}
           <div
             onClick={() => {
               setActiveSide('HUMAN');
@@ -237,12 +228,12 @@ export const Slide04Judgment: React.FC = () => {
           >
             <div className="flex items-center justify-between mb-3 pb-2 border-b border-white/15">
               <div className="flex items-center gap-2">
-                <UserCheck className="w-4 h-4 text-[#16A34A]" />
+                <UserCheck className="w-4 h-4 text-[#F5F1E8]" />
                 <h3 className="font-mono font-bold text-xs uppercase tracking-wider text-[#F5F1E8]">
                   WHAT HUMANS DECIDE
                 </h3>
               </div>
-              <span className="font-mono text-[10px] font-bold text-[#F59E0B] px-2 py-0.5 rounded bg-white/10 border border-white/10">
+              <span className="font-mono text-[10px] font-bold text-[#F5F1E8] px-2 py-0.5 rounded bg-white/10 border border-white/10">
                 TASTE & RESTRAINT
               </span>
             </div>
@@ -278,22 +269,22 @@ export const Slide04Judgment: React.FC = () => {
             {/* Human Restraint Principle Banner */}
             <div className="mt-3 pt-2.5 border-t border-white/10 font-mono text-xs text-[#E9E1D3]/80">
               <div className="p-2 rounded-xl bg-white/5 border border-white/10 text-[10px] leading-relaxed">
-                <span className="text-[#F59E0B] font-bold">Rule #1: </span>
+                <span className="text-[#F5F1E8] font-bold">Rule #1: </span>
                 Every element on screen must earn its right to exist. If it doesn't solve a user problem, delete it.
               </div>
             </div>
           </div>
         </div>
 
-        {/* Interactive Subtraction Bar */}
+        {/* Interactive Subtraction Bar — Beige & Black Only */}
         <div className="p-3 sm:p-3.5 rounded-xl bg-[#F5F1E8] border border-[#11100E]/15 flex flex-wrap items-center justify-between gap-2 font-mono text-xs">
           <div className="flex items-center gap-2">
             <span className="text-[#77736B] font-bold">Test Subtracting Noise:</span>
             <span
-              className={`px-2 py-0.5 rounded text-[10px] font-bold ${
+              className={`px-2 py-0.5 rounded text-[10px] font-bold border ${
                 allSubtracted
-                  ? 'bg-[#16A34A] text-white'
-                  : 'bg-[#11100E]/10 text-[#11100E]'
+                  ? 'bg-[#11100E] text-[#F5F1E8] border-[#11100E]'
+                  : 'bg-white text-[#11100E] border-[#11100E]/20'
               }`}
             >
               {allSubtracted
@@ -311,38 +302,38 @@ export const Slide04Judgment: React.FC = () => {
                   onClick={() => toggleSubtract(elem.id)}
                   className={`px-2.5 py-1 rounded-lg border text-[11px] flex items-center gap-1.5 cursor-pointer transition-all ${
                     isRemoved
-                      ? 'bg-[#16A34A] text-white border-[#16A34A] shadow-xs'
-                      : 'bg-[#E9E1D3] text-[#11100E] border-[#11100E]/20 hover:border-[#11100E] hover:bg-white'
+                      ? 'bg-[#11100E] text-[#F5F1E8] border-[#11100E] shadow-xs'
+                      : 'bg-white text-[#11100E] border-[#11100E]/20 hover:border-[#11100E] hover:bg-[#FAF7F2]'
                   }`}
                   title={isRemoved ? `Restore ${elem.label}` : `Subtract ${elem.label}`}
                 >
                   {isRemoved ? (
-                    <Check className="w-3 h-3" />
+                    <Check className="w-3 h-3 text-[#F5F1E8]" />
                   ) : (
-                    <Minus className="w-3 h-3 text-[#B45309]" />
+                    <Minus className="w-3 h-3 text-[#11100E]" />
                   )}
                   <span>{elem.label}</span>
-                  <span className="text-[9px] opacity-80">
+                  <span className="text-[9px] opacity-75">
                     {isRemoved ? '(CUT)' : ''}
                   </span>
                 </button>
               );
             })}
 
-            {/* Quick Action Button */}
+            {/* Quick Action Button — Beige & Black */}
             <button
               onClick={allSubtracted ? restoreAll : cutAll}
-              className="px-2.5 py-1 rounded-lg bg-[#11100E] text-[#F5F1E8] text-[10px] font-bold cursor-pointer hover:bg-black transition-colors flex items-center gap-1"
+              className="px-2.5 py-1 rounded-lg bg-[#11100E] text-[#F5F1E8] text-[10px] font-bold cursor-pointer hover:bg-black transition-colors flex items-center gap-1 border border-[#11100E]"
               title={allSubtracted ? 'Restore all noisy widgets' : 'Cut all noise at once'}
             >
               {allSubtracted ? (
                 <>
-                  <RotateCcw className="w-3 h-3" />
+                  <RotateCcw className="w-3 h-3 text-[#F5F1E8]" />
                   <span>Restore</span>
                 </>
               ) : (
                 <>
-                  <Sparkles className="w-3 h-3 text-[#F59E0B]" />
+                  <Sparkles className="w-3 h-3 text-[#F5F1E8]" />
                   <span>Cut All</span>
                 </>
               )}

@@ -8,10 +8,8 @@
     --muted: #77736B;
     --border: rgba(17, 16, 14, 0.14);
     --border-strong: rgba(17, 16, 14, 0.8);
-    --accent-red: #DC2626;
-    --accent-green: #16A34A;
-    --accent-yellow: #D97706;
-    --accent-blue: #2563EB;
+    --accent: #11100E;
+    --accent-contrast: #F5F1E8;
   }
 
   body {
@@ -117,7 +115,7 @@
   height: 18px;
   border-radius: 50%;
   background: #11100E;
-  border: 2px solid #F59E0B;
+  border: 2px solid #F5F1E8;
   box-shadow: 0 1px 4px rgba(17, 16, 14, 0.35);
   cursor: grab;
   margin-top: -5px;
@@ -126,7 +124,7 @@
 .grid-progress-slider:active::-webkit-slider-thumb {
   cursor: grabbing;
   transform: scale(1.2);
-  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.45);
+  box-shadow: 0 2px 8px rgba(17, 16, 14, 0.45);
 }
 .grid-progress-slider::-moz-range-track {
   height: 8px;
@@ -137,7 +135,7 @@
   height: 18px;
   border-radius: 50%;
   background: #11100E;
-  border: 2px solid #F59E0B;
+  border: 2px solid #F5F1E8;
   box-shadow: 0 1px 4px rgba(17, 16, 14, 0.35);
   cursor: grab;
   transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);

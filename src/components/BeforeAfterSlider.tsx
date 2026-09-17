@@ -58,12 +58,12 @@ export const BeforeAfterSlider: React.FC = () => {
           {/* Header */}
           <div className="flex items-center justify-between border-b border-[#11100E]/15 pb-2.5">
             <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#16A34A]" />
+              <span className="w-2 h-2 rounded-full bg-[#11100E]" />
               <span className="font-bold text-[#11100E] tracking-tight">Live Dashboard · Server Stats</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="text-[10px] text-[#77736B]">8pt Grid Aligned</span>
-              <span className="px-2 py-0.5 rounded bg-[#16A34A]/10 text-[#16A34A] font-bold text-[10px] border border-[#16A34A]/30">
+              <span className="px-2 py-0.5 rounded bg-[#11100E] text-[#F5F1E8] font-bold text-[10px]">
                 ✓ ACTIVE & STEADY
               </span>
             </div>
@@ -74,7 +74,7 @@ export const BeforeAfterSlider: React.FC = () => {
             <div className="p-3 rounded-xl bg-white border border-[#11100E]/15 shadow-xs">
               <div className="text-[10px] text-[#77736B]">P99 LATENCY</div>
               <div className="text-xl font-bold text-[#11100E] tabular-nums mt-0.5">14.2ms</div>
-              <div className="text-[10px] text-[#16A34A] mt-0.5">↓ −2.4ms (steady)</div>
+              <div className="text-[10px] text-[#77736B] mt-0.5">↓ −2.4ms (steady)</div>
             </div>
             <div className="p-3 rounded-xl bg-white border border-[#11100E]/15 shadow-xs">
               <div className="text-[10px] text-[#77736B]">THROUGHPUT</div>
@@ -83,7 +83,7 @@ export const BeforeAfterSlider: React.FC = () => {
             </div>
             <div className="p-3 rounded-xl bg-white border border-[#11100E]/15 shadow-xs">
               <div className="text-[10px] text-[#77736B]">AVAILABILITY</div>
-              <div className="text-xl font-bold text-[#16A34A] tabular-nums mt-0.5">99.98%</div>
+              <div className="text-xl font-bold text-[#11100E] tabular-nums mt-0.5">99.98%</div>
               <div className="text-[10px] text-[#77736B] mt-0.5">SLO Target Met</div>
             </div>
           </div>
@@ -104,22 +104,22 @@ export const BeforeAfterSlider: React.FC = () => {
           </div>
         </div>
 
-        {/* Left side: AI SLOP DEFAULT (Clipped by sliderPos) */}
+        {/* Left side: AI SLOP DEFAULT (Monochrome, no colors) */}
         <div
           style={{ clipPath: `polygon(0 0, ${sliderPos}% 0, ${sliderPos}% 100%, 0 100%)` }}
-          className="absolute inset-0 p-5 sm:p-6 flex flex-col justify-between bg-gradient-to-br from-purple-100 via-indigo-50 to-pink-50 text-gray-800"
+          className="absolute inset-0 p-5 sm:p-6 flex flex-col justify-between bg-zinc-200 text-zinc-900 font-sans"
         >
           {/* Slop Header with excessive badges */}
-          <div className="flex items-center justify-between border-b border-purple-200 pb-2.5">
+          <div className="flex items-center justify-between border-b border-zinc-300 pb-2.5">
             <div className="flex items-center gap-1.5">
-              <Sparkles className="w-4 h-4 text-purple-600 animate-spin" />
-              <span className="font-extrabold text-sm text-purple-900">✨ ULTRA AI CLUSTER</span>
+              <Sparkles className="w-4 h-4 text-zinc-800 animate-spin" />
+              <span className="font-extrabold text-sm text-zinc-900">✨ ULTRA AI CLUSTER</span>
             </div>
             <div className="flex gap-1">
-              <span className="px-2 py-0.5 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 text-white font-bold text-[9px] shadow-sm">
+              <span className="px-2 py-0.5 rounded-full bg-zinc-900 text-zinc-100 font-bold text-[9px] shadow-sm">
                 TURBO v4
               </span>
-              <span className="px-2 py-0.5 rounded-full bg-amber-400 text-amber-950 font-bold text-[9px]">
+              <span className="px-2 py-0.5 rounded-full bg-zinc-400 text-zinc-900 font-bold text-[9px]">
                 PRO
               </span>
             </div>
@@ -127,27 +127,27 @@ export const BeforeAfterSlider: React.FC = () => {
 
           {/* Slop Metrics: arbitrary paddings, rounded pills, low contrast */}
           <div className="grid grid-cols-3 gap-2 my-auto">
-            <div className="p-[15px] rounded-[28px] bg-white/90 border-2 border-purple-300 shadow-lg text-center">
-              <div className="text-[9px] text-gray-400">SPEED STAT</div>
-              <div className="text-lg font-black text-purple-700">14.2ms</div>
-              <div className="text-[8px] text-gray-400">Default generic font</div>
+            <div className="p-[15px] rounded-[28px] bg-white border-2 border-zinc-400 shadow-lg text-center">
+              <div className="text-[9px] text-zinc-400">SPEED STAT</div>
+              <div className="text-lg font-black text-zinc-900">14.2ms</div>
+              <div className="text-[8px] text-zinc-400">Default generic font</div>
             </div>
-            <div className="p-[7px] mt-2 rounded-[28px] bg-white/90 border-2 border-pink-300 shadow-lg text-center">
-              <div className="text-[9px] text-gray-400">COUNT STAT</div>
-              <div className="text-lg font-black text-pink-600">84920</div>
-              <div className="text-[8px] text-gray-400">Uncalibrated digits</div>
+            <div className="p-[7px] mt-2 rounded-[28px] bg-white border-2 border-zinc-400 shadow-lg text-center">
+              <div className="text-[9px] text-zinc-400">COUNT STAT</div>
+              <div className="text-lg font-black text-zinc-900">84920</div>
+              <div className="text-[8px] text-zinc-400">Uncalibrated digits</div>
             </div>
-            <div className="p-[21px] rounded-[28px] bg-white/90 border-2 border-indigo-300 shadow-lg text-center">
-              <div className="text-[9px] text-gray-400">SCORE STAT</div>
-              <div className="text-lg font-black text-indigo-600">99.98%</div>
-              <div className="text-[8px] text-gray-400">No tabular rhythm</div>
+            <div className="p-[21px] rounded-[28px] bg-white border-2 border-zinc-400 shadow-lg text-center">
+              <div className="text-[9px] text-zinc-400">SCORE STAT</div>
+              <div className="text-lg font-black text-zinc-900">99.98%</div>
+              <div className="text-[8px] text-zinc-400">No tabular rhythm</div>
             </div>
           </div>
 
           {/* Slop Footer */}
-          <div className="flex items-center justify-between pt-2.5 border-t border-purple-200">
-            <span className="text-[10px] text-purple-700 font-semibold">Random margins · 30px pill radius</span>
-            <button className="px-4 py-1.5 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold text-xs shadow-md">
+          <div className="flex items-center justify-between pt-2.5 border-t border-zinc-300">
+            <span className="text-[10px] text-zinc-700 font-semibold">Random margins · 30px pill radius</span>
+            <button className="px-4 py-1.5 rounded-full bg-zinc-900 text-white font-bold text-xs shadow-md">
               Upgrade To Pro Now
             </button>
           </div>

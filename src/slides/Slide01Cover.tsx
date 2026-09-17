@@ -75,7 +75,7 @@ export const Slide01Cover: React.FC = () => {
             onClick={toggleSound}
             className={`px-4 py-2.5 rounded-xl border transition-all flex items-center gap-2 cursor-pointer ${
               soundEnabled
-                ? 'bg-[#F59E0B]/10 text-[#B45309] border-[#F59E0B]'
+                ? 'bg-[#11100E] text-[#F5F1E8] border-[#11100E]'
                 : 'bg-[#F5F1E8] text-[#11100E] border-[#11100E]/20 hover:border-[#11100E]'
             }`}
           >

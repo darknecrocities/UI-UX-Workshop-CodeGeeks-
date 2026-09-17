@@ -51,7 +51,7 @@ export const Slide11MMRStory: React.FC = () => {
       {/* Header */}
       <div className="flex items-center justify-between border-b border-[#11100E]/15 pb-3">
         <div className="flex items-center gap-2">
-          <DollarSign className="w-4 h-4 text-[#16A34A]" />
+          <DollarSign className="w-4 h-4 text-[#11100E]" />
           <span className="font-mono text-xs uppercase tracking-widest text-[#77736B]">
             11 / Real Story
           </span>
@@ -62,13 +62,13 @@ export const Slide11MMRStory: React.FC = () => {
       {/* Main Area */}
       <div className="my-auto py-2 space-y-4">
         <div>
-          <span className="font-mono text-xs text-[#16A34A] font-bold uppercase tracking-widest">
+          <span className="font-mono text-xs text-[#77736B] font-bold uppercase tracking-widest">
             A TRUE STORY
           </span>
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-black tracking-tight text-[#11100E] mt-1 leading-tight">
             HOW A SIMPLE APP BECAME
             <br />
-            <span className="text-[#16A34A]">A $3.25K MMR PRODUCT.</span>
+            <span className="text-[#11100E] underline">A $3.25K MMR PRODUCT.</span>
           </h2>
           <p className="mt-1 text-xs sm:text-sm text-[#77736B] font-medium max-w-xl">
             Click each step to see how simple, honest design decisions turned into real happy users:
@@ -93,10 +93,10 @@ export const Slide11MMRStory: React.FC = () => {
                 }`}
               >
                 <div className="flex items-center justify-between">
-                  <span className={`text-[10px] font-bold ${isSelected ? 'text-[#F59E0B]' : 'text-[#77736B]'}`}>
+                  <span className={`text-[10px] font-bold ${isSelected ? 'text-[#F5F1E8]' : 'text-[#77736B]'}`}>
                     {item.step}
                   </span>
-                  {isSelected && <CheckCircle2 className="w-3.5 h-3.5 text-[#F59E0B]" />}
+                  {isSelected && <CheckCircle2 className="w-3.5 h-3.5 text-[#F5F1E8]" />}
                 </div>
                 <div className="my-2">
                   <div className="font-bold text-xs">{item.title}</div>

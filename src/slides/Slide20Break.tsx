@@ -124,8 +124,8 @@ export const Slide20Break: React.FC = () => {
               <div className="font-mono text-3xl font-black tracking-tight text-[#11100E]">
                 {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
               </div>
-              <div className={`font-mono text-xs font-bold mt-1 transition-colors duration-1000 ${
-                breathPhase === 'IN' ? 'text-[#16A34A]' : breathPhase === 'HOLD' ? 'text-[#F59E0B]' : 'text-[#77736B]'
+              <div className={`font-mono text-xs font-bold mt-1 tracking-wider transition-colors duration-1000 ${
+                breathPhase === 'IN' ? 'text-[#11100E]' : breathPhase === 'HOLD' ? 'text-[#77736B]' : 'text-[#77736B]/60'
               }`}>
                 {breathPhase === 'IN' ? 'BREATHE IN' : breathPhase === 'HOLD' ? 'HOLD' : 'BREATHE OUT'}
               </div>

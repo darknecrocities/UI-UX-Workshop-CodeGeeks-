@@ -23,9 +23,9 @@ export const Slide14Tactile: React.FC = () => {
   const [typedBuffer, setTypedBuffer] = useState<string>('DESIGN WITH TASTE');
 
   const switchData: { type: SwitchType; name: string; stemColor: string; acoustic: string; force: string }[] = [
-    { type: 'linear', name: 'Red Linear', stemColor: 'bg-[#DC2626]', acoustic: 'Deep solid thock bottom-out · 45g', force: 'Smooth travel' },
-    { type: 'tactile', name: 'Brown Tactile', stemColor: 'bg-[#92400E]', acoustic: 'Padded tactile bump & thack · 50g', force: 'Tactile certainty' },
-    { type: 'clicky', name: 'Blue Clicky', stemColor: 'bg-[#2563EB]', acoustic: 'Crisp leaf snap & tick-clack · 55g', force: 'Acoustic spring' },
+    { type: 'linear', name: 'Black Ink Linear', stemColor: 'bg-[#11100E]', acoustic: 'Deep solid thock bottom-out · 45g', force: 'Smooth travel' },
+    { type: 'tactile', name: 'Charcoal Tactile', stemColor: 'bg-[#181614]', acoustic: 'Padded tactile bump & thack · 50g', force: 'Tactile certainty' },
+    { type: 'clicky', name: 'Parchment Clicky', stemColor: 'bg-[#E9E1D3]', acoustic: 'Crisp leaf snap & tick-clack · 55g', force: 'Acoustic spring' },
   ];
 
   // 60% Mechanical Keyboard Key Matrix (5 Rows)
@@ -199,7 +199,7 @@ export const Slide14Tactile: React.FC = () => {
             <span className="font-bold text-[#11100E] tracking-wider min-w-[120px]">
               {typedBuffer || <span className="opacity-40 font-normal">type something...</span>}
             </span>
-            <span className="w-1.5 h-3.5 bg-[#F59E0B] animate-pulse" />
+            <span className="w-1.5 h-3.5 bg-[#11100E] animate-pulse" />
           </div>
         </div>
 
@@ -216,9 +216,9 @@ export const Slide14Tactile: React.FC = () => {
                 if (k.type === 'modifier') {
                   bgStyle = 'bg-[#2E2B27] text-[#F5F1E8] shadow-[0_4px_0_0_#1A1816] text-[9px] sm:text-[10px]';
                 } else if (k.type === 'accent') {
-                  bgStyle = 'bg-[#D97706] text-[#FFFFFF] shadow-[0_4px_0_0_#92400E] font-bold text-[9px] sm:text-[10px]';
+                  bgStyle = 'bg-[#11100E] text-[#F5F1E8] shadow-[0_4px_0_0_#000000] font-bold text-[9px] sm:text-[10px]';
                 } else if (k.type === 'special') {
-                  bgStyle = 'bg-[#2563EB] text-[#FFFFFF] shadow-[0_4px_0_0_#1D4ED8] font-bold text-[9px] sm:text-[10px]';
+                  bgStyle = 'bg-[#1C1A18] text-[#F5F1E8] shadow-[0_4px_0_0_#0A0908] font-bold text-[9px] sm:text-[10px]';
                 } else if (k.type === 'space') {
                   bgStyle = 'bg-[#E9E1D3] text-[#77736B] shadow-[0_4px_0_0_#B8B0A2] font-semibold text-[9px]';
                 }
@@ -229,7 +229,7 @@ export const Slide14Tactile: React.FC = () => {
                     onMouseDown={() => handleKeyPress(k.code, k.label)}
                     className={`h-9 sm:h-11 rounded-lg sm:rounded-xl border border-black/20 flex flex-col items-center justify-center cursor-pointer transition-all duration-75 select-none ${width} ${bgStyle} ${
                       isPressed
-                        ? 'translate-y-1 shadow-none bg-[#F59E0B]! text-[#11100E]! border-[#D97706]!'
+                        ? 'translate-y-1 shadow-none bg-[#11100E]! text-[#FFFFFF]! border-black!'
                         : 'hover:brightness-105 active:translate-y-1 active:shadow-none'
                     }`}
                   >
@@ -247,7 +247,7 @@ export const Slide14Tactile: React.FC = () => {
         {/* WHY SFX ARE CRITICAL FOR UX — MANIFEST SECTION */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 font-mono text-xs">
           <div className="p-3 rounded-2xl bg-[#F5F1E8] border border-[#11100E]/15 flex items-start gap-2.5 shadow-xs">
-            <Headphones className="w-4 h-4 text-[#D97706] shrink-0 mt-0.5" />
+            <Headphones className="w-4 h-4 text-[#11100E] shrink-0 mt-0.5" />
             <div>
               <div className="font-bold text-xs text-[#11100E]">1. INSTANT CONFIRMATION</div>
               <p className="text-[10px] text-[#77736B] mt-0.5 leading-relaxed">
@@ -257,7 +257,7 @@ export const Slide14Tactile: React.FC = () => {
           </div>
 
           <div className="p-3 rounded-2xl bg-[#F5F1E8] border border-[#11100E]/15 flex items-start gap-2.5 shadow-xs">
-            <ShieldCheck className="w-4 h-4 text-[#16A34A] shrink-0 mt-0.5" />
+            <ShieldCheck className="w-4 h-4 text-[#11100E] shrink-0 mt-0.5" />
             <div>
               <div className="font-bold text-xs text-[#11100E]">2. NO NEED TO STARE</div>
               <p className="text-[10px] text-[#77736B] mt-0.5 leading-relaxed">
@@ -267,7 +267,7 @@ export const Slide14Tactile: React.FC = () => {
           </div>
 
           <div className="p-3 rounded-2xl bg-[#F5F1E8] border border-[#11100E]/15 flex items-start gap-2.5 shadow-xs">
-            <Sparkles className="w-4 h-4 text-[#2563EB] shrink-0 mt-0.5" />
+            <Sparkles className="w-4 h-4 text-[#11100E] shrink-0 mt-0.5" />
             <div>
               <div className="font-bold text-xs text-[#11100E]">3. FEELS LIKE A REAL TOOL</div>
               <p className="text-[10px] text-[#77736B] mt-0.5 leading-relaxed">

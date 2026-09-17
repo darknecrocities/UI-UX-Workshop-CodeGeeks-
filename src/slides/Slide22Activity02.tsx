@@ -57,8 +57,8 @@ export const Slide22Activity02: React.FC = () => {
       {/* Header */}
       <div className="flex items-center justify-between border-b border-[#11100E]/15 pb-3">
         <div className="flex items-center gap-2">
-          <Code2 className="w-4 h-4 text-[#16A34A]" />
-          <span className="font-mono text-xs uppercase tracking-widest text-[#16A34A] font-bold">
+          <Code2 className="w-4 h-4 text-[#11100E]" />
+          <span className="font-mono text-xs uppercase tracking-widest text-[#11100E] font-bold">
             23 / Live Build Challenge
           </span>
         </div>
@@ -98,7 +98,7 @@ export const Slide22Activity02: React.FC = () => {
                 <button
                   onClick={() => { sound.playClick(1.2); setActiveLoopStep(idx); }}
                   className={`px-2.5 py-1.5 rounded transition-all cursor-pointer shrink-0 font-bold ${
-                    isCurrent ? 'bg-[#F59E0B] text-[#11100E] scale-105 shadow-md' : 'hover:bg-white/10 text-white/60'
+                    isCurrent ? 'bg-[#F5F1E8] text-[#11100E] scale-105 shadow-md' : 'hover:bg-white/10 text-white/60'
                   }`}
                 >
                   {item}
@@ -119,18 +119,18 @@ export const Slide22Activity02: React.FC = () => {
                 onClick={() => toggleStep(idx)}
                 className={`p-3 rounded-xl border text-left flex flex-col justify-between cursor-pointer transition-all hover:shadow-sm ${
                   done
-                    ? 'bg-[#16A34A]/10 border-[#16A34A]/40'
+                    ? 'bg-[#11100E] text-[#F5F1E8] border-[#11100E]'
                     : 'bg-[#F5F1E8] border-[#11100E]/15 hover:border-[#11100E]/40'
                 }`}
               >
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-[9px] text-[#77736B]">{s.num}</span>
-                  <span className={`w-4 h-4 rounded-full border flex items-center justify-center ${done ? 'bg-[#16A34A] border-[#16A34A]' : 'border-[#11100E]/20'}`}>
-                    {done ? <Check className="w-2.5 h-2.5 text-white" /> : <Circle className="w-2 h-2 text-[#11100E]/10" />}
+                  <span className={`text-[9px] ${done ? 'text-[#D8D3C8]' : 'text-[#77736B]'}`}>{s.num}</span>
+                  <span className={`w-4 h-4 rounded-full border flex items-center justify-center ${done ? 'bg-[#F5F1E8] border-[#F5F1E8]' : 'border-[#11100E]/20'}`}>
+                    {done ? <Check className="w-2.5 h-2.5 text-[#11100E]" /> : <Circle className="w-2 h-2 text-[#11100E]/10" />}
                   </span>
                 </div>
-                <div className={`font-bold text-[10px] ${done ? 'text-[#16A34A] line-through' : 'text-[#11100E]'}`}>{s.title}</div>
-                <p className="text-[9px] text-[#77736B] mt-0.5 line-clamp-2">{s.desc}</p>
+                <div className={`font-bold text-[10px] ${done ? 'text-[#F5F1E8] line-through' : 'text-[#11100E]'}`}>{s.title}</div>
+                <p className={`text-[9px] mt-0.5 line-clamp-2 ${done ? 'text-[#D8D3C8]' : 'text-[#77736B]'}`}>{s.desc}</p>
               </button>
             );
           })}
@@ -140,7 +140,7 @@ export const Slide22Activity02: React.FC = () => {
         <div className="flex items-center gap-3 font-mono text-xs text-[#77736B]">
           <div className="flex-1 h-1.5 rounded-full bg-[#11100E]/10 overflow-hidden">
             <div
-              className="h-full rounded-full bg-[#16A34A] transition-all duration-500"
+              className="h-full rounded-full bg-[#11100E] transition-all duration-500"
               style={{ width: `${(completedSteps.size / steps.length) * 100}%` }}
             />
           </div>

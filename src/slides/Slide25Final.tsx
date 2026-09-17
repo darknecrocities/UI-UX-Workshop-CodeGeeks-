@@ -57,7 +57,7 @@ export const Slide25Final: React.FC = () => {
             onClick={copyInfo}
             className="px-4 py-2 rounded-xl bg-[#11100E] text-[#F5F1E8] font-mono text-xs font-bold flex items-center gap-2 cursor-pointer hover:bg-black transition-colors shadow-md"
           >
-            {copied ? <Check className="w-4 h-4 text-[#16A34A]" /> : <Copy className="w-4 h-4" />}
+            {copied ? <Check className="w-4 h-4 text-[#F5F1E8]" /> : <Copy className="w-4 h-4" />}
             <span>{copied ? 'SPEAKER INFO COPIED!' : 'COPY SPEAKER LINKS & BIO'}</span>
           </button>
         </div>

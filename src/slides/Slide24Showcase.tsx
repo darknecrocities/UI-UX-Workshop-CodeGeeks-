@@ -26,7 +26,7 @@ export const Slide24Showcase: React.FC = () => {
       name: 'PROMPT',
       desc: 'Clear prompt guidelines',
       whatChanged: 'Specified warm beige (#E9E1D3) and IBM Plex Mono typography.',
-      whyChange: 'Prevented the AI from defaulting to dark purple gradients.',
+      whyChange: 'Prevented the AI from defaulting to chromatic colors and dark gradients.',
       aiError: 'Default prompt generated standard SaaS marketing fluff.',
       humanDecision: 'Built custom audio clicks with zero external packages.',
     },
@@ -106,14 +106,14 @@ export const Slide24Showcase: React.FC = () => {
             <p className="text-sm font-semibold text-[#11100E] mt-1">{current.whyChange}</p>
           </div>
 
-          <div className="p-3.5 rounded-lg bg-[#DC2626]/10 border border-[#DC2626]/20">
-            <div className="text-[10px] text-[#DC2626] uppercase font-bold">03 / WHAT NEEDED CORRECTION?</div>
+          <div className="p-3.5 rounded-lg bg-[#FAF7F2] border border-[#11100E]/20">
+            <div className="text-[10px] text-[#77736B] uppercase font-bold">03 / WHAT NEEDED CORRECTION?</div>
             <p className="text-sm font-semibold text-[#11100E] mt-1">{current.aiError}</p>
           </div>
 
-          <div className="p-3.5 rounded-lg bg-[#16A34A]/10 border border-[#16A34A]/20">
-            <div className="text-[10px] text-[#16A34A] uppercase font-bold">04 / WHAT DID YOU DECIDE?</div>
-            <p className="text-sm font-semibold text-[#11100E] mt-1">{current.humanDecision}</p>
+          <div className="p-3.5 rounded-lg bg-[#11100E] text-[#F5F1E8] border border-[#11100E]">
+            <div className="text-[10px] text-[#D8D3C8] uppercase font-bold">04 / WHAT DID YOU DECIDE?</div>
+            <p className="text-sm font-semibold text-[#F5F1E8] mt-1">{current.humanDecision}</p>
           </div>
         </div>
       </div>

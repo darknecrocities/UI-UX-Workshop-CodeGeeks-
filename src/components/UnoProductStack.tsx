@@ -50,8 +50,8 @@ export const UnoProductStack: React.FC = () => {
               }}
               className={`relative w-20 h-26 sm:w-24 sm:h-30 rounded-2xl cursor-pointer transition-all duration-200 ease-out flex items-center justify-center p-1.5 shadow-xl group ${
                 isSelected
-                  ? 'ring-3 ring-[#F59E0B] shadow-[#F59E0B]/40 bg-[#1A1816]'
-                  : 'bg-[#181614] border border-[#2D2A26] hover:border-[#F59E0B]/70'
+                  ? 'ring-2 ring-white/80 shadow-lg bg-[#1A1816]'
+                  : 'bg-[#181614] border border-[#2D2A26] hover:border-white/40'
               }`}
               title={`Click to open ${prod.title} (${prod.url})`}
             >
@@ -68,7 +68,7 @@ export const UnoProductStack: React.FC = () => {
 
               {/* Mini external link pill indicator */}
               <div
-                className={`absolute top-1.5 right-1.5 p-1 rounded-md bg-[#11100E]/80 backdrop-blur-xs border border-white/20 text-[#F59E0B] transition-opacity duration-150 ${
+                className={`absolute top-1.5 right-1.5 p-1 rounded-md bg-[#11100E]/80 backdrop-blur-xs border border-white/20 text-[#F5F1E8] transition-opacity duration-150 ${
                   isSelected ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
                 }`}
               >
@@ -82,7 +82,7 @@ export const UnoProductStack: React.FC = () => {
       {/* Dynamic Product Detail Badge */}
       <div className="mt-3 text-center transition-all duration-200 flex flex-col items-center">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#11100E] text-[#F5F1E8] border border-white/15 shadow-sm">
-          <span className="font-mono text-xs font-bold text-[#F59E0B]">
+          <span className="font-mono text-xs font-bold text-[#F5F1E8]">
             {activeProduct.title}
           </span>
           <span className="text-[#77736B] text-xs font-mono">•</span>
@@ -105,7 +105,7 @@ export const UnoProductStack: React.FC = () => {
               e.stopPropagation();
               sound.playClick(1.2);
             }}
-            className="inline-flex items-center gap-1.5 mt-2 px-3 py-1 rounded-lg bg-[#F59E0B] hover:bg-[#D97706] text-[#11100E] font-mono text-[11px] font-bold shadow-md hover:shadow-lg transition-all cursor-pointer transform hover:-translate-y-0.5 active:translate-y-0"
+            className="inline-flex items-center gap-1.5 mt-2 px-3 py-1 rounded-lg bg-[#F5F1E8] hover:bg-white text-[#11100E] font-mono text-[11px] font-bold shadow-md hover:shadow-lg transition-all cursor-pointer transform hover:-translate-y-0.5 active:translate-y-0"
           >
             <span>Open {activeProduct.title}</span>
             <ExternalLink className="w-3 h-3" />
@@ -123,7 +123,7 @@ export const UnoProductStack: React.FC = () => {
               setActiveIndex(i);
             }}
             className={`h-2 rounded-full transition-all cursor-pointer ${
-              activeIndex === i ? 'bg-[#F59E0B] w-5' : 'bg-[#11100E]/25 hover:bg-[#11100E]/50 w-2'
+              activeIndex === i ? 'bg-[#11100E] w-5' : 'bg-[#11100E]/25 hover:bg-[#11100E]/50 w-2'
             }`}
             title={`Preview ${p.title}`}
           />

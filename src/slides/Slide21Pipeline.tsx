@@ -10,10 +10,10 @@ type PipelineStep = {
 };
 
 const pipelineSteps: PipelineStep[] = [
-  { title: 'FIGMA', desc: 'Layout, spacing, black & white flow', detail: 'Define spacing rules, establish 8px grid, map all screens in black and white before adding a single color.', color: '#F59E0B' },
-  { title: 'STRUCTURED PROMPT', desc: 'Clear step-by-step instructions', detail: 'Context → User → Goal → Constraints → Visual Language → Interaction → Tech Stack → Content → Edge Cases → Acceptance Criteria.', color: '#8B5CF6' },
-  { title: 'CODING AGENT', desc: 'Coding assistant & workflow', detail: 'Give the prompt to your coding tool. Let it write the initial code. Do NOT interrupt until v1 is ready to test.', color: '#3B82F6' },
-  { title: 'CODE', desc: 'React, TypeScript, Tailwind, Motion', detail: 'Review the generated code. Clean up any bad patterns, remove unused props, and keep it fast.', color: '#16A34A' },
+  { title: 'FIGMA', desc: 'Layout, spacing, black & white flow', detail: 'Define spacing rules, establish 8px grid, map all screens in black and white before adding a single color.', color: '#11100E' },
+  { title: 'STRUCTURED PROMPT', desc: 'Clear step-by-step instructions', detail: 'Context → User → Goal → Constraints → Visual Language → Interaction → Tech Stack → Content → Edge Cases → Acceptance Criteria.', color: '#11100E' },
+  { title: 'CODING AGENT', desc: 'Coding assistant & workflow', detail: 'Give the prompt to your coding tool. Let it write the initial code. Do NOT interrupt until v1 is ready to test.', color: '#11100E' },
+  { title: 'CODE', desc: 'React, TypeScript, Tailwind, Motion', detail: 'Review the generated code. Clean up any bad patterns, remove unused props, and keep it fast.', color: '#11100E' },
   { title: 'WORKING PRODUCT', desc: 'Tested, responsive, deployed live', detail: 'Run locally. Test keyboard, responsiveness, and contrast. Check for common flaws, then ship.', color: '#11100E' },
 ];
 
@@ -81,12 +81,11 @@ export const Slide21Pipeline: React.FC = () => {
                   }}
                   className={`flex-1 p-3 rounded-xl border text-left transition-all cursor-pointer flex sm:flex-col justify-between gap-2 ${
                     isActive
-                      ? 'border-[#11100E] shadow-md ring-2 ring-[#11100E]/10'
+                      ? 'border-[#11100E] shadow-md ring-2 ring-[#11100E]/20 bg-[#FAF7F2]'
                       : isDone
-                      ? 'border-[#16A34A]/40 bg-[#16A34A]/5'
+                      ? 'border-[#11100E]/40 bg-[#11100E]/5'
                       : 'bg-[#F5F1E8] border-[#11100E]/15 hover:border-[#11100E]/40'
                   }`}
-                  style={isActive ? { borderColor: step.color, background: `${step.color}10` } : {}}
                 >
                   <div>
                     <div className="flex items-center justify-between">
@@ -95,7 +94,7 @@ export const Slide21Pipeline: React.FC = () => {
                         <ArrowRight className="w-3 h-3 text-[#11100E]/30 hidden sm:block" />
                       )}
                     </div>
-                    <div className="font-bold text-[10px] mt-1" style={isActive ? { color: step.color } : { color: '#11100E' }}>
+                    <div className="font-bold text-[10px] mt-1 text-[#11100E]">
                       {step.title}
                     </div>
                     <div className="text-[9px] text-[#77736B] mt-0.5">{step.desc}</div>
@@ -103,10 +102,10 @@ export const Slide21Pipeline: React.FC = () => {
                   <button
                     onClick={(e) => toggleComplete(idx, e)}
                     className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 transition-all cursor-pointer ${
-                      isDone ? 'bg-[#16A34A] border-[#16A34A]' : 'border-[#11100E]/20 bg-white hover:border-[#16A34A]'
+                      isDone ? 'bg-[#11100E] border-[#11100E]' : 'border-[#11100E]/20 bg-white hover:border-[#11100E]'
                     }`}
                   >
-                    {isDone && <CheckCircle2 className="w-3 h-3 text-white" />}
+                    {isDone && <CheckCircle2 className="w-3 h-3 text-[#F5F1E8]" />}
                   </button>
                 </button>
               </div>
@@ -116,11 +115,8 @@ export const Slide21Pipeline: React.FC = () => {
 
         {/* Detail Expansion */}
         {activeStep !== null && (
-          <div
-            className="p-4 rounded-xl border font-mono text-xs transition-all"
-            style={{ borderColor: pipelineSteps[activeStep].color, background: `${pipelineSteps[activeStep].color}08` }}
-          >
-            <div className="text-[10px] font-bold mb-1" style={{ color: pipelineSteps[activeStep].color }}>
+          <div className="p-4 rounded-xl border border-[#11100E]/30 bg-[#FAF7F2] font-mono text-xs transition-all">
+            <div className="text-[10px] font-bold mb-1 text-[#11100E]">
               STAGE {String(activeStep + 1).padStart(2, '0')}: {pipelineSteps[activeStep].title}
             </div>
             <p className="text-[#11100E] font-medium leading-relaxed">{pipelineSteps[activeStep].detail}</p>

@@ -48,11 +48,11 @@ export const Slide03Problem: React.FC = () => {
     },
     {
       id: 'PURPLE_GLOW',
-      title: 'PURPLE BLUR EVERYWHERE',
+      title: 'CHAOTIC BLURS & CLUTTER',
       category: 'COLORS',
-      tagline: 'Neon violet glowing blobs',
-      defectDesc: 'Throwing glowing purple blobs on every card instead of organizing the layout clearly.',
-      cureDesc: 'Calm, readable background with clear dark text, using color only when something needs attention.',
+      tagline: 'Mismatched blobs & heavy shadows',
+      defectDesc: 'Throwing chaotic gradients and heavy dropshadows on every card instead of organizing the layout clearly.',
+      cureDesc: 'Calm, readable background with clear dark text and strict typographic hierarchy.',
       icon: Palette,
     },
     {
@@ -154,8 +154,8 @@ export const Slide03Problem: React.FC = () => {
       {/* Header */}
       <div className="flex items-center justify-between border-b border-[#11100E]/15 pb-2.5">
         <div className="flex items-center gap-2">
-          <AlertTriangle className="w-4 h-4 text-[#DC2626]" />
-          <span className="font-mono text-xs uppercase tracking-widest text-[#DC2626] font-semibold">
+          <AlertTriangle className="w-4 h-4 text-[#11100E]" />
+          <span className="font-mono text-xs uppercase tracking-widest text-[#11100E] font-semibold">
             03 / The Problem · Common AI Design Mistakes
           </span>
         </div>
@@ -167,11 +167,11 @@ export const Slide03Problem: React.FC = () => {
             }}
             className={`px-3 py-1 rounded-lg font-mono text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
               cureActive
-                ? 'bg-[#16A34A] text-white shadow-sm ring-2 ring-[#16A34A]/30'
-                : 'bg-[#11100E] text-[#F5F1E8] hover:bg-[#11100E]/90'
+                ? 'bg-[#11100E] text-[#F5F1E8] shadow-sm'
+                : 'bg-[#F5F1E8] text-[#11100E] border border-[#11100E]/20 hover:border-[#11100E]'
             }`}
           >
-            {cureActive ? <Check className="w-3.5 h-3.5" /> : <Zap className="w-3.5 h-3.5 text-[#F59E0B]" />}
+            {cureActive ? <Check className="w-3.5 h-3.5" /> : <Zap className="w-3.5 h-3.5 text-[#11100E]" />}
             <span>{cureActive ? 'CLEAN DESIGN SHOWN' : 'SEE CLEAN DESIGN →'}</span>
           </button>
         </div>
@@ -185,7 +185,7 @@ export const Slide03Problem: React.FC = () => {
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black tracking-tight text-[#11100E] leading-tight">
               AI BUILDS FAST.
               <br />
-              <span className="text-[#DC2626]">TASTE BUILDS RIGHT.</span>
+              <span className="text-[#77736B]">TASTE BUILDS RIGHT.</span>
             </h2>
             <p className="mt-1 text-xs text-[#77736B] font-medium">
               Click any of the 12 mistakes below to see what happens and how to fix it:
@@ -206,11 +206,9 @@ export const Slide03Problem: React.FC = () => {
                     setCureActive(false);
                   }}
                   className={`p-2 rounded-xl border text-left transition-all cursor-pointer flex items-start gap-2 ${
-                    isSelected && !cureActive
-                      ? 'bg-[#DC2626] text-white border-[#DC2626] shadow-sm font-bold'
-                      : isSelected && cureActive
-                      ? 'bg-[#16A34A] text-white border-[#16A34A] shadow-sm font-bold'
-                      : 'bg-[#F5F1E8] text-[#11100E] border-[#11100E]/15 hover:border-[#DC2626]/60'
+                    isSelected
+                      ? 'bg-[#11100E] text-[#F5F1E8] border-[#11100E] shadow-sm font-bold'
+                      : 'bg-[#F5F1E8] text-[#11100E] border-[#11100E]/15 hover:border-[#11100E]/50'
                   }`}
                 >
                   <Icon className="w-3.5 h-3.5 shrink-0 mt-0.5" />
@@ -218,7 +216,7 @@ export const Slide03Problem: React.FC = () => {
                     <div className="truncate text-[10px] uppercase font-bold tracking-tight">{p.title}</div>
                     <div
                       className={`text-[9px] truncate mt-0.5 ${
-                        isSelected ? 'text-white/80' : 'text-[#77736B]'
+                        isSelected ? 'text-[#F5F1E8]/80' : 'text-[#77736B]'
                       }`}
                     >
                       {p.tagline}
@@ -246,8 +244,8 @@ export const Slide03Problem: React.FC = () => {
             <span
               className={`text-[10px] font-bold px-2 py-0.5 rounded ${
                 cureActive
-                  ? 'bg-[#16A34A]/15 text-[#16A34A] border border-[#16A34A]/30'
-                  : 'bg-[#DC2626]/10 text-[#DC2626] border border-[#DC2626]/20'
+                  ? 'bg-[#11100E] text-[#F5F1E8]'
+                  : 'bg-white text-[#11100E] border border-[#11100E]/20'
               }`}
             >
               {cureActive ? '✓ CLEAN & INTENTIONAL' : '✗ COMMON MISTAKE'}
@@ -261,7 +259,7 @@ export const Slide03Problem: React.FC = () => {
               <div className="p-4 rounded-xl bg-white border border-[#11100E]/15 shadow-sm space-y-3 font-mono">
                 <div className="flex items-center justify-between border-b border-[#11100E]/10 pb-2">
                   <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#16A34A]" />
+                    <span className="w-2 h-2 rounded-full bg-[#11100E]" />
                     <span className="text-xs font-bold text-[#11100E]">Export Customer List</span>
                   </div>
                   <span className="text-[10px] text-[#77736B]">BATCH COMPLETED</span>
@@ -274,7 +272,7 @@ export const Slide03Problem: React.FC = () => {
                   </div>
                   <div className="p-2.5 rounded-lg bg-[#E9E1D3]/50 border border-[#11100E]/10">
                     <div className="text-[9px] text-[#77736B]">EXPORT TIME</div>
-                    <div className="text-base font-bold text-[#16A34A] tabular-nums mt-0.5">1.4s</div>
+                    <div className="text-base font-bold text-[#11100E] tabular-nums mt-0.5">1.4s</div>
                   </div>
                   <div className="p-2.5 rounded-lg bg-[#E9E1D3]/50 border border-[#11100E]/10">
                     <div className="text-[9px] text-[#77736B]">FORMAT</div>
@@ -298,59 +296,59 @@ export const Slide03Problem: React.FC = () => {
               <div className="transition-all duration-200">
                 {current.id === 'ICON_MISMATCH' && (
                   <div className="p-4 rounded-xl bg-white border border-[#11100E]/15 space-y-2">
-                    <div className="text-xs font-bold text-[#DC2626]">Icon Soup (Conflicting Weights & Viewboxes)</div>
-                    <div className="flex items-center justify-around p-3 bg-gray-50 rounded-lg border border-dashed border-red-300">
+                    <div className="text-xs font-bold text-[#11100E]">Icon Soup (Conflicting Weights & Viewboxes)</div>
+                    <div className="flex items-center justify-around p-3 bg-gray-50 rounded-lg border border-dashed border-[#11100E]/20">
                       <div className="flex flex-col items-center gap-1">
-                        <Search strokeWidth={1} className="w-7 h-7 text-gray-400" />
-                        <span className="text-[9px] font-mono text-red-500">1px Hairline</span>
+                        <Search strokeWidth={1} className="w-7 h-7 text-[#77736B]" />
+                        <span className="text-[9px] font-mono text-[#77736B]">1px Hairline</span>
                       </div>
                       <div className="flex flex-col items-center gap-1">
-                        <Download strokeWidth={3} className="w-5 h-5 text-purple-700 fill-purple-200" />
-                        <span className="text-[9px] font-mono text-red-500">3px Filled Solid</span>
+                        <Download strokeWidth={3} className="w-5 h-5 text-[#11100E]" />
+                        <span className="text-[9px] font-mono text-[#77736B]">3px Filled Solid</span>
                       </div>
                       <div className="flex flex-col items-center gap-1">
-                        <Sparkles strokeWidth={1.5} className="w-8 h-8 text-amber-500 animate-spin" />
-                        <span className="text-[9px] font-mono text-red-500">Mismatched 32px Box</span>
+                        <Sparkles strokeWidth={1.5} className="w-8 h-8 text-[#11100E] animate-spin" />
+                        <span className="text-[9px] font-mono text-[#77736B]">Mismatched 32px Box</span>
                       </div>
                       <div className="flex flex-col items-center gap-1">
-                        <FileText strokeWidth={2.5} className="w-4 h-4 text-emerald-600" />
-                        <span className="text-[9px] font-mono text-red-500">Tiny 16px Heavy</span>
+                        <FileText strokeWidth={2.5} className="w-4 h-4 text-[#11100E]" />
+                        <span className="text-[9px] font-mono text-[#77736B]">Tiny 16px Heavy</span>
                       </div>
                     </div>
                   </div>
                 )}
 
                 {current.id === 'PURPLE_GLOW' && (
-                  <div className="p-5 rounded-2xl bg-gradient-to-r from-purple-950 via-indigo-950 to-pink-950 text-white shadow-[0_0_30px_rgba(168,85,247,0.4)] border border-purple-500 space-y-2">
+                  <div className="p-5 rounded-2xl bg-[#181614] text-[#F5F1E8] border border-white/20 shadow-xl space-y-2">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-black tracking-widest text-purple-300 flex items-center gap-1">
-                        <Sparkles className="w-4 h-4 text-pink-400 animate-pulse" />
-                        CYBERNETIC PROTOCOL
+                      <span className="text-xs font-black tracking-widest text-[#F5F1E8] flex items-center gap-1">
+                        <Sparkles className="w-4 h-4 text-[#77736B] animate-pulse" />
+                        OVERLOADED CARD PROTOCOL
                       </span>
                     </div>
-                    <p className="text-xs text-purple-200/80">
-                      Gaussian blur blobs masking illegible typography and zero structural hierarchy.
+                    <p className="text-xs text-[#D8D3C8]">
+                      Heavy decorative gradients masking illegible typography and zero structural hierarchy.
                     </p>
                   </div>
                 )}
 
                 {current.id === 'BROKEN_SPACING' && (
-                  <div className="p-3 bg-white border-2 border-dashed border-red-300 rounded-lg space-y-1">
-                    <div className="text-xs font-bold text-[#DC2626]">Arbitrary Paddings: p-[13px] + gap-7 + mt-[19px]</div>
+                  <div className="p-3 bg-white border-2 border-dashed border-[#11100E]/25 rounded-lg space-y-1">
+                    <div className="text-xs font-bold text-[#11100E]">Arbitrary Paddings: p-[13px] + gap-7 + mt-[19px]</div>
                     <div className="flex gap-7 items-start">
-                      <div className="p-[13px] bg-red-50 border border-red-200 rounded text-[10px]">Padding 13px</div>
-                      <div className="p-[5px] mt-[19px] bg-red-50 border border-red-200 rounded text-[10px]">mt 19px</div>
-                      <div className="p-[27px] bg-red-50 border border-red-200 rounded text-[10px]">p 27px</div>
+                      <div className="p-[13px] bg-[#E9E1D3]/50 border border-[#11100E]/20 rounded text-[10px]">Padding 13px</div>
+                      <div className="p-[5px] mt-[19px] bg-[#E9E1D3]/50 border border-[#11100E]/20 rounded text-[10px]">mt 19px</div>
+                      <div className="p-[27px] bg-[#E9E1D3]/50 border border-[#11100E]/20 rounded text-[10px]">p 27px</div>
                     </div>
                   </div>
                 )}
 
                 {current.id === 'LOZENGE_RADIUS' && (
-                  <div className="p-6 rounded-[42px] bg-gradient-to-br from-indigo-50 to-purple-100 border-2 border-purple-400 text-center space-y-1">
-                    <span className="text-xs font-bold text-purple-800 bg-purple-200 px-3 py-1 rounded-full">
+                  <div className="p-6 rounded-[42px] bg-[#FAF7F2] border-2 border-[#11100E]/30 text-center space-y-1">
+                    <span className="text-xs font-bold text-[#11100E] bg-[#E9E1D3] px-3 py-1 rounded-full">
                       Extreme 42px Lozenge Pill Card
                     </span>
-                    <p className="text-[11px] text-purple-900 mt-1">
+                    <p className="text-[11px] text-[#77736B] mt-1">
                       Rounded corners carve away 35% of interior usable reading and button area.
                     </p>
                   </div>
@@ -368,8 +366,8 @@ export const Slide03Problem: React.FC = () => {
                 )}
 
                 {current.id === 'MISSING_STATES' && (
-                  <div className="p-4 rounded-xl bg-white border border-red-300 space-y-2">
-                    <div className="text-xs font-bold text-[#DC2626]">No Skeleton / White Screen of Death</div>
+                  <div className="p-4 rounded-xl bg-white border border-[#11100E]/20 space-y-2">
+                    <div className="text-xs font-bold text-[#11100E]">No Skeleton / White Screen of Death</div>
                     <div className="h-16 bg-gray-100 rounded-lg flex items-center justify-center text-xs text-gray-400 border border-dashed border-gray-300">
                       [DATA FETCHING... ZERO LOADING FEEDBACK OR EMPTY STATE]
                     </div>
@@ -377,19 +375,19 @@ export const Slide03Problem: React.FC = () => {
                 )}
 
                 {current.id === 'CONTRAST_FAIL' && (
-                  <div className="p-4 rounded-xl bg-[#1E293B] text-[#475569] space-y-1 font-mono">
-                    <div className="text-xs text-[#64748B]">Low Contrast Ratio: 2.1:1 (Fails WCAG AA)</div>
-                    <p className="text-xs text-[#475569]">
+                  <div className="p-4 rounded-xl bg-[#1C1A18] text-[#33312E] space-y-1 font-mono">
+                    <div className="text-xs text-[#44413C]">Low Contrast Ratio: 2.1:1 (Fails WCAG AA)</div>
+                    <p className="text-xs text-[#33312E]">
                       Can you comfortably read this text on your laptop under office lighting? Neither can your users.
                     </p>
                   </div>
                 )}
 
                 {current.id === 'BADGE_BLOAT' && (
-                  <div className="p-4 rounded-xl bg-white border border-red-300 space-y-2">
+                  <div className="p-4 rounded-xl bg-white border border-[#11100E]/20 space-y-2">
                     <div className="flex flex-wrap gap-1.5">
-                      {['⚡ AI REVOLUTION', '🔥 ULTRA', '✨ SYNERGY', 'PRO v4.9', 'TURBO', 'BETA', 'AUTONOMOUS'].map((badge) => (
-                        <span key={badge} className="px-2 py-0.5 text-[9px] font-bold rounded-full bg-gradient-to-r from-amber-400 to-orange-500 text-white shadow-xs">
+                      {['AI REVOLUTION', 'ULTRA', 'SYNERGY', 'PRO v4.9', 'TURBO', 'BETA', 'AUTONOMOUS'].map((badge) => (
+                        <span key={badge} className="px-2 py-0.5 text-[9px] font-bold rounded-full bg-[#11100E] text-[#F5F1E8] shadow-xs">
                           {badge}
                         </span>
                       ))}
@@ -402,7 +400,7 @@ export const Slide03Problem: React.FC = () => {
                 {current.id === 'FLAT_TACTILE' && (
                   <div className="p-4 rounded-xl bg-white border border-[#11100E]/20 space-y-2 text-center">
                     <div className="text-xs font-bold text-gray-500">Dead Button (No Hover, No Press, No Sound)</div>
-                    <button className="px-5 py-2 bg-blue-500 text-white text-xs rounded">
+                    <button className="px-5 py-2 bg-[#11100E] text-white text-xs rounded cursor-default">
                       Dead Button Click Me
                     </button>
                     <div className="text-[10px] text-gray-400">Zero active scale, zero keyboard focus outline, zero SFX</div>
@@ -411,7 +409,7 @@ export const Slide03Problem: React.FC = () => {
 
                 {current.id === 'UNSTYLED_INPUTS' && (
                   <div className="p-4 rounded-xl bg-white border border-[#11100E]/20 space-y-2">
-                    <div className="text-xs font-bold text-[#DC2626]">Unstyled Native HTML Elements</div>
+                    <div className="text-xs font-bold text-[#11100E]">Unstyled Native HTML Elements</div>
                     <div className="flex gap-2">
                       <input type="text" placeholder="raw input" className="p-1 border text-xs" />
                       <select className="p-1 border text-xs">
@@ -434,11 +432,11 @@ export const Slide03Problem: React.FC = () => {
                 )}
 
                 {current.id === 'FLOATY_ANIM' && (
-                  <div className="p-4 rounded-xl bg-white border border-purple-200 text-center">
-                    <div className="w-24 h-12 mx-auto bg-purple-500 text-white text-xs rounded-lg flex items-center justify-center animate-bounce duration-1000">
+                  <div className="p-4 rounded-xl bg-white border border-[#11100E]/20 text-center">
+                    <div className="w-24 h-12 mx-auto bg-[#11100E] text-white text-xs rounded-lg flex items-center justify-center animate-bounce duration-1000">
                       Floaty 800ms
                     </div>
-                    <div className="text-[10px] text-purple-700 mt-2">Decorative bouncing delays user workflow</div>
+                    <div className="text-[10px] text-[#77736B] mt-2">Decorative bouncing delays user workflow</div>
                   </div>
                 )}
               </div>

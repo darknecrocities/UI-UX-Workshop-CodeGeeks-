@@ -12,7 +12,7 @@ export const Slide17GoodPrompt: React.FC = () => {
     { tag: 'GOAL', text: 'Let users see what the AI is doing in real time with zero lag.' },
     { tag: 'DESIGN', text: 'Warm beige parchment (#E9E1D3) × near-black (#11100E) with clean typography and clear text sizes.' },
     { tag: 'INTERACTION', text: 'Keyboard shortcuts: J/K row selection, Esc closes inspector, Space toggles playback.' },
-    { tag: 'CONSTRAINTS', text: 'Strictly no purple gradients, no floating glassmorphism, no fake stats.' },
+    { tag: 'CONSTRAINTS', text: 'Strictly no purple or chromatic colors, no floating glassmorphism, no fake stats.' },
     { tag: 'TECH', text: 'React 19, TypeScript, Tailwind CSS v4, Motion, zero external CDNs.' },
   ];
 
@@ -74,19 +74,19 @@ export const Slide17GoodPrompt: React.FC = () => {
               key={i}
               className={`p-2.5 rounded border transition-all animate-in fade-in slide-in-from-left-2 duration-200 ${
                 l.isRaw
-                  ? 'bg-red-950/40 border-red-800/50 text-red-300'
+                  ? 'bg-white/10 border-white/20 text-[#E9E1D3]'
                   : 'bg-white/5 border-white/10 text-[#E9E1D3]'
               }`}
             >
               <div className="flex items-center gap-2 mb-1">
                 <span
                   className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${
-                    l.isRaw ? 'bg-red-800 text-white' : 'bg-[#F59E0B] text-[#11100E]'
+                    l.isRaw ? 'bg-white/20 text-white' : 'bg-[#F5F1E8] text-[#11100E]'
                   }`}
                 >
                   {l.tag}
                 </span>
-                {l.isRaw && <span className="text-[10px] text-red-400 font-normal">→ High probability of slop</span>}
+                {l.isRaw && <span className="text-[10px] text-[#E9E1D3]/70 font-normal">→ Uncurated default</span>}
               </div>
               <p className="text-xs">{l.text}</p>
             </div>

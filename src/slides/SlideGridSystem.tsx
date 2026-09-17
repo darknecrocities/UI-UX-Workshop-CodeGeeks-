@@ -82,8 +82,8 @@ const WireframeBox: React.FC<WireframeBoxProps> = ({
         <span
           className={`font-mono font-bold text-[9px] sm:text-[10px] px-1.5 py-0.5 rounded border shrink-0 ${
             variant === 'dark'
-              ? 'bg-white/10 border-white/20 text-[#F59E0B]'
-              : 'bg-[#F5F1E8] border-[#11100E]/15 text-[#B45309]'
+              ? 'bg-white/10 border-white/20 text-[#F5F1E8]'
+              : 'bg-[#F5F1E8] border-[#11100E]/20 text-[#11100E]'
           }`}
         >
           {span > 1
@@ -325,7 +325,7 @@ export const SlideGridSystem: React.FC = () => {
           {/* Draggable Column Progress Bar */}
           <div className="flex items-center gap-2 sm:gap-3 bg-white border border-[#11100E]/20 px-3 py-1.5 rounded-xl shadow-xs">
             <div className="flex items-center gap-1.5 text-[11px] font-bold text-[#11100E] min-w-[68px]">
-              <SlidersHorizontal className="w-3.5 h-3.5 text-[#B45309]" />
+              <SlidersHorizontal className="w-3.5 h-3.5 text-[#11100E]" />
               <span className="tabular-nums">{cols} COLS</span>
             </div>
 
@@ -387,7 +387,7 @@ export const SlideGridSystem: React.FC = () => {
             title="Toggle column guides overlay"
           >
             {showColumns ? (
-              <Eye className="w-3.5 h-3.5 text-[#F59E0B]" />
+              <Eye className="w-3.5 h-3.5 text-[#F5F1E8]" />
             ) : (
               <EyeOff className="w-3.5 h-3.5 text-[#77736B]" />
             )}
@@ -421,12 +421,12 @@ export const SlideGridSystem: React.FC = () => {
                   className={`px-2.5 py-1.5 rounded-xl border flex items-center gap-1.5 transition-all cursor-pointer font-bold ${
                     isSelected
                       ? 'bg-[#11100E] text-[#F5F1E8] border-[#11100E] shadow-sm -translate-y-0.5'
-                      : 'bg-white text-[#11100E] border-[#11100E]/15 hover:border-[#F59E0B] hover:bg-[#F5F1E8]'
+                      : 'bg-white text-[#11100E] border-[#11100E]/15 hover:border-[#11100E] hover:bg-[#F5F1E8]'
                   }`}
                   title={p.description}
                 >
                   <Icon
-                    className={`w-3.5 h-3.5 ${isSelected ? 'text-[#F59E0B]' : 'text-[#77736B]'}`}
+                    className={`w-3.5 h-3.5 ${isSelected ? 'text-[#F5F1E8]' : 'text-[#77736B]'}`}
                   />
                   <span>{p.label}</span>
                 </button>
@@ -480,20 +480,20 @@ export const SlideGridSystem: React.FC = () => {
                   key={idx}
                   className={`h-full flex flex-col justify-between items-center py-1.5 rounded-sm transition-colors ${
                     showColumns
-                      ? 'bg-[#F59E0B]/12 border-x border-[#F59E0B]/30'
+                      ? 'bg-[#11100E]/[0.07] border-x border-[#11100E]/20'
                       : 'bg-[#11100E]/[0.02] border-x border-[#11100E]/[0.06]'
                   }`}
                 >
                   <span
                     className={`font-mono text-[9px] font-bold ${
-                      showColumns ? 'text-[#B45309]' : 'text-[#77736B]/50'
+                      showColumns ? 'text-[#11100E]' : 'text-[#77736B]/50'
                     }`}
                   >
                     {String(idx + 1).padStart(2, '0')}
                   </span>
                   <span
                     className={`font-mono text-[8px] uppercase tracking-tighter ${
-                      showColumns ? 'text-[#B45309]/80' : 'text-[#77736B]/30'
+                      showColumns ? 'text-[#11100E]/70' : 'text-[#77736B]/30'
                     }`}
                   >
                     COL
@@ -701,7 +701,7 @@ export const SlideGridSystem: React.FC = () => {
                   sound.playClick(1.05);
                   setShow8pt(!show8pt);
                 }}
-                className="underline cursor-pointer text-[#11100E] hover:text-[#B45309]"
+                className="underline cursor-pointer text-[#11100E] hover:text-[#77736B]"
               >
                 {show8pt ? 'Hide 8pt Dots' : 'Overlay 8pt Matrix'}
               </button>
@@ -721,9 +721,9 @@ export const SlideGridSystem: React.FC = () => {
               }`}
             >
               {isUnaligned ? (
-                <AlertTriangle className="w-3 h-3 text-[#F59E0B]" />
+                <AlertTriangle className="w-3 h-3 text-[#F5F1E8]" />
               ) : (
-                <CheckCircle2 className="w-3 h-3 text-[#B45309]" />
+                <CheckCircle2 className="w-3 h-3 text-[#11100E]" />
               )}
               <span>
                 {isUnaligned ? 'TESTING: UNALIGNED RANDOM PADDING' : 'LOCKED TO 8PT SYSTEM'}

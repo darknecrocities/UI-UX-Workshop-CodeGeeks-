@@ -204,7 +204,7 @@ export const Slide13Motion: React.FC = () => {
 
           <button
             onClick={trigger}
-            className="px-3 py-1 rounded-lg bg-[#F59E0B] text-[#11100E] border border-[#F59E0B]/50 flex items-center gap-1.5 font-bold cursor-pointer hover:bg-[#F59E0B]/90 transition-colors shadow-xs active:translate-y-0.5"
+            className="px-3 py-1 rounded-lg bg-[#11100E] text-[#F5F1E8] border border-[#11100E] flex items-center gap-1.5 font-bold cursor-pointer hover:bg-black transition-colors shadow-xs active:translate-y-0.5"
           >
             <Zap className="w-3.5 h-3.5" />
             <span>TRIGGER IMPULSE</span>
@@ -289,7 +289,7 @@ export const Slide13Motion: React.FC = () => {
                 }}
                 className="p-5 rounded-2xl bg-[#11100E] text-[#F5F1E8] font-mono text-xs shadow-xl max-w-sm text-center"
               >
-                <div className="text-amber-400 font-bold text-sm">NATURAL SPRING BOUNCE</div>
+                <div className="text-[#F5F1E8] font-bold text-sm">NATURAL SPRING BOUNCE</div>
                 <p className="text-white/80 mt-1 text-[11px]">
                   Smooth, natural bounce that feels real instead of robotic.
                 </p>
@@ -310,7 +310,7 @@ export const Slide13Motion: React.FC = () => {
                       className="p-2.5 rounded-xl bg-white border border-[#11100E]/15 flex items-center justify-between shadow-xs"
                     >
                       <span className="font-semibold text-[#11100E]">{step}</span>
-                      <span className="text-[10px] text-[#16A34A] font-bold">READY</span>
+                      <span className="text-[10px] text-[#11100E] font-bold">READY</span>
                     </div>
                   )
                 )}
@@ -330,7 +330,7 @@ export const Slide13Motion: React.FC = () => {
                 }`}
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-bold text-xs text-amber-400">
+                  <span className="font-bold text-xs text-[#F5F1E8]">
                     {isToggled ? 'EXPANDED STATE (FLIP)' : 'COMPACT CARD'}
                   </span>
                   <Maximize2 className="w-3.5 h-3.5 opacity-60" />
@@ -351,7 +351,7 @@ export const Slide13Motion: React.FC = () => {
                   onMouseEnter={() => sound.playClick(1.2)}
                   className="px-6 py-3 rounded-2xl bg-[#11100E] text-[#F5F1E8] font-mono text-xs font-bold shadow-lg hover:scale-105 hover:-translate-y-1 transition-all duration-150 cursor-pointer flex items-center gap-2 mx-auto active:scale-95"
                 >
-                  <MousePointer className="w-4 h-4 text-amber-400" />
+                  <MousePointer className="w-4 h-4 text-[#F5F1E8]" />
                   <span>Magnetic Field Active</span>
                 </button>
                 <p className="font-mono text-[10px] text-[#77736B]">
@@ -393,7 +393,7 @@ export const Slide13Motion: React.FC = () => {
                 style={tiltStyle}
                 className="p-6 rounded-2xl bg-[#11100E] text-[#F5F1E8] font-mono text-xs shadow-2xl max-w-sm border border-white/10 text-center cursor-move"
               >
-                <div className="text-amber-400 font-bold text-sm">3D PERSPECTIVE TILT</div>
+                <div className="text-[#F5F1E8] font-bold text-sm">3D PERSPECTIVE TILT</div>
                 <p className="text-white/80 text-[11px] mt-1">
                   Move mouse inside box to tilt geometry in 3D coordinate space.
                 </p>
@@ -496,7 +496,7 @@ export const Slide13Motion: React.FC = () => {
                   className="w-14 h-14 rounded-2xl bg-[#11100E] text-[#F5F1E8] flex items-center justify-center cursor-pointer shadow-lg mx-auto transition-transform active:scale-90"
                 >
                   {isToggled ? (
-                    <X className="w-6 h-6 text-amber-400 rotate-90 transition-transform duration-300" />
+                    <X className="w-6 h-6 text-[#F5F1E8] rotate-90 transition-transform duration-300" />
                   ) : (
                     <Menu className="w-6 h-6 text-white transition-transform duration-300" />
                   )}

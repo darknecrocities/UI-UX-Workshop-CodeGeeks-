@@ -54,8 +54,8 @@ export const Slide18Decisions: React.FC = () => {
           onClick={() => { sound.playSwitch(!showGood); setShowGood((p) => !p); setActiveRow(null); }}
           className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border font-mono text-xs font-bold cursor-pointer transition-all ${
             showGood
-              ? 'bg-[#16A34A]/10 border-[#16A34A]/40 text-[#16A34A]'
-              : 'bg-[#DC2626]/10 border-[#DC2626]/40 text-[#DC2626]'
+              ? 'bg-[#11100E] text-[#F5F1E8] border-[#11100E]'
+              : 'bg-[#FAF7F2] text-[#11100E] border-[#11100E]/30'
           }`}
         >
           {showGood
@@ -71,7 +71,7 @@ export const Slide18Decisions: React.FC = () => {
           <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-[#11100E]">
             DON'T PROMPT FOR COMPONENTS.
             <br />
-            <span className="text-[#16A34A]">PROMPT FOR DECISIONS.</span>
+            <span className="text-[#11100E] underline underline-offset-4">PROMPT FOR DECISIONS.</span>
           </h2>
           <p className="mt-1 text-xs sm:text-sm text-[#77736B] font-medium">
             Toggle between slop and intentional design. Click each row for the rationale:
@@ -82,29 +82,29 @@ export const Slide18Decisions: React.FC = () => {
         <div className={`p-4 rounded-xl border transition-all duration-500 ${
           showGood
             ? 'bg-[#F5F1E8] border-[#11100E]/20 shadow-sm'
-            : 'bg-gray-100 border-gray-300 shadow-none'
+            : 'bg-[#FAF7F2] border-[#11100E]/15 shadow-none'
         }`}>
           <div className={`flex items-center justify-between border-b pb-2 mb-3 ${
-            showGood ? 'border-[#11100E]/10' : 'border-gray-300'
+            showGood ? 'border-[#11100E]/10' : 'border-[#11100E]/10'
           }`}>
             <div>
-              <div className={`font-mono text-[10px] uppercase ${showGood ? 'text-[#77736B] tracking-widest' : 'text-gray-400'}`}>
+              <div className={`font-mono text-[10px] uppercase ${showGood ? 'text-[#77736B] tracking-widest' : 'text-[#77736B]'}`}>
                 {showGood ? 'CARD COMPONENT' : 'card thing here'}
               </div>
-              <div className={`font-bold mt-0.5 ${showGood ? 'text-[#11100E] text-base' : 'text-gray-800 text-base font-bold'}`}>
+              <div className={`font-bold mt-0.5 ${showGood ? 'text-[#11100E] text-base' : 'text-[#11100E] text-base font-bold'}`}>
                 {showGood ? 'Export Dataset v2.4' : 'Card Item Box #1'}
               </div>
             </div>
             <span className={`font-mono text-[10px] px-2 py-0.5 rounded font-semibold ${
               showGood
-                ? 'bg-[#16A34A]/10 text-[#16A34A]'
-                : 'bg-gray-200 text-gray-600'
+                ? 'bg-[#11100E] text-[#F5F1E8]'
+                : 'bg-[#E9E1D3] text-[#77736B]'
             }`}>
               {showGood ? '● VERIFIED' : 'Active Status'}
             </span>
           </div>
           <div className="flex items-center justify-between">
-            <span className={`text-xs ${showGood ? 'text-[#77736B]' : 'text-gray-500'}`}>
+            <span className={`text-xs ${showGood ? 'text-[#77736B]' : 'text-[#77736B]'}`}>
               {showGood ? 'Last synced: 2 minutes ago · 14.2 MB' : 'some subtitle text here info'}
             </span>
             <button
@@ -112,7 +112,7 @@ export const Slide18Decisions: React.FC = () => {
               className={`px-3 py-1.5 text-xs font-mono font-bold rounded cursor-pointer transition-all hover:scale-95 ${
                 showGood
                   ? 'bg-[#11100E] text-[#F5F1E8] rounded-lg hover:bg-black'
-                  : 'bg-blue-500 text-white rounded hover:bg-blue-600'
+                  : 'bg-[#77736B] text-white rounded hover:bg-[#11100E]'
               }`}
               style={!showGood ? { padding: '7px 11px' } : {}}
             >
@@ -125,12 +125,12 @@ export const Slide18Decisions: React.FC = () => {
         <div className="overflow-hidden rounded-xl border border-[#11100E]/20 bg-[#F5F1E8] font-mono text-xs shadow-xs">
           <div className="grid grid-cols-12 bg-[#E9E1D3] p-3 font-bold border-b border-[#11100E]/10 text-[#11100E]">
             <div className="col-span-2">DIMENSION</div>
-            <div className="col-span-5 text-[#DC2626] flex items-center gap-1">
-              <XCircle className="w-3 h-3" />
+            <div className="col-span-5 text-[#77736B] flex items-center gap-1">
+              <XCircle className="w-3 h-3 text-[#77736B]" />
               <span>Prompting for Code</span>
             </div>
-            <div className="col-span-5 text-[#16A34A] flex items-center gap-1">
-              <CheckCircle className="w-3 h-3" />
+            <div className="col-span-5 text-[#11100E] flex items-center gap-1">
+              <CheckCircle className="w-3 h-3 text-[#11100E]" />
               <span>Prompting for Decision</span>
             </div>
           </div>
@@ -147,10 +147,10 @@ export const Slide18Decisions: React.FC = () => {
                   activeRow === i ? 'bg-[#11100E] text-[#F5F1E8]' : 'hover:bg-black/5'
                 }`}
               >
-                <div className={`col-span-2 font-bold text-[11px] ${activeRow === i ? 'text-[#F59E0B]' : 'text-[#11100E]'}`}>
+                <div className={`col-span-2 font-bold text-[11px] ${activeRow === i ? 'text-[#FAF7F2]' : 'text-[#11100E]'}`}>
                   {d.label}
                 </div>
-                <div className={`col-span-5 text-[11px] pr-2 line-through decoration-[#DC2626]/60 ${
+                <div className={`col-span-5 text-[11px] pr-2 line-through decoration-[#11100E]/40 ${
                   activeRow === i ? 'text-white/50' : 'text-[#77736B]'
                 }`}>
                   {d.bad}

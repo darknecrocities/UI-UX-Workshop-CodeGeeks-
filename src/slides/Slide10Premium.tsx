@@ -123,12 +123,12 @@ export const Slide10Premium: React.FC = () => {
               <div className="font-bold text-sm text-[#11100E] border-b border-[#11100E]/10 pb-2">
                 {current.title}
               </div>
-              <div className="p-3 rounded-lg bg-[#DC2626]/8 border border-[#DC2626]/25">
-                <div className="text-[10px] text-[#DC2626] font-bold mb-1">✗ WITHOUT INTENTION</div>
+              <div className="p-3 rounded-lg bg-[#FAF7F2] border border-[#11100E]/15">
+                <div className="text-[10px] text-[#77736B] font-bold mb-1">✗ WITHOUT INTENTION</div>
                 <div className="text-[#11100E]">{current.bad}</div>
               </div>
-              <div className="p-3 rounded-lg bg-[#16A34A]/8 border border-[#16A34A]/25">
-                <div className="text-[10px] text-[#16A34A] font-bold mb-1">✓ WITH CRAFT</div>
+              <div className="p-3 rounded-lg bg-white border border-[#11100E]/20">
+                <div className="text-[10px] text-[#11100E] font-bold mb-1">✓ WITH CRAFT</div>
                 <div className="text-[#11100E]">{current.good}</div>
               </div>
               <div className="p-3 rounded-lg bg-[#E9E1D3] border border-[#11100E]/10">

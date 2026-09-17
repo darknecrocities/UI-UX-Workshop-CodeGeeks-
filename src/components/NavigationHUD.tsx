@@ -72,7 +72,7 @@ export const NavigationHUD: React.FC = () => {
           {soundEnabled && (
             <button
               onClick={cycleSwitchType}
-              className="px-2 py-1 rounded bg-[#11100E] text-[#F59E0B] font-mono text-[10px] tracking-wider font-bold border border-[#F59E0B]/40 hover:border-[#F59E0B] transition-colors flex items-center gap-1 cursor-pointer"
+              className="px-2 py-1 rounded bg-[#11100E] text-[#F5F1E8] font-mono text-[10px] tracking-wider font-bold border border-white/20 hover:border-white/50 transition-colors flex items-center gap-1 cursor-pointer"
               title="Click to cycle mechanical switch sound (Clicky / Tactile / Linear)"
             >
               <Disc className="w-3 h-3 animate-spin duration-1000" />

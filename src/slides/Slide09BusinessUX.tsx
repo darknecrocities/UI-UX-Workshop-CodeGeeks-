@@ -76,7 +76,7 @@ export const Slide09BusinessUX: React.FC = () => {
                   {/* Left: UX Perspective */}
                   <div className="md:col-span-5">
                     <div className="flex items-center gap-2 font-mono text-[10px] text-[#77736B] uppercase mb-1">
-                      <HeartHandshake className="w-3.5 h-3.5 text-[#2563EB]" />
+                      <HeartHandshake className="w-3.5 h-3.5 text-[#11100E]" />
                       <span>UX Perspective</span>
                     </div>
                     <div className="text-base font-bold text-[#11100E]">{p.ux}</div>
@@ -92,7 +92,7 @@ export const Slide09BusinessUX: React.FC = () => {
                   <div className="md:col-span-5 flex flex-col md:items-end md:text-right">
                     <div className="flex items-center gap-2 font-mono text-[10px] text-[#77736B] uppercase mb-1">
                       <span>Business Objective</span>
-                      <Briefcase className="w-3.5 h-3.5 text-[#16A34A]" />
+                      <Briefcase className="w-3.5 h-3.5 text-[#11100E]" />
                     </div>
                     <div className="text-base font-bold text-[#11100E]">{p.biz}</div>
                     <p className="text-xs text-[#77736B] mt-0.5">{p.bizDesc}</p>
@@ -102,7 +102,7 @@ export const Slide09BusinessUX: React.FC = () => {
                 {isSelected && (
                   <div className="mt-3 pt-3 border-t border-[#11100E]/10 flex items-center justify-between font-mono text-xs text-[#11100E] animate-in fade-in">
                     <span className="text-[11px] text-[#77736B]">Measurable Outcome:</span>
-                    <span className="font-bold text-[#16A34A]">{p.metric}</span>
+                    <span className="font-bold text-[#11100E] underline">{p.metric}</span>
                   </div>
                 )}
               </div>

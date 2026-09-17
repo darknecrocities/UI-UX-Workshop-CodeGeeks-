@@ -87,9 +87,9 @@ export const Slide07FontVoice: React.FC = () => {
       id: 'SAAS',
       label: 'High-Density SaaS',
       fontName: 'Geist / SF Pro Display',
-      context: 'Analytics Dashboards & Operational Workbenches',
-      sampleText: 'Pipeline #894 · 12,480 events/sec · 99.98% uptime',
-      fontFamilyClass: 'font-sans tracking-tight',
+      context: 'Data tables, server metrics, telemetry, and developer tools.',
+      sampleText: 'Pipeline No. 894 · 12,480 events/sec · 99.98% uptime',
+      fontFamilyClass: 'font-mono tracking-tight font-bold',
       icon: LayoutGrid,
     },
     {
@@ -161,7 +161,7 @@ export const Slide07FontVoice: React.FC = () => {
       id: 'CONTRAST_STANDARDS',
       ruleTitle: 'Rule 06: WCAG 2.1 AA/AAA Contrast Hierarchy',
       ruleStandard: 'Primary text must exceed 7:1 contrast ratio; secondary metadata must exceed 4.5:1 against canvas.',
-      badSlop: 'Faint grey text (#94A3B8 on #E2E8F0) that drops contrast to 2.2:1.',
+      badSlop: 'Faint grey text on pale backgrounds that drops contrast below WCAG AA thresholds.',
       uxImpact: 'Ensures accessibility for low-vision users and legibility in direct sunlight.',
     },
   ];
@@ -240,7 +240,7 @@ export const Slide07FontVoice: React.FC = () => {
                   >
                     <div className="flex items-center justify-between">
                       <span className="font-bold text-[11px] truncate">{v.label}</span>
-                      <Icon className={`w-3.5 h-3.5 ${isSelected ? 'text-[#F59E0B]' : 'text-[#77736B]'}`} />
+                      <Icon className={`w-3.5 h-3.5 ${isSelected ? 'text-[#F5F1E8]' : 'text-[#77736B]'}`} />
                     </div>
                     <div className={`text-[9px] mt-1 truncate ${isSelected ? 'text-white/70' : 'text-[#77736B]'}`}>
                       {v.fontName}
@@ -300,7 +300,7 @@ export const Slide07FontVoice: React.FC = () => {
                     }`}
                   >
                     <span className="truncate">{r.ruleTitle}</span>
-                    <CheckCircle2 className={`w-3.5 h-3.5 shrink-0 ${isSelected ? 'text-[#16A34A]' : 'opacity-30'}`} />
+                    <CheckCircle2 className={`w-3.5 h-3.5 shrink-0 ${isSelected ? 'text-[#F5F1E8]' : 'opacity-30'}`} />
                   </button>
                 );
               })}
@@ -314,14 +314,14 @@ export const Slide07FontVoice: React.FC = () => {
                 </div>
 
                 <div className="mt-3 space-y-2">
-                  <div className="p-3 rounded-lg bg-[#16A34A]/10 border border-[#16A34A]/25">
-                    <div className="text-[10px] font-bold text-[#16A34A] mb-1">✓ THE UX STANDARD</div>
+                  <div className="p-3 rounded-lg bg-white border border-[#11100E]/20">
+                    <div className="text-[10px] font-bold text-[#11100E] mb-1">✓ THE UX STANDARD</div>
                     <div className="text-[#11100E] font-medium leading-relaxed">{currentRule.ruleStandard}</div>
                   </div>
 
-                  <div className="p-3 rounded-lg bg-[#DC2626]/8 border border-[#DC2626]/20">
-                    <div className="text-[10px] font-bold text-[#DC2626] mb-1">✗ COMMON DESIGN MISTAKE</div>
-                    <div className="text-[#11100E]">{currentRule.badSlop}</div>
+                  <div className="p-3 rounded-lg bg-[#FAF7F2] border border-[#11100E]/15">
+                    <div className="text-[10px] font-bold text-[#11100E] mb-1">✗ COMMON DESIGN MISTAKE</div>
+                    <div className="text-[#77736B]">{currentRule.badSlop}</div>
                   </div>
 
                   <div className="p-2.5 rounded-lg bg-[#E9E1D3] border border-[#11100E]/10">

@@ -36,8 +36,8 @@ export const Slide16PromptSkills: React.FC = () => {
 
   const themes = [
     {
-      name: 'Clean Minimalist',
-      colors: 'Warm Parchment (#E9E1D3) + Near-Black Ink (#11100E) + Semantic Green/Red',
+      name: 'Clean Tonal Workstation',
+      colors: 'Warm Parchment (#E9E1D3) + Near-Black Ink (#11100E) + Muted Slate (#77736B)',
       typography: 'IBM Plex Mono (11-13px tabular) + Inter Display (Major Third 1.25 scale)',
       spatial: 'Strict 8pt grid rhythm (8, 16, 24, 32px), 12px squircle radiuses',
       motion: 'Spring physics (stiffness: 280, damping: 22, max duration: 250ms)',
@@ -45,7 +45,7 @@ export const Slide16PromptSkills: React.FC = () => {
     },
     {
       name: 'High-Density Developer Console',
-      colors: 'Deep Slate (#0F172A) + Cyan Accent (#22D3EE) + Emerald (#10B981)',
+      colors: 'Deep Slate (#1C1A18) + Clean Bone (#F5F1E8) + Neutral Ink (#11100E)',
       typography: 'JetBrains Mono / Fira Code throughout, tabular numerals, 11px compact',
       spatial: '4pt micro-matrix, 4px subtle radiuses, 1px technical borders',
       motion: 'Instantaneous 120ms transitions, zero bouncy float delay',
@@ -53,7 +53,7 @@ export const Slide16PromptSkills: React.FC = () => {
     },
     {
       name: 'Literate Editorial Journal',
-      colors: 'Ivory Cream (#FFFEF7) + Charcoal (#1C1917) + Burgundy Accent (#991B1B)',
+      colors: 'Ivory Cream (#FAF7F2) + Charcoal (#1C1A18) + Soft Warm Grey (#D8D3C8)',
       typography: 'Editorial Serif / Newsreader titles + 65ch measure body paragraphs',
       spatial: 'Generous 32px/48px vertical rhythm, asymmetric margins',
       motion: 'Soft 300ms cubic-bezier page turn and opacity fade',
@@ -61,7 +61,7 @@ export const Slide16PromptSkills: React.FC = () => {
     },
     {
       name: 'Neo-Brutalist Hardware HUD',
-      colors: 'High-contrast Zinc (#FAFAFA) + Jet Black (#000000) + Safety Yellow (#FACC15)',
+      colors: 'High-contrast Zinc (#FFFFFF) + Jet Black (#11100E) + Muted Carbon (#77736B)',
       typography: 'Space Grotesk + Heavy Uppercase Mono, tight tracking (-0.04em)',
       spatial: 'Zero radius (0px sharp corners), 2px solid ink outlines, 8px rigid grid',
       motion: 'Snap layout shifts with zero easing curve (mechanical relay feel)',
@@ -90,7 +90,7 @@ DESIGN SPECIFICATION:
 ${
   config.antiSlop
     ? `NEGATIVE CONSTRAINTS (MANDATORY ZERO-SLOP FILTER):
-- DO NOT use generic purple/indigo Gaussian blur gradient overlays or glowing blobs.
+- DO NOT use colors, chromatic gradients, Gaussian blur glow overlays, or colored blobs. Strictly enforce black and warm beige palette.
 - DO NOT use 30px+ lozenge pill-rounded cards that destroy interior reading surface.
 - DO NOT write placeholder SaaS marketing copy ("Unlock Next-Gen Synergy"). Use concrete metrics.
 - DO NOT introduce arbitrary paddings (e.g. p-[13px], gap-7). Lock to 8pt design tokens.
@@ -123,7 +123,7 @@ OUTPUT: Fully functional React + TypeScript + Vanilla/Tailwind CSS with cohesive
             onClick={copyToClipboard}
             className="px-3.5 py-1.5 rounded-lg bg-[#11100E] text-[#F5F1E8] font-bold hover:bg-black cursor-pointer flex items-center gap-1.5 shadow-sm active:translate-y-0.5"
           >
-            {copied ? <Check className="w-3.5 h-3.5 text-[#16A34A]" /> : <Copy className="w-3.5 h-3.5 text-[#F59E0B]" />}
+            {copied ? <Check className="w-3.5 h-3.5 text-[#F5F1E8]" /> : <Copy className="w-3.5 h-3.5 text-[#F5F1E8]" />}
             <span>{copied ? 'COPIED TO CLIPBOARD!' : 'COPY SYSTEM PROMPT'}</span>
           </button>
         </div>
@@ -228,7 +228,7 @@ OUTPUT: Fully functional React + TypeScript + Vanilla/Tailwind CSS with cohesive
                 }}
                 className={`p-2 rounded-lg border cursor-pointer flex items-center justify-between transition-colors ${
                   config.antiSlop
-                    ? 'bg-[#16A34A]/10 border-[#16A34A]/30 text-[#16A34A]'
+                    ? 'bg-[#11100E] text-[#F5F1E8] border-[#11100E]'
                     : 'bg-white border-[#11100E]/15 text-[#77736B]'
                 }`}
               >
@@ -245,7 +245,7 @@ OUTPUT: Fully functional React + TypeScript + Vanilla/Tailwind CSS with cohesive
           <div className="lg:col-span-7 p-4 rounded-2xl bg-[#11100E] text-[#F5F1E8] border border-white/10 flex flex-col justify-between shadow-xl max-h-[300px]">
             <div className="flex items-center justify-between border-b border-white/10 pb-1.5 text-[10px] text-white/60">
               <div className="flex items-center gap-2">
-                <Code2 className="w-3.5 h-3.5 text-amber-400" />
+                <Code2 className="w-3.5 h-3.5 text-[#F5F1E8]" />
                 <span className="text-white font-bold">GENERATED DESIGN PROMPT</span>
               </div>
               <span>Ready for Claude / Gemini / GPT-4</span>
@@ -259,7 +259,7 @@ OUTPUT: Fully functional React + TypeScript + Vanilla/Tailwind CSS with cohesive
               <span>Clear rules guarantee clean, polished screens every time</span>
               <button
                 onClick={copyToClipboard}
-                className="text-amber-400 font-bold hover:underline cursor-pointer"
+                className="text-[#F5F1E8] font-bold hover:underline cursor-pointer"
               >
                 {copied ? '✓ Prompt Copied' : 'Copy Prompt →'}
               </button>

@@ -120,7 +120,7 @@ export const InteractiveCanvas: React.FC = () => {
               top: `${p.y}px`,
               opacity: (idx + 1) / trail.length * 0.4,
             }}
-            className="absolute -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#F59E0B] pointer-events-none transition-opacity duration-300"
+            className="absolute -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#11100E] pointer-events-none transition-opacity duration-300"
           />
         ))}
 
@@ -131,10 +131,10 @@ export const InteractiveCanvas: React.FC = () => {
             top: `${position.y}px`,
           }}
           className={`absolute -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full border-2 border-white flex items-center justify-center transition-transform duration-75 shadow-lg ${
-            isDragging ? 'bg-[#F59E0B] scale-110' : 'bg-[#E9E1D3]'
+            isDragging ? 'bg-[#11100E] scale-110' : 'bg-[#FAF7F2]'
           }`}
         >
-          <div className="w-2 h-2 rounded-full bg-[#11100E]" />
+          <div className={`w-2 h-2 rounded-full ${isDragging ? 'bg-[#F5F1E8]' : 'bg-[#11100E]'}`} />
         </div>
 
         {/* On-screen HUD tags inside canvas */}

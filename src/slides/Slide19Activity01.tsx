@@ -46,8 +46,8 @@ export const Slide19Activity01: React.FC = () => {
       {/* Header */}
       <div className="flex items-center justify-between border-b border-[#11100E]/15 pb-3">
         <div className="flex items-center gap-2">
-          <Flag className="w-4 h-4 text-[#D97706]" />
-          <span className="font-mono text-xs uppercase tracking-widest text-[#D97706] font-bold">
+          <Flag className="w-4 h-4 text-[#11100E]" />
+          <span className="font-mono text-xs uppercase tracking-widest text-[#11100E] font-bold">
             20 / Workshop Mission Briefing
           </span>
         </div>
@@ -80,28 +80,28 @@ export const Slide19Activity01: React.FC = () => {
                   onClick={() => toggleStep(idx)}
                   className={`w-full p-3 rounded-xl border text-left flex items-start gap-3 cursor-pointer transition-all ${
                     done
-                      ? 'bg-[#16A34A]/10 border-[#16A34A]/40'
+                      ? 'bg-[#11100E] border-[#11100E] text-[#F5F1E8]'
                       : 'bg-[#F5F1E8] border-[#11100E]/15 hover:border-[#11100E]/40'
                   }`}
                 >
                   <span className={`mt-0.5 shrink-0 w-5 h-5 rounded-full border flex items-center justify-center ${
                     done
-                      ? 'bg-[#16A34A] border-[#16A34A]'
+                      ? 'bg-[#F5F1E8] border-[#F5F1E8]'
                       : 'border-[#11100E]/30 bg-transparent'
                   }`}>
                     {done
-                      ? <Check className="w-3 h-3 text-white" />
+                      ? <Check className="w-3 h-3 text-[#11100E]" />
                       : <Circle className="w-2.5 h-2.5 text-[#11100E]/20" />
                     }
                   </span>
                   <div className="flex-1">
                     <div className="flex items-center justify-between">
-                      <div className={`font-bold text-xs ${done ? 'text-[#16A34A] line-through' : 'text-[#11100E]'}`}>
+                      <div className={`font-bold text-xs ${done ? 'text-[#F5F1E8] line-through' : 'text-[#11100E]'}`}>
                         {s.num}. {s.title}
                       </div>
-                      <span className="text-[10px] text-[#77736B] shrink-0">{s.time}</span>
+                      <span className={`text-[10px] shrink-0 ${done ? 'text-[#D8D3C8]' : 'text-[#77736B]'}`}>{s.time}</span>
                     </div>
-                    <div className="text-[11px] text-[#77736B] mt-0.5">{s.note}</div>
+                    <div className={`text-[11px] mt-0.5 ${done ? 'text-[#D8D3C8]' : 'text-[#77736B]'}`}>{s.note}</div>
                   </div>
                 </button>
               );
@@ -112,7 +112,7 @@ export const Slide19Activity01: React.FC = () => {
           <div className="flex items-center gap-2 font-mono text-xs text-[#77736B]">
             <div className="flex-1 h-1.5 rounded-full bg-[#11100E]/10 overflow-hidden">
               <div
-                className="h-full rounded-full bg-[#16A34A] transition-all duration-300"
+                className="h-full rounded-full bg-[#11100E] transition-all duration-300"
                 style={{ width: `${(completedSteps.size / steps.length) * 100}%` }}
               />
             </div>
@@ -132,7 +132,7 @@ export const Slide19Activity01: React.FC = () => {
               <circle cx="50" cy="50" r="42" fill="none" stroke="white" strokeOpacity="0.08" strokeWidth="6" />
               <circle
                 cx="50" cy="50" r="42" fill="none"
-                stroke="#F59E0B" strokeWidth="6"
+                stroke="#F5F1E8" strokeWidth="6"
                 strokeLinecap="round"
                 strokeDasharray={`${2 * Math.PI * 42}`}
                 strokeDashoffset={`${2 * Math.PI * 42 * (1 - progress / 100)}`}
@@ -140,7 +140,7 @@ export const Slide19Activity01: React.FC = () => {
               />
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <div className="font-mono text-2xl font-black tracking-tighter text-[#F59E0B]">
+              <div className="font-mono text-2xl font-black tracking-tighter text-[#F5F1E8]">
                 {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
               </div>
               <div className="font-mono text-[10px] text-white/40 mt-0.5">remaining</div>
@@ -153,7 +153,7 @@ export const Slide19Activity01: React.FC = () => {
                 sound.playSwitch(!isRunning);
                 setIsRunning((r) => !r);
               }}
-              className="px-4 py-2 rounded-lg bg-[#F59E0B] text-[#11100E] font-bold flex items-center gap-1.5 cursor-pointer hover:bg-[#F59E0B]/90 transition-colors"
+              className="px-4 py-2 rounded-lg bg-[#F5F1E8] text-[#11100E] font-bold flex items-center gap-1.5 cursor-pointer hover:bg-white transition-colors"
             >
               {isRunning ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
               <span>{isRunning ? 'PAUSE' : 'START'}</span>

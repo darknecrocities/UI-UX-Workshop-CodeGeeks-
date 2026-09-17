@@ -95,7 +95,7 @@ export const Slide02Speaker: React.FC = () => {
               className="flex items-center gap-3 cursor-pointer group text-left"
               title="Click to ship another app"
             >
-              <span className="text-4xl sm:text-5xl font-black font-mono tracking-tighter text-[#F59E0B] group-hover:scale-105 transition-transform">
+              <span className="text-4xl sm:text-5xl font-black font-mono tracking-tighter text-[#F5F1E8] group-hover:scale-105 transition-transform">
                 {appCount}+
               </span>
               <div>
