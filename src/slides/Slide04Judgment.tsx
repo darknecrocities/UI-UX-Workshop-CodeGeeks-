@@ -1,16 +1,67 @@
 import React, { useState } from 'react';
 import { sound } from '../audio/sound';
-import { Bot, UserCheck, ArrowRightLeft, Check, Minus } from 'lucide-react';
+import { Bot, UserCheck, ArrowRightLeft, Check, Minus, Sparkles, RotateCcw } from 'lucide-react';
 
 export const Slide04Judgment: React.FC = () => {
   const [activeSide, setActiveSide] = useState<'AI' | 'HUMAN'>('HUMAN');
   const [removedElements, setRemovedElements] = useState<string[]>([]);
 
+  const noiseItems = [
+    {
+      id: 'Purple Orbs',
+      label: 'Purple Orbs',
+      icon: '🔮',
+      desc: 'Gaudy radial gradient glow behind canvas',
+      badgeClass: 'bg-purple-600/20 text-purple-900 border-purple-400/50',
+    },
+    {
+      id: 'Floating Blobs',
+      label: 'Floating Blobs',
+      icon: '🫧',
+      desc: 'Irrelevant floating decorative vector blob',
+      badgeClass: 'bg-pink-500/20 text-pink-900 border-pink-400/50',
+    },
+    {
+      id: 'Fake Testimonials',
+      label: 'Fake Testimonials',
+      icon: '⭐',
+      desc: '"10x my velocity!" — Unverified bot quote',
+      badgeClass: 'bg-amber-500/20 text-amber-900 border-amber-400/50',
+    },
+    {
+      id: 'Generic Dashboards',
+      label: 'Generic Dashboards',
+      icon: '📈',
+      desc: '+842% AI synergy circular chart widget',
+      badgeClass: 'bg-emerald-500/20 text-emerald-900 border-emerald-400/50',
+    },
+  ];
+
   const toggleSubtract = (elem: string) => {
-    sound.playClick(1.2);
-    setRemovedElements((prev) =>
-      prev.includes(elem) ? prev.filter((e) => e !== elem) : [...prev, elem]
-    );
+    setRemovedElements((prev) => {
+      const willRemove = !prev.includes(elem);
+      if (willRemove) {
+        if (prev.length === noiseItems.length - 1) {
+          sound.playSuccess();
+        } else {
+          sound.playClick(1.25);
+        }
+        return [...prev, elem];
+      } else {
+        sound.playSlopAlert();
+        return prev.filter((e) => e !== elem);
+      }
+    });
+  };
+
+  const cutAll = () => {
+    sound.playSuccess();
+    setRemovedElements(noiseItems.map((n) => n.id));
+  };
+
+  const restoreAll = () => {
+    sound.playSlopAlert();
+    setRemovedElements([]);
   };
 
   const aiGenerates = [
@@ -27,6 +78,8 @@ export const Slide04Judgment: React.FC = () => {
     { title: 'What creates trust?', desc: 'Clean details & great feel' },
   ];
 
+  const allSubtracted = removedElements.length === noiseItems.length;
+
   return (
     <div className="w-full h-full flex flex-col justify-between p-6 sm:p-10 md:p-12 max-w-7xl mx-auto select-none">
       {/* Header */}
@@ -42,12 +95,12 @@ export const Slide04Judgment: React.FC = () => {
           className="px-3 py-1 rounded-lg bg-[#11100E] text-[#F5F1E8] font-mono text-xs flex items-center gap-1.5 cursor-pointer hover:bg-[#11100E]/90 transition-colors"
         >
           <ArrowRightLeft className="w-3 h-3" />
-          <span>Toggle: {activeSide}</span>
+          <span>Focus: {activeSide}</span>
         </button>
       </div>
 
       {/* Main Area */}
-      <div className="my-auto py-2 space-y-5">
+      <div className="my-auto py-2 space-y-4">
         <div>
           <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-[#11100E] leading-tight">
             AI IS NOT THE DESIGNER.
@@ -63,31 +116,110 @@ export const Slide04Judgment: React.FC = () => {
 
         {/* Modular Squircle Columns */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* AI Column */}
+          {/* AI Column with Live Noise Layer */}
           <div
             onClick={() => {
               setActiveSide('AI');
               sound.playClick(0.9);
             }}
-            className={`p-5 rounded-2xl border transition-all cursor-pointer ${
+            className={`relative p-5 rounded-2xl border transition-all cursor-pointer overflow-hidden ${
               activeSide === 'AI'
                 ? 'bg-[#E9E1D3] border-[#11100E] shadow-md ring-2 ring-[#11100E]/15'
-                : 'bg-[#F5F1E8]/60 border-[#11100E]/15 opacity-75'
+                : 'bg-[#F5F1E8]/60 border-[#11100E]/15 opacity-85'
             }`}
           >
-            <div className="flex items-center gap-2 mb-3 pb-2 border-b border-[#11100E]/10">
-              <Bot className="w-4 h-4 text-[#77736B]" />
-              <h3 className="font-mono font-bold text-xs uppercase tracking-wider text-[#11100E]">
-                WHAT AI GENERATES
-              </h3>
+            {/* Live Purple Orb Glow when NOT removed */}
+            {!removedElements.includes('Purple Orbs') && (
+              <div className="absolute -top-12 -right-12 w-56 h-56 rounded-full bg-purple-600/25 blur-2xl pointer-events-none animate-pulse transition-opacity duration-300 z-0" />
+            )}
+
+            <div className="relative z-10 flex items-center justify-between mb-3 pb-2 border-b border-[#11100E]/10">
+              <div className="flex items-center gap-2">
+                <Bot className="w-4 h-4 text-[#77736B]" />
+                <h3 className="font-mono font-bold text-xs uppercase tracking-wider text-[#11100E]">
+                  WHAT AI GENERATES
+                </h3>
+              </div>
+
+              {/* Live Noise Level Pill */}
+              <span
+                className={`font-mono text-[10px] font-bold px-2 py-0.5 rounded-md border transition-all ${
+                  allSubtracted
+                    ? 'bg-[#16A34A] text-white border-[#16A34A]'
+                    : 'bg-[#11100E]/10 text-[#11100E] border-[#11100E]/20'
+                }`}
+              >
+                {allSubtracted
+                  ? 'CLEAN (0 NOISE)'
+                  : `${noiseItems.length - removedElements.length} NOISE ACTIVE`}
+              </span>
             </div>
-            <div className="grid grid-cols-2 gap-2 font-mono text-xs">
+
+            {/* Core Scaffold Grid */}
+            <div className="relative z-10 grid grid-cols-2 gap-2 font-mono text-xs">
               {aiGenerates.map((item, idx) => (
-                <div key={idx} className="p-2.5 rounded-xl bg-white/50 border border-[#11100E]/10">
+                <div
+                  key={idx}
+                  className="p-2.5 rounded-xl bg-white/60 border border-[#11100E]/10 flex flex-col justify-between min-h-[54px]"
+                >
                   <div className="font-bold text-[#11100E] text-[11px]">{item.title}</div>
                   <div className="text-[10px] text-[#77736B] mt-0.5">{item.desc}</div>
                 </div>
               ))}
+            </div>
+
+            {/* Live Active Noise Layer: Direct Visual Proof of Subtraction */}
+            <div className="relative z-10 mt-3 pt-2.5 border-t border-[#11100E]/10 font-mono text-xs">
+              <div className="flex items-center justify-between text-[10px] text-[#77736B] mb-1.5 font-bold uppercase">
+                <span>Active Slop Layer:</span>
+                <span className="text-[#B45309]">
+                  {allSubtracted ? 'All Subtracted' : 'Click Badge to Cut'}
+                </span>
+              </div>
+
+              {allSubtracted ? (
+                <div className="p-2 rounded-xl bg-[#16A34A]/15 border border-[#16A34A]/30 text-[#16A34A] flex items-center justify-between text-[11px] font-bold">
+                  <div className="flex items-center gap-1.5">
+                    <Check className="w-3.5 h-3.5" />
+                    <span>Pure Intentional Craft Restored — Zero Slop</span>
+                  </div>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      restoreAll();
+                    }}
+                    className="underline text-[10px] text-[#11100E] hover:text-[#B45309] cursor-pointer"
+                  >
+                    Reset
+                  </button>
+                </div>
+              ) : (
+                <div className="grid grid-cols-2 gap-1.5">
+                  {noiseItems.map((n) => {
+                    const isRemoved = removedElements.includes(n.id);
+                    if (isRemoved) return null;
+                    return (
+                      <div
+                        key={n.id}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleSubtract(n.id);
+                        }}
+                        className={`p-1.5 px-2 rounded-lg border flex items-center justify-between gap-1 text-[10px] shadow-xs cursor-pointer hover:scale-[0.98] transition-all group ${n.badgeClass}`}
+                        title={`Click to subtract ${n.label}`}
+                      >
+                        <div className="flex items-center gap-1 truncate">
+                          <span>{n.icon}</span>
+                          <span className="font-bold truncate">{n.label}</span>
+                        </div>
+                        <span className="text-[9px] font-bold opacity-60 group-hover:opacity-100 shrink-0">
+                          ✕ CUT
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           </div>
 
@@ -103,55 +235,118 @@ export const Slide04Judgment: React.FC = () => {
                 : 'bg-[#F5F1E8]/60 border-[#11100E]/15 opacity-75'
             }`}
           >
-            <div className="flex items-center gap-2 mb-3 pb-2 border-b border-white/15">
-              <UserCheck className="w-4 h-4 text-[#16A34A]" />
-              <h3 className="font-mono font-bold text-xs uppercase tracking-wider text-[#F5F1E8]">
-                WHAT HUMANS DECIDE
-              </h3>
+            <div className="flex items-center justify-between mb-3 pb-2 border-b border-white/15">
+              <div className="flex items-center gap-2">
+                <UserCheck className="w-4 h-4 text-[#16A34A]" />
+                <h3 className="font-mono font-bold text-xs uppercase tracking-wider text-[#F5F1E8]">
+                  WHAT HUMANS DECIDE
+                </h3>
+              </div>
+              <span className="font-mono text-[10px] font-bold text-[#F59E0B] px-2 py-0.5 rounded bg-white/10 border border-white/10">
+                TASTE & RESTRAINT
+              </span>
             </div>
+
             <div className="grid grid-cols-2 gap-2 font-mono text-xs">
               {humansDecide.map((item, idx) => (
                 <div
                   key={idx}
-                  className={`p-2.5 rounded-xl border ${
+                  className={`p-2.5 rounded-xl border flex flex-col justify-between min-h-[54px] ${
                     activeSide === 'HUMAN'
                       ? 'bg-white/10 border-white/10'
                       : 'bg-[#11100E]/5 border-[#11100E]/5'
                   }`}
                 >
-                  <div className={`font-bold text-[11px] ${activeSide === 'HUMAN' ? 'text-white' : 'text-[#11100E]'}`}>
+                  <div
+                    className={`font-bold text-[11px] ${
+                      activeSide === 'HUMAN' ? 'text-white' : 'text-[#11100E]'
+                    }`}
+                  >
                     {item.title}
                   </div>
-                  <div className={`text-[10px] mt-0.5 ${activeSide === 'HUMAN' ? 'text-white/70' : 'text-[#77736B]'}`}>
+                  <div
+                    className={`text-[10px] mt-0.5 ${
+                      activeSide === 'HUMAN' ? 'text-white/70' : 'text-[#77736B]'
+                    }`}
+                  >
                     {item.desc}
                   </div>
                 </div>
               ))}
             </div>
+
+            {/* Human Restraint Principle Banner */}
+            <div className="mt-3 pt-2.5 border-t border-white/10 font-mono text-xs text-[#E9E1D3]/80">
+              <div className="p-2 rounded-xl bg-white/5 border border-white/10 text-[10px] leading-relaxed">
+                <span className="text-[#F59E0B] font-bold">Rule #1: </span>
+                Every element on screen must earn its right to exist. If it doesn't solve a user problem, delete it.
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Interactive Subtraction Bar */}
-        <div className="p-3.5 rounded-xl bg-[#F5F1E8] border border-[#11100E]/15 flex flex-wrap items-center justify-between gap-2 font-mono text-xs">
-          <span className="text-[#77736B]">Test Subtracting Noise:</span>
-          <div className="flex flex-wrap gap-2">
-            {['Purple Orbs', 'Floating Blobs', 'Fake Testimonials', 'Generic Dashboards'].map((elem) => {
-              const isRemoved = removedElements.includes(elem);
+        <div className="p-3 sm:p-3.5 rounded-xl bg-[#F5F1E8] border border-[#11100E]/15 flex flex-wrap items-center justify-between gap-2 font-mono text-xs">
+          <div className="flex items-center gap-2">
+            <span className="text-[#77736B] font-bold">Test Subtracting Noise:</span>
+            <span
+              className={`px-2 py-0.5 rounded text-[10px] font-bold ${
+                allSubtracted
+                  ? 'bg-[#16A34A] text-white'
+                  : 'bg-[#11100E]/10 text-[#11100E]'
+              }`}
+            >
+              {allSubtracted
+                ? '0% NOISE (CLEAN)'
+                : `${noiseItems.length - removedElements.length} NOISE REMAINING`}
+            </span>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+            {noiseItems.map((elem) => {
+              const isRemoved = removedElements.includes(elem.id);
               return (
                 <button
-                  key={elem}
-                  onClick={() => toggleSubtract(elem)}
-                  className={`px-2.5 py-1 rounded-lg border text-[11px] flex items-center gap-1 cursor-pointer transition-all ${
+                  key={elem.id}
+                  onClick={() => toggleSubtract(elem.id)}
+                  className={`px-2.5 py-1 rounded-lg border text-[11px] flex items-center gap-1.5 cursor-pointer transition-all ${
                     isRemoved
-                      ? 'bg-[#16A34A] text-white border-[#16A34A]'
-                      : 'bg-[#E9E1D3] text-[#11100E] border-[#11100E]/20 hover:border-[#11100E]'
+                      ? 'bg-[#16A34A] text-white border-[#16A34A] shadow-xs'
+                      : 'bg-[#E9E1D3] text-[#11100E] border-[#11100E]/20 hover:border-[#11100E] hover:bg-white'
                   }`}
+                  title={isRemoved ? `Restore ${elem.label}` : `Subtract ${elem.label}`}
                 >
-                  {isRemoved ? <Check className="w-3 h-3" /> : <Minus className="w-3 h-3" />}
-                  <span>{elem} {isRemoved ? '(SUBTRACTED)' : ''}</span>
+                  {isRemoved ? (
+                    <Check className="w-3 h-3" />
+                  ) : (
+                    <Minus className="w-3 h-3 text-[#B45309]" />
+                  )}
+                  <span>{elem.label}</span>
+                  <span className="text-[9px] opacity-80">
+                    {isRemoved ? '(CUT)' : ''}
+                  </span>
                 </button>
               );
             })}
+
+            {/* Quick Action Button */}
+            <button
+              onClick={allSubtracted ? restoreAll : cutAll}
+              className="px-2.5 py-1 rounded-lg bg-[#11100E] text-[#F5F1E8] text-[10px] font-bold cursor-pointer hover:bg-black transition-colors flex items-center gap-1"
+              title={allSubtracted ? 'Restore all noisy widgets' : 'Cut all noise at once'}
+            >
+              {allSubtracted ? (
+                <>
+                  <RotateCcw className="w-3 h-3" />
+                  <span>Restore</span>
+                </>
+              ) : (
+                <>
+                  <Sparkles className="w-3 h-3 text-[#F59E0B]" />
+                  <span>Cut All</span>
+                </>
+              )}
+            </button>
           </div>
         </div>
       </div>
