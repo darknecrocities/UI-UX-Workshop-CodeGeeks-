@@ -51,7 +51,7 @@ export const Slide07FontVoice: React.FC = () => {
       id: 'TECHNICAL',
       label: 'Technical Mono',
       fontName: 'IBM Plex Mono',
-      context: 'Developer Tools, CLI Terminals & Telemetry',
+      context: 'Developer Tools, Terminals & Dashboards',
       sampleText: '$ agy build --verify-types --strict=true',
       fontFamilyClass: 'font-mono',
       icon: Terminal,
@@ -106,7 +106,7 @@ export const Slide07FontVoice: React.FC = () => {
       label: 'Refined Luxury',
       fontName: 'Playfair / Cormorant Garamond',
       context: 'High-Ticket Portfolios & Bespoke Goods',
-      sampleText: 'Architectural precision meets timeless human craft.',
+      sampleText: 'Crafted with care, designed for humans.',
       fontFamilyClass: 'font-serif italic tracking-wide',
       icon: Crown,
     },
@@ -141,7 +141,7 @@ export const Slide07FontVoice: React.FC = () => {
       ruleTitle: 'Rule 03: Proportional Line-Height (1.4–1.6 Body, 1.05–1.15 Display)',
       ruleStandard: 'Body text requires breathing room (line-height: 1.5); monumental titles require tight leading (line-height: 1.1).',
       badSlop: 'Applying tight leading (1.1) to body paragraphs causing descenders to collide with ascenders.',
-      uxImpact: 'Maintains vertical cadence and prevents cognitive visual clutter.',
+      uxImpact: 'Makes text easy to scan and keeps paragraphs readable.',
     },
     {
       id: 'WEIGHT_RESTRAINT',
@@ -155,7 +155,7 @@ export const Slide07FontVoice: React.FC = () => {
       ruleTitle: 'Rule 05: Tabular Numerics for Data Rows',
       ruleStandard: 'Always apply font-variant-numeric: tabular-nums on tables, counters, prices, and timestamps.',
       badSlop: 'Proportional numbers where "1" is narrower than "8", causing column numbers to jitter horizontally.',
-      uxImpact: 'Enables instant vertical numerical comparison for financial and telemetry applications.',
+      uxImpact: 'Lines up numbers vertically so stats are easy to compare at a glance.',
     },
     {
       id: 'CONTRAST_STANDARDS',
@@ -176,7 +176,7 @@ export const Slide07FontVoice: React.FC = () => {
         <div className="flex items-center gap-2">
           <Type className="w-4 h-4 text-[#11100E]" />
           <span className="font-mono text-xs uppercase tracking-widest text-[#77736B]">
-            07 / Typography System & UX Standards
+            07 / Typography & Text Rules
           </span>
         </div>
         {/* Toggle between Voices & Rules */}
@@ -199,7 +199,7 @@ export const Slide07FontVoice: React.FC = () => {
                 : 'bg-[#F5F1E8] text-[#11100E] border-[#11100E]/20 hover:border-[#11100E]'
             }`}
           >
-            STANDARD UX RULES (6)
+            6 RULES FOR CLEAN TYPE
           </button>
         </div>
       </div>
@@ -208,12 +208,12 @@ export const Slide07FontVoice: React.FC = () => {
       <div className="my-auto py-2 space-y-3">
         <div>
           <h2 className="text-xl sm:text-3xl md:text-4xl font-black tracking-tight text-[#11100E]">
-            {activeTab === 'VOICES' ? 'STOP PICKING FONTS. PICK VOICES.' : 'STANDARD UX RULES FOR TYPOGRAPHY.'}
+            {activeTab === 'VOICES' ? 'STOP PICKING FONTS. PICK VOICES.' : '6 RULES FOR CLEAN TYPE.'}
           </h2>
           <p className="mt-0.5 text-xs sm:text-sm text-[#77736B] font-medium">
             {activeTab === 'VOICES'
               ? 'Typography communicates authority, trust, and context before a single word is parsed:'
-              : 'Mathematical principles that separate high-taste engineering from arbitrary vibe coding:'}
+              : 'Simple rules that make text clean, readable, and easy on the eyes:'}
           </p>
         </div>
 
@@ -269,7 +269,7 @@ export const Slide07FontVoice: React.FC = () => {
 
               {/* Action trigger button */}
               <div className="flex items-center justify-between pt-2 border-t border-[#11100E]/10 font-mono text-xs">
-                <span className="text-[11px] text-[#77736B]">Live Type Rendering Engine</span>
+                <span className="text-[11px] text-[#77736B]">Live Text Preview</span>
                 <button
                   onClick={() => sound.playSuccess()}
                   className="px-3 py-1.5 rounded-lg bg-[#11100E] text-[#F5F1E8] text-xs font-bold hover:bg-black cursor-pointer active:translate-y-0.5"
@@ -325,7 +325,7 @@ export const Slide07FontVoice: React.FC = () => {
                   </div>
 
                   <div className="p-2.5 rounded-lg bg-[#E9E1D3] border border-[#11100E]/10">
-                    <div className="text-[10px] font-bold text-[#77736B] mb-0.5">COGNITIVE IMPACT</div>
+                    <div className="text-[10px] font-bold text-[#77736B] mb-0.5">WHY IT MATTERS</div>
                     <div className="text-[#11100E] text-[11px]">{currentRule.uxImpact}</div>
                   </div>
                 </div>
@@ -342,7 +342,7 @@ export const Slide07FontVoice: React.FC = () => {
 
       {/* Footer */}
       <div className="pt-2.5 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B]">
-        <span>Never load a typeface without understanding its emotional tone & mathematical scale.</span>
+        <span>Pick fonts that match your message and feel effortless to read.</span>
         <span>07 / 26</span>
       </div>
     </div>

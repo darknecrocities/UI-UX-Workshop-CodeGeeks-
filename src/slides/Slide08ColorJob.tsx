@@ -144,14 +144,14 @@ export const Slide08ColorJob: React.FC = () => {
       ruleTitle: 'Rule 05: Proper Light/Dark Luminance Inversion',
       ruleStandard: 'Do not simply invert RGB values. Re-calibrate luminance so elevated cards appear lighter than the canvas.',
       badSlop: 'Inverting dark mode naively, causing modals and dropdowns to look darker than the background.',
-      uxImpact: 'Maintains consistent spatial depth and elevation hierarchy across all viewing environments.',
+      uxImpact: 'Keeps cards and modals clear and easy to tell apart in both light and dark mode.',
     },
     {
       id: 'STATE_DELTAS',
-      ruleTitle: 'Rule 06: Deterministic State Tone Deltas',
-      ruleStandard: 'Hover states shift luminance by +6%; active pressed states darken by -8% with tactile haptic/audio feedback.',
+      ruleTitle: 'Rule 06: Clear States When Clicked or Hovered',
+      ruleStandard: 'Hover states brighten slightly; active pressed states darken with a clear click feel or sound.',
       badSlop: 'Static flat buttons that give zero visual delta when hovered or pressed.',
-      uxImpact: 'Closes the human sensory feedback loop and confirms user intent with physical responsiveness.',
+      uxImpact: 'Gives users instant confidence that their click worked.',
     },
   ];
 
@@ -165,7 +165,7 @@ export const Slide08ColorJob: React.FC = () => {
         <div className="flex items-center gap-2">
           <Palette className="w-4 h-4 text-[#11100E]" />
           <span className="font-mono text-xs uppercase tracking-widest text-[#77736B]">
-            08 / Color System & Standard UX Laws
+            08 / Color System & Visual Rules
           </span>
         </div>
         {/* Toggle between Palette & UX Rules */}
@@ -188,7 +188,7 @@ export const Slide08ColorJob: React.FC = () => {
                 : 'bg-[#F5F1E8] text-[#11100E] border-[#11100E]/20 hover:border-[#11100E]'
             }`}
           >
-            STANDARD UX COLOR LAWS (6)
+            6 SIMPLE COLOR RULES
           </button>
         </div>
       </div>
@@ -197,12 +197,12 @@ export const Slide08ColorJob: React.FC = () => {
       <div className="my-auto py-2 space-y-3">
         <div>
           <h2 className="text-xl sm:text-3xl md:text-4xl font-black tracking-tight text-[#11100E]">
-            {activeTab === 'PALETTE' ? 'COLOR SHOULD HAVE A JOB.' : 'STANDARD UX LAWS FOR COLOR.'}
+            {activeTab === 'PALETTE' ? 'COLOR SHOULD HAVE A JOB.' : 'SIMPLE COLOR RULES THAT WORK.'}
           </h2>
           <p className="mt-0.5 text-xs sm:text-sm text-[#77736B] font-medium">
             {activeTab === 'PALETTE'
-              ? 'Never pick 12 random hex colors from a palette generator. Give every tone a deterministic semantic role:'
-              : 'Empirical color rules backed by WCAG guidelines, cognitive psychology, and accessibility science:'}
+              ? 'Never pick 12 random hex colors from a generator. Give every color a clear job:'
+              : 'Proven color guidelines that keep screens clean, readable, and easy on the eyes:'}
           </p>
         </div>
 
@@ -295,7 +295,7 @@ export const Slide08ColorJob: React.FC = () => {
                     ACTIVE ROLE SURFACE
                   </span>
                   <div className={`text-base font-bold ${activeSwatch.textClass}`}>
-                    {appState === 'IDLE' ? 'System Steady' : appState === 'WARNING' ? 'Slop Warning Alert' : 'Deterministic Pass'}
+                    {appState === 'IDLE' ? 'All Good' : appState === 'WARNING' ? 'Attention Needed' : 'Action Succeeded'}
                   </div>
                 </div>
               </div>
@@ -337,7 +337,7 @@ export const Slide08ColorJob: React.FC = () => {
 
                 <div className="mt-3 space-y-2">
                   <div className="p-3 rounded-lg bg-[#16A34A]/10 border border-[#16A34A]/25">
-                    <div className="text-[10px] font-bold text-[#16A34A] mb-1">✓ THE UX LAW</div>
+                    <div className="text-[10px] font-bold text-[#16A34A] mb-1">✓ THE GOLDEN RULE</div>
                     <div className="text-[#11100E] font-medium leading-relaxed">{currentRule.ruleStandard}</div>
                   </div>
 
@@ -354,8 +354,8 @@ export const Slide08ColorJob: React.FC = () => {
               </div>
 
               <div className="pt-2 border-t border-[#11100E]/10 flex items-center justify-between text-[11px] text-[#77736B]">
-                <span>Color Law {selectedRule + 1} of 6</span>
-                <span className="font-bold text-[#11100E]">Standardized Design Systems</span>
+                <span>Rule {selectedRule + 1} of 6</span>
+                <span className="font-bold text-[#11100E]">Consistent Color Rules</span>
               </div>
             </div>
           </div>
@@ -364,7 +364,7 @@ export const Slide08ColorJob: React.FC = () => {
 
       {/* Footer */}
       <div className="pt-2.5 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B]">
-        <span>Color is semantic communication, never decorative wallpaper.</span>
+        <span>Use color with purpose, not just for decoration.</span>
         <span>08 / 26</span>
       </div>
     </div>

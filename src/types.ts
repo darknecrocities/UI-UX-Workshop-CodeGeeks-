@@ -2,7 +2,7 @@ export interface SlideMeta {
   id: number;
   slug: string;
   title: string;
-  section: 'FUNDAMENTALS' | 'ACTIVITY 01' | 'BREAK' | 'AI ENGINEERING' | 'ACTIVITY 02' | 'WRAP-UP';
+  section: 'FUNDAMENTALS' | 'ACTIVITY 01' | 'BREAK' | 'BUILDING WITH AI' | 'ACTIVITY 02' | 'WRAP-UP';
   tagline: string;
 }
 

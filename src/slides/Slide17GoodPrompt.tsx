@@ -8,9 +8,9 @@ export const Slide17GoodPrompt: React.FC = () => {
   const layers = [
     { tag: 'RAW (SLOP)', text: '"Make a cool website for my product."', isRaw: true },
     { tag: 'CONTEXT', text: 'You are building a high-focus terminal for autonomous developer workflows.' },
-    { tag: 'USER', text: 'Targeting full-stack engineers who navigate primarily via hotkeys and command palette.' },
-    { tag: 'GOAL', text: 'Enable developers to audit AI tool executions in real-time with zero latency.' },
-    { tag: 'DESIGN', text: 'Warm beige parchment (#E9E1D3) × near-black (#11100E) with Swiss typography hierarchy.' },
+    { tag: 'USER', text: 'Targeting developers who love keyboard shortcuts and clean screens.' },
+    { tag: 'GOAL', text: 'Let users see what the AI is doing in real time with zero lag.' },
+    { tag: 'DESIGN', text: 'Warm beige parchment (#E9E1D3) × near-black (#11100E) with clean typography and clear text sizes.' },
     { tag: 'INTERACTION', text: 'Keyboard shortcuts: J/K row selection, Esc closes inspector, Space toggles playback.' },
     { tag: 'CONSTRAINTS', text: 'Strictly no purple gradients, no floating glassmorphism, no fake stats.' },
     { tag: 'TECH', text: 'React 19, TypeScript, Tailwind CSS v4, Motion, zero external CDNs.' },
@@ -26,7 +26,7 @@ export const Slide17GoodPrompt: React.FC = () => {
             18 / Prompt Transformation
           </span>
         </div>
-        <h2 className="font-mono text-sm font-bold text-[#11100E]">ANATOMY OF A GOOD PROMPT</h2>
+        <h2 className="font-mono text-sm font-bold text-[#11100E]">WHAT MAKES A GREAT PROMPT</h2>
       </div>
 
       {/* Main Content */}
@@ -34,10 +34,10 @@ export const Slide17GoodPrompt: React.FC = () => {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-[#11100E]">
-              PROMPT TRANSFORMATION ENGINE
+              HOW A PROMPT EVOLVES
             </h2>
             <p className="text-xs sm:text-sm text-[#77736B]">
-              Step-by-step evolution from a lazy prompt into an architectural design brief:
+              Watch a lazy 1-line prompt turn into clear instructions:
             </p>
           </div>
 

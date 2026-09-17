@@ -27,9 +27,9 @@ export const Slide18Decisions: React.FC = () => {
     },
     {
       label: 'SPACING',
-      bad: 'Random uncalibrated Tailwind margins',
-      good: 'Consistent 8px spatial grid — 16px internal padding',
-      why: 'Rhythm creates calm. Chaos creates cognitive load.',
+      bad: 'Random padding and uneven gaps',
+      good: 'Consistent 8px spacing with 16px inside padding',
+      why: 'Consistent spacing keeps things calm. Random spacing creates confusion.',
     },
     {
       label: 'ACCESSIBILITY',

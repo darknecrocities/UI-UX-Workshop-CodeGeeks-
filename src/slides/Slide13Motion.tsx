@@ -57,7 +57,7 @@ export const Slide13Motion: React.FC = () => {
       title: 'Staggered List Cascade',
       category: 'CHOREOGRAPHY',
       tagline: '30ms delta offset per item',
-      physicsDesc: 'Items enter sequentially with 30ms offset. Prevents cognitive overload of full-screen simultaneous shifts.',
+      physicsDesc: 'Items enter one after another with a tiny 30ms pause. Keeps the screen feeling calm and organized.',
       uxPurpose: 'Establishes clear hierarchy and reading sequence for dense lists.',
     },
     {
@@ -66,7 +66,7 @@ export const Slide13Motion: React.FC = () => {
       category: 'CONTINUITY',
       tagline: 'First, Last, Invert, Play',
       physicsDesc: 'Seamlessly interpolates bounding rect from compact card to full modal. Never teleports.',
-      uxPurpose: 'Maintains spatial object permanence so users never lose their place.',
+      uxPurpose: 'Shows where the card expands so users never lose their spot on the screen.',
     },
     {
       id: 'MAGNETIC_CURSOR',
@@ -74,7 +74,7 @@ export const Slide13Motion: React.FC = () => {
       category: 'AFFORDANCE',
       tagline: 'Button leans toward mouse',
       physicsDesc: 'Calculates delta vector (dx, dy) from button centroid to cursor; translates up to 8px.',
-      uxPurpose: 'Creates a magnetic field of interactivity that invites confident clicking.',
+      uxPurpose: 'Makes buttons feel alive and eager to be clicked.',
     },
     {
       id: 'SKELETON_SHIMMER',
@@ -82,7 +82,7 @@ export const Slide13Motion: React.FC = () => {
       category: 'PERCEIVED SPEED',
       tagline: 'Continuous luminance gradient',
       physicsDesc: 'Linear gradient sliding at 1.4s period across grey geometry during async data fetches.',
-      uxPurpose: 'Reduces perceived waiting time by 30% compared to empty spinners.',
+      uxPurpose: 'Makes waiting feel 30% faster than staring at a blank screen or spinner.',
     },
     {
       id: 'SCALE_BOUNCE',
@@ -98,7 +98,7 @@ export const Slide13Motion: React.FC = () => {
       category: 'DEPTH CUE',
       tagline: 'Rotates on cursor coordinates',
       physicsDesc: 'perspective(600px) rotateX and rotateY mapped dynamically to cursor position inside container.',
-      uxPurpose: 'Reinforces surface physical elevation and spatial craftsmanship.',
+      uxPurpose: 'Adds subtle 3D tilt that gives cards a premium, physical feel.',
     },
     {
       id: 'RIPPLE_WAVE',
@@ -106,23 +106,23 @@ export const Slide13Motion: React.FC = () => {
       category: 'CONTACT CONFIRM',
       tagline: 'Expands from click point',
       physicsDesc: 'Radial circle scales from 0% to 250% opacity fading from 0.4 to 0 from pointer coordinates.',
-      uxPurpose: 'Directly acknowledges the precise location of user contact.',
+      uxPurpose: 'Shows a gentle wave right where your finger or mouse touched.',
     },
     {
       id: 'KINETIC_ODOMETER',
       title: 'Kinetic Odometer Ticker',
-      category: 'TELEMETRY',
+      category: 'LIVE NUMBERS',
       tagline: 'Vertical rolling digits',
       physicsDesc: 'Numerical digits roll vertically with spring decay, settling on exact updated value.',
-      uxPurpose: 'Draws immediate attention to real-time financial and telemetry shifts.',
+      uxPurpose: 'Makes changing numbers easy to follow as they tick up or down.',
     },
     {
       id: 'SHEET_OFFCANVAS',
       title: 'Directional Sheet Drawer',
-      category: 'SPATIAL ANCHOR',
+      category: 'SIDE PANELS',
       tagline: 'Slides from edge with blur',
       physicsDesc: 'Translates 100% on X axis with 300ms cubic-bezier(0.16, 1, 0.3, 1) and backdrop blur.',
-      uxPurpose: 'Communicates that the user is stepping into an overlay layer without leaving page context.',
+      uxPurpose: 'Shows that a side panel opened without making you lose your place on the page.',
     },
     {
       id: 'ACCORDION_HEIGHT',
@@ -275,7 +275,7 @@ export const Slide13Motion: React.FC = () => {
           {/* Top Status */}
           <div className="flex items-center justify-between border-b border-[#11100E]/10 pb-2 font-mono text-xs">
             <span className="font-bold text-[#11100E]">{current.title}</span>
-            <span className="text-[10px] text-[#77736B]">PHYSICS RUNTIME: ACTIVE</span>
+            <span className="text-[10px] text-[#77736B]">INTERACTIVE PREVIEW</span>
           </div>
 
           {/* Dynamic Physics Stage */}
@@ -289,9 +289,9 @@ export const Slide13Motion: React.FC = () => {
                 }}
                 className="p-5 rounded-2xl bg-[#11100E] text-[#F5F1E8] font-mono text-xs shadow-xl max-w-sm text-center"
               >
-                <div className="text-amber-400 font-bold text-sm">SPRING PHYSICS INERTIA</div>
+                <div className="text-amber-400 font-bold text-sm">NATURAL SPRING BOUNCE</div>
                 <p className="text-white/80 mt-1 text-[11px]">
-                  Simulates mass (1.0), stiffness (280), and damping (22). Natural organic arrival.
+                  Smooth, natural bounce that feels real instead of robotic.
                 </p>
               </div>
             )}

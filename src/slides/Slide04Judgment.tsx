@@ -22,9 +22,9 @@ export const Slide04Judgment: React.FC = () => {
 
   const humansDecide = [
     { title: 'Why does this exist?', desc: 'Core purpose & real problem' },
-    { title: 'Who is using it?', desc: 'Ergonomics & mental model' },
-    { title: 'What should disappear?', desc: 'Radical subtraction of noise' },
-    { title: 'What creates trust?', desc: 'Restraint & tactile quality' },
+    { title: 'Who is this for?', desc: 'How real people think & tap' },
+    { title: 'What gets cut?', desc: 'Removing all the clutter' },
+    { title: 'What creates trust?', desc: 'Clean details & great feel' },
   ];
 
   return (
@@ -78,7 +78,7 @@ export const Slide04Judgment: React.FC = () => {
             <div className="flex items-center gap-2 mb-3 pb-2 border-b border-[#11100E]/10">
               <Bot className="w-4 h-4 text-[#77736B]" />
               <h3 className="font-mono font-bold text-xs uppercase tracking-wider text-[#11100E]">
-                AI CAN GENERATE (Commodity)
+                WHAT AI GENERATES
               </h3>
             </div>
             <div className="grid grid-cols-2 gap-2 font-mono text-xs">
@@ -106,7 +106,7 @@ export const Slide04Judgment: React.FC = () => {
             <div className="flex items-center gap-2 mb-3 pb-2 border-b border-white/15">
               <UserCheck className="w-4 h-4 text-[#16A34A]" />
               <h3 className="font-mono font-bold text-xs uppercase tracking-wider text-[#F5F1E8]">
-                HUMANS DECIDE (Taste & Intent)
+                WHAT HUMANS DECIDE
               </h3>
             </div>
             <div className="grid grid-cols-2 gap-2 font-mono text-xs">

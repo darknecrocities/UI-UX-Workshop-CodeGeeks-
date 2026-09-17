@@ -163,7 +163,7 @@ export const Slide12Scalability: React.FC = () => {
         <div className="p-5 rounded-2xl bg-[#F5F1E8] border border-[#11100E]/20 shadow-sm min-h-[250px] flex flex-col justify-between">
           <div className="flex items-center justify-between border-b border-[#11100E]/10 pb-2 font-mono text-xs">
             <span className="font-bold text-[#11100E]">
-              {mode === 'tokens' ? 'MULTI-COMPONENT DESIGN SYSTEM RUNTIME' : 'AD-HOC FRAGMENTED SPECIMENS'}
+              {mode === 'tokens' ? 'DESIGN SYSTEM IN SYNC (6 COMPONENTS)' : 'MESSY UNCONNECTED PIECES'}
             </span>
             {rebrandFlash && (
               <span className="px-2 py-0.5 rounded bg-[#16A34A] text-white text-[10px] font-bold animate-pulse">
@@ -193,12 +193,12 @@ export const Slide12Scalability: React.FC = () => {
                 }}
                 className="font-bold cursor-pointer transition-all flex items-center justify-center gap-1.5 active:translate-y-0.5"
               >
-                <span>Deploy Artifact</span>
+                <span>Save Changes</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
 
-            {/* Component 2: Telemetry Data Card */}
+            {/* Component 2: Live Number Card */}
             <div
               className="p-3 bg-white border flex flex-col justify-between gap-1 shadow-xs transition-all duration-200"
               style={{
@@ -207,7 +207,7 @@ export const Slide12Scalability: React.FC = () => {
               }}
             >
               <div className="flex justify-between items-center text-[10px] text-[#77736B]">
-                <span>02 / Telemetry Stat</span>
+                <span>02 / Live Number</span>
                 <span className="font-bold" style={{ color: mode === 'tokens' ? activeTheme.primary : '#EC4899' }}>
                   {mode === 'tokens' ? '● LIVE' : 'vibe metric'}
                 </span>
@@ -287,7 +287,7 @@ export const Slide12Scalability: React.FC = () => {
               </div>
               <div className="truncate">
                 <div className="text-xs font-bold text-[#11100E] truncate">Arron Parejas</div>
-                <div className="text-[10px] text-[#77736B]">Lead Engineer</div>
+                <div className="text-[10px] text-[#77736B]">Product Builder</div>
               </div>
             </div>
 
@@ -301,7 +301,7 @@ export const Slide12Scalability: React.FC = () => {
             >
               <div>
                 <div className="text-[10px] text-[#77736B] uppercase">06 / Mechanical Audio</div>
-                <div className="text-xs font-bold text-[#11100E] mt-0.5">Tactile SFX Engine</div>
+                <div className="text-xs font-bold text-[#11100E] mt-0.5">Click Sounds & Feedback</div>
               </div>
               <div
                 className="w-10 h-5 p-0.5 flex items-center cursor-pointer transition-all"

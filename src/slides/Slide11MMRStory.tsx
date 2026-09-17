@@ -32,15 +32,15 @@ export const Slide11MMRStory: React.FC = () => {
     },
     {
       step: '05',
-      title: 'PRODUCTIZATION',
+      title: 'POLISHED & FAST',
       short: 'Reliable software',
-      details: 'Packaged into clean, self-serve software with deterministic performance, rock-solid uptime, and zero bloat.',
+      details: 'Packaged into clean software that simply works every time, loads fast, and has zero bloat.',
     },
     {
       step: '06',
       title: '$3.25K MMR',
-      short: 'Organic outcome',
-      details: 'Revenue was the natural consequence of consistent usefulness. No aggressive sales tactics or dark UX patterns.',
+      short: 'Natural outcome',
+      details: 'Revenue was the natural result of being genuinely useful. No pushy sales tricks, no dark patterns.',
     },
   ];
 
@@ -53,17 +53,17 @@ export const Slide11MMRStory: React.FC = () => {
         <div className="flex items-center gap-2">
           <DollarSign className="w-4 h-4 text-[#16A34A]" />
           <span className="font-mono text-xs uppercase tracking-widest text-[#77736B]">
-            11 / Real-World Validation
+            11 / Real Story
           </span>
         </div>
-        <h2 className="font-mono text-sm font-bold text-[#11100E]">PRODUCTIZATION</h2>
+        <h2 className="font-mono text-sm font-bold text-[#11100E]">FROM USEFUL TO PAID</h2>
       </div>
 
       {/* Main Area */}
       <div className="my-auto py-2 space-y-4">
         <div>
-          <span className="font-mono text-xs text-[#77736B] uppercase tracking-widest">
-            Case Study
+          <span className="font-mono text-xs text-[#16A34A] font-bold uppercase tracking-widest">
+            A TRUE STORY
           </span>
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-black tracking-tight text-[#11100E] mt-1 leading-tight">
             HOW A SIMPLE APP BECAME
@@ -71,7 +71,7 @@ export const Slide11MMRStory: React.FC = () => {
             <span className="text-[#16A34A]">A $3.25K MMR PRODUCT.</span>
           </h2>
           <p className="mt-1 text-xs sm:text-sm text-[#77736B] font-medium max-w-xl">
-            Click each milestone below to inspect the product decisions behind the growth:
+            Click each step to see how simple, honest design decisions turned into real happy users:
           </p>
         </div>
 
@@ -114,7 +114,7 @@ export const Slide11MMRStory: React.FC = () => {
           <div className="space-y-1 max-w-2xl">
             <div className="flex items-center gap-2">
               <span className="font-bold text-[#11100E]">{current.step} / {current.title}</span>
-              <span className="text-[#77736B]">• DECISION RATIONALE</span>
+              <span className="text-[#77736B]">• WHY THIS WORKED</span>
             </div>
             <p className="text-sm font-medium text-[#11100E] leading-relaxed">
               {current.details}
@@ -122,7 +122,7 @@ export const Slide11MMRStory: React.FC = () => {
           </div>
 
           <div className="px-4 py-2.5 rounded-xl bg-[#E9E1D3] border border-[#11100E]/15 font-mono text-xs font-bold text-[#11100E] shrink-0 text-center">
-            REVENUE IS AN OUTCOME
+            SOLVE REAL PROBLEMS
           </div>
         </div>
       </div>

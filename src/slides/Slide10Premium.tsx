@@ -18,31 +18,31 @@ export const Slide10Premium: React.FC = () => {
   const principles: CraftPrinciple[] = [
     {
       id: 'SPACING',
-      title: 'Spatial Rhythm',
+      title: 'Even Spacing',
       bad: 'Random padding: p-3, p-5, p-7, p-2 (no system)',
-      good: 'Strict 8px grid: 8 / 16 / 24 / 32px — every element aligned',
+      good: 'Simple 8px grid (8, 16, 24, 32px) so everything lines up',
       impact: 'Visual calm, perceived quality goes up immediately',
     },
     {
       id: 'HIERARCHY',
-      title: 'Type Hierarchy',
+      title: 'Clear Text Sizes',
       bad: 'Three font weights all used at similar sizes everywhere',
       good: 'One display size for the hero stat, 11px mono for metadata',
       impact: 'Eye scans 3× faster — the important thing is obvious',
     },
     {
       id: 'FEEDBACK',
-      title: 'State Feedback',
+      title: 'Button Feedback',
       bad: 'Static button — no hover, no pressed state, no loader',
       good: 'Hover lift −1px, active press, spinner on submit',
       impact: 'Product feels alive — users trust it more',
     },
     {
       id: 'RESTRAINT',
-      title: 'Radical Restraint',
+      title: 'Keep It Simple',
       bad: 'Gradient border + shadow + glow + badge + animation all at once',
       good: 'One quiet border. One weight shift. Earn each decoration.',
-      impact: 'Luxury is what you leave out, not what you add',
+      impact: 'Great design is about what you leave out, not what you add',
     },
   ];
 
@@ -142,7 +142,7 @@ export const Slide10Premium: React.FC = () => {
 
       {/* Footer */}
       <div className="pt-3 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B]">
-        <span>True luxury in digital interfaces is radical clarity.</span>
+        <span>True quality in digital screens is radical clarity.</span>
         <span>10 / 26</span>
       </div>
     </div>

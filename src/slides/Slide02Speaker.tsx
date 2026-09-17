@@ -33,7 +33,7 @@ export const Slide02Speaker: React.FC = () => {
         <div className="lg:col-span-7 space-y-5">
           <div>
             <div className="inline-block px-2.5 py-0.5 rounded-full bg-[#11100E] text-[#F5F1E8] font-mono text-[10px] tracking-wider uppercase mb-2">
-              BUILDER & ENGINEER
+              BUILDER & DESIGNER
             </div>
             <h1 className="text-4xl sm:text-5xl font-black tracking-tight text-[#11100E]">
               ARRON PAREJAS

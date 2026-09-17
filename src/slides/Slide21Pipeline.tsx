@@ -10,22 +10,22 @@ type PipelineStep = {
 };
 
 const pipelineSteps: PipelineStep[] = [
-  { title: 'FIGMA', desc: 'Auto Layout, tokens, grayscale flow', detail: 'Define spacing tokens, establish 8px grid, map all component states in grayscale before adding a single color.', color: '#F59E0B' },
-  { title: 'STRUCTURED PROMPT', desc: '10-pillar architecture brief', detail: 'Context → User → Goal → Constraints → Visual Language → Interaction → Tech Stack → Content → Edge Cases → Acceptance Criteria.', color: '#8B5CF6' },
-  { title: 'CODING AGENT', desc: 'Agentic CLI & skill orchestration', detail: 'Feed the structured prompt into Antigravity IDE or your coding agent. Let it scaffold. Do NOT interrupt until v1 is done.', color: '#3B82F6' },
-  { title: 'CODE', desc: 'React, TypeScript, Tailwind, Motion', detail: 'Review the generated code. Refactor bad patterns. Clean hooks, typed props, zero dangerouslySetInnerHTML.', color: '#16A34A' },
-  { title: 'WORKING PRODUCT', desc: 'Tested, tactile, deployed to Vercel', detail: 'Run locally. Test keyboard, responsiveness, contrast. Run the slop audit. Then deploy.', color: '#11100E' },
+  { title: 'FIGMA', desc: 'Layout, spacing, black & white flow', detail: 'Define spacing rules, establish 8px grid, map all screens in black and white before adding a single color.', color: '#F59E0B' },
+  { title: 'STRUCTURED PROMPT', desc: 'Clear step-by-step instructions', detail: 'Context → User → Goal → Constraints → Visual Language → Interaction → Tech Stack → Content → Edge Cases → Acceptance Criteria.', color: '#8B5CF6' },
+  { title: 'CODING AGENT', desc: 'Coding assistant & workflow', detail: 'Give the prompt to your coding tool. Let it write the initial code. Do NOT interrupt until v1 is ready to test.', color: '#3B82F6' },
+  { title: 'CODE', desc: 'React, TypeScript, Tailwind, Motion', detail: 'Review the generated code. Clean up any bad patterns, remove unused props, and keep it fast.', color: '#16A34A' },
+  { title: 'WORKING PRODUCT', desc: 'Tested, responsive, deployed live', detail: 'Run locally. Test keyboard, responsiveness, and contrast. Check for common flaws, then ship.', color: '#11100E' },
 ];
 
 const tools = [
-  { name: 'Antigravity IDE', role: 'Agentic IDE & CLI orchestration', link: 'https://antigravity.google/product/antigravity-ide' },
-  { name: 'AI Studio', role: 'Gemini reasoning & structured generation', link: 'https://aistudio.google.com/' },
-  { name: 'Figma', role: 'Component specs & spatial variable system', link: 'https://www.figma.com/' },
-  { name: 'Google Stitch', role: 'Next-gen prototyping & design flow', link: 'https://stitch.withgoogle.com/' },
-  { name: 'GitHub', role: 'Version control & CI/CD pipeline', link: 'https://github.com' },
-  { name: 'DomoSkills', role: 'Curated skills for coding agents', link: 'https://web-beta-six-81.vercel.app/' },
-  { name: 'DomoDomo', role: 'Tactile design engineering studio', link: 'http://domodomo.site/' },
-  { name: 'Codepyne', role: 'Interactive developer playground', link: 'https://codepyne-io.vercel.app/' },
+  { name: 'Antigravity IDE', role: 'Smart coding environment', link: 'https://antigravity.google/product/antigravity-ide' },
+  { name: 'AI Studio', role: 'Fast prototyping & clear prompts', link: 'https://aistudio.google.com/' },
+  { name: 'Figma', role: 'Screen design & layout rules', link: 'https://www.figma.com/' },
+  { name: 'Google Stitch', role: 'Interactive prototyping & screen flows', link: 'https://stitch.withgoogle.com/' },
+  { name: 'GitHub', role: 'Code storage & automatic shipping', link: 'https://github.com' },
+  { name: 'DomoSkills', role: 'Helpful skills for coding assistants', link: 'https://web-beta-six-81.vercel.app/' },
+  { name: 'DomoDomo', role: 'Tactile product & design studio', link: 'http://domodomo.site/' },
+  { name: 'Codepyne', role: 'Interactive code playground', link: 'https://codepyne-io.vercel.app/' },
 ];
 
 export const Slide21Pipeline: React.FC = () => {
@@ -50,10 +50,10 @@ export const Slide21Pipeline: React.FC = () => {
         <div className="flex items-center gap-2">
           <Wrench className="w-4 h-4 text-[#11100E]" />
           <span className="font-mono text-xs uppercase tracking-widest text-[#77736B]">
-            22 / Toolchain Architecture
+            22 / Tools & Workflow
           </span>
         </div>
-        <h2 className="font-mono text-sm font-bold text-[#11100E]">AI-ASSISTED DEVELOPMENT</h2>
+        <h2 className="font-mono text-sm font-bold text-[#11100E]">BUILDING WITH AI TOOLS</h2>
       </div>
 
       {/* Main Area */}

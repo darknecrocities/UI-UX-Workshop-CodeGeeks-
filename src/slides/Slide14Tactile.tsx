@@ -150,7 +150,7 @@ export const Slide14Tactile: React.FC = () => {
         <div className="flex items-center gap-2">
           <Keyboard className="w-4 h-4 text-[#11100E]" />
           <span className="font-mono text-xs uppercase tracking-widest text-[#77736B]">
-            15 / Tactile Ergonomics & Mechanical SFX
+            15 / Real Key Sounds & Physical Feel
           </span>
         </div>
         <div className="flex items-center gap-2 font-mono text-xs">
@@ -249,9 +249,9 @@ export const Slide14Tactile: React.FC = () => {
           <div className="p-3 rounded-2xl bg-[#F5F1E8] border border-[#11100E]/15 flex items-start gap-2.5 shadow-xs">
             <Headphones className="w-4 h-4 text-[#D97706] shrink-0 mt-0.5" />
             <div>
-              <div className="font-bold text-xs text-[#11100E]">1. CLOSES THE SENSORY LOOP</div>
+              <div className="font-bold text-xs text-[#11100E]">1. INSTANT CONFIRMATION</div>
               <p className="text-[10px] text-[#77736B] mt-0.5 leading-relaxed">
-                Humans rely on multi-sensory confirmation. Without sound, users second-guess whether a button clicked, causing accidental double submissions.
+                Sound confirms your click instantly so you never wonder if a button clicked or accidentally double-submit.
               </p>
             </div>
           </div>
@@ -259,9 +259,9 @@ export const Slide14Tactile: React.FC = () => {
           <div className="p-3 rounded-2xl bg-[#F5F1E8] border border-[#11100E]/15 flex items-start gap-2.5 shadow-xs">
             <ShieldCheck className="w-4 h-4 text-[#16A34A] shrink-0 mt-0.5" />
             <div>
-              <div className="font-bold text-xs text-[#11100E]">2. ZERO VISUAL OVERHEAD</div>
+              <div className="font-bold text-xs text-[#11100E]">2. NO NEED TO STARE</div>
               <p className="text-[10px] text-[#77736B] mt-0.5 leading-relaxed">
-                Audio confirms actions without forcing the user to take their eyes off their work to look for a visual toast or spinner.
+                You hear the click right away without having to stop and search the screen for a loading spinner.
               </p>
             </div>
           </div>
@@ -269,9 +269,9 @@ export const Slide14Tactile: React.FC = () => {
           <div className="p-3 rounded-2xl bg-[#F5F1E8] border border-[#11100E]/15 flex items-start gap-2.5 shadow-xs">
             <Sparkles className="w-4 h-4 text-[#2563EB] shrink-0 mt-0.5" />
             <div>
-              <div className="font-bold text-xs text-[#11100E]">3. INSTRUMENT OVER COMMODITY</div>
+              <div className="font-bold text-xs text-[#11100E]">3. FEELS LIKE A REAL TOOL</div>
               <p className="text-[10px] text-[#77736B] mt-0.5 leading-relaxed">
-                Figma, Linear, and macOS feel premium because every micro-interaction has acoustic weight. Sound turns software into a tactile physical instrument.
+                Apps like Linear and macOS feel delightful because each tap feels solid and satisfying.
               </p>
             </div>
           </div>
@@ -280,7 +280,7 @@ export const Slide14Tactile: React.FC = () => {
 
       {/* Footer */}
       <div className="pt-2.5 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B]">
-        <span>Tactile audio feedback transforms an abstract screen into a physical instrument.</span>
+        <span>Good sounds make software feel real, responsive, and satisfying to use.</span>
         <span>15 / 26</span>
       </div>
     </div>

@@ -139,14 +139,14 @@ export const InteractiveCanvas: React.FC = () => {
 
         {/* On-screen HUD tags inside canvas */}
         <div className="absolute top-3 left-4 font-mono text-[11px] text-white/50 tracking-wider">
-          COORDINATE PLANE 2D
+          TOUCH CANVAS
         </div>
         <div className="absolute bottom-3 left-4 font-mono text-xs text-white/80">
-          POSITION → VELOCITY → RESPONSE
+          DRAG THE DOT
         </div>
       </div>
 
-      {/* Live Specs & Telemetry Readout */}
+      {/* Live Motion Stats */}
       <div className="mt-4 grid grid-cols-3 sm:grid-cols-6 gap-2 text-xs font-mono">
         <div className="p-2.5 rounded bg-[#F5F1E8] border border-[#11100E]/15">
           <div className="text-[10px] text-[#77736B] uppercase">Coord X</div>

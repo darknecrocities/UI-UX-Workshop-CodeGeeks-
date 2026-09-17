@@ -8,23 +8,23 @@ export const Slide09BusinessUX: React.FC = () => {
   const pairs = [
     {
       ux: 'Reduce Friction',
-      uxDesc: 'Eliminate mandatory inputs and streamline time-to-first-value.',
+      uxDesc: 'Cut unnecessary questions so users get what they need immediately.',
       biz: 'Increase Activation',
       bizDesc: 'Turn signups into active users before they bounce.',
       metric: '+42% Onboarding Completion',
     },
     {
       ux: 'Improve Discoverability',
-      uxDesc: 'Expose power features in natural user flow without clutter.',
+      uxDesc: 'Put useful tools right where people naturally look for them.',
       biz: 'Increase Feature Adoption',
-      bizDesc: 'Drive sticky daily habits that justify subscription renewals.',
+      bizDesc: 'Build daily habits that make the product indispensable.',
       metric: '3.1× Weekly Retention',
     },
     {
-      ux: 'Reduce Cognitive Load',
-      uxDesc: 'Limit choices to 1 primary action per screen with obvious hierarchy.',
+      ux: 'Make Choices Obvious',
+      uxDesc: 'One clear main action per screen so users never feel lost.',
       biz: 'Improve Retention & LTV',
-      bizDesc: 'Lower frustration and support tickets; build quiet user loyalty.',
+      bizDesc: 'Less confusion, fewer support messages, happier users.',
       metric: '-65% Churn Rate',
     },
   ];

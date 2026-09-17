@@ -14,7 +14,7 @@ export const Slide01Cover: React.FC = () => {
           <span className="inline-block w-2 h-2 rounded-full bg-[#11100E]" />
           <span className="tracking-widest uppercase font-bold text-[#11100E]">4-HOUR WORKSHOP</span>
         </div>
-        <span className="tracking-wider">UI + AI SYSTEM</span>
+        <span className="tracking-wider">DESIGN BETTER · SHIP BETTER</span>
       </div>
 
       {/* Main Monumental Typography */}
@@ -28,7 +28,7 @@ export const Slide01Cover: React.FC = () => {
               NO
             </h1>
             <span className="font-mono text-lg sm:text-2xl md:text-3xl text-[#77736B] tracking-tight font-light">
-              [DESIGN TASTE OVER COMMODITY]
+              [TASTE OVER GENERIC CODE]
             </span>
           </div>
 
@@ -80,7 +80,7 @@ export const Slide01Cover: React.FC = () => {
             }`}
           >
             <Volume2 className="w-4 h-4" />
-            <span>{soundEnabled ? 'MECHANICAL SFX ACTIVE' : 'ENABLE MECHANICAL SFX'}</span>
+            <span>{soundEnabled ? 'CLICK SOUNDS ON' : 'TURN ON SOUNDS'}</span>
           </button>
         </div>
       </div>

@@ -12,7 +12,7 @@ const styles: { id: StyleMode; label: string; desc: string; tag: string }[] = [
   { id: 'MINIMAL',       label: 'Minimal',     desc: 'Radical whitespace & disciplined hierarchy',         tag: 'ELEGANT'    },
   { id: 'BRUTALIST',     label: 'Brutalist',   desc: 'Exposed raw grid, monospaced, high-contrast',        tag: 'RAW'        },
   { id: 'NEO-BRUTALIST', label: 'Neo-Brut',    desc: '4px offset shadows, solid border, vibrant fills',    tag: 'BOLD'       },
-  { id: 'MAXIMALIST',    label: 'Maximalist',  desc: 'Dense info density, live telemetry, layered UI',     tag: 'DENSE'      },
+  { id: 'MAXIMALIST',    label: 'Maximalist',  desc: 'High data density, live metrics, layered UI',        tag: 'DENSE'      },
   { id: 'EDITORIAL',     label: 'Editorial',   desc: 'Drop caps, asymmetric rhythm, magazine hierarchy',   tag: 'LITERARY'   },
   { id: 'GLASSMORPHISM', label: 'Glass',       desc: 'Frosted blur panels — beautiful but overused',       tag: '⚠ SLOP RISK'},
   { id: 'NEUMORPHISM',   label: 'Neumorphic',  desc: 'Soft inset shadows, clay-like extruded depth',       tag: 'SOFT'       },
@@ -129,7 +129,7 @@ const MaximalistDemo: React.FC = () => {
   return (
     <div className="h-full flex flex-col font-mono text-[9px]" style={{ background:'#0F172A' }}>
       <div className="flex items-center justify-between px-3 py-2 border-b" style={{ borderColor:'#1E293B' }}>
-        <span className="font-bold tracking-widest text-cyan-400">TELEMETRY · LIVE STREAM</span>
+        <span className="font-bold tracking-widest text-cyan-400">LIVE STATS · ACTIVE FEED</span>
         <div className="flex items-center gap-2">
           <button onClick={() => { setRefresh(r=>r+1); sound.playClick(1.2); }} className="px-2 py-0.5 rounded text-[8px] font-bold cursor-pointer" style={{ background:'#1E293B', color:'#94A3B8', border:'1px solid #334155' }}>REFRESH</button>
         </div>

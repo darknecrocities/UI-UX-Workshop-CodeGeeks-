@@ -25,7 +25,7 @@ interface PromptConfig {
 export const Slide16PromptSkills: React.FC = () => {
   const [copied, setCopied] = useState<boolean>(false);
   const [config, setConfig] = useState<PromptConfig>({
-    theme: 'Architectural Minimalist',
+    theme: 'Clean Minimalist',
     colors: 'Warm Parchment (#E9E1D3) + Near-Black Ink (#11100E) + Semantic Green/Red',
     typography: 'IBM Plex Mono (11-13px tabular) + Inter Display (Major Third 1.25 scale)',
     spatial: 'Strict 8pt grid rhythm (8, 16, 24, 32px), 12px squircle radiuses',
@@ -36,7 +36,7 @@ export const Slide16PromptSkills: React.FC = () => {
 
   const themes = [
     {
-      name: 'Architectural Minimalist',
+      name: 'Clean Minimalist',
       colors: 'Warm Parchment (#E9E1D3) + Near-Black Ink (#11100E) + Semantic Green/Red',
       typography: 'IBM Plex Mono (11-13px tabular) + Inter Display (Major Third 1.25 scale)',
       spatial: 'Strict 8pt grid rhythm (8, 16, 24, 32px), 12px squircle radiuses',
@@ -72,7 +72,7 @@ export const Slide16PromptSkills: React.FC = () => {
   const generatedPrompt = `SYSTEM ROLE: Senior UI/UX Design Technologist & Systems Architect.
 GOAL: Generate a production-ready, zero-slop web interface adhering to strict visual constraints.
 
-ARCHITECTURAL SPECIFICATION:
+DESIGN SPECIFICATION:
 - THEME ARCHETYPE: ${config.theme}
 - COLOR PALETTE: ${config.colors}
   * Strictly enforce 60-30-10 distribution rule (60% canvas, 30% structure, 10% semantic intent).
@@ -80,7 +80,7 @@ ARCHITECTURAL SPECIFICATION:
 - TYPOGRAPHY SYSTEM: ${config.typography}
   * Cap maximum line measure at 65 characters (max-w-prose).
   * Enforce tabular numbers for all metrics and prices (font-variant-numeric: tabular-nums).
-- SPATIAL & GRID SYSTEM: ${config.spatial}
+- SPACING & GRID: ${config.spatial}
   * All paddings, margins, gutters, and element heights MUST be multiples of 4 or 8px.
 - MOTION & PHYSICS: ${config.motion}
   * Animate only to explain state changes or object permanence. Never animate for generic decoration.
@@ -115,7 +115,7 @@ OUTPUT: Fully functional React + TypeScript + Vanilla/Tailwind CSS with cohesive
         <div className="flex items-center gap-2">
           <Cpu className="w-4 h-4 text-[#11100E]" />
           <span className="font-mono text-xs uppercase tracking-widest text-[#77736B]">
-            17 / Architectural Prompt Constructor
+            17 / Design Prompt Builder
           </span>
         </div>
         <div className="flex items-center gap-2 font-mono text-xs">
@@ -133,10 +133,10 @@ OUTPUT: Fully functional React + TypeScript + Vanilla/Tailwind CSS with cohesive
       <div className="my-auto py-1 space-y-3">
         <div>
           <h2 className="text-xl sm:text-3xl font-black tracking-tight text-[#11100E]">
-            PROMPTING IS AN ARCHITECTURAL SKILL.
+            BETTER WORDS, BETTER SCREENS.
           </h2>
           <p className="mt-0.5 text-xs text-[#77736B] font-medium">
-            Weak prompts say "make a nice dashboard". High-taste prompts define exact tokens, physics, and anti-slop guardrails:
+            Vague prompts say "make a nice app". Great prompts give exact colors, fonts, and clear rules:
           </p>
         </div>
 
@@ -206,7 +206,7 @@ OUTPUT: Fully functional React + TypeScript + Vanilla/Tailwind CSS with cohesive
               <div className="p-2 bg-white rounded-lg border border-[#11100E]/10">
                 <div className="text-[#77736B] uppercase font-bold flex items-center gap-1">
                   <Sliders className="w-3 h-3 text-[#11100E]" />
-                  <span>Spatial Matrix & Corner Radius</span>
+                  <span>Spacing & Corner Radius</span>
                 </div>
                 <div className="text-[#11100E] font-medium mt-0.5">{config.spatial}</div>
               </div>
@@ -246,7 +246,7 @@ OUTPUT: Fully functional React + TypeScript + Vanilla/Tailwind CSS with cohesive
             <div className="flex items-center justify-between border-b border-white/10 pb-1.5 text-[10px] text-white/60">
               <div className="flex items-center gap-2">
                 <Code2 className="w-3.5 h-3.5 text-amber-400" />
-                <span className="text-white font-bold">GENERATED ARCHITECTURAL PROMPT</span>
+                <span className="text-white font-bold">GENERATED DESIGN PROMPT</span>
               </div>
               <span>Ready for Claude / Gemini / GPT-4</span>
             </div>
@@ -256,12 +256,12 @@ OUTPUT: Fully functional React + TypeScript + Vanilla/Tailwind CSS with cohesive
             </pre>
 
             <div className="flex items-center justify-between pt-1 border-t border-white/10 text-[10px] text-white/60">
-              <span>Constrained parameters guarantee deterministic UI taste</span>
+              <span>Clear rules guarantee clean, polished screens every time</span>
               <button
                 onClick={copyToClipboard}
                 className="text-amber-400 font-bold hover:underline cursor-pointer"
               >
-                {copied ? '✓ Prompt Copied' : 'Copy Full Spec →'}
+                {copied ? '✓ Prompt Copied' : 'Copy Prompt →'}
               </button>
             </div>
           </div>
@@ -270,7 +270,7 @@ OUTPUT: Fully functional React + TypeScript + Vanilla/Tailwind CSS with cohesive
 
       {/* Footer */}
       <div className="pt-2.5 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B]">
-        <span>Precision in your prompt constraints equals precision in AI-generated code.</span>
+        <span>Clear instructions in your prompt mean clean screens from the AI.</span>
         <span>17 / 26</span>
       </div>
     </div>

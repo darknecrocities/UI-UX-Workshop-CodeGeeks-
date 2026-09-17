@@ -12,8 +12,8 @@ const questions = [
   'Is the spacing consistent across all margins and padding?',
   'Does every animation communicate state rather than just look good?',
   'Is every color doing a functional semantic job?',
-  'Would this architecture still survive when scaled to 100 screens?',
-  'Does this interface look like something I actually designed with taste?',
+  'Would this layout still work cleanly across 100 screens?',
+  'Does this design feel like something made with genuine care and taste?',
 ];
 
 const statusOrder: AuditStatus[] = ['NEEDS WORK', 'INTENTIONAL', 'READY'];

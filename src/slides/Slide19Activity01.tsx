@@ -28,7 +28,7 @@ export const Slide19Activity01: React.FC = () => {
     { num: '02', title: 'Define your specific user', note: 'Device, context, and mental bandwidth — be exact.', time: '5 min' },
     { num: '03', title: 'Define the single goal', note: 'One primary completion event (export / ship / pay / submit).', time: '5 min' },
     { num: '04', title: 'Sketch the flow on paper', note: 'Map screens and decision branches before opening any tool.', time: '15 min' },
-    { num: '05', title: 'Build a low-fi Figma frame', note: 'Grayscale only. Zero color. Test usability and ergonomics.', time: '30 min' },
+    { num: '05', title: 'Build a low-fi Figma frame', note: 'Black and white only. Zero color. Test how easy it is to use.', time: '30 min' },
   ];
 
   const toggleStep = (idx: number) => {
@@ -66,7 +66,7 @@ export const Slide19Activity01: React.FC = () => {
               ACTIVITY 01: SKETCH → FIGMA
             </h2>
             <p className="text-xs sm:text-sm text-[#77736B] font-medium mt-1">
-              Strict constraint: <strong className="text-[#11100E]">Do NOT polish visuals yet.</strong> Focus on function, user flow, and ergonomics.
+              Strict constraint: <strong className="text-[#11100E]">Do NOT polish visuals yet.</strong> Focus on function, clear flow, and making it easy to tap.
             </p>
           </div>
 

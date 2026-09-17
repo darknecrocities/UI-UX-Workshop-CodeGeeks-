@@ -6,7 +6,7 @@ const loop = ['DESIGN', 'PROMPT', 'BUILD', 'TEST', 'COMPARE', 'REFINE'];
 
 const steps = [
   { num: '01', title: 'Bring Figma Frame', desc: 'Export layout specs, color tokens, and element hierarchy from your wireframe.' },
-  { num: '02', title: 'Write Structured Prompt', desc: 'Use the 10-pillar format. Specify what NOT to build as clearly as what to build.' },
+  { num: '02', title: 'Write Clear Prompt', desc: 'Give clear instructions. Specify what NOT to build as clearly as what to build.' },
   { num: '03', title: 'Feed Coding Agent', desc: 'Pass prompt into Antigravity IDE or terminal assistant. Let it run without interruption.' },
   { num: '04', title: 'Generate v1.0', desc: 'Let the agent scaffold components and types. Review, do not rewrite yet.' },
   { num: '05', title: 'Run Locally', desc: 'Spin up localhost. Test responsiveness, keyboard, and click interactions.' },
@@ -85,11 +85,11 @@ export const Slide22Activity02: React.FC = () => {
             ACTIVITY 02: PROMPT → PRODUCT
           </h2>
           <p className="text-xs sm:text-sm text-[#77736B] font-medium mt-1">
-            Transform your Figma wireframe into a deployed, tactile app. Click each step to check it off:
+            Transform your Figma wireframe into a live, interactive app. Click each step to check it off:
           </p>
         </div>
 
-        {/* Animated Engineering Loop */}
+        {/* Interactive Build Loop */}
         <div className="flex items-center justify-between p-3 rounded-xl bg-[#11100E] text-[#F5F1E8] font-mono text-[10px] overflow-x-auto shadow-md gap-0.5">
           {loop.map((item, idx) => {
             const isCurrent = activeLoopStep === idx;

@@ -18,7 +18,7 @@ export const SlideGridSystem: React.FC = () => {
 
   const currentCols = columnCounts[breakpoint];
 
-  const spatialTokens = [
+  const spacingTokens = [
     { name: '4px', label: 'Micro', use: 'Icon gaps, badge padding' },
     { name: '8px', label: 'Compact', use: 'Input interior padding, card gap' },
     { name: '16px', label: 'Standard', use: 'Container padding, element margins' },
@@ -34,7 +34,7 @@ export const SlideGridSystem: React.FC = () => {
         <div className="flex items-center gap-2">
           <LayoutGrid className="w-4 h-4 text-[#11100E]" />
           <span className="font-mono text-xs uppercase tracking-widest text-[#77736B]">
-            13 / Layout Architecture & Spatial Matrix
+            13 / Layout & Clean Grid Systems
           </span>
         </div>
         <div className="flex items-center gap-2 font-mono text-xs">
@@ -89,10 +89,10 @@ export const SlideGridSystem: React.FC = () => {
         <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
           <div>
             <h2 className="text-xl sm:text-3xl md:text-4xl font-black tracking-tight text-[#11100E]">
-              THE 12-COLUMN & 8PT SPATIAL MATRIX.
+              THE 12-COLUMN & 8PX GRID.
             </h2>
             <p className="mt-0.5 text-xs sm:text-sm text-[#77736B] font-medium">
-              Every clean interface has an invisible mathematical skeleton. Never place pixels by eye:
+              Every clean interface has an invisible skeleton. Align elements with simple multiples of 8:
             </p>
           </div>
 
@@ -114,9 +114,9 @@ export const SlideGridSystem: React.FC = () => {
           </button>
         </div>
 
-        {/* 6 Spatial Tokens Bar */}
+        {/* 6 Spacing Tokens Bar */}
         <div className="grid grid-cols-2 sm:grid-cols-6 gap-2 font-mono text-xs">
-          {spatialTokens.map((t) => (
+          {spacingTokens.map((t) => (
             <div
               key={t.name}
               className="p-2 rounded-xl bg-[#F5F1E8] border border-[#11100E]/15 flex flex-col justify-between"
@@ -200,7 +200,7 @@ export const SlideGridSystem: React.FC = () => {
             >
               <div className="flex justify-between items-center border-b border-[#11100E]/10 pb-2">
                 <span className="font-bold text-xs text-[#11100E]">
-                  {isUnaligned ? 'Unaligned Margin (mt 13px)' : '6 Cols · Operational Workbench'}
+                  {isUnaligned ? 'Uneven Margin (13px)' : '6 Cols · Main Dashboard'}
                 </span>
                 <span className="text-[10px] text-[#16A34A] font-bold">8PT ALIGNED</span>
               </div>
@@ -217,7 +217,7 @@ export const SlideGridSystem: React.FC = () => {
               <div className="text-[10px] text-[#77736B]">All gutters strictly locked to 16px.</div>
             </div>
 
-            {/* Telemetry Right Panel (3 cols on desktop, 2 on tablet, full on mobile) */}
+            {/* Quick Stats Panel (3 cols on desktop, 2 on tablet, full on mobile) */}
             <div
               className={`bg-white border rounded-xl p-3 flex flex-col justify-between shadow-xs ${
                 breakpoint === 'DESKTOP'
@@ -229,7 +229,7 @@ export const SlideGridSystem: React.FC = () => {
             >
               <div>
                 <div className="text-[10px] text-[#77736B] uppercase font-bold">
-                  {isUnaligned ? 'Lozenge Corner (35px)' : '3 Cols · Telemetry'}
+                  {isUnaligned ? 'Huge Corner (35px)' : '3 Cols · Quick Stats'}
                 </div>
                 <div className="text-xs font-bold text-[#11100E] mt-1">Worker Pool A</div>
               </div>
@@ -238,7 +238,7 @@ export const SlideGridSystem: React.FC = () => {
                 onClick={() => sound.playSuccess()}
                 className="mt-2 w-full py-1.5 bg-[#11100E] text-[#F5F1E8] text-[10px] font-bold rounded-lg hover:bg-black cursor-pointer active:translate-y-0.5"
               >
-                Inspect Telemetry
+                Check Stats
               </button>
             </div>
           </div>

@@ -59,12 +59,12 @@ export const BeforeAfterSlider: React.FC = () => {
           <div className="flex items-center justify-between border-b border-[#11100E]/15 pb-2.5">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#16A34A]" />
-              <span className="font-bold text-[#11100E] tracking-tight">Telemetry Stream · Cluster A</span>
+              <span className="font-bold text-[#11100E] tracking-tight">Live Dashboard · Server Stats</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="text-[10px] text-[#77736B]">8pt Grid Aligned</span>
               <span className="px-2 py-0.5 rounded bg-[#16A34A]/10 text-[#16A34A] font-bold text-[10px] border border-[#16A34A]/30">
-                ✓ PROD VERIFIED
+                ✓ ACTIVE & STEADY
               </span>
             </div>
           </div>

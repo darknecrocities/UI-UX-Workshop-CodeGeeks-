@@ -24,7 +24,7 @@ export const Slide06Typography: React.FC = () => {
         <div className="flex items-center gap-2">
           <Sliders className="w-4 h-4 text-[#11100E]" />
           <span className="font-mono text-xs uppercase tracking-widest text-[#77736B]">
-            06 / Typography Laboratory
+            06 / Typography Playground
           </span>
         </div>
         <h2 className="font-mono text-sm font-bold text-[#11100E]">TYPE IS INTERFACE</h2>
@@ -32,11 +32,11 @@ export const Slide06Typography: React.FC = () => {
 
       {/* Main Area */}
       <div className="my-auto py-2 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-        {/* Left: Interactive Specimen Canvas & Live Input (7 cols) */}
+        {/* Left: Interactive Text Canvas & Live Input (7 cols) */}
         <div className="lg:col-span-7 space-y-4">
           <div className="p-6 rounded-2xl bg-[#F5F1E8] border border-[#11100E]/15 min-h-[260px] flex flex-col justify-between shadow-sm">
             <div className="flex items-center justify-between font-mono text-[10px] text-[#77736B] uppercase tracking-wider border-b border-[#11100E]/10 pb-2">
-              <span>LIVE RENDERED SPECIMEN</span>
+              <span>LIVE TEXT PREVIEW</span>
               <button
                 onClick={() => {
                   sound.playSwitch(!isMono);
@@ -116,7 +116,7 @@ export const Slide06Typography: React.FC = () => {
           <div className="p-5 rounded-2xl bg-[#E9E1D3] border border-[#11100E]/20 space-y-4 shadow-sm">
             <div className="flex items-center justify-between pb-2 border-b border-[#11100E]/10">
               <span className="font-bold text-[#11100E]">METRIC CONTROLS</span>
-              <span className="text-[10px] text-[#77736B]">MECHANICAL SLIDERS</span>
+              <span className="text-[10px] text-[#77736B]">LIVE SLIDERS</span>
             </div>
 
             {/* Font Size Slider */}
