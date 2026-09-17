@@ -10,7 +10,7 @@ export const Slide15XYExperiment: React.FC = () => {
         <div className="flex items-center gap-2">
           <Compass className="w-4 h-4 text-[#11100E]" />
           <span className="font-mono text-xs uppercase tracking-widest text-[#77736B]">
-            15 / Spatial Physics Experiment
+            16 / Spatial Physics Experiment
           </span>
         </div>
         <h2 className="font-mono text-sm font-bold text-[#11100E]">MOTION HAS A COORDINATE SYSTEM</h2>
@@ -36,7 +36,7 @@ export const Slide15XYExperiment: React.FC = () => {
       {/* Footer */}
       <div className="pt-3 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B]">
         <span>Intentional design maps input coordinates to continuous sensory feedback.</span>
-        <span>15 / 25</span>
+        <span>16 / 26</span>
       </div>
     </div>
   );

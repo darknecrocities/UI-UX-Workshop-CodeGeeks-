@@ -17,6 +17,7 @@ import { Slide09BusinessUX } from './slides/Slide09BusinessUX';
 import { Slide10Premium } from './slides/Slide10Premium';
 import { Slide11MMRStory } from './slides/Slide11MMRStory';
 import { Slide12Scalability } from './slides/Slide12Scalability';
+import { SlideGridSystem } from './slides/SlideGridSystem';
 import { Slide13Motion } from './slides/Slide13Motion';
 import { Slide14Tactile } from './slides/Slide14Tactile';
 import { Slide15XYExperiment } from './slides/Slide15XYExperiment';
@@ -44,6 +45,7 @@ const SLIDE_COMPONENTS: React.ComponentType[] = [
   Slide10Premium,
   Slide11MMRStory,
   Slide12Scalability,
+  SlideGridSystem,
   Slide13Motion,
   Slide14Tactile,
   Slide15XYExperiment,
@@ -62,6 +64,12 @@ const SLIDE_COMPONENTS: React.ComponentType[] = [
 const PresentationStage: React.FC = () => {
   const { currentSlide } = usePresentation();
   const CurrentSlideComponent = SLIDE_COMPONENTS[currentSlide] || Slide01Cover;
+  const prevSlideRef = React.useRef<number>(currentSlide);
+  const isForward = currentSlide >= prevSlideRef.current;
+
+  React.useEffect(() => {
+    prevSlideRef.current = currentSlide;
+  }, [currentSlide]);
 
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-[#E9E1D3] text-[#11100E] flex flex-col justify-between">
@@ -69,9 +77,14 @@ const PresentationStage: React.FC = () => {
       <div className="absolute inset-0 paper-texture pointer-events-none z-10" />
       <div className="absolute inset-0 bg-grid-subtle opacity-30 pointer-events-none" />
 
-      {/* Main Slide Presentation Stage Area (Accounting for top 44px and bottom 52px HUD bars) */}
+      {/* Main Slide Presentation Stage Area with Key-Based Directional Transition */}
       <main className="relative z-20 w-full h-[calc(100vh-96px)] mt-11 mb-13 overflow-y-auto sm:overflow-hidden flex items-center justify-center">
-        <div className="w-full h-full animate-in fade-in zoom-in-98 duration-300 ease-out">
+        <div
+          key={currentSlide}
+          className={`w-full h-full ${
+            isForward ? 'slide-transition-forward' : 'slide-transition-backward'
+          }`}
+        >
           <CurrentSlideComponent />
         </div>
       </main>

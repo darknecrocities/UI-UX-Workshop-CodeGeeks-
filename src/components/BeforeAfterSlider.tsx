@@ -1,8 +1,10 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { sound } from '../audio/sound';
+import { Sparkles, CheckCircle2, AlertTriangle, ArrowRight, Grid3X3, Command } from 'lucide-react';
 
 export const BeforeAfterSlider: React.FC = () => {
   const [sliderPos, setSliderPos] = useState<number>(50); // percentage 0-100
+  const [showGrid, setShowGrid] = useState<boolean>(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const isDraggingRef = useRef<boolean>(false);
 
@@ -38,79 +40,115 @@ export const BeforeAfterSlider: React.FC = () => {
   };
 
   return (
-    <div className="w-full h-full flex flex-col justify-between select-none">
+    <div className="w-full h-full flex flex-col justify-between select-none space-y-2">
       <div
         ref={containerRef}
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerDrag}
         onPointerUp={handlePointerUp}
-        className="relative flex-1 w-full rounded-xl overflow-hidden border border-[#11100E]/20 bg-[#F5F1E8] touch-none cursor-ew-resize shadow-md"
+        className="relative flex-1 w-full min-h-[260px] rounded-2xl overflow-hidden border border-[#11100E]/20 bg-[#F5F1E8] touch-none cursor-ew-resize shadow-md"
       >
-        {/* Right side: AFTER (Premium / Restrained / Architectural) */}
-        <div className="absolute inset-0 p-6 flex flex-col justify-between bg-[#F5F1E8]">
-          <div className="flex items-center justify-between border-b border-[#11100E]/10 pb-3">
-            <div>
-              <span className="text-[10px] font-mono tracking-widest text-[#77736B] uppercase">Premium System</span>
-              <h4 className="text-base font-bold text-[#11100E] tracking-tight">Deploy Artifact v2.4</h4>
-            </div>
-            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#16A34A]/10 text-[#16A34A] font-semibold">
-              ● PROD VERIFIED
-            </span>
-          </div>
+        {/* Optional 8pt Grid Overlay for comparison */}
+        {showGrid && (
+          <div className="absolute inset-0 bg-grid-subtle opacity-60 pointer-events-none z-30" />
+        )}
 
-          <div className="grid grid-cols-2 gap-4 my-auto">
-            <div className="p-4 rounded-lg bg-[#E9E1D3]/70 border border-[#11100E]/10">
-              <div className="text-[10px] font-mono text-[#77736B]">LATENCY</div>
-              <div className="text-xl font-mono font-bold text-[#11100E] mt-1">14ms</div>
-              <div className="text-[11px] text-[#77736B] mt-0.5">Optimized memory profile</div>
+        {/* Right side: CRAFTED PREMIUM SYSTEM */}
+        <div className="absolute inset-0 p-5 sm:p-6 flex flex-col justify-between bg-[#F5F1E8] font-mono text-xs">
+          {/* Header */}
+          <div className="flex items-center justify-between border-b border-[#11100E]/15 pb-2.5">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#16A34A]" />
+              <span className="font-bold text-[#11100E] tracking-tight">Telemetry Stream · Cluster A</span>
             </div>
-            <div className="p-4 rounded-lg bg-[#E9E1D3]/70 border border-[#11100E]/10">
-              <div className="text-[10px] font-mono text-[#77736B]">ACCURACY</div>
-              <div className="text-xl font-mono font-bold text-[#11100E] mt-1">99.8%</div>
-              <div className="text-[11px] text-[#77736B] mt-0.5">Verified deterministic test</div>
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] text-[#77736B]">8pt Grid Aligned</span>
+              <span className="px-2 py-0.5 rounded bg-[#16A34A]/10 text-[#16A34A] font-bold text-[10px] border border-[#16A34A]/30">
+                ✓ PROD VERIFIED
+              </span>
             </div>
           </div>
 
-          <div className="flex items-center justify-between pt-3 border-t border-[#11100E]/10">
-            <span className="text-xs font-mono text-[#77736B]">Restrained spacing · Intentional hierarchy</span>
-            <button className="px-4 py-1.5 rounded bg-[#11100E] text-[#F5F1E8] text-xs font-mono font-medium hover:bg-[#11100E]/90 transition-colors">
-              Execute Action
+          {/* Metric Row with strict tabular numerals and 8px gaps */}
+          <div className="grid grid-cols-3 gap-3 my-auto">
+            <div className="p-3 rounded-xl bg-white border border-[#11100E]/15 shadow-xs">
+              <div className="text-[10px] text-[#77736B]">P99 LATENCY</div>
+              <div className="text-xl font-bold text-[#11100E] tabular-nums mt-0.5">14.2ms</div>
+              <div className="text-[10px] text-[#16A34A] mt-0.5">↓ −2.4ms (steady)</div>
+            </div>
+            <div className="p-3 rounded-xl bg-white border border-[#11100E]/15 shadow-xs">
+              <div className="text-[10px] text-[#77736B]">THROUGHPUT</div>
+              <div className="text-xl font-bold text-[#11100E] tabular-nums mt-0.5">84,920</div>
+              <div className="text-[10px] text-[#77736B] mt-0.5">req/sec (peak)</div>
+            </div>
+            <div className="p-3 rounded-xl bg-white border border-[#11100E]/15 shadow-xs">
+              <div className="text-[10px] text-[#77736B]">AVAILABILITY</div>
+              <div className="text-xl font-bold text-[#16A34A] tabular-nums mt-0.5">99.98%</div>
+              <div className="text-[10px] text-[#77736B] mt-0.5">SLO Target Met</div>
+            </div>
+          </div>
+
+          {/* Footer Bar */}
+          <div className="flex items-center justify-between pt-2.5 border-t border-[#11100E]/15">
+            <div className="flex items-center gap-2 text-[11px] text-[#77736B]">
+              <Command className="w-3 h-3 text-[#11100E]" />
+              <span>Press <strong className="text-[#11100E]">⌘K</strong> for command palette</span>
+            </div>
+            <button
+              onClick={() => sound.playSuccess()}
+              className="px-3.5 py-1.5 rounded-lg bg-[#11100E] text-[#F5F1E8] font-bold hover:bg-black transition-colors cursor-pointer flex items-center gap-1.5 active:translate-y-0.5 shadow-xs"
+            >
+              <span>Inspect Run</span>
+              <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
         </div>
 
-        {/* Left side: BEFORE (Cluttered / Unrefined generic) */}
+        {/* Left side: AI SLOP DEFAULT (Clipped by sliderPos) */}
         <div
           style={{ clipPath: `polygon(0 0, ${sliderPos}% 0, ${sliderPos}% 100%, 0 100%)` }}
-          className="absolute inset-0 p-6 flex flex-col justify-between bg-[#E5E7EB] text-gray-800"
+          className="absolute inset-0 p-5 sm:p-6 flex flex-col justify-between bg-gradient-to-br from-purple-100 via-indigo-50 to-pink-50 text-gray-800"
         >
-          <div className="flex items-center justify-between border-b border-gray-300 pb-3">
-            <div>
-              <span className="text-[10px] text-gray-500 uppercase">Default Output</span>
-              <h4 className="text-base font-bold text-gray-900">Card Item Box #1</h4>
+          {/* Slop Header with excessive badges */}
+          <div className="flex items-center justify-between border-b border-purple-200 pb-2.5">
+            <div className="flex items-center gap-1.5">
+              <Sparkles className="w-4 h-4 text-purple-600 animate-spin" />
+              <span className="font-extrabold text-sm text-purple-900">✨ ULTRA AI CLUSTER</span>
             </div>
-            <span className="text-[10px] px-2 py-0.5 bg-gray-300 text-gray-700 rounded">
-              Active Status
-            </span>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4 my-auto">
-            <div className="p-3 bg-white border border-gray-300 rounded shadow-xs">
-              <div className="text-[10px] text-gray-400">SPEED STAT</div>
-              <div className="text-lg font-bold text-gray-800">14ms</div>
-              <div className="text-[10px] text-gray-500">Uncalibrated text dump</div>
-            </div>
-            <div className="p-3 bg-white border border-gray-300 rounded shadow-xs">
-              <div className="text-[10px] text-gray-400">SCORE STAT</div>
-              <div className="text-lg font-bold text-gray-800">99.8%</div>
-              <div className="text-[10px] text-gray-500">Default generic font</div>
+            <div className="flex gap-1">
+              <span className="px-2 py-0.5 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 text-white font-bold text-[9px] shadow-sm">
+                TURBO v4
+              </span>
+              <span className="px-2 py-0.5 rounded-full bg-amber-400 text-amber-950 font-bold text-[9px]">
+                PRO
+              </span>
             </div>
           </div>
 
-          <div className="flex items-center justify-between pt-3 border-t border-gray-300">
-            <span className="text-xs text-gray-500">Unbalanced margins · Random padding</span>
-            <button className="px-3 py-1 bg-blue-600 text-white text-xs rounded">
-              Submit Form
+          {/* Slop Metrics: arbitrary paddings, rounded pills, low contrast */}
+          <div className="grid grid-cols-3 gap-2 my-auto">
+            <div className="p-[15px] rounded-[28px] bg-white/90 border-2 border-purple-300 shadow-lg text-center">
+              <div className="text-[9px] text-gray-400">SPEED STAT</div>
+              <div className="text-lg font-black text-purple-700">14.2ms</div>
+              <div className="text-[8px] text-gray-400">Default generic font</div>
+            </div>
+            <div className="p-[7px] mt-2 rounded-[28px] bg-white/90 border-2 border-pink-300 shadow-lg text-center">
+              <div className="text-[9px] text-gray-400">COUNT STAT</div>
+              <div className="text-lg font-black text-pink-600">84920</div>
+              <div className="text-[8px] text-gray-400">Uncalibrated digits</div>
+            </div>
+            <div className="p-[21px] rounded-[28px] bg-white/90 border-2 border-indigo-300 shadow-lg text-center">
+              <div className="text-[9px] text-gray-400">SCORE STAT</div>
+              <div className="text-lg font-black text-indigo-600">99.98%</div>
+              <div className="text-[8px] text-gray-400">No tabular rhythm</div>
+            </div>
+          </div>
+
+          {/* Slop Footer */}
+          <div className="flex items-center justify-between pt-2.5 border-t border-purple-200">
+            <span className="text-[10px] text-purple-700 font-semibold">Random margins · 30px pill radius</span>
+            <button className="px-4 py-1.5 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold text-xs shadow-md">
+              Upgrade To Pro Now
             </button>
           </div>
         </div>
@@ -118,26 +156,43 @@ export const BeforeAfterSlider: React.FC = () => {
         {/* Divider Bar & Handle */}
         <div
           style={{ left: `${sliderPos}%` }}
-          className="absolute top-0 bottom-0 w-0.5 bg-[#11100E] z-20 pointer-events-none"
+          className="absolute top-0 bottom-0 w-0.5 bg-[#11100E] z-40 pointer-events-none"
         >
-          <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#11100E] text-[#F5F1E8] flex items-center justify-center text-[10px] font-mono shadow-xl border-2 border-[#E9E1D3]">
+          <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#11100E] text-[#F5F1E8] flex items-center justify-center text-[11px] font-mono shadow-xl border-2 border-[#E9E1D3]">
             ⟷
           </div>
         </div>
 
         {/* Floating Labels */}
-        <div className="absolute top-3 left-3 bg-[#11100E]/70 text-white font-mono text-[10px] px-2 py-0.5 rounded pointer-events-none z-10">
-          RAW / GENERIC
+        <div className="absolute top-3 left-3 bg-[#DC2626]/90 text-white font-mono text-[9px] font-bold px-2 py-0.5 rounded-full pointer-events-none z-30 shadow-xs flex items-center gap-1">
+          <AlertTriangle className="w-3 h-3" />
+          <span>RAW AI SLOP</span>
         </div>
-        <div className="absolute top-3 right-3 bg-[#11100E] text-white font-mono text-[10px] px-2 py-0.5 rounded pointer-events-none z-10">
-          PREMIUM CRAFT
+        <div className="absolute top-3 right-3 bg-[#16A34A] text-white font-mono text-[9px] font-bold px-2 py-0.5 rounded-full pointer-events-none z-30 shadow-xs flex items-center gap-1">
+          <CheckCircle2 className="w-3 h-3" />
+          <span>INTENTIONAL CRAFT</span>
         </div>
       </div>
 
-      {/* Bottom explanation */}
-      <div className="mt-3 flex items-center justify-between text-xs font-mono text-[#77736B]">
-        <span>Drag slider to compare decisions</span>
-        <span className="font-semibold text-[#11100E]">Premium ≠ More Stuff. Premium = Better Decisions.</span>
+      {/* Interactive Controls Bar Below Slider */}
+      <div className="flex items-center justify-between text-xs font-mono text-[#77736B]">
+        <div className="flex items-center gap-3">
+          <span>Drag divider ⟷</span>
+          <button
+            onClick={() => { sound.playClick(1.2); setShowGrid(!showGrid); }}
+            className={`px-2 py-0.5 rounded border text-[10px] cursor-pointer flex items-center gap-1 ${
+              showGrid
+                ? 'bg-[#11100E] text-[#F5F1E8] border-[#11100E]'
+                : 'bg-white text-[#11100E] border-[#11100E]/20'
+            }`}
+          >
+            <Grid3X3 className="w-3 h-3" />
+            <span>{showGrid ? '8PT GRID: ON' : 'TOGGLE 8PT GRID'}</span>
+          </button>
+        </div>
+        <span className="font-semibold text-[#11100E]">
+          Luxury is what you leave out, not what you pile on.
+        </span>
       </div>
     </div>
   );

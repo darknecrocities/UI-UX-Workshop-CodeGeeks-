@@ -130,7 +130,7 @@ export const Slide11MMRStory: React.FC = () => {
       {/* Footer */}
       <div className="pt-3 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B]">
         <span>Design starts with usefulness. Everything else is downstream.</span>
-        <span>11 / 25</span>
+        <span>11 / 26</span>
       </div>
     </div>
   );

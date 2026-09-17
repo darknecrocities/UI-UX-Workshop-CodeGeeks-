@@ -62,3 +62,34 @@
   outline: 2px solid var(--ink);
   outline-offset: 2px;
 }
+
+/* Smooth Slide Deck Transition Keyframes */
+@keyframes slideInForward {
+  from {
+    opacity: 0;
+    transform: translateX(28px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes slideInBackward {
+  from {
+    opacity: 0;
+    transform: translateX(-28px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+.slide-transition-forward {
+  animation: slideInForward 260ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.slide-transition-backward {
+  animation: slideInBackward 260ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}

@@ -160,7 +160,7 @@ export const Slide20Break: React.FC = () => {
       {/* Footer */}
       <div className="pt-4 border-t border-[#11100E]/10 flex items-center justify-between font-mono text-xs text-[#77736B]">
         <span>The best ideas arrive when you stop forcing them.</span>
-        <span>20 / 25</span>
+        <span>21 / 26</span>
       </div>
     </div>
   );

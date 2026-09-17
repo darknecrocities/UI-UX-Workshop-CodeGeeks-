@@ -57,7 +57,7 @@ export const Slide24Showcase: React.FC = () => {
         <div className="flex items-center gap-2">
           <Presentation className="w-4 h-4 text-[#11100E]" />
           <span className="font-mono text-xs uppercase tracking-widest text-[#77736B]">
-            24 / Review & Showcase
+            25 / Review & Showcase
           </span>
         </div>
         <h2 className="font-mono text-sm font-bold text-[#11100E]">FROM SKETCH TO SHIP</h2>
@@ -121,7 +121,7 @@ export const Slide24Showcase: React.FC = () => {
       {/* Footer */}
       <div className="pt-3 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B]">
         <span>You are not measured by how much you prompt, but by what you decide to keep.</span>
-        <span>24 / 25</span>
+        <span>25 / 26</span>
       </div>
     </div>
   );

@@ -59,7 +59,7 @@ export const Slide22Activity02: React.FC = () => {
         <div className="flex items-center gap-2">
           <Code2 className="w-4 h-4 text-[#16A34A]" />
           <span className="font-mono text-xs uppercase tracking-widest text-[#16A34A] font-bold">
-            22 / Live Build Challenge
+            23 / Live Build Challenge
           </span>
         </div>
         {/* Live Timer */}
@@ -151,7 +151,7 @@ export const Slide22Activity02: React.FC = () => {
       {/* Footer */}
       <div className="pt-3 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B]">
         <span>First output is raw clay. The sculptor is in the edits.</span>
-        <span>22 / 25</span>
+        <span>23 / 26</span>
       </div>
     </div>
   );

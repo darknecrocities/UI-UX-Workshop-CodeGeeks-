@@ -1,164 +1,339 @@
 import React, { useState } from 'react';
 import { sound } from '../audio/sound';
-import { Scale, CheckCircle2, XCircle, Sliders, Zap } from 'lucide-react';
+import {
+  Scale,
+  CheckCircle2,
+  XCircle,
+  Zap,
+  Search,
+  ArrowRight,
+} from 'lucide-react';
 
-type Scenario = 'tokens' | 'adhoc';
+type Mode = 'tokens' | 'adhoc';
+type RadiusToken = '0px' | '6px' | '12px' | '24px';
+type DensityToken = 'compact' | 'standard' | 'relaxed';
+type ThemeToken = 'ink' | 'emerald' | 'cobalt' | 'amber';
 
 export const Slide12Scalability: React.FC = () => {
-  const [componentCount, setComponentCount] = useState<number>(6);
-  const [scenario, setScenario] = useState<Scenario>('tokens');
-  const [rebrandTriggered, setRebrandTriggered] = useState<boolean>(false);
+  const [mode, setMode] = useState<Mode>('tokens');
+  const [radius, setRadius] = useState<RadiusToken>('12px');
+  const [density, setDensity] = useState<DensityToken>('standard');
+  const [theme, setTheme] = useState<ThemeToken>('ink');
+  const [rebrandFlash, setRebrandFlash] = useState<boolean>(false);
 
-  const tokensComponents = Array.from({ length: componentCount }, (_, i) => ({
-    id: i + 1,
-    label: `MODULE #${i + 1}`,
-    color: '#F5F1E8',
-    border: '#11100E',
-    padding: '16px',
-    radius: '12px',
-  }));
+  const themeColors: Record<ThemeToken, { primary: string; accent: string; bg: string; text: string; label: string }> = {
+    ink: { primary: '#11100E', accent: '#D97706', bg: '#F5F1E8', text: '#F5F1E8', label: 'Near-Black & Amber' },
+    emerald: { primary: '#16A34A', accent: '#22C55E', bg: '#F0FDF4', text: '#FFFFFF', label: 'Emerald Terminal' },
+    cobalt: { primary: '#2563EB', accent: '#60A5FA', bg: '#EFF6FF', text: '#FFFFFF', label: 'Cobalt Enterprise' },
+    amber: { primary: '#D97706', accent: '#F59E0B', bg: '#FFFBEB', text: '#FFFFFF', label: 'Industrial Amber' },
+  };
 
-  const adhocComponents = Array.from({ length: componentCount }, (_, i) => ({
-    id: i + 1,
-    label: `card_item_${i + 1}`,
-    color: i % 3 === 0 ? '#DC2626' : i % 3 === 1 ? '#8B5CF6' : '#F59E0B',
-    border: i % 2 === 0 ? '#DC2626' : '#8B5CF6',
-    padding: `${11 + (i % 5) * 3}px`,
-    radius: i % 2 === 0 ? '8px' : '24px',
-  }));
+  const densityPadding: Record<DensityToken, { pad: string; gap: string; text: string }> = {
+    compact: { pad: '8px 12px', gap: '8px', text: 'text-[11px]' },
+    standard: { pad: '12px 16px', gap: '12px', text: 'text-xs' },
+    relaxed: { pad: '16px 20px', gap: '16px', text: 'text-sm' },
+  };
 
-  const handleRebrand = () => {
+  const activeTheme = themeColors[theme];
+  const activeDensity = densityPadding[density];
+
+  const handleInstantRebrand = () => {
     sound.playSuccess();
-    setRebrandTriggered(true);
-    setTimeout(() => setRebrandTriggered(false), 2000);
+    setRebrandFlash(true);
+    const themes: ThemeToken[] = ['ink', 'emerald', 'cobalt', 'amber'];
+    const nextTheme = themes[(themes.indexOf(theme) + 1) % themes.length];
+    setTheme(nextTheme);
+    setTimeout(() => setRebrandFlash(false), 1200);
   };
 
   return (
-    <div className="w-full h-full flex flex-col justify-between p-6 sm:p-10 md:p-12 max-w-7xl mx-auto select-none">
+    <div className="w-full h-full flex flex-col justify-between p-4 sm:p-8 md:p-10 max-w-7xl mx-auto select-none">
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-[#11100E]/15 pb-3">
+      <div className="flex items-center justify-between border-b border-[#11100E]/15 pb-2.5">
         <div className="flex items-center gap-2">
           <Scale className="w-4 h-4 text-[#11100E]" />
           <span className="font-mono text-xs uppercase tracking-widest text-[#77736B]">
-            12 / System Scalability
+            12 / System Scalability & Design Tokens
           </span>
         </div>
-        <h2 className="font-mono text-sm font-bold text-[#11100E]">RULES THAT SURVIVE GROWTH</h2>
+        <div className="flex items-center gap-2 font-mono text-xs">
+          <button
+            onClick={() => { sound.playSwitch(true); setMode('tokens'); }}
+            className={`px-3 py-1 rounded-lg border cursor-pointer font-bold flex items-center gap-1.5 transition-all ${
+              mode === 'tokens'
+                ? 'bg-[#11100E] text-[#F5F1E8] border-[#11100E] shadow-sm ring-2 ring-[#11100E]/20'
+                : 'bg-[#F5F1E8] text-[#11100E] border-[#11100E]/20 hover:border-[#11100E]'
+            }`}
+          >
+            <CheckCircle2 className="w-3.5 h-3.5 text-[#16A34A]" />
+            <span>WITH DESIGN TOKENS</span>
+          </button>
+          <button
+            onClick={() => { sound.playSlopAlert(); setMode('adhoc'); }}
+            className={`px-3 py-1 rounded-lg border cursor-pointer font-bold flex items-center gap-1.5 transition-all ${
+              mode === 'adhoc'
+                ? 'bg-[#DC2626] text-white border-[#DC2626] shadow-sm'
+                : 'bg-[#F5F1E8] text-[#11100E] border-[#11100E]/20 hover:border-[#DC2626]/50'
+            }`}
+          >
+            <XCircle className="w-3.5 h-3.5 text-[#DC2626]" />
+            <span>AD-HOC CSS (AI SLOP)</span>
+          </button>
+        </div>
       </div>
 
       {/* Main Area */}
-      <div className="my-auto py-2 space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
+      <div className="my-auto py-2 space-y-3">
+        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
           <div>
-            <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-[#11100E]">
+            <h2 className="text-xl sm:text-3xl md:text-4xl font-black tracking-tight text-[#11100E]">
               GOOD DESIGN SURVIVES GROWTH.
             </h2>
-            <p className="mt-1 text-xs sm:text-sm text-[#77736B] font-medium">
-              Design tokens = one change updates everything. Ad-hoc CSS = every component breaks differently:
+            <p className="mt-0.5 text-xs sm:text-sm text-[#77736B] font-medium">
+              {mode === 'tokens'
+                ? 'Design tokens are single sources of truth. Adjust tokens below — every component adapts in unison:'
+                : 'Ad-hoc CSS hardcodes arbitrary values into every file. Changes create visual fractures and chaos:'}
             </p>
           </div>
 
-          <div className="flex flex-col gap-2 font-mono text-xs shrink-0">
+          {mode === 'tokens' && (
             <button
-              onClick={() => { sound.playSwitch(true); setScenario('tokens'); }}
-              className={`px-3 py-1.5 rounded-xl border cursor-pointer font-bold flex items-center gap-1.5 transition-all ${
-                scenario === 'tokens'
-                  ? 'bg-[#11100E] text-[#F5F1E8] border-[#11100E] shadow-md'
-                  : 'bg-[#F5F1E8] text-[#11100E] border-[#11100E]/20'
-              }`}
+              onClick={handleInstantRebrand}
+              className="px-3.5 py-1.5 rounded-xl bg-[#11100E] text-[#F5F1E8] font-mono text-xs font-bold hover:bg-black cursor-pointer flex items-center gap-1.5 shrink-0 shadow-sm active:translate-y-0.5"
             >
-              <CheckCircle2 className="w-3.5 h-3.5 text-[#16A34A]" />
-              With Design Tokens
+              <Zap className="w-3.5 h-3.5 text-[#F59E0B]" />
+              <span>CYCLE SYSTEM THEME</span>
             </button>
-            <button
-              onClick={() => { sound.playSlopAlert(); setScenario('adhoc'); }}
-              className={`px-3 py-1.5 rounded-xl border cursor-pointer font-bold flex items-center gap-1.5 transition-all ${
-                scenario === 'adhoc'
-                  ? 'bg-[#DC2626] text-white border-[#DC2626] shadow-md'
-                  : 'bg-[#F5F1E8] text-[#11100E] border-[#11100E]/20'
-              }`}
-            >
-              <XCircle className="w-3.5 h-3.5 text-[#DC2626]" />
-              Ad-Hoc CSS (Slop)
-            </button>
-          </div>
+          )}
         </div>
 
-        {/* Live Scaling Simulation Playground */}
-        <div className="p-4 rounded-2xl bg-[#F5F1E8] border border-[#11100E]/20 space-y-3">
-          <div className="flex items-center justify-between border-b border-[#11100E]/10 pb-2.5 font-mono text-xs">
+        {/* Live Token Controls Bar (when in tokens mode) */}
+        {mode === 'tokens' ? (
+          <div className="p-3 rounded-xl bg-[#F5F1E8] border border-[#11100E]/20 flex flex-wrap items-center justify-between gap-3 font-mono text-xs shadow-xs">
+            {/* Radius Tokens */}
             <div className="flex items-center gap-2">
-              <Sliders className="w-3.5 h-3.5 text-[#11100E]" />
-              <span className="font-bold">SCALE: {componentCount} COMPONENTS</span>
-              {scenario === 'tokens' && rebrandTriggered && (
-                <span className="px-2 py-0.5 rounded bg-[#16A34A] text-white text-[10px] font-bold animate-pulse">
-                  ✓ REBRANDED IN 1 CHANGE
-                </span>
-              )}
-            </div>
-            <div className="flex items-center gap-3">
-              <input
-                type="range"
-                min="2"
-                max="12"
-                value={componentCount}
-                onChange={(e) => {
-                  sound.playClick(0.9);
-                  setComponentCount(Number(e.target.value));
-                }}
-                className="w-28 accent-[#11100E] cursor-pointer"
-              />
-              {scenario === 'tokens' && (
+              <span className="text-[10px] text-[#77736B] uppercase font-bold">RADIUS TOKEN:</span>
+              {(['0px', '6px', '12px', '24px'] as RadiusToken[]).map((r) => (
                 <button
-                  onClick={handleRebrand}
-                  className="px-3 py-1 rounded-lg bg-[#11100E] text-[#F5F1E8] font-bold cursor-pointer hover:bg-black transition-colors flex items-center gap-1"
+                  key={r}
+                  onClick={() => { sound.playClick(1.1); setRadius(r); }}
+                  className={`px-2 py-0.5 rounded border text-[10px] cursor-pointer ${
+                    radius === r
+                      ? 'bg-[#11100E] text-white border-[#11100E] font-bold'
+                      : 'bg-white text-[#11100E] border-[#11100E]/15'
+                  }`}
                 >
-                  <Zap className="w-3 h-3 text-[#F59E0B]" />
-                  Rebrand All
+                  {r}
                 </button>
-              )}
+              ))}
+            </div>
+
+            {/* Density Tokens */}
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] text-[#77736B] uppercase font-bold">SPACING DENSITY:</span>
+              {(['compact', 'standard', 'relaxed'] as DensityToken[]).map((d) => (
+                <button
+                  key={d}
+                  onClick={() => { sound.playClick(1.15); setDensity(d); }}
+                  className={`px-2 py-0.5 rounded border text-[10px] capitalize cursor-pointer ${
+                    density === d
+                      ? 'bg-[#11100E] text-white border-[#11100E] font-bold'
+                      : 'bg-white text-[#11100E] border-[#11100E]/15'
+                  }`}
+                >
+                  {d}
+                </button>
+              ))}
+            </div>
+
+            {/* Current Active Theme indicator */}
+            <div className="flex items-center gap-1 text-[11px]">
+              <span className="text-[#77736B]">THEME:</span>
+              <span className="font-bold text-[#11100E]">{activeTheme.label}</span>
+            </div>
+          </div>
+        ) : (
+          <div className="p-3 rounded-xl bg-[#DC2626]/10 border border-[#DC2626]/30 font-mono text-xs text-[#DC2626] flex items-center justify-between">
+            <span className="font-bold">⚠ WARNING: AD-HOC VIBE CODING DETECTED</span>
+            <span className="text-[11px] text-[#11100E]">6 components hardcoded across 6 files with random px values</span>
+          </div>
+        )}
+
+        {/* Live Multi-Component Scalability Application Preview */}
+        <div className="p-5 rounded-2xl bg-[#F5F1E8] border border-[#11100E]/20 shadow-sm min-h-[250px] flex flex-col justify-between">
+          <div className="flex items-center justify-between border-b border-[#11100E]/10 pb-2 font-mono text-xs">
+            <span className="font-bold text-[#11100E]">
+              {mode === 'tokens' ? 'MULTI-COMPONENT DESIGN SYSTEM RUNTIME' : 'AD-HOC FRAGMENTED SPECIMENS'}
+            </span>
+            {rebrandFlash && (
+              <span className="px-2 py-0.5 rounded bg-[#16A34A] text-white text-[10px] font-bold animate-pulse">
+                ✓ 6 COMPONENTS SYNCHRONIZED INSTANTLY
+              </span>
+            )}
+          </div>
+
+          {/* 6 Real Product Components */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 my-auto py-2 font-mono">
+            {/* Component 1: Primary Action Button */}
+            <div
+              className="p-3 bg-white border flex flex-col justify-between gap-2 shadow-xs transition-all duration-200"
+              style={{
+                borderRadius: mode === 'tokens' ? radius : '9999px',
+                borderColor: mode === 'tokens' ? '#11100E20' : '#8B5CF6',
+              }}
+            >
+              <div className="text-[10px] text-[#77736B] uppercase">01 / Primary Action</div>
+              <button
+                onClick={() => sound.playClick(1.2)}
+                style={{
+                  backgroundColor: mode === 'tokens' ? activeTheme.primary : '#8B5CF6',
+                  color: mode === 'tokens' ? activeTheme.text : '#fff',
+                  borderRadius: mode === 'tokens' ? radius : '2px',
+                  padding: mode === 'tokens' ? activeDensity.pad : '7px 11px',
+                }}
+                className="font-bold cursor-pointer transition-all flex items-center justify-center gap-1.5 active:translate-y-0.5"
+              >
+                <span>Deploy Artifact</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+
+            {/* Component 2: Telemetry Data Card */}
+            <div
+              className="p-3 bg-white border flex flex-col justify-between gap-1 shadow-xs transition-all duration-200"
+              style={{
+                borderRadius: mode === 'tokens' ? radius : '28px',
+                borderColor: mode === 'tokens' ? '#11100E20' : '#EC4899',
+              }}
+            >
+              <div className="flex justify-between items-center text-[10px] text-[#77736B]">
+                <span>02 / Telemetry Stat</span>
+                <span className="font-bold" style={{ color: mode === 'tokens' ? activeTheme.primary : '#EC4899' }}>
+                  {mode === 'tokens' ? '● LIVE' : 'vibe metric'}
+                </span>
+              </div>
+              <div className="text-xl font-bold text-[#11100E] tabular-nums">14.2 GB</div>
+              <div className="text-[10px] text-[#77736B]">VRAM usage on Cluster-04</div>
+            </div>
+
+            {/* Component 3: Input Field */}
+            <div
+              className="p-3 bg-white border flex flex-col justify-between gap-1.5 shadow-xs transition-all duration-200"
+              style={{
+                borderRadius: mode === 'tokens' ? radius : '4px',
+                borderColor: mode === 'tokens' ? '#11100E20' : '#3B82F6',
+              }}
+            >
+              <div className="text-[10px] text-[#77736B] uppercase">03 / Search Filter</div>
+              <div
+                className="flex items-center gap-2 border px-2 py-1 bg-white"
+                style={{
+                  borderRadius: mode === 'tokens' ? radius : '16px',
+                  borderColor: mode === 'tokens' ? '#11100E20' : '#3B82F6',
+                }}
+              >
+                <Search className="w-3 h-3 text-[#77736B]" />
+                <input
+                  type="text"
+                  placeholder="Filter logs..."
+                  readOnly
+                  value="status:active"
+                  className="w-full text-xs font-mono outline-none text-[#11100E]"
+                />
+              </div>
+            </div>
+
+            {/* Component 4: Status Pill Badge */}
+            <div
+              className="p-3 bg-white border flex items-center justify-between shadow-xs transition-all duration-200"
+              style={{
+                borderRadius: mode === 'tokens' ? radius : '0px',
+                borderColor: mode === 'tokens' ? '#11100E20' : '#F59E0B',
+              }}
+            >
+              <div>
+                <div className="text-[10px] text-[#77736B] uppercase">04 / Security Status</div>
+                <div className="text-xs font-bold text-[#11100E] mt-0.5">TLS 1.3 Certified</div>
+              </div>
+              <span
+                className="px-2 py-1 text-[10px] font-bold"
+                style={{
+                  backgroundColor: mode === 'tokens' ? `${activeTheme.primary}15` : '#FEF3C7',
+                  color: mode === 'tokens' ? activeTheme.primary : '#B45309',
+                  borderRadius: mode === 'tokens' ? radius : '30px',
+                }}
+              >
+                VERIFIED
+              </span>
+            </div>
+
+            {/* Component 5: User Identity Squircle */}
+            <div
+              className="p-3 bg-white border flex items-center gap-3 shadow-xs transition-all duration-200"
+              style={{
+                borderRadius: mode === 'tokens' ? radius : '36px',
+                borderColor: mode === 'tokens' ? '#11100E20' : '#10B981',
+              }}
+            >
+              <div
+                className="w-8 h-8 flex items-center justify-center font-bold text-xs"
+                style={{
+                  backgroundColor: mode === 'tokens' ? activeTheme.primary : '#10B981',
+                  color: mode === 'tokens' ? activeTheme.text : '#fff',
+                  borderRadius: mode === 'tokens' ? radius : '50%',
+                }}
+              >
+                AP
+              </div>
+              <div className="truncate">
+                <div className="text-xs font-bold text-[#11100E] truncate">Arron Parejas</div>
+                <div className="text-[10px] text-[#77736B]">Lead Engineer</div>
+              </div>
+            </div>
+
+            {/* Component 6: Interactive Micro Toggle */}
+            <div
+              className="p-3 bg-white border flex items-center justify-between shadow-xs transition-all duration-200"
+              style={{
+                borderRadius: mode === 'tokens' ? radius : '12px',
+                borderColor: mode === 'tokens' ? '#11100E20' : '#EF4444',
+              }}
+            >
+              <div>
+                <div className="text-[10px] text-[#77736B] uppercase">06 / Mechanical Audio</div>
+                <div className="text-xs font-bold text-[#11100E] mt-0.5">Tactile SFX Engine</div>
+              </div>
+              <div
+                className="w-10 h-5 p-0.5 flex items-center cursor-pointer transition-all"
+                onClick={() => sound.playClick(1.2)}
+                style={{
+                  backgroundColor: mode === 'tokens' ? activeTheme.primary : '#EF4444',
+                  borderRadius: mode === 'tokens' ? radius : '9999px',
+                }}
+              >
+                <div
+                  className="w-4 h-4 bg-white shadow-xs transition-transform translate-x-5"
+                  style={{ borderRadius: mode === 'tokens' ? (radius === '0px' ? '0px' : '4px') : '50%' }}
+                />
+              </div>
             </div>
           </div>
 
-          {/* Rendered Component Grid */}
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2 max-h-[180px] overflow-y-auto p-1 font-mono text-xs">
-            {(scenario === 'tokens' ? tokensComponents : adhocComponents).map((c) => (
-              <div
-                key={c.id}
-                onClick={() => sound.playClick(1.1)}
-                style={{
-                  background: scenario === 'adhoc' ? `${c.color}15` : rebrandTriggered ? '#E9E1D3' : '#fff',
-                  borderColor: scenario === 'adhoc' ? c.color : rebrandTriggered ? '#F59E0B' : '#11100E',
-                  padding: scenario === 'adhoc' ? c.padding : '12px',
-                  borderRadius: scenario === 'adhoc' ? c.radius : '12px',
-                  borderWidth: '1px',
-                  borderStyle: scenario === 'adhoc' ? (c.id % 2 === 0 ? 'dashed' : 'dotted') : 'solid',
-                }}
-                className="flex flex-col gap-0.5 cursor-pointer hover:shadow-md transition-all"
-              >
-                <div className="text-[9px] font-bold" style={{ color: scenario === 'adhoc' ? c.color : '#77736B' }}>
-                  {scenario === 'tokens' ? `MOD.${c.id}` : c.label.substring(0, 10)}
-                </div>
-                <div className="text-[10px] font-semibold text-[#11100E]">
-                  {scenario === 'tokens'
-                    ? rebrandTriggered ? 'amber-50 / 4px' : '8px Grid'
-                    : `pad: ${c.padding}`}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Summary Bar */}
-          <div className="flex items-center justify-between font-mono text-[10px] text-[#77736B] border-t border-[#11100E]/10 pt-2">
-            {scenario === 'tokens' ? (
+          {/* Bottom Diagnostic */}
+          <div className="pt-2 border-t border-[#11100E]/10 flex items-center justify-between font-mono text-[11px] text-[#77736B]">
+            {mode === 'tokens' ? (
               <>
-                <span className="text-[#16A34A] font-bold">✓ Consistent: 8px grid, uniform radius, single color source</span>
-                <span>Click "Rebrand All" → all {componentCount} update instantly</span>
+                <span className="text-[#16A34A] font-bold">
+                  ✓ Tokenized Harmony: Radius ({radius}), Density ({density}), Theme ({activeTheme.label})
+                </span>
+                <span>Change 1 CSS variable → 10,000 components update safely</span>
               </>
             ) : (
               <>
-                <span className="text-[#DC2626] font-bold">✗ Chaotic: {componentCount} components × {componentCount} different padding values</span>
-                <span>Rebrand = manually edit {componentCount} files</span>
+                <span className="text-[#DC2626] font-bold">
+                  ✗ Fragmented Debt: 6 different radii (9999px, 28px, 4px, 0px, 36px, 12px)
+                </span>
+                <span>Rebrand requires manual rewrite of 45+ separate files</span>
               </>
             )}
           </div>
@@ -166,9 +341,9 @@ export const Slide12Scalability: React.FC = () => {
       </div>
 
       {/* Footer */}
-      <div className="pt-3 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B]">
+      <div className="pt-2.5 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B]">
         <span>A design system is insurance. You pay upfront; it saves you every sprint.</span>
-        <span>12 / 25</span>
+        <span>12 / 26</span>
       </div>
     </div>
   );

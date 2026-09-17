@@ -131,7 +131,6 @@ const MaximalistDemo: React.FC = () => {
       <div className="flex items-center justify-between px-3 py-2 border-b" style={{ borderColor:'#1E293B' }}>
         <span className="font-bold tracking-widest text-cyan-400">TELEMETRY · LIVE STREAM</span>
         <div className="flex items-center gap-2">
-          <span className="text-green-400 animate-pulse font-bold">◉ ONLINE</span>
           <button onClick={() => { setRefresh(r=>r+1); sound.playClick(1.2); }} className="px-2 py-0.5 rounded text-[8px] font-bold cursor-pointer" style={{ background:'#1E293B', color:'#94A3B8', border:'1px solid #334155' }}>REFRESH</button>
         </div>
       </div>
@@ -671,7 +670,7 @@ export const Slide05Spectrum: React.FC = () => {
       {/* Footer */}
       <div className="pt-3 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B]">
         <span>Style is a system of decisions — not a skin applied at the end.</span>
-        <span>05 / 25</span>
+        <span>05 / 26</span>
       </div>
     </div>
   );

@@ -143,7 +143,7 @@ export const Slide10Premium: React.FC = () => {
       {/* Footer */}
       <div className="pt-3 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B]">
         <span>True luxury in digital interfaces is radical clarity.</span>
-        <span>10 / 25</span>
+        <span>10 / 26</span>
       </div>
     </div>
   );

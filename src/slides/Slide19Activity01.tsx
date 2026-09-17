@@ -48,7 +48,7 @@ export const Slide19Activity01: React.FC = () => {
         <div className="flex items-center gap-2">
           <Flag className="w-4 h-4 text-[#D97706]" />
           <span className="font-mono text-xs uppercase tracking-widest text-[#D97706] font-bold">
-            19 / Workshop Mission Briefing
+            20 / Workshop Mission Briefing
           </span>
         </div>
         <span className="font-mono text-xs text-[#77736B]">LAB SESSION 01</span>
@@ -191,7 +191,7 @@ export const Slide19Activity01: React.FC = () => {
       {/* Footer */}
       <div className="pt-3 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B]">
         <span>The constraint of grayscale forces hierarchy decisions over decoration decisions.</span>
-        <span>19 / 25</span>
+        <span>20 / 26</span>
       </div>
     </div>
   );

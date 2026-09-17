@@ -114,7 +114,7 @@ export const Slide09BusinessUX: React.FC = () => {
       {/* Footer */}
       <div className="pt-3 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B]">
         <span>If a UI element does not serve user clarity or product health, delete it.</span>
-        <span>09 / 25</span>
+        <span>09 / 26</span>
       </div>
     </div>
   );

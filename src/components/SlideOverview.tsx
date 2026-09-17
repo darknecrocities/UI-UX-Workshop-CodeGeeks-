@@ -16,7 +16,7 @@ export const SlideOverview: React.FC = () => {
         <div className="px-6 py-4 border-b border-[#11100E]/15 flex items-center justify-between bg-[#E9E1D3]">
           <div>
             <span className="font-mono text-xs uppercase tracking-widest text-[#77736B]">Keynote Index</span>
-            <h2 className="text-lg font-bold tracking-tight">25-SLIDE SYLLABUS & DIRECTORY</h2>
+            <h2 className="text-lg font-bold tracking-tight">26-SLIDE SYLLABUS & DIRECTORY</h2>
           </div>
           <button
             onClick={() => {

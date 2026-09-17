@@ -158,8 +158,8 @@ export const Slide04Judgment: React.FC = () => {
 
       {/* Footer */}
       <div className="pt-3 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B]">
-        <span>The best design decision is often what you refuse to add.</span>
-        <span>04 / 25</span>
+        <span>When anyone can generate UI, taste is your only moat.</span>
+        <span>04 / 26</span>
       </div>
     </div>
   );
