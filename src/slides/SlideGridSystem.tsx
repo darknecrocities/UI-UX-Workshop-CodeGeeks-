@@ -67,9 +67,9 @@ const WireframeBox: React.FC<WireframeBoxProps> = ({
           borderColor: variant === 'dark' ? 'rgba(245, 241, 232, 0.12)' : 'rgba(17, 16, 14, 0.1)',
         }}
       >
-        <div className="flex items-center gap-1.5 truncate">
+        <div className="flex items-center gap-1 min-w-0">
           <span className="font-bold uppercase tracking-wider truncate">{label}</span>
-          {tag && !compact && (
+          {tag && !compact && span > 1 && (
             <span
               className={`text-[8px] px-1 py-0.2 rounded font-bold uppercase shrink-0 ${
                 variant === 'dark' ? 'bg-white/15 text-white' : 'bg-[#11100E]/10 text-[#77736B]'
@@ -86,7 +86,11 @@ const WireframeBox: React.FC<WireframeBoxProps> = ({
               : 'bg-[#F5F1E8] border-[#11100E]/15 text-[#B45309]'
           }`}
         >
-          {totalCols <= 8 || span > 1 ? `SPAN ${span} / ${totalCols}` : `S${span}`}
+          {span > 1
+            ? `SPAN ${span} / ${totalCols}`
+            : totalCols <= 4
+            ? `SPAN 1 / ${totalCols}`
+            : `${span} COL`}
         </span>
       </div>
 
@@ -102,7 +106,7 @@ const WireframeBox: React.FC<WireframeBoxProps> = ({
               variant === 'dark' ? 'text-[#E9E1D3]/70' : 'text-[#77736B]'
             }`}
           >
-            {startCol === endCol ? `COL ${startCol}` : `C${startCol}–${endCol}`}
+            {startCol === endCol ? (compact ? '' : `COL ${startCol}`) : `C${startCol}–${endCol}`}
           </span>
         </div>
 
@@ -518,14 +522,13 @@ export const SlideGridSystem: React.FC = () => {
                 Array.from({ length: cols }).map((_, idx) => (
                   <WireframeBox
                     key={idx}
-                    label={`COL ${String(idx + 1).padStart(2, '0')}`}
-                    tag="1:1"
+                    label={cols <= 6 ? `COL ${String(idx + 1).padStart(2, '0')}` : `C${String(idx + 1).padStart(2, '0')}`}
                     span={1}
                     totalCols={cols}
                     startCol={idx + 1}
                     gutter={gutter}
                     variant={idx % 2 === 0 ? 'primary' : 'secondary'}
-                    compact={cols > 8}
+                    compact={cols > 6}
                   />
                 ))}
 
