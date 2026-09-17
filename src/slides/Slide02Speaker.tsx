@@ -112,8 +112,8 @@ export const Slide02Speaker: React.FC = () => {
 
         {/* Right Column: Profile Squircle Card + Uno Product Cards Fan (5 cols) */}
         <div className="lg:col-span-5 flex flex-col items-center">
-          {/* Profile Card with natural squircle proportion */}
-          <div className="relative w-44 h-44 sm:w-48 sm:h-48 rounded-3xl bg-[#181614] border border-[#2D2A26] p-2 shadow-2xl overflow-hidden aspect-square">
+          {/* Profile Card with natural squircle proportion - Enlarged */}
+          <div className="relative w-52 h-52 sm:w-56 sm:h-56 md:w-60 md:h-60 rounded-3xl bg-[#181614] border border-[#2D2A26] p-2.5 shadow-2xl overflow-hidden aspect-square">
             <img
               src="/assets/images/profile.png"
               alt="Arron Parejas"
@@ -132,7 +132,7 @@ export const Slide02Speaker: React.FC = () => {
       {/* Footer */}
       <div className="pt-3 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B]">
         <span>Ship software that solves real friction.</span>
-        <span>Click Uno cards to inspect live products</span>
+        <span>Click cards to open live applications</span>
       </div>
     </div>
   );

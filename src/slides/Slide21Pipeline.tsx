@@ -23,9 +23,9 @@ const tools = [
   { name: 'Figma', role: 'Screen design & layout rules', link: 'https://www.figma.com/' },
   { name: 'Google Stitch', role: 'Interactive prototyping & screen flows', link: 'https://stitch.withgoogle.com/' },
   { name: 'GitHub', role: 'Code storage & automatic shipping', link: 'https://github.com' },
-  { name: 'DomoSkills', role: 'Helpful skills for coding assistants', link: 'https://web-beta-six-81.vercel.app/' },
-  { name: 'DomoDomo', role: 'Tactile product & design studio', link: 'http://domodomo.site/' },
-  { name: 'Codepyne', role: 'Interactive code playground', link: 'https://codepyne-io.vercel.app/' },
+  { name: 'DomoSkills', role: 'Marketplace for agent skills', link: 'https://web-beta-six-81.vercel.app/' },
+  { name: 'DomoDomo', role: 'Web utilities and agentic tools', link: 'https://domodomo.site/' },
+  { name: 'Codepyne', role: 'Learning platform for AI & ML', link: 'https://codepyne-io.vercel.app/' },
 ];
 
 export const Slide21Pipeline: React.FC = () => {

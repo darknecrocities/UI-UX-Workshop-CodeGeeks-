@@ -19,4 +19,5 @@ export interface ProductItem {
   category: string;
   image: string;
   description: string;
+  url?: string;
 }

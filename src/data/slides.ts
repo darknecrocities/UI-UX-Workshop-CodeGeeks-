@@ -39,10 +39,44 @@ export const WORKSHOP_TIMELINE: WorkshopBlock[] = [
 ];
 
 export const SPEAKER_PRODUCTS: ProductItem[] = [
-  { id: 'buddy', title: 'Buddy', category: 'Desktop Helper', image: '/assets/product/buddy.webp', description: 'Helpful companion app right on your desktop.' },
-  { id: 'domodomo', title: 'DomoDomo', category: 'Design Studio', image: '/assets/product/domodomo_logo.jpg', description: 'Creative lab making software that feels good to use.' },
-  { id: 'domonote', title: 'DomoNote', category: 'Simple Notes', image: '/assets/product/domonote.png', description: 'Fast, distraction-free note taking.' },
-  { id: 'domoskills', title: 'DomoSkills', category: 'Helpful Skills', image: '/assets/product/domoskills.png', description: 'Ready-made actions for AI coding tools.' },
-  { id: 'agentdeck', title: 'AgentDeck', category: 'Project Hub', image: '/assets/product/agentdeck.webp', description: 'Clean workspace for running and tracking your builds.' },
-  { id: 'hireme', title: 'HireMe', category: 'Portfolio', image: '/assets/product/hireme.webp', description: 'Interactive developer resume and portfolio.' },
+  {
+    id: 'domodomo',
+    title: 'DomoDomo',
+    category: 'Web Utilities & Agentic Tools',
+    image: '/assets/product/domodomo_logo.jpg',
+    description: 'Web Utilities and Agentic Tools',
+    url: 'https://domodomo.site',
+  },
+  {
+    id: 'domoskills',
+    title: 'DomoSkills',
+    category: 'Agent Skills Marketplace',
+    image: '/assets/product/domoskills.png',
+    description: 'Marketplace for the agent skills',
+    url: 'https://web-beta-six-81.vercel.app',
+  },
+  {
+    id: 'codepyne',
+    title: 'Codepyne',
+    category: 'AI & ML Learning',
+    image: '/assets/product/codepyne.png',
+    description: 'Learning platform in the field of AI and ML',
+    url: 'https://codepyne-io.vercel.app',
+  },
+  {
+    id: 'agentdeck',
+    title: 'AgentDeck',
+    category: 'Agentic Remote App',
+    image: '/assets/product/agentdeck.webp',
+    description: 'Agentic remote app via phone',
+    url: 'https://github.com/darknecrocities/Agentdeck',
+  },
+  {
+    id: 'domonote',
+    title: 'DomoNote',
+    category: 'Local AI Secretary',
+    image: '/assets/product/domonote.png',
+    description: 'Personal local AI Secretary',
+    url: 'https://domonote.vercel.app',
+  },
 ];
