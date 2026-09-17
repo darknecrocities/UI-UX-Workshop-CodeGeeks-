@@ -1,22 +1,81 @@
 import React, { useState } from 'react';
 import { sound } from '../audio/sound';
-import { LayoutGrid, CheckCircle2, AlertTriangle, Monitor, Tablet, Smartphone, Eye, EyeOff } from 'lucide-react';
+import {
+  LayoutGrid,
+  Eye,
+  EyeOff,
+  Briefcase,
+  CalendarDays,
+  ShoppingBag,
+  BookOpen,
+  Layers,
+  Plus,
+  Minus,
+  CheckCircle2,
+  AlertTriangle,
+} from 'lucide-react';
 
-type Breakpoint = 'DESKTOP' | 'TABLET' | 'MOBILE';
+type LayoutPreset = 'BUSINESS' | 'EVENTS' | 'STORE' | 'EDITORIAL' | 'SHOWCASE';
+
+interface PresetOption {
+  id: LayoutPreset;
+  label: string;
+  category: string;
+  icon: React.ComponentType<{ className?: string }>;
+  defaultCols: number;
+  description: string;
+}
 
 export const SlideGridSystem: React.FC = () => {
-  const [breakpoint, setBreakpoint] = useState<Breakpoint>('DESKTOP');
+  const [activePreset, setActivePreset] = useState<LayoutPreset>('BUSINESS');
+  const [cols, setCols] = useState<number>(12);
+  const [gutter, setGutter] = useState<number>(16);
   const [showColumns, setShowColumns] = useState<boolean>(true);
   const [show8pt, setShow8pt] = useState<boolean>(false);
   const [isUnaligned, setIsUnaligned] = useState<boolean>(false);
 
-  const columnCounts: Record<Breakpoint, number> = {
-    DESKTOP: 12,
-    TABLET: 8,
-    MOBILE: 4,
-  };
-
-  const currentCols = columnCounts[breakpoint];
+  const presets: PresetOption[] = [
+    {
+      id: 'BUSINESS',
+      label: 'Business',
+      category: 'Dashboard',
+      icon: Briefcase,
+      defaultCols: 12,
+      description: 'Sidebar navigation, metrics summary, and live activity stream',
+    },
+    {
+      id: 'EVENTS',
+      label: 'Events',
+      category: 'Conference',
+      icon: CalendarDays,
+      defaultCols: 12,
+      description: 'Hero announcement, registration card, and 4-slot agenda',
+    },
+    {
+      id: 'STORE',
+      label: 'Store',
+      category: 'Marketplace',
+      icon: ShoppingBag,
+      defaultCols: 12,
+      description: 'Category filters with a balanced 3-column product catalog',
+    },
+    {
+      id: 'EDITORIAL',
+      label: 'Editorial',
+      category: 'Article',
+      icon: BookOpen,
+      defaultCols: 12,
+      description: 'Long-form reading column paired with side index and notes',
+    },
+    {
+      id: 'SHOWCASE',
+      label: 'Showcase',
+      category: 'Agency',
+      icon: Layers,
+      defaultCols: 12,
+      description: 'Asymmetric feature display with project notes and live link',
+    },
+  ];
 
   const spacingTokens = [
     { name: '4px', label: 'Micro', use: 'Icon gaps, badge padding' },
@@ -27,8 +86,23 @@ export const SlideGridSystem: React.FC = () => {
     { name: '48px', label: 'Monumental', use: 'Page margins, major layout breaks' },
   ];
 
+  const handleSelectPreset = (preset: PresetOption) => {
+    sound.playClick(1.2);
+    setActivePreset(preset.id);
+  };
+
+  const handleSetCols = (c: number) => {
+    sound.playClick(1.1);
+    setCols(Math.max(2, Math.min(16, c)));
+  };
+
+  // Helper column spans based on current cols count
+  const getColSpan = (ratio: number) => {
+    return Math.max(1, Math.round(cols * ratio));
+  };
+
   return (
-    <div className="w-full h-full flex flex-col justify-between p-4 sm:p-8 md:p-10 max-w-7xl mx-auto select-none">
+    <div className="w-full h-full flex flex-col justify-between p-4 sm:p-7 md:p-8 max-w-7xl mx-auto select-none">
       {/* Header */}
       <div className="flex items-center justify-between border-b border-[#11100E]/15 pb-2.5">
         <div className="flex items-center gap-2">
@@ -37,226 +111,559 @@ export const SlideGridSystem: React.FC = () => {
             13 / Layout & Clean Grid Systems
           </span>
         </div>
+
+        {/* Global Grid Controls */}
         <div className="flex items-center gap-2 font-mono text-xs">
-          {/* Breakpoint Switcher */}
-          <div className="flex items-center gap-1 bg-white border border-[#11100E]/20 p-0.5 rounded-lg">
+          {/* Column Quick Selectors */}
+          <div className="flex items-center gap-0.5 bg-white border border-[#11100E]/20 p-0.5 rounded-lg shadow-2xs">
             <button
-              onClick={() => { sound.playClick(1.0); setBreakpoint('MOBILE'); }}
-              className={`px-2 py-1 rounded flex items-center gap-1 cursor-pointer ${
-                breakpoint === 'MOBILE' ? 'bg-[#11100E] text-white font-bold' : 'text-[#77736B] hover:text-[#11100E]'
-              }`}
+              onClick={() => handleSetCols(cols - 1)}
+              className="p-1 rounded text-[#77736B] hover:text-[#11100E] hover:bg-[#11100E]/5 transition-colors cursor-pointer"
+              title="Decrease columns"
             >
-              <Smartphone className="w-3 h-3" />
-              <span>4 COLS</span>
+              <Minus className="w-3 h-3" />
             </button>
+
+            {[4, 8, 12, 16].map((num) => (
+              <button
+                key={num}
+                onClick={() => handleSetCols(num)}
+                className={`px-2 py-0.5 rounded text-[11px] font-bold cursor-pointer transition-colors ${
+                  cols === num
+                    ? 'bg-[#11100E] text-[#F5F1E8]'
+                    : 'text-[#77736B] hover:text-[#11100E]'
+                }`}
+              >
+                {num}C
+              </button>
+            ))}
+
             <button
-              onClick={() => { sound.playClick(1.1); setBreakpoint('TABLET'); }}
-              className={`px-2 py-1 rounded flex items-center gap-1 cursor-pointer ${
-                breakpoint === 'TABLET' ? 'bg-[#11100E] text-white font-bold' : 'text-[#77736B] hover:text-[#11100E]'
-              }`}
+              onClick={() => handleSetCols(cols + 1)}
+              className="p-1 rounded text-[#77736B] hover:text-[#11100E] hover:bg-[#11100E]/5 transition-colors cursor-pointer"
+              title="Increase columns"
             >
-              <Tablet className="w-3 h-3" />
-              <span>8 COLS</span>
-            </button>
-            <button
-              onClick={() => { sound.playClick(1.2); setBreakpoint('DESKTOP'); }}
-              className={`px-2 py-1 rounded flex items-center gap-1 cursor-pointer ${
-                breakpoint === 'DESKTOP' ? 'bg-[#11100E] text-white font-bold' : 'text-[#77736B] hover:text-[#11100E]'
-              }`}
-            >
-              <Monitor className="w-3 h-3" />
-              <span>12 COLS</span>
+              <Plus className="w-3 h-3" />
             </button>
           </div>
 
-          {/* Grid Overlay Toggle */}
+          {/* Gutter Selector */}
+          <div className="hidden sm:flex items-center gap-1 bg-white border border-[#11100E]/20 p-0.5 rounded-lg text-[11px]">
+            {[8, 16, 24].map((g) => (
+              <button
+                key={g}
+                onClick={() => {
+                  sound.playClick(1.05);
+                  setGutter(g);
+                }}
+                className={`px-1.5 py-0.5 rounded cursor-pointer ${
+                  gutter === g
+                    ? 'bg-[#11100E] text-[#F5F1E8] font-bold'
+                    : 'text-[#77736B] hover:text-[#11100E]'
+                }`}
+              >
+                {g}px
+              </button>
+            ))}
+          </div>
+
+          {/* Grid Guides Toggle (Theme Colors Only) */}
           <button
-            onClick={() => { sound.playClick(1.2); setShowColumns(!showColumns); }}
-            className={`px-2.5 py-1 rounded-lg border cursor-pointer font-bold flex items-center gap-1 ${
+            onClick={() => {
+              sound.playClick(1.2);
+              setShowColumns(!showColumns);
+            }}
+            className={`px-2.5 py-1 rounded-lg border cursor-pointer font-bold flex items-center gap-1 text-[11px] ${
               showColumns
                 ? 'bg-[#11100E] text-[#F5F1E8] border-[#11100E]'
                 : 'bg-[#F5F1E8] text-[#11100E] border-[#11100E]/20'
             }`}
           >
-            {showColumns ? <Eye className="w-3.5 h-3.5" /> : <EyeOff className="w-3.5 h-3.5" />}
+            {showColumns ? <Eye className="w-3.5 h-3.5" /> : <EyeOff className="w-3.5 h-3.5 text-[#77736B]" />}
             <span>{showColumns ? 'GRID: ON' : 'GRID: OFF'}</span>
           </button>
         </div>
       </div>
 
       {/* Main Area */}
-      <div className="my-auto py-2 space-y-3">
-        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+      <div className="my-auto py-2 space-y-2.5">
+        {/* Title & Layout Preset Bar */}
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-2.5">
           <div>
-            <h2 className="text-xl sm:text-3xl md:text-4xl font-black tracking-tight text-[#11100E]">
-              THE 12-COLUMN & 8PX GRID.
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black tracking-tight text-[#11100E]">
+              LAYOUT PRESETS & 8PX GRID.
             </h2>
-            <p className="mt-0.5 text-xs sm:text-sm text-[#77736B] font-medium">
-              Every clean interface has an invisible skeleton. Align elements with simple multiples of 8:
+            <p className="text-xs text-[#77736B] font-medium mt-0.5">
+              Select a real-world layout style to test column rhythm and spacing fit:
             </p>
           </div>
 
-          {/* Unaligned / Aligned Mode Switch */}
-          <button
-            onClick={() => {
-              if (!isUnaligned) sound.playSlopAlert();
-              else sound.playSuccess();
-              setIsUnaligned(!isUnaligned);
-            }}
-            className={`px-3 py-1.5 rounded-xl font-mono text-xs font-bold border cursor-pointer flex items-center gap-1.5 transition-all shadow-xs ${
-              isUnaligned
-                ? 'bg-[#DC2626] text-white border-[#DC2626]'
-                : 'bg-[#16A34A]/10 text-[#16A34A] border-[#16A34A]/30 hover:bg-[#16A34A]/20'
-            }`}
-          >
-            {isUnaligned ? <AlertTriangle className="w-3.5 h-3.5" /> : <CheckCircle2 className="w-3.5 h-3.5" />}
-            <span>{isUnaligned ? 'SLOP: UNALIGNED (RANDOM PADDING)' : 'ALIGNED TO 8PT SYSTEM'}</span>
-          </button>
+          {/* Real-World Layout Buttons (Button-like style for best fit) */}
+          <div className="flex flex-wrap items-center gap-1.5 font-mono text-xs">
+            {presets.map((p) => {
+              const Icon = p.icon;
+              const isSelected = activePreset === p.id;
+              return (
+                <button
+                  key={p.id}
+                  onClick={() => handleSelectPreset(p)}
+                  className={`px-2.5 py-1.5 rounded-xl border flex items-center gap-1.5 transition-all cursor-pointer font-bold ${
+                    isSelected
+                      ? 'bg-[#11100E] text-[#F5F1E8] border-[#11100E] shadow-sm -translate-y-0.5'
+                      : 'bg-white text-[#11100E] border-[#11100E]/15 hover:border-[#F59E0B] hover:bg-[#F5F1E8]'
+                  }`}
+                >
+                  <Icon className={`w-3.5 h-3.5 ${isSelected ? 'text-[#F59E0B]' : 'text-[#77736B]'}`} />
+                  <span>{p.label}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
-        {/* 6 Spacing Tokens Bar */}
+        {/* 6 Spacing Tokens Reference Bar */}
         <div className="grid grid-cols-2 sm:grid-cols-6 gap-2 font-mono text-xs">
           {spacingTokens.map((t) => (
             <div
               key={t.name}
-              className="p-2 rounded-xl bg-[#F5F1E8] border border-[#11100E]/15 flex flex-col justify-between"
+              className="p-1.5 px-2 rounded-xl bg-white border border-[#11100E]/10 flex flex-col justify-between"
             >
               <div className="flex justify-between items-center">
-                <span className="font-bold text-sm text-[#11100E]">{t.name}</span>
-                <span className="text-[10px] text-[#77736B] uppercase">{t.label}</span>
+                <span className="font-bold text-xs text-[#11100E]">{t.name}</span>
+                <span className="text-[9px] text-[#77736B] uppercase font-semibold">{t.label}</span>
               </div>
-              <div className="text-[9px] text-[#77736B] mt-1 truncate">{t.use}</div>
+              <div className="text-[9px] text-[#77736B] truncate mt-0.5">{t.use}</div>
             </div>
           ))}
         </div>
 
-        {/* Interactive Responsive Grid Stage */}
-        <div className="relative p-5 rounded-2xl bg-[#F5F1E8] border border-[#11100E]/20 shadow-sm min-h-[230px] flex flex-col justify-between overflow-hidden">
-          {/* Column Grid Overlay */}
-          {showColumns && (
-            <div className="absolute inset-0 px-5 py-4 pointer-events-none z-10 flex gap-2">
-              {Array.from({ length: currentCols }).map((_, idx) => (
-                <div
-                  key={idx}
-                  className="flex-1 h-full bg-red-500/10 border-x border-red-500/20 flex flex-col justify-between items-center py-1"
-                >
-                  <span className="font-mono text-[8px] text-red-700/60">{idx + 1}</span>
-                  <span className="font-mono text-[8px] text-red-700/40">COL</span>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {/* 8pt Pattern Overlay */}
-          {show8pt && (
-            <div className="absolute inset-0 bg-grid-subtle opacity-70 pointer-events-none z-15" />
-          )}
-
-          {/* Mock Multi-Column Layout Built Over Grid */}
-          <div
-            className={`relative z-20 flex-1 grid gap-3 my-auto items-stretch font-mono text-xs transition-all duration-300 ${
-              isUnaligned ? 'translate-x-3 -translate-y-1' : ''
-            }`}
-            style={{
-              gridTemplateColumns:
-                breakpoint === 'DESKTOP'
-                  ? 'repeat(12, minmax(0, 1fr))'
-                  : breakpoint === 'TABLET'
-                  ? 'repeat(8, minmax(0, 1fr))'
-                  : 'repeat(4, minmax(0, 1fr))',
-            }}
-          >
-            {/* Sidebar / Navigation (3 cols on desktop, 2 on tablet, full on mobile) */}
-            <div
-              className={`bg-white border rounded-xl p-3 flex flex-col justify-between shadow-xs ${
-                breakpoint === 'DESKTOP'
-                  ? 'col-span-3'
-                  : breakpoint === 'TABLET'
-                  ? 'col-span-2'
-                  : 'col-span-4'
-              } ${isUnaligned ? 'border-red-400 p-[11px] rounded-tl-[27px]' : 'border-[#11100E]/15'}`}
-            >
-              <div>
-                <div className="text-[10px] text-[#77736B] uppercase font-bold">
-                  {isUnaligned ? 'Broken Pad (11px)' : '3 Cols · Navigation'}
-                </div>
-                <div className="text-sm font-bold text-[#11100E] mt-1">Antigravity Console</div>
-              </div>
-              <div className="space-y-1 mt-2 text-[10px] text-[#77736B]">
-                <div className="p-1.5 bg-[#E9E1D3]/50 rounded">Terminal Session</div>
-                <div className="p-1.5 rounded">Artifact Pipeline</div>
-              </div>
-            </div>
-
-            {/* Main Center Dashboard (6 cols on desktop, 4 on tablet, full on mobile) */}
-            <div
-              className={`bg-white border rounded-xl p-3 flex flex-col justify-between shadow-xs ${
-                breakpoint === 'DESKTOP'
-                  ? 'col-span-6'
-                  : breakpoint === 'TABLET'
-                  ? 'col-span-4'
-                  : 'col-span-4'
-              } ${isUnaligned ? 'border-red-400 p-[7px] mt-[13px]' : 'border-[#11100E]/15'}`}
-            >
-              <div className="flex justify-between items-center border-b border-[#11100E]/10 pb-2">
-                <span className="font-bold text-xs text-[#11100E]">
-                  {isUnaligned ? 'Uneven Margin (13px)' : '6 Cols · Main Dashboard'}
-                </span>
-                <span className="text-[10px] text-[#16A34A] font-bold">8PT ALIGNED</span>
-              </div>
-              <div className="grid grid-cols-2 gap-2 my-2">
-                <div className="p-2 rounded bg-[#F5F1E8] border border-[#11100E]/10">
-                  <div className="text-[9px] text-[#77736B]">LATENCY</div>
-                  <div className="text-base font-bold text-[#11100E] tabular-nums">4ms</div>
-                </div>
-                <div className="p-2 rounded bg-[#F5F1E8] border border-[#11100E]/10">
-                  <div className="text-[9px] text-[#77736B]">ACCURACY</div>
-                  <div className="text-base font-bold text-[#16A34A] tabular-nums">99.98%</div>
-                </div>
-              </div>
-              <div className="text-[10px] text-[#77736B]">All gutters strictly locked to 16px.</div>
-            </div>
-
-            {/* Quick Stats Panel (3 cols on desktop, 2 on tablet, full on mobile) */}
-            <div
-              className={`bg-white border rounded-xl p-3 flex flex-col justify-between shadow-xs ${
-                breakpoint === 'DESKTOP'
-                  ? 'col-span-3'
-                  : breakpoint === 'TABLET'
-                  ? 'col-span-2'
-                  : 'col-span-4'
-              } ${isUnaligned ? 'border-red-400 p-[23px] rounded-br-[35px]' : 'border-[#11100E]/15'}`}
-            >
-              <div>
-                <div className="text-[10px] text-[#77736B] uppercase font-bold">
-                  {isUnaligned ? 'Huge Corner (35px)' : '3 Cols · Quick Stats'}
-                </div>
-                <div className="text-xs font-bold text-[#11100E] mt-1">Worker Pool A</div>
-              </div>
-              <div className="mt-2 text-base font-bold text-[#16A34A] tabular-nums">14 / 14 ACTIVE</div>
-              <button
-                onClick={() => sound.playSuccess()}
-                className="mt-2 w-full py-1.5 bg-[#11100E] text-[#F5F1E8] text-[10px] font-bold rounded-lg hover:bg-black cursor-pointer active:translate-y-0.5"
+        {/* Interactive Responsive Grid Stage (Strictly Theme Colors) */}
+        <div className="p-3 sm:p-4 rounded-2xl bg-[#EFEAE0] border border-[#11100E]/15 shadow-inner min-h-[280px] max-h-[380px] flex flex-col justify-between overflow-hidden">
+          {/* Cards & Overlay Stage */}
+          <div className="relative flex-1 min-h-[220px] flex items-stretch my-0.5">
+            {/* Column Grid Overlay in Theme Amber */}
+            {showColumns && (
+              <div
+                className="absolute inset-0 pointer-events-none z-10 flex"
+                style={{ gap: `${gutter}px` }}
               >
-                Check Stats
-              </button>
-            </div>
+                {Array.from({ length: cols }).map((_, idx) => (
+                  <div
+                    key={idx}
+                    className="flex-1 h-full bg-[#F59E0B]/10 border-x border-[#F59E0B]/25 flex flex-col justify-between items-center py-1 rounded-2xs"
+                  >
+                    <span className="font-mono text-[9px] font-bold text-[#B45309]">{idx + 1}</span>
+                    <span className="font-mono text-[8px] text-[#B45309]/60">COL</span>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* 8pt Dots Matrix Overlay */}
+            {show8pt && (
+              <div className="absolute inset-0 bg-grid-subtle opacity-75 pointer-events-none z-15" />
+            )}
+
+            {/* Mock Layout Containers (Dynamically Responsive to cols and preset) */}
+            <div
+              className={`relative z-20 flex-1 grid my-auto items-stretch font-mono text-xs transition-all duration-300 ${
+                isUnaligned ? 'p-[11px] gap-[13px] translate-x-2' : ''
+              }`}
+              style={{
+                gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
+                gap: isUnaligned ? '13px' : `${gutter}px`,
+              }}
+            >
+            {/* BUSINESS PRESET */}
+            {activePreset === 'BUSINESS' && (
+              <>
+                {/* Sidebar Navigation */}
+                <div
+                  className="bg-white border border-[#11100E]/15 rounded-xl p-3 flex flex-col justify-between shadow-xs"
+                  style={{ gridColumn: `span ${Math.min(cols, Math.max(1, getColSpan(0.25)))}` }}
+                >
+                  <div>
+                    <div className="flex items-center justify-between text-[10px] text-[#77736B] font-bold uppercase mb-1">
+                      <span>Console Nav</span>
+                      <span className="text-[#B45309]">SPAN {Math.min(cols, Math.max(1, getColSpan(0.25)))}</span>
+                    </div>
+                    <div className="font-bold text-xs text-[#11100E]">Acme Workspace</div>
+                  </div>
+                  <div className="space-y-1 my-2 text-[10px] text-[#77736B]">
+                    <div className="p-1.5 bg-[#F5F1E8] rounded font-semibold text-[#11100E]">Dashboard Home</div>
+                    <div className="p-1.5 rounded">Deployments (14)</div>
+                    <div className="p-1.5 rounded">Security Keys</div>
+                  </div>
+                  <div className="pt-2 border-t border-[#11100E]/10 text-[9px] text-[#77736B]">
+                    Strict 8px margins
+                  </div>
+                </div>
+
+                {/* Main Dashboard & Metrics */}
+                <div
+                  className="bg-white border border-[#11100E]/15 rounded-xl p-3.5 flex flex-col justify-between shadow-xs"
+                  style={{ gridColumn: `span ${Math.min(cols, Math.max(1, getColSpan(0.5)))}` }}
+                >
+                  <div className="flex justify-between items-center border-b border-[#11100E]/10 pb-2">
+                    <div>
+                      <span className="font-bold text-xs text-[#11100E]">Revenue & Flow Performance</span>
+                      <div className="text-[10px] text-[#77736B]">Live metrics locked to 16px gutter</div>
+                    </div>
+                    <span className="font-mono text-[10px] text-[#B45309] font-bold">
+                      SPAN {Math.min(cols, Math.max(1, getColSpan(0.5)))}
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2 my-2">
+                    <div className="p-2.5 rounded-lg bg-[#F5F1E8] border border-[#11100E]/10">
+                      <div className="text-[9px] text-[#77736B] uppercase font-bold">Monthly Recurring</div>
+                      <div className="text-base font-black text-[#11100E] mt-0.5 tabular-nums">$34,800</div>
+                      <div className="text-[9px] text-[#16A34A] font-bold mt-0.5">+18.4% this month</div>
+                    </div>
+                    <div className="p-2.5 rounded-lg bg-[#F5F1E8] border border-[#11100E]/10">
+                      <div className="text-[9px] text-[#77736B] uppercase font-bold">Active Seats</div>
+                      <div className="text-base font-black text-[#11100E] mt-0.5 tabular-nums">1,420 / 1,500</div>
+                      <div className="text-[9px] text-[#77736B] mt-0.5">99.8% retention</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between text-[10px] text-[#77736B]">
+                    <span>Standardized container padding (16px)</span>
+                    <span className="font-bold text-[#11100E]">100% 8pt Aligned</span>
+                  </div>
+                </div>
+
+                {/* Live Activity & Action */}
+                <div
+                  className="bg-white border border-[#11100E]/15 rounded-xl p-3 flex flex-col justify-between shadow-xs"
+                  style={{
+                    gridColumn: `span ${Math.min(
+                      cols,
+                      Math.max(1, cols - getColSpan(0.25) - getColSpan(0.5))
+                    )}`,
+                  }}
+                >
+                  <div>
+                    <div className="flex items-center justify-between text-[10px] text-[#77736B] font-bold uppercase mb-1">
+                      <span>Actions</span>
+                      <span className="text-[#B45309]">
+                        SPAN {Math.min(cols, Math.max(1, cols - getColSpan(0.25) - getColSpan(0.5)))}
+                      </span>
+                    </div>
+                    <div className="font-bold text-xs text-[#11100E]">Quick Actions</div>
+                  </div>
+
+                  <div className="space-y-1.5 my-2 text-[10px]">
+                    <div className="p-2 rounded bg-[#F5F1E8] text-[#11100E]">
+                      <div className="font-bold text-[10px]">Cluster Sync: OK</div>
+                      <div className="text-[9px] text-[#77736B]">All nodes responding</div>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => sound.playClick(1.2)}
+                    className="w-full py-1.5 rounded-lg bg-[#11100E] hover:bg-black text-[#F5F1E8] font-mono text-[10px] font-bold cursor-pointer transition-colors"
+                  >
+                    Deploy Update
+                  </button>
+                </div>
+              </>
+            )}
+
+            {/* EVENTS PRESET */}
+            {activePreset === 'EVENTS' && (
+              <>
+                {/* Event Hero Banner */}
+                <div
+                  className="bg-[#11100E] text-[#F5F1E8] rounded-xl p-4 flex flex-col justify-between shadow-sm"
+                  style={{ gridColumn: `span ${Math.min(cols, Math.max(1, getColSpan(0.67)))}` }}
+                >
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <div className="text-[10px] text-[#F59E0B] font-mono uppercase font-bold tracking-wider">
+                        ANNUAL KEYNOTE · OCT 24, 2026
+                      </div>
+                      <h3 className="text-base sm:text-lg font-black tracking-tight text-white mt-1">
+                        CodeGeeks Summit: Craft & Judgment
+                      </h3>
+                      <p className="text-[11px] text-[#E9E1D3]/80 mt-1 max-w-md">
+                        Grand Arena Hall · 1,500 Designers and Builders exploring human-centered UI/UX.
+                      </p>
+                    </div>
+                    <span className="font-mono text-[10px] text-[#F59E0B] font-bold shrink-0">
+                      SPAN {Math.min(cols, Math.max(1, getColSpan(0.67)))}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-4 text-[10px] text-[#E9E1D3]/70 pt-2 border-t border-white/10 mt-3">
+                    <span>Keynote: Arron Parejas</span>
+                    <span>•</span>
+                    <span>12 Live Interactive Workshops</span>
+                  </div>
+                </div>
+
+                {/* Ticket Pass Card */}
+                <div
+                  className="bg-white border border-[#11100E]/15 rounded-xl p-4 flex flex-col justify-between shadow-xs"
+                  style={{ gridColumn: `span ${Math.min(cols, Math.max(1, cols - getColSpan(0.67)))}` }}
+                >
+                  <div className="flex items-center justify-between text-[10px] text-[#77736B] font-bold uppercase">
+                    <span>Admission</span>
+                    <span className="text-[#B45309]">SPAN {Math.min(cols, Math.max(1, cols - getColSpan(0.67)))}</span>
+                  </div>
+
+                  <div>
+                    <div className="text-xs font-bold text-[#11100E] mt-1">Full-Access Pass</div>
+                    <div className="text-xl font-black text-[#11100E] mt-0.5">$249</div>
+                    <div className="text-[10px] text-[#77736B]">Badge, seating, and afterparty entry</div>
+                  </div>
+
+                  <button
+                    onClick={() => sound.playClick(1.2)}
+                    className="w-full py-2 rounded-lg bg-[#F59E0B] hover:bg-[#D97706] text-[#11100E] font-bold text-xs shadow-xs cursor-pointer transition-colors"
+                  >
+                    Claim Pass
+                  </button>
+                </div>
+
+                {/* 4 Agenda Cards */}
+                {['09:00 AM · Opening', '11:00 AM · UI/UX Lab', '02:00 PM · Agentic Flow', '04:30 PM · Showcase'].map(
+                  (slot, i) => (
+                    <div
+                      key={slot}
+                      className="bg-white border border-[#11100E]/15 rounded-xl p-2.5 flex flex-col justify-between shadow-xs"
+                      style={{ gridColumn: `span ${Math.max(1, Math.floor(cols / 4))}` }}
+                    >
+                      <div className="text-[9px] text-[#B45309] font-bold uppercase">Track 0{i + 1}</div>
+                      <div className="text-[11px] font-bold text-[#11100E] mt-0.5 truncate">{slot}</div>
+                      <div className="text-[9px] text-[#77736B] mt-1">Hall A · 60m</div>
+                    </div>
+                  )
+                )}
+              </>
+            )}
+
+            {/* STORE PRESET */}
+            {activePreset === 'STORE' && (
+              <>
+                {/* Category Sidebar */}
+                <div
+                  className="bg-white border border-[#11100E]/15 rounded-xl p-3 flex flex-col justify-between shadow-xs"
+                  style={{ gridColumn: `span ${Math.min(cols, Math.max(1, getColSpan(0.25)))}` }}
+                >
+                  <div>
+                    <div className="flex items-center justify-between text-[10px] text-[#77736B] font-bold uppercase mb-1">
+                      <span>Filters</span>
+                      <span className="text-[#B45309]">SPAN {Math.min(cols, Math.max(1, getColSpan(0.25)))}</span>
+                    </div>
+                    <div className="font-bold text-xs text-[#11100E]">Categories</div>
+                  </div>
+
+                  <div className="space-y-1 my-2 text-[10px] text-[#77736B]">
+                    <div className="p-1.5 bg-[#F5F1E8] font-bold text-[#11100E] rounded">All Hardware (48)</div>
+                    <div className="p-1.5 rounded">Tactile Switches (16)</div>
+                    <div className="p-1.5 rounded">Desk Mats (12)</div>
+                    <div className="p-1.5 rounded">Keycaps (20)</div>
+                  </div>
+
+                  <div className="text-[9px] text-[#77736B] pt-2 border-t border-[#11100E]/10">
+                    Filter by actuation weight
+                  </div>
+                </div>
+
+                {/* 3 Store Product Cards */}
+                {[
+                  { title: 'Tactile Panda Switches', price: '$38.00', desc: '5-pin mechanical switch pack' },
+                  { title: 'Minimal Felt Desk Mat', price: '$29.00', desc: '900×400mm waterproof wool' },
+                  { title: 'Cream Carbon Keycaps', price: '$54.00', desc: 'PBT dye-sublimated set' },
+                ].map((item, idx) => (
+                  <div
+                    key={item.title}
+                    className="bg-white border border-[#11100E]/15 rounded-xl p-3.5 flex flex-col justify-between shadow-xs"
+                    style={{
+                      gridColumn: `span ${Math.max(
+                        1,
+                        Math.floor((cols - getColSpan(0.25)) / 3)
+                      )}`,
+                    }}
+                  >
+                    <div>
+                      <div className="flex items-center justify-between text-[10px] text-[#B45309] font-bold">
+                        <span>ITEM 0{idx + 1}</span>
+                        <span>
+                          SPAN {Math.max(1, Math.floor((cols - getColSpan(0.25)) / 3))}
+                        </span>
+                      </div>
+                      <div className="font-bold text-xs text-[#11100E] mt-1">{item.title}</div>
+                      <div className="text-[10px] text-[#77736B] mt-0.5">{item.desc}</div>
+                    </div>
+
+                    <div className="pt-3 mt-2 border-t border-[#11100E]/10 flex items-center justify-between">
+                      <span className="font-black text-sm text-[#11100E]">{item.price}</span>
+                      <button
+                        onClick={() => sound.playClick(1.2)}
+                        className="px-2.5 py-1 rounded-lg bg-[#11100E] hover:bg-black text-[#F5F1E8] text-[10px] font-bold cursor-pointer transition-colors"
+                      >
+                        Add
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </>
+            )}
+
+            {/* EDITORIAL PRESET */}
+            {activePreset === 'EDITORIAL' && (
+              <>
+                {/* Main Article Hero Column */}
+                <div
+                  className="bg-white border border-[#11100E]/15 rounded-xl p-4 flex flex-col justify-between shadow-xs"
+                  style={{ gridColumn: `span ${Math.min(cols, Math.max(1, getColSpan(0.67)))}` }}
+                >
+                  <div>
+                    <div className="flex items-center justify-between text-[10px] text-[#77736B] font-bold uppercase mb-1">
+                      <span>ESSAY · ISSUE #14</span>
+                      <span className="text-[#B45309]">SPAN {Math.min(cols, Math.max(1, getColSpan(0.67)))}</span>
+                    </div>
+                    <h3 className="text-base sm:text-lg font-black tracking-tight text-[#11100E]">
+                      The Return of Human Taste in Software
+                    </h3>
+                    <p className="text-[11px] text-[#77736B] leading-relaxed mt-2">
+                      When anyone can generate thousands of lines of code in seconds, the only differentiator left is
+                      human restraint. Knowing what to delete, why spacing matters, and how a button feels under the
+                      finger.
+                    </p>
+                  </div>
+
+                  <div className="pt-3 border-t border-[#11100E]/10 flex items-center justify-between text-[10px] text-[#77736B]">
+                    <span>By Arron Parejas</span>
+                    <span>8 Min Read · Aligned to 8pt Baseline</span>
+                  </div>
+                </div>
+
+                {/* Side Table of Contents */}
+                <div
+                  className="bg-white border border-[#11100E]/15 rounded-xl p-4 flex flex-col justify-between shadow-xs"
+                  style={{ gridColumn: `span ${Math.min(cols, Math.max(1, cols - getColSpan(0.67)))}` }}
+                >
+                  <div>
+                    <div className="flex items-center justify-between text-[10px] text-[#77736B] font-bold uppercase mb-1">
+                      <span>Outline</span>
+                      <span className="text-[#B45309]">SPAN {Math.min(cols, Math.max(1, cols - getColSpan(0.67)))}</span>
+                    </div>
+                    <div className="font-bold text-xs text-[#11100E]">In This Issue</div>
+                  </div>
+
+                  <div className="space-y-1.5 my-2 text-[10px] text-[#77736B]">
+                    <div className="p-1 rounded font-semibold text-[#11100E]">I. The Illusion of Speed</div>
+                    <div className="p-1 rounded">II. Grid as Architecture</div>
+                    <div className="p-1 rounded">III. Tactile Sound Design</div>
+                  </div>
+
+                  <div className="text-[9px] text-[#77736B] pt-2 border-t border-[#11100E]/10">
+                    Typography hierarchy without fluff
+                  </div>
+                </div>
+              </>
+            )}
+
+            {/* SHOWCASE PRESET */}
+            {activePreset === 'SHOWCASE' && (
+              <>
+                {/* Large Project Feature */}
+                <div
+                  className="bg-[#11100E] text-[#F5F1E8] rounded-xl p-4 flex flex-col justify-between shadow-sm"
+                  style={{ gridColumn: `span ${Math.min(cols, Math.max(1, getColSpan(0.58)))}` }}
+                >
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <div className="text-[10px] text-[#F59E0B] font-mono uppercase font-bold tracking-wider">
+                        FLAGSHIP WORK · 2026
+                      </div>
+                      <h3 className="text-base sm:text-lg font-black tracking-tight text-white mt-1">
+                        DomoDomo: Tactile Web Utilities
+                      </h3>
+                      <p className="text-[11px] text-[#E9E1D3]/80 mt-1 max-w-sm">
+                        230+ online tools built for speed and privacy. Designed without unnecessary clutter.
+                      </p>
+                    </div>
+                    <span className="font-mono text-[10px] text-[#F59E0B] font-bold shrink-0">
+                      SPAN {Math.min(cols, Math.max(1, getColSpan(0.58)))}
+                    </span>
+                  </div>
+
+                  <div className="pt-3 border-t border-white/10 flex items-center justify-between text-[10px] text-[#E9E1D3]/70 mt-3">
+                    <span>50K+ Monthly Users</span>
+                    <a
+                      href="https://domodomo.site"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#F59E0B] hover:underline font-bold"
+                    >
+                      Visit domodomo.site ↗
+                    </a>
+                  </div>
+                </div>
+
+                {/* Studio Philosophy & Quote */}
+                <div
+                  className="bg-white border border-[#11100E]/15 rounded-xl p-4 flex flex-col justify-between shadow-xs"
+                  style={{ gridColumn: `span ${Math.min(cols, Math.max(1, cols - getColSpan(0.58)))}` }}
+                >
+                  <div>
+                    <div className="flex items-center justify-between text-[10px] text-[#77736B] font-bold uppercase mb-1">
+                      <span>Philosophy</span>
+                      <span className="text-[#B45309]">SPAN {Math.min(cols, Math.max(1, cols - getColSpan(0.58)))}</span>
+                    </div>
+                    <div className="text-xs font-bold text-[#11100E] mt-1">Design Thesis</div>
+                  </div>
+
+                  <blockquote className="my-2 text-[11px] text-[#11100E] italic border-l-2 border-[#F59E0B] pl-2 font-serif">
+                    “Software should feel like an instrument, not a transaction.”
+                  </blockquote>
+
+                  <div className="text-[10px] text-[#77736B] pt-2 border-t border-[#11100E]/10">
+                    Asymmetric layout with clear visual hierarchy
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
           </div>
 
-          {/* Bottom Bar */}
-          <div className="relative z-20 pt-2 border-t border-[#11100E]/10 flex items-center justify-between font-mono text-[11px] text-[#77736B]">
+          {/* Bottom Live Status Bar */}
+          <div className="relative z-20 pt-2 border-t border-[#11100E]/10 flex flex-wrap items-center justify-between font-mono text-[11px] text-[#77736B] gap-2">
             <div className="flex items-center gap-3">
-              <span>Current Grid: <strong className="text-[#11100E]">{currentCols} Columns</strong></span>
+              <span>
+                Active System: <strong className="text-[#11100E]">{cols} Columns</strong> ({gutter}px Gutters)
+              </span>
               <button
-                onClick={() => { sound.playClick(1.05); setShow8pt(!show8pt); }}
-                className="underline cursor-pointer text-[#11100E]"
+                onClick={() => {
+                  sound.playClick(1.05);
+                  setShow8pt(!show8pt);
+                }}
+                className="underline cursor-pointer text-[#11100E] hover:text-[#B45309]"
               >
-                {show8pt ? 'Hide 8pt Dots' : 'Overlay 8pt Matrix Dots'}
+                {show8pt ? 'Hide 8pt Dots' : 'Overlay 8pt Matrix'}
               </button>
             </div>
-            <span className="font-semibold text-[#11100E]">
-              Odd paddings (13px, 17px) cause subpixel blur on Retina screens.
-            </span>
+
+            {/* Subtle Alignment Mode Switch (Theme Colors Only) */}
+            <button
+              onClick={() => {
+                if (!isUnaligned) sound.playSlopAlert();
+                else sound.playSuccess();
+                setIsUnaligned(!isUnaligned);
+              }}
+              className={`px-2 py-0.5 rounded border text-[10px] font-bold cursor-pointer flex items-center gap-1 transition-all ${
+                isUnaligned
+                  ? 'bg-[#11100E] text-[#F5F1E8] border-[#11100E]'
+                  : 'bg-white text-[#11100E] border-[#11100E]/20 hover:border-[#11100E]'
+              }`}
+            >
+              {isUnaligned ? <AlertTriangle className="w-3 h-3 text-[#F59E0B]" /> : <CheckCircle2 className="w-3 h-3 text-[#B45309]" />}
+              <span>{isUnaligned ? 'TESTING: UNALIGNED RANDOM PADDING' : 'LOCKED TO 8PT SYSTEM'}</span>
+            </button>
           </div>
         </div>
       </div>

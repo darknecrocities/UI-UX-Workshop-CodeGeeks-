@@ -342,7 +342,7 @@ export const Slide08ColorJob: React.FC = () => {
                   </div>
 
                   <div className="p-3 rounded-lg bg-[#DC2626]/8 border border-[#DC2626]/20">
-                    <div className="text-[10px] font-bold text-[#DC2626] mb-1">✗ COMMON AI SLOP MISTAKE</div>
+                    <div className="text-[10px] font-bold text-[#DC2626] mb-1">✗ COMMON DESIGN MISTAKE</div>
                     <div className="text-[#11100E]">{currentRule.badSlop}</div>
                   </div>
 

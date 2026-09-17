@@ -325,10 +325,7 @@ export const Slide03Problem: React.FC = () => {
                     <div className="flex items-center justify-between">
                       <span className="text-xs font-black tracking-widest text-purple-300 flex items-center gap-1">
                         <Sparkles className="w-4 h-4 text-pink-400 animate-pulse" />
-                        CYBERNETIC AI PROTOCOL
-                      </span>
-                      <span className="px-2 py-0.5 rounded-full bg-pink-500 text-white text-[9px] font-bold shadow-sm">
-                        AI MAGIC
+                        CYBERNETIC PROTOCOL
                       </span>
                     </div>
                     <p className="text-xs text-purple-200/80">

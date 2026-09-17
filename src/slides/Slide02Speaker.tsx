@@ -32,7 +32,7 @@ export const Slide02Speaker: React.FC = () => {
         {/* Left Column: Speaker Info & Compact Tactile Tiles (7 cols) */}
         <div className="lg:col-span-7 space-y-5">
           <div>
-            <div className="inline-block px-2.5 py-0.5 rounded-full bg-[#11100E] text-[#F5F1E8] font-mono text-[10px] tracking-wider uppercase mb-2">
+            <div className="font-mono text-xs font-bold tracking-widest text-[#77736B] uppercase mb-1">
               BUILDER & DESIGNER
             </div>
             <h1 className="text-4xl sm:text-5xl font-black tracking-tight text-[#11100E]">

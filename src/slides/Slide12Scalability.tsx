@@ -77,7 +77,7 @@ export const Slide12Scalability: React.FC = () => {
             }`}
           >
             <XCircle className="w-3.5 h-3.5 text-[#DC2626]" />
-            <span>AD-HOC CSS (AI SLOP)</span>
+            <span>AD-HOC CSS</span>
           </button>
         </div>
       </div>

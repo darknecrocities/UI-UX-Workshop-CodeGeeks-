@@ -60,7 +60,7 @@ export const Slide18Decisions: React.FC = () => {
         >
           {showGood
             ? <><ToggleRight className="w-4 h-4" /> SHOWING: INTENTIONAL</>
-            : <><ToggleLeft className="w-4 h-4" /> SHOWING: AI SLOP</>
+            : <><ToggleLeft className="w-4 h-4" /> SHOWING: UNREFINED</>
           }
         </button>
       </div>

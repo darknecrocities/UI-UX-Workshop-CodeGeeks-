@@ -107,7 +107,7 @@ export const Slide24Showcase: React.FC = () => {
           </div>
 
           <div className="p-3.5 rounded-lg bg-[#DC2626]/10 border border-[#DC2626]/20">
-            <div className="text-[10px] text-[#DC2626] uppercase font-bold">03 / WHAT DID AI GET WRONG?</div>
+            <div className="text-[10px] text-[#DC2626] uppercase font-bold">03 / WHAT NEEDED CORRECTION?</div>
             <p className="text-sm font-semibold text-[#11100E] mt-1">{current.aiError}</p>
           </div>
 

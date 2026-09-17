@@ -11,7 +11,7 @@ const steps = [
   { num: '04', title: 'Generate v1.0', desc: 'Let the agent scaffold components and types. Review, do not rewrite yet.' },
   { num: '05', title: 'Run Locally', desc: 'Spin up localhost. Test responsiveness, keyboard, and click interactions.' },
   { num: '06', title: 'Compare vs Design', desc: 'Put Figma side-by-side with browser. Audit every discrepancy.' },
-  { num: '07', title: 'Find the AI Slop', desc: 'Identify generic cards, uncalibrated paddings, and unintentional gradients.' },
+  { num: '07', title: 'Find Design Flaws', desc: 'Identify generic cards, uncalibrated paddings, and unintentional gradients.' },
   { num: '08', title: 'Refine & Ship', desc: 'Direct the agent to subtract bloat and refine taste. Then deploy.' },
 ];
 

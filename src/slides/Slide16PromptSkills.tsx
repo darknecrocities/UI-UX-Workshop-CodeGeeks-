@@ -234,7 +234,7 @@ OUTPUT: Fully functional React + TypeScript + Vanilla/Tailwind CSS with cohesive
               >
                 <div className="flex items-center gap-1.5 font-bold">
                   <ShieldAlert className="w-3.5 h-3.5" />
-                  <span>ENFORCE NEGATIVE CONSTRAINTS (ANTI-SLOP)</span>
+                  <span>ENFORCE NEGATIVE CONSTRAINTS</span>
                 </div>
                 <span className="font-mono text-[9px]">{config.antiSlop ? 'ENABLED' : 'DISABLED'}</span>
               </div>
