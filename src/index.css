@@ -41,18 +41,33 @@
 
 /* Custom minimal scrollbar */
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(17, 16, 14, 0.2);
-  border-radius: 2px;
+  background: rgba(17, 16, 14, 0.25);
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(17, 16, 14, 0.4);
+  background: rgba(17, 16, 14, 0.5);
+}
+
+/* Universal slide scrollability & vertical flex growth */
+main > div {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+main > div > div {
+  min-height: 100%;
+  height: auto;
+  flex: 1 1 auto;
+  width: 100%;
 }
 
 /* Accessible focus ring */

@@ -47,7 +47,7 @@ export const Slide17MultiPageBiz: React.FC = () => {
   const currentVisitor = visitors.find((v) => v.id === activeVisitor) || visitors[0];
 
   return (
-    <div className="w-full h-full flex flex-col justify-between p-6 sm:p-10 md:p-14 max-w-7xl mx-auto select-none">
+    <div className="w-full h-full flex flex-col justify-between p-4 sm:p-6 md:p-8 max-w-7xl mx-auto select-none">
       {/* Header */}
       <div className="flex items-center justify-between border-b border-[#11100E]/15 pb-3">
         <div className="flex items-center gap-2">

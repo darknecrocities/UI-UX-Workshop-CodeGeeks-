@@ -69,10 +69,14 @@ const PresentationStage: React.FC = () => {
   const { currentSlide } = usePresentation();
   const CurrentSlideComponent = SLIDE_COMPONENTS[currentSlide] || Slide01Cover;
   const prevSlideRef = React.useRef<number>(currentSlide);
+  const mainRef = React.useRef<HTMLElement>(null);
   const isForward = currentSlide >= prevSlideRef.current;
 
   React.useEffect(() => {
     prevSlideRef.current = currentSlide;
+    if (mainRef.current) {
+      mainRef.current.scrollTop = 0;
+    }
   }, [currentSlide]);
 
   return (
@@ -81,11 +85,14 @@ const PresentationStage: React.FC = () => {
       <div className="absolute inset-0 paper-texture pointer-events-none z-10" />
       <div className="absolute inset-0 bg-grid-subtle opacity-30 pointer-events-none" />
 
-      {/* Main Slide Presentation Stage Area with Key-Based Directional Transition */}
-      <main className="relative z-20 w-full h-[calc(100vh-96px)] mt-11 mb-13 overflow-y-auto sm:overflow-hidden flex items-center justify-center">
+      {/* Main Slide Presentation Stage Area with Key-Based Directional Transition & Universal Scrollability */}
+      <main
+        ref={mainRef}
+        className="relative z-20 w-full h-[calc(100vh-96px)] mt-11 mb-13 overflow-y-auto overflow-x-hidden flex flex-col items-center"
+      >
         <div
           key={currentSlide}
-          className={`w-full h-full ${
+          className={`w-full flex-1 flex flex-col items-center ${
             isForward ? 'slide-transition-forward' : 'slide-transition-backward'
           }`}
         >
