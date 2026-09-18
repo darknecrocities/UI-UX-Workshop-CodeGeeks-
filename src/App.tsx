@@ -29,6 +29,7 @@ import { Slide18Decisions } from './slides/Slide18Decisions';
 import { Slide19Activity01 } from './slides/Slide19Activity01';
 import { Slide20Break } from './slides/Slide20Break';
 import { Slide21Pipeline } from './slides/Slide21Pipeline';
+import { Slide21Activity02Brief } from './slides/Slide21Activity02Brief';
 import { Slide22Activity02 } from './slides/Slide22Activity02';
 import { Slide23SlopAudit } from './slides/Slide23SlopAudit';
 import { Slide24Showcase } from './slides/Slide24Showcase';
@@ -59,6 +60,7 @@ const SLIDE_COMPONENTS: React.ComponentType[] = [
   Slide19Activity01,
   Slide20Break,
   Slide21Pipeline,
+  Slide21Activity02Brief,
   Slide22Activity02,
   Slide23SlopAudit,
   Slide24Showcase,

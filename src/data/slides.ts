@@ -25,10 +25,11 @@ export const SLIDES_DATA: SlideMeta[] = [
   { id: 22, slug: 'activity-01', title: 'ACTIVITY 01', section: 'ACTIVITY 01', tagline: 'Paper Sketch → Clean Prototype (60 Min)' },
   { id: 23, slug: 'break', title: 'QUICK BREAK', section: 'BREAK', tagline: '15 Minutes to Recharge' },
   { id: 24, slug: 'pipeline', title: 'BUILDING WITH AI', section: 'BUILDING WITH AI', tagline: 'Let the Machine Help You Ship' },
-  { id: 25, slug: 'activity-02', title: 'ACTIVITY 02', section: 'ACTIVITY 02', tagline: 'Prompt → Working App' },
-  { id: 26, slug: 'slop-audit', title: 'CHECKING YOUR WORK', section: 'WRAP-UP', tagline: 'Find the Flaws Before Users Do' },
-  { id: 27, slug: 'showcase', title: 'SHOWCASE', section: 'WRAP-UP', tagline: 'Show What You Made' },
-  { id: 28, slug: 'final', title: 'FINAL THOUGHT', section: 'WRAP-UP', tagline: "Don't Just Generate. Design." },
+  { id: 25, slug: 'activity-02-brief', title: 'ACTIVITY 02: MISSION', section: 'ACTIVITY 02', tagline: 'What We Are Doing (60 Min)' },
+  { id: 26, slug: 'activity-02', title: 'ACTIVITY 02: SANDBOX', section: 'ACTIVITY 02', tagline: 'Prompt → Working App' },
+  { id: 27, slug: 'slop-audit', title: 'CHECKING YOUR WORK', section: 'WRAP-UP', tagline: 'Find the Flaws Before Users Do' },
+  { id: 28, slug: 'showcase', title: 'SHOWCASE', section: 'WRAP-UP', tagline: 'Show What You Made' },
+  { id: 29, slug: 'final', title: 'FINAL THOUGHT', section: 'WRAP-UP', tagline: "Don't Just Generate. Design." },
 ];
 
 export const WORKSHOP_TIMELINE: WorkshopBlock[] = [
@@ -36,8 +37,8 @@ export const WORKSHOP_TIMELINE: WorkshopBlock[] = [
   { time: '1:00 – 2:00', title: 'Activity 01: Paper to Screen', slides: 'Slide 22', description: 'Find a real problem, sketch the flow, and build a simple prototype.' },
   { time: '2:00 – 2:15', title: 'Break', slides: 'Slide 23', description: '15 minutes to step away, rest your eyes, and grab a drink.' },
   { time: '2:15 – 2:45', title: 'Building with AI', slides: 'Slide 24', description: 'Watch how clean prompts turn ideas into working code fast.' },
-  { time: '2:45 – 3:45', title: 'Activity 02: Prompt to Product', slides: 'Slide 25', description: 'Generate your app, test it in the browser, and polish every detail.' },
-  { time: '3:45 – 4:00', title: 'Showcase & Review', slides: 'Slides 26–28', description: 'Share what you built, review the work, and wrap up.' }
+  { time: '2:45 – 3:45', title: 'Activity 02: Prompt to Product', slides: 'Slides 25–26', description: 'Generate your app, test it in the browser, and polish every detail.' },
+  { time: '3:45 – 4:00', title: 'Showcase & Review', slides: 'Slides 27–29', description: 'Share what you built, review the work, and wrap up.' }
 ];
 
 export const SPEAKER_PRODUCTS: ProductItem[] = [

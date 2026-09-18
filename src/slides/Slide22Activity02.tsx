@@ -51,7 +51,7 @@ const ARCHETYPES: Record<WebsiteArchetype, ArchetypeConfig> = {
   business: {
     id: 'business',
     label: 'Business & B2B',
-    tagline: 'Clear Value Proposition · Client Trust · Zero Clutter',
+    tagline: 'Professional & High-Conversion',
     defaultName: 'Apex Systems',
     defaultRole: 'Enterprise Infrastructure & Cloud Security',
     defaultHeadline: 'We engineer resilient cloud infrastructure for mission-critical operations. Zero downtime, zero bloat.',
@@ -66,7 +66,7 @@ const ARCHETYPES: Record<WebsiteArchetype, ArchetypeConfig> = {
     labels: {
       name: 'Company / Firm Name',
       role: 'Core Industry / Domain',
-      headline: 'Clear Value Proposition (No Jargon)',
+      headline: 'Core Value Offer (No Jargon)',
       itemsHeader: '3 Core Capabilities / Services',
       itemTitle: 'Service / Offering',
       itemDesc: 'Business Outcome / Impact',
@@ -474,10 +474,7 @@ export const Slide22Activity02: React.FC = () => {
         <div className="flex items-center gap-2">
           <Code2 className="w-4 h-4 text-[#11100E]" />
           <span className="font-mono text-xs uppercase tracking-widest text-[#11100E] font-bold">
-            25 / Prompt Sandbox & Generator
-          </span>
-          <span className="text-[#77736B] text-xs font-mono hidden md:inline">
-            · {ARCHETYPES[activeArchetype].tagline}
+            26 / Prompt Sandbox & Generator
           </span>
         </div>
 
@@ -965,7 +962,7 @@ export const Slide22Activity02: React.FC = () => {
       {/* Slide Bottom Bar */}
       <div className="pt-1.5 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B] shrink-0">
         <span>Prompting with Taste: Business & Portfolio Archetypes + 2-Color Rule</span>
-        <span>25 / 28</span>
+        <span>26 / 29</span>
       </div>
     </div>
   );
