@@ -17,25 +17,27 @@ export const SLIDES_DATA: SlideMeta[] = [
   { id: 14, slug: 'motion', title: 'MOTION HAS PURPOSE', section: 'FUNDAMENTALS', tagline: 'Movement Should Explain, Not Distract' },
   { id: 15, slug: 'tactile', title: 'REAL TOUCH & SOUND', section: 'FUNDAMENTALS', tagline: 'Make Software Feel Alive' },
   { id: 16, slug: 'xy-experiment', title: 'POSITION & FEEL', section: 'FUNDAMENTALS', tagline: 'Every Touch Has a Place' },
-  { id: 17, slug: 'prompt-skills', title: 'PROMPTING WITH TASTE', section: 'BUILDING WITH AI', tagline: 'Better Words, Better Screens' },
-  { id: 18, slug: 'good-prompt', title: 'A GREAT PROMPT', section: 'BUILDING WITH AI', tagline: 'Clear Rules Beat Guesswork' },
-  { id: 19, slug: 'decisions', title: 'DECIDE FIRST, CODE SECOND', section: 'BUILDING WITH AI', tagline: 'Good Choices Beat More Code' },
-  { id: 20, slug: 'activity-01', title: 'ACTIVITY 01', section: 'ACTIVITY 01', tagline: 'Paper Sketch → Clean Prototype (60 Min)' },
-  { id: 21, slug: 'break', title: 'QUICK BREAK', section: 'BREAK', tagline: '15 Minutes to Recharge' },
-  { id: 22, slug: 'pipeline', title: 'BUILDING WITH AI', section: 'BUILDING WITH AI', tagline: 'Let the Machine Help You Ship' },
-  { id: 23, slug: 'activity-02', title: 'ACTIVITY 02', section: 'ACTIVITY 02', tagline: 'Prompt → Working App' },
-  { id: 24, slug: 'slop-audit', title: 'CHECKING YOUR WORK', section: 'WRAP-UP', tagline: 'Find the Flaws Before Users Do' },
-  { id: 25, slug: 'showcase', title: 'SHOWCASE', section: 'WRAP-UP', tagline: 'Show What You Made' },
-  { id: 26, slug: 'final', title: 'FINAL THOUGHT', section: 'WRAP-UP', tagline: "Don't Just Generate. Design." },
+  { id: 17, slug: 'single-scroll', title: 'SINGLE-SCROLL FLOW', section: 'FUNDAMENTALS', tagline: 'Momentum for Events & Portfolios' },
+  { id: 18, slug: 'multipage-business', title: 'MULTI-PAGE ARCHITECTURE', section: 'FUNDAMENTALS', tagline: 'Proportional Value Without UI Clutter' },
+  { id: 19, slug: 'prompt-skills', title: 'PROMPTING WITH TASTE', section: 'BUILDING WITH AI', tagline: 'Better Words, Better Screens' },
+  { id: 20, slug: 'good-prompt', title: 'A GREAT PROMPT', section: 'BUILDING WITH AI', tagline: 'Clear Rules Beat Guesswork' },
+  { id: 21, slug: 'decisions', title: 'DECIDE FIRST, CODE SECOND', section: 'BUILDING WITH AI', tagline: 'Good Choices Beat More Code' },
+  { id: 22, slug: 'activity-01', title: 'ACTIVITY 01', section: 'ACTIVITY 01', tagline: 'Paper Sketch → Clean Prototype (60 Min)' },
+  { id: 23, slug: 'break', title: 'QUICK BREAK', section: 'BREAK', tagline: '15 Minutes to Recharge' },
+  { id: 24, slug: 'pipeline', title: 'BUILDING WITH AI', section: 'BUILDING WITH AI', tagline: 'Let the Machine Help You Ship' },
+  { id: 25, slug: 'activity-02', title: 'ACTIVITY 02', section: 'ACTIVITY 02', tagline: 'Prompt → Working App' },
+  { id: 26, slug: 'slop-audit', title: 'CHECKING YOUR WORK', section: 'WRAP-UP', tagline: 'Find the Flaws Before Users Do' },
+  { id: 27, slug: 'showcase', title: 'SHOWCASE', section: 'WRAP-UP', tagline: 'Show What You Made' },
+  { id: 28, slug: 'final', title: 'FINAL THOUGHT', section: 'WRAP-UP', tagline: "Don't Just Generate. Design." },
 ];
 
 export const WORKSHOP_TIMELINE: WorkshopBlock[] = [
-  { time: '0:00 – 1:00', title: 'Design Fundamentals', slides: 'Slides 01–19', description: 'Typography, simple spacing, sound, colors, and clear prompts.' },
-  { time: '1:00 – 2:00', title: 'Activity 01: Paper to Screen', slides: 'Slide 20', description: 'Find a real problem, sketch the flow, and build a simple prototype.' },
-  { time: '2:00 – 2:15', title: 'Break', slides: 'Slide 21', description: '15 minutes to step away, rest your eyes, and grab a drink.' },
-  { time: '2:15 – 2:45', title: 'Building with AI', slides: 'Slide 22', description: 'Watch how clean prompts turn ideas into working code fast.' },
-  { time: '2:45 – 3:45', title: 'Activity 02: Prompt to Product', slides: 'Slide 23', description: 'Generate your app, test it in the browser, and polish every detail.' },
-  { time: '3:45 – 4:00', title: 'Showcase & Review', slides: 'Slides 24–26', description: 'Share what you built, review the work, and wrap up.' }
+  { time: '0:00 – 1:00', title: 'Design Fundamentals', slides: 'Slides 01–21', description: 'Typography, simple spacing, sound, colors, page architecture, and clear prompts.' },
+  { time: '1:00 – 2:00', title: 'Activity 01: Paper to Screen', slides: 'Slide 22', description: 'Find a real problem, sketch the flow, and build a simple prototype.' },
+  { time: '2:00 – 2:15', title: 'Break', slides: 'Slide 23', description: '15 minutes to step away, rest your eyes, and grab a drink.' },
+  { time: '2:15 – 2:45', title: 'Building with AI', slides: 'Slide 24', description: 'Watch how clean prompts turn ideas into working code fast.' },
+  { time: '2:45 – 3:45', title: 'Activity 02: Prompt to Product', slides: 'Slide 25', description: 'Generate your app, test it in the browser, and polish every detail.' },
+  { time: '3:45 – 4:00', title: 'Showcase & Review', slides: 'Slides 26–28', description: 'Share what you built, review the work, and wrap up.' }
 ];
 
 export const SPEAKER_PRODUCTS: ProductItem[] = [

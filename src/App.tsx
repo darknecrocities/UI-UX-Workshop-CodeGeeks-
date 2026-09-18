@@ -21,6 +21,8 @@ import { SlideGridSystem } from './slides/SlideGridSystem';
 import { Slide13Motion } from './slides/Slide13Motion';
 import { Slide14Tactile } from './slides/Slide14Tactile';
 import { Slide15XYExperiment } from './slides/Slide15XYExperiment';
+import { Slide16SingleScroll } from './slides/Slide16SingleScroll';
+import { Slide17MultiPageBiz } from './slides/Slide17MultiPageBiz';
 import { Slide16PromptSkills } from './slides/Slide16PromptSkills';
 import { Slide17GoodPrompt } from './slides/Slide17GoodPrompt';
 import { Slide18Decisions } from './slides/Slide18Decisions';
@@ -49,6 +51,8 @@ const SLIDE_COMPONENTS: React.ComponentType[] = [
   Slide13Motion,
   Slide14Tactile,
   Slide15XYExperiment,
+  Slide16SingleScroll,
+  Slide17MultiPageBiz,
   Slide16PromptSkills,
   Slide17GoodPrompt,
   Slide18Decisions,
