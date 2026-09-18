@@ -11,7 +11,7 @@ export const Slide02Speaker: React.FC = () => {
     { title: '8× Hackathons', subtitle: 'Champion' },
     { title: 'Shipaton 2026', subtitle: 'Winner' },
     { title: 'Top 11 in PH', subtitle: 'GitHub Rank' },
-    { title: 'GDG Campus Lead', subtitle: 'HAU Chapter' },
+    { title: 'Former GDG Lead', subtitle: 'Campus Chapter' },
   ];
 
   return (
@@ -40,7 +40,8 @@ export const Slide02Speaker: React.FC = () => {
             </h1>
             <p className="text-sm sm:text-base text-[#77736B] mt-1 font-medium">
               Founder @ <span className="text-[#11100E] font-semibold">DomoDomo</span> · ML Engineer @{' '}
-              <span className="text-[#11100E] font-semibold">FlyRank</span>
+              <span className="text-[#11100E] font-semibold">FlyRank</span> ·{' '}
+              <span className="text-[#11100E] font-semibold">Former GDG Campus Lead</span>
             </p>
           </div>
 
