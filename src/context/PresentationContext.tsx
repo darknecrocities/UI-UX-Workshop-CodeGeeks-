@@ -122,6 +122,7 @@ export const PresentationProvider: React.FC<{ children: React.ReactNode }> = ({ 
         currentSlug === 'tactile' ||
         currentSlug === 'multipage-business' ||
         currentSlug === 'single-scroll' ||
+        currentSlug === 'activity-02' ||
         Boolean((e.target as HTMLElement)?.closest?.('.prevent-space-nav'));
 
       if (e.key === 'ArrowRight' || e.key === 'PageDown' || (e.code === 'Space' && !disableSpaceNav)) {
