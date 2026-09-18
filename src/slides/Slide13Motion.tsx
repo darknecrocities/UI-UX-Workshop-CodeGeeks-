@@ -14,6 +14,7 @@ import {
   RotateCw,
   Wand2,
   Flashlight,
+  Play,
 } from 'lucide-react';
 
 /* ─────────────────────────────────────────────────────────────
@@ -73,6 +74,70 @@ interface MotionSpec {
   formula: string;
 }
 
+interface OrigamiFace {
+  id: number;
+  badge: string;
+  title: string;
+  subtitle: string;
+  metric: string;
+  bg: string;
+  border: string;
+  tagBg: string;
+  dotColor: string;
+  transform: string;
+}
+
+const ORIGAMI_FACES: OrigamiFace[] = [
+  {
+    id: 0,
+    badge: '01 // VELOCITY',
+    title: 'ISSUE PIPELINE',
+    subtitle: 'Linear Cadence & Sync',
+    metric: '42ms Latency · Realtime Sync',
+    bg: 'from-[#0F172A] via-[#1E1B4B] to-[#312E81]',
+    border: 'border-indigo-400/50',
+    tagBg: 'bg-indigo-500/20 text-indigo-200 border border-indigo-400/30',
+    dotColor: '#818CF8',
+    transform: 'rotateY(0deg) translateZ(100px)',
+  },
+  {
+    id: 1,
+    badge: '02 // COMPUTE',
+    title: 'SERVERLESS EDGE',
+    subtitle: 'Global Vercel Mesh',
+    metric: '0ms Cold Start · 32 Regions',
+    bg: 'from-[#022C22] via-[#064E3B] to-[#047857]',
+    border: 'border-emerald-400/50',
+    tagBg: 'bg-emerald-500/20 text-emerald-200 border border-emerald-400/30',
+    dotColor: '#34D399',
+    transform: 'rotateY(90deg) translateZ(100px)',
+  },
+  {
+    id: 2,
+    badge: '03 // LEDGER',
+    title: 'FINANCIAL ROUTE',
+    subtitle: 'Stripe Autonomous Books',
+    metric: '$2.4B Volume · 99.999% SLA',
+    bg: 'from-[#451A03] via-[#78350F] to-[#B45309]',
+    border: 'border-amber-400/50',
+    tagBg: 'bg-amber-500/20 text-amber-200 border border-amber-400/30',
+    dotColor: '#FBBF24',
+    transform: 'rotateY(180deg) translateZ(100px)',
+  },
+  {
+    id: 3,
+    badge: '04 // GRAPHICS',
+    title: 'METAL 3 SHADER',
+    subtitle: 'Apple 120 FPS Rasterizer',
+    metric: '120 FPS GPU · Metal API',
+    bg: 'from-[#18181B] via-[#27272A] to-[#3F3F46]',
+    border: 'border-slate-400/50',
+    tagBg: 'bg-slate-500/20 text-slate-200 border border-slate-400/30',
+    dotColor: '#E2E8F0',
+    transform: 'rotateY(270deg) translateZ(100px)',
+  },
+];
+
 /* ─────────────────────────────────────────────────────────────
    MAIN COMPONENT
 ───────────────────────────────────────────────────────────── */
@@ -94,6 +159,8 @@ export const Slide13Motion: React.FC = () => {
   const [isAutoSweep, setIsAutoSweep] = useState<boolean>(false);
   const [isWarpActive, setIsWarpActive] = useState<boolean>(false);
   const [cubeRotation, setCubeRotation] = useState<number>(0);
+  const [isCubeAutoRotate, setIsCubeAutoRotate] = useState<boolean>(false);
+  const [isCubeTilt, setIsCubeTilt] = useState<boolean>(true);
   const [portalOrigin, setPortalOrigin] = useState<{ x: number; y: number }>({ x: 50, y: 50 });
   const [isGlitching, setIsGlitching] = useState<boolean>(false);
   const [parallaxOffset, setParallaxOffset] = useState<number>(0);
@@ -404,7 +471,7 @@ export const Slide13Motion: React.FC = () => {
       setIsWarpActive(true);
       setTimeout(() => setIsWarpActive(false), 900 / speed);
     } else if (activeTransition === 'ORIGAMI_CUBE') {
-      setCubeRotation((r) => r + 90);
+      setCubeRotation((r) => r - 90);
     } else if (activeTransition === 'CYBER_GLITCH') {
       setIsGlitching(true);
       setTimeout(() => setIsGlitching(false), 700 / speed);
@@ -457,6 +524,25 @@ export const Slide13Motion: React.FC = () => {
     animId = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(animId);
   }, [isAutoSweep, activeTransition]);
+
+  // Auto-rotate effect for 3D Origami Cube
+  useEffect(() => {
+    if (!isCubeAutoRotate || activeTransition !== 'ORIGAMI_CUBE') return;
+    const interval = setInterval(() => {
+      setCubeRotation((r) => r - 90);
+    }, 2200 / speed);
+    return () => clearInterval(interval);
+  }, [isCubeAutoRotate, activeTransition, speed]);
+
+  const currentCubeFace = ((-Math.round(cubeRotation / 90) % 4) + 4) % 4;
+
+  const goToCubeFace = (targetIdx: number) => {
+    sound.playClick(1.2);
+    let diff = targetIdx - currentCubeFace;
+    if (diff > 2) diff -= 4;
+    if (diff < -2) diff += 4;
+    setCubeRotation((prev) => prev - diff * 90);
+  };
 
   // Portal wipe click
   const handlePortalClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -731,7 +817,7 @@ export const Slide13Motion: React.FC = () => {
             </div>
 
             {/* Live Interactive Transition Stage Canvas */}
-            <div className="my-auto py-3 flex items-center justify-center min-h-[220px] relative overflow-hidden">
+            <div className={`my-auto py-3 flex items-center justify-center min-h-[240px] relative ${activeTransition === 'ORIGAMI_CUBE' ? 'overflow-visible' : 'overflow-hidden'}`}>
               {/* 1. LIQUID COLOR MORPH */}
               {activeTransition === 'COLOR_SHIFT' && (
                 <div className="w-full max-w-md flex flex-col gap-3 font-mono">
@@ -1054,72 +1140,187 @@ export const Slide13Motion: React.FC = () => {
 
               {/* 6. 3D ORIGAMI CUBE */}
               {activeTransition === 'ORIGAMI_CUBE' && (
-                <div className="w-full max-w-sm h-48 flex flex-col items-center justify-center font-mono">
+                <div className="w-full flex flex-col items-center justify-center font-mono py-1 select-none">
+                  {/* 3D Perspective Stage */}
                   <div
                     style={{
-                      perspective: '1200px',
+                      perspective: '1100px',
+                      perspectiveOrigin: '50% 45%',
                     }}
-                    className="w-64 h-36 relative"
+                    className="w-[200px] h-[150px] relative flex items-center justify-center"
                   >
+                    {/* Rotating 3D Cuboid Box (Mounted continuously without key reset for smooth 60fps GPU transition) */}
                     <div
-                      key={transTriggerKey}
-                      style={{
-                        transformStyle: 'preserve-3d',
-                        transform: `rotateY(${cubeRotation}deg)`,
-                        transition: `transform ${500 / speed}ms cubic-bezier(0.16, 1, 0.3, 1)`,
+                      onClick={() => {
+                        sound.playTap();
+                        setCubeRotation((r) => r - 90);
                       }}
-                      className="w-full h-full relative"
+                      style={{
+                        width: '200px',
+                        height: '150px',
+                        position: 'relative',
+                        transformStyle: 'preserve-3d',
+                        transform: `rotateX(${isCubeTilt ? -14 : 0}deg) rotateY(${cubeRotation}deg)`,
+                        transition: `transform ${550 / speed}ms cubic-bezier(0.16, 1, 0.3, 1)`,
+                      }}
+                      className="cursor-pointer group"
+                      title="Click cube to rotate to next face (90°)"
                     >
-                      {/* Face 1: Obsidian Luxury */}
-                      <div
-                        style={{
-                          transform: 'translateZ(90px)',
-                          backfaceVisibility: 'hidden',
-                        }}
-                        className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#1E1B4B] to-[#312E81] text-white p-4 flex flex-col justify-between shadow-2xl border border-indigo-400/40"
-                      >
-                        <div className="flex justify-between text-[9px] text-indigo-300 font-bold">
-                          <span>FACE 01 / OBSIDIAN</span>
-                          <span>ROTATION 0°</span>
-                        </div>
-                        <div className="text-center text-lg font-black tracking-tight">
-                          3D VOLUMETRIC CUBE
-                        </div>
-                        <div className="text-[9px] text-indigo-200 text-center">
-                          Click button below to rotate face
-                        </div>
-                      </div>
+                      {/* 4 Lateral Origami Faces */}
+                      {ORIGAMI_FACES.map((face) => (
+                        <div
+                          key={face.id}
+                          style={{
+                            transform: face.transform,
+                            backfaceVisibility: 'hidden',
+                          }}
+                          className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${face.bg} text-white p-3.5 flex flex-col justify-between shadow-2xl ${face.border} border transition-all`}
+                        >
+                          {/* Origami diagonal fold sheen */}
+                          <div className="absolute inset-0 bg-gradient-to-tr from-white/12 via-transparent to-transparent pointer-events-none rounded-2xl" />
 
-                      {/* Face 2: Neon Cyber Emerald */}
+                          <div className="relative z-10 flex items-center justify-between">
+                            <span className={`px-2 py-0.5 rounded text-[8px] font-mono font-bold tracking-wider uppercase ${face.tagBg}`}>
+                              {face.badge}
+                            </span>
+                            <span
+                              className="w-2 h-2 rounded-full"
+                              style={{ background: face.dotColor, boxShadow: `0 0 8px ${face.dotColor}` }}
+                            />
+                          </div>
+
+                          <div className="relative z-10 text-center my-auto">
+                            <div className="text-base font-black tracking-tight leading-tight uppercase drop-shadow-sm">
+                              {face.title}
+                            </div>
+                            <div className="text-[9px] text-white/80 font-mono mt-0.5">
+                              {face.subtitle}
+                            </div>
+                          </div>
+
+                          <div className="relative z-10 flex items-center justify-between text-[8px] font-mono text-white/70 border-t border-white/10 pt-1.5">
+                            <span>{face.metric}</span>
+                            <span className="font-bold text-white/90">FACE #{face.id + 1}</span>
+                          </div>
+                        </div>
+                      ))}
+
+                      {/* Top Lid: Origami Folded Cap */}
                       <div
                         style={{
-                          transform: 'rotateY(90deg) translateZ(90px)',
+                          width: '200px',
+                          height: '200px',
+                          position: 'absolute',
+                          left: '0',
+                          top: '-25px',
+                          transform: 'rotateX(90deg) translateZ(75px)',
                           backfaceVisibility: 'hidden',
                         }}
-                        className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#064E3B] to-[#047857] text-white p-4 flex flex-col justify-between shadow-2xl border border-emerald-400/40"
+                        className="rounded-2xl bg-[#090D16] border border-white/15 flex items-center justify-center p-2 shadow-inner"
                       >
-                        <div className="flex justify-between text-[9px] text-emerald-300 font-bold">
-                          <span>FACE 02 / CYBER</span>
-                          <span>ROTATION 90°</span>
-                        </div>
-                        <div className="text-center text-lg font-black tracking-tight">
-                          GEOMETRIC PERSPECTIVE
-                        </div>
-                        <div className="text-[9px] text-emerald-200 text-center">
-                          Zero distortion 3D matrix math
+                        <div className="w-full h-full rounded-xl border border-dashed border-white/20 flex flex-col items-center justify-center text-[8px] font-mono text-slate-400 bg-gradient-to-br from-white/5 to-transparent">
+                          <span className="text-amber-300 font-bold">✦ ORIGAMI 3D AXIS ✦</span>
+                          <span className="text-[7px] text-slate-500 mt-0.5">VOLUMETRIC FOLD</span>
                         </div>
                       </div>
                     </div>
+
+                    {/* Bottom Ground Ambient Contact Shadow */}
+                    <div
+                      style={{
+                        position: 'absolute',
+                        bottom: '-24px',
+                        left: '50%',
+                        width: '180px',
+                        height: '20px',
+                        transform: 'translateX(-50%)',
+                        borderRadius: '100%',
+                        background: 'radial-gradient(ellipse, rgba(0,0,0,0.40) 0%, rgba(0,0,0,0.12) 50%, transparent 70%)',
+                        filter: 'blur(5px)',
+                      }}
+                      className="pointer-events-none"
+                    />
                   </div>
 
-                  <div className="mt-3 flex gap-2">
-                    <button
-                      onClick={triggerTransition}
-                      className="px-4 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold cursor-pointer shadow-md active:scale-95 flex items-center gap-1"
-                    >
-                      <RotateCw className="w-3 h-3" />
-                      <span>Rotate Cube 90° (Current: {cubeRotation}°)</span>
-                    </button>
+                  {/* Interactive Controls Bar */}
+                  <div className="mt-5 flex flex-col items-center gap-2 w-full max-w-md">
+                    {/* Face Quick Selector Tabs */}
+                    <div className="flex items-center gap-1 bg-slate-900/90 p-1 rounded-xl border border-slate-700 shadow-md">
+                      {ORIGAMI_FACES.map((f) => (
+                        <button
+                          key={f.id}
+                          onClick={() => goToCubeFace(f.id)}
+                          className={`px-2.5 py-1 rounded-lg text-[9px] font-mono font-bold transition-all cursor-pointer ${
+                            currentCubeFace === f.id
+                              ? 'bg-amber-500 text-black shadow-sm'
+                              : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                          }`}
+                        >
+                          Face {f.id + 1}: {f.title.split(' ')[0]}
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Action Controls: Prev, Next, Auto-Rotate, 3D Tilt */}
+                    <div className="flex flex-wrap items-center justify-center gap-2 text-[10px] font-mono">
+                      <button
+                        onClick={() => {
+                          sound.playClick(1.1);
+                          setCubeRotation((r) => r + 90);
+                        }}
+                        className="px-3 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg border border-slate-600 cursor-pointer shadow-xs active:scale-95 flex items-center gap-1"
+                      >
+                        <span>← Prev (90°)</span>
+                      </button>
+
+                      <button
+                        onClick={() => {
+                          sound.playTap();
+                          setCubeRotation((r) => r - 90);
+                        }}
+                        className="px-3.5 py-1 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-bold cursor-pointer shadow-sm active:scale-95 flex items-center gap-1.5"
+                      >
+                        <RotateCw className="w-3 h-3" />
+                        <span>Flip Next (90° →)</span>
+                      </button>
+
+                      <button
+                        onClick={() => {
+                          sound.playClick(1.2);
+                          setIsCubeAutoRotate((a) => !a);
+                        }}
+                        className={`px-2.5 py-1 rounded-lg cursor-pointer transition-all flex items-center gap-1 border ${
+                          isCubeAutoRotate
+                            ? 'bg-amber-500 text-black border-amber-400 font-bold'
+                            : 'bg-slate-800 text-amber-300 border-amber-500/30 hover:bg-slate-700'
+                        }`}
+                      >
+                        <Play className={`w-2.5 h-2.5 ${isCubeAutoRotate ? 'fill-current' : ''}`} />
+                        <span>{isCubeAutoRotate ? 'AUTO: ON' : 'AUTO-FLIP'}</span>
+                      </button>
+
+                      <button
+                        onClick={() => {
+                          sound.playClick(1.0);
+                          setIsCubeTilt((t) => !t);
+                        }}
+                        className={`px-2.5 py-1 rounded-lg cursor-pointer transition-all border ${
+                          isCubeTilt
+                            ? 'bg-slate-700 text-white border-slate-500 font-bold'
+                            : 'bg-slate-800 text-slate-400 border-slate-700 hover:text-white'
+                        }`}
+                      >
+                        <span>3D TILT: {isCubeTilt ? '-14°' : '0°'}</span>
+                      </button>
+                    </div>
+
+                    <div className="text-[9px] text-slate-500 font-mono flex items-center gap-2">
+                      <span>ROTATION: {cubeRotation}°</span>
+                      <span>·</span>
+                      <span className="text-amber-600 font-bold">ACTIVE: FACE #{currentCubeFace + 1} ({ORIGAMI_FACES[currentCubeFace].title})</span>
+                      <span>·</span>
+                      <span>CLICK CUBE OR USE BUTTONS</span>
+                    </div>
                   </div>
                 </div>
               )}
