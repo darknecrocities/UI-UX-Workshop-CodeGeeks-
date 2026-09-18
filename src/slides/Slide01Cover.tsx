@@ -10,10 +10,9 @@ export const Slide01Cover: React.FC = () => {
     <div className="w-full h-full flex flex-col justify-between p-6 sm:p-12 md:p-14 max-w-7xl mx-auto select-none">
       {/* Top micro metadata */}
       <div className="flex items-center justify-between border-b border-[#11100E]/15 pb-4 font-mono text-xs text-[#77736B]">
-        <div className="flex items-center gap-2">
-          <span className="inline-block w-2 h-2 rounded-full bg-[#11100E]" />
-          <span className="tracking-widest uppercase font-bold text-[#11100E]">4-HOUR WORKSHOP</span>
-        </div>
+        <span className="font-mono text-xs uppercase tracking-widest text-[#77736B]">
+          01 / Keynote
+        </span>
         <span className="tracking-wider">DESIGN BETTER · SHIP BETTER</span>
       </div>
 
