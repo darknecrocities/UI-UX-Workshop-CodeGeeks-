@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { sound } from '../audio/sound';
 import {
   Zap,
@@ -13,6 +13,7 @@ import {
   Sparkles,
   RotateCw,
   Wand2,
+  Flashlight,
 } from 'lucide-react';
 
 /* ─────────────────────────────────────────────────────────────
@@ -88,8 +89,9 @@ export const Slide13Motion: React.FC = () => {
 
   // Transition Specific States
   const [colorPaletteIdx, setColorPaletteIdx] = useState<number>(0);
-  const [spotlightPos, setSpotlightPos] = useState<{ x: number; y: number }>({ x: 180, y: 120 });
-  const [spotlightRadius, setSpotlightRadius] = useState<number>(120);
+  const [spotlightPos, setSpotlightPos] = useState<{ x: number; y: number }>({ x: 280, y: 110 });
+  const [spotlightRadius, setSpotlightRadius] = useState<number>(150);
+  const [isAutoSweep, setIsAutoSweep] = useState<boolean>(false);
   const [isWarpActive, setIsWarpActive] = useState<boolean>(false);
   const [cubeRotation, setCubeRotation] = useState<number>(0);
   const [portalOrigin, setPortalOrigin] = useState<{ x: number; y: number }>({ x: 50, y: 50 });
@@ -428,15 +430,33 @@ export const Slide13Motion: React.FC = () => {
     }
   };
 
-  // Spotlight mouse handler
-  const handleSpotlightMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  // Spotlight mouse/pointer handler
+  const handleSpotlightMove = (e: React.MouseEvent<HTMLDivElement> | React.PointerEvent<HTMLDivElement>) => {
     if (!spotlightContainerRef.current) return;
     const rect = spotlightContainerRef.current.getBoundingClientRect();
     setSpotlightPos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
+      x: Math.round(e.clientX - rect.left),
+      y: Math.round(e.clientY - rect.top),
     });
   };
+
+  // Auto-sweep effect when enabled
+  useEffect(() => {
+    if (!isAutoSweep || activeTransition !== 'POLKADOT_SPOTLIGHT') return;
+    let animId: number;
+    const start = performance.now();
+    const animate = (now: number) => {
+      const elapsed = (now - start) / 1000;
+      const width = spotlightContainerRef.current?.clientWidth || 560;
+      const height = spotlightContainerRef.current?.clientHeight || 240;
+      const x = width / 2 + Math.sin(elapsed * 1.5) * (width * 0.32);
+      const y = height / 2 + Math.cos(elapsed * 1.1) * (height * 0.2);
+      setSpotlightPos({ x: Math.round(x), y: Math.round(y) });
+      animId = requestAnimationFrame(animate);
+    };
+    animId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animId);
+  }, [isAutoSweep, activeTransition]);
 
   // Portal wipe click
   const handlePortalClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -772,76 +792,140 @@ export const Slide13Motion: React.FC = () => {
                 </div>
               )}
 
-              {/* 2. POLKADOT SPOTLIGHT */}
+              {/* 2. POLKADOT SPOTLIGHT / OPTICAL FLASHLIGHT REVEAL */}
               {activeTransition === 'POLKADOT_SPOTLIGHT' && (
                 <div
                   ref={spotlightContainerRef}
                   onMouseMove={handleSpotlightMove}
-                  className="w-full h-52 rounded-2xl bg-[#0F172A] relative overflow-hidden cursor-crosshair border border-slate-700 select-none"
+                  onPointerMove={handleSpotlightMove}
+                  className="w-full h-56 rounded-2xl bg-[#060911] relative overflow-hidden cursor-crosshair border border-amber-900/40 select-none shadow-2xl"
                 >
-                  {/* Subtle ambient polka dots across background */}
+                  {/* Layer 1: Ambient Darkness with subtle, dim dormant grey dots */}
                   <div
-                    className="absolute inset-0 opacity-25 pointer-events-none"
+                    className="absolute inset-0 pointer-events-none opacity-20"
                     style={{
-                      backgroundImage: 'radial-gradient(#94A3B8 1px, transparent 1px)',
-                      backgroundSize: '16px 16px',
+                      backgroundImage: 'radial-gradient(#475569 1.5px, transparent 1.5px)',
+                      backgroundSize: '18px 18px',
                     }}
                   />
 
-                  {/* Interactive Spotlight beam circle following mouse */}
+                  {/* Layer 2: Flashlight Ambient Light Projection (Smooth full-canvas radial wash with soft feathered edge fade) */}
                   <div
-                    className="absolute rounded-full pointer-events-none transition-all duration-75"
+                    className="absolute inset-0 pointer-events-none transition-opacity duration-150"
+                    style={{
+                      background: `radial-gradient(circle ${spotlightRadius * 1.35}px at ${spotlightPos.x}px ${spotlightPos.y}px,
+                        rgba(251, 191, 36, 0.40) 0%,
+                        rgba(245, 158, 11, 0.25) 28%,
+                        rgba(217, 119, 6, 0.12) 52%,
+                        rgba(180, 83, 9, 0.04) 75%,
+                        rgba(120, 53, 15, 0.01) 90%,
+                        transparent 100%)`,
+                    }}
+                  />
+
+                  {/* Flashlight Optical Diode Center (Hotspot filament) */}
+                  <div
                     style={{
                       left: `${spotlightPos.x}px`,
                       top: `${spotlightPos.y}px`,
-                      width: `${spotlightRadius * 2}px`,
-                      height: `${spotlightRadius * 2}px`,
-                      transform: 'translate(-50%, -50%)',
-                      background: 'radial-gradient(circle, rgba(245, 158, 11, 0.4) 0%, rgba(245, 158, 11, 0.15) 50%, transparent 70%)',
-                      boxShadow: '0 0 45px rgba(245, 158, 11, 0.3)',
                     }}
+                    className="absolute w-3 h-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white pointer-events-none shadow-[0_0_20px_6px_#FDE68A]"
                   />
 
-                  {/* Luminous scaled golden dots inside spotlight radius */}
+                  {/* Layer 3: THE SECRET REVEALED UNDER THE FLASHLIGHT (Masked with ultra-soft feathered gaussian edge fade) */}
                   <div
                     className="absolute inset-0 pointer-events-none"
                     style={{
-                      backgroundImage: 'radial-gradient(#F59E0B 2.5px, transparent 2.5px)',
-                      backgroundSize: '16px 16px',
-                      maskImage: `radial-gradient(circle at ${spotlightPos.x}px ${spotlightPos.y}px, black ${spotlightRadius * 0.7}px, transparent ${spotlightRadius}px)`,
-                      WebkitMaskImage: `radial-gradient(circle at ${spotlightPos.x}px ${spotlightPos.y}px, black ${spotlightRadius * 0.7}px, transparent ${spotlightRadius}px)`,
+                      maskImage: `radial-gradient(circle ${spotlightRadius}px at ${spotlightPos.x}px ${spotlightPos.y}px,
+                        rgba(0, 0, 0, 1) 0%,
+                        rgba(0, 0, 0, 0.95) 28%,
+                        rgba(0, 0, 0, 0.65) 55%,
+                        rgba(0, 0, 0, 0.28) 78%,
+                        rgba(0, 0, 0, 0.06) 92%,
+                        transparent 100%)`,
+                      WebkitMaskImage: `radial-gradient(circle ${spotlightRadius}px at ${spotlightPos.x}px ${spotlightPos.y}px,
+                        rgba(0, 0, 0, 1) 0%,
+                        rgba(0, 0, 0, 0.95) 28%,
+                        rgba(0, 0, 0, 0.65) 55%,
+                        rgba(0, 0, 0, 0.28) 78%,
+                        rgba(0, 0, 0, 0.06) 92%,
+                        transparent 100%)`,
                     }}
-                  />
-
-                  {/* Secret illuminated headline revealed inside spotlight */}
-                  <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none font-mono text-center px-6">
+                  >
+                    {/* A. Luminous Glowing Golden Polkadot Matrix revealed by beam */}
                     <div
-                      className="text-xl sm:text-2xl font-black text-white tracking-widest uppercase transition-opacity duration-200"
+                      className="absolute inset-0"
                       style={{
-                        textShadow: '0 0 16px #F59E0B',
-                        maskImage: `radial-gradient(circle at ${spotlightPos.x}px ${spotlightPos.y}px, black ${spotlightRadius * 0.7}px, transparent ${spotlightRadius}px)`,
-                        WebkitMaskImage: `radial-gradient(circle at ${spotlightPos.x}px ${spotlightPos.y}px, black ${spotlightRadius * 0.7}px, transparent ${spotlightRadius}px)`,
+                        backgroundImage: 'radial-gradient(#FBBF24 2.8px, transparent 2.8px)',
+                        backgroundSize: '18px 18px',
                       }}
-                    >
-                      TASTE OVER AUTOMATION
-                    </div>
-                    <div className="text-[10px] text-amber-300 font-mono mt-1 opacity-90">
-                      Glide cursor across canvas to reveal illuminated polkadot spotlight
+                    />
+
+                    {/* B. Hidden Hero Typography & Craft Artwork revealed in the flashlight */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center font-mono text-center px-4">
+                      <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-amber-400/25 border border-amber-300/50 text-amber-200 text-[10px] font-bold tracking-widest uppercase mb-1.5 shadow-[0_0_16px_rgba(245,158,11,0.5)]">
+                        <Flashlight className="w-3.5 h-3.5 text-amber-300 animate-pulse" />
+                        <span>FLASHLIGHT OPTICAL REVEAL</span>
+                      </div>
+                      <div className="text-2xl sm:text-3xl font-black text-white tracking-tight leading-none uppercase drop-shadow-[0_2px_24px_rgba(245,158,11,0.85)]">
+                        TASTE OVER AUTOMATION
+                      </div>
+                      <div className="text-xs sm:text-sm text-amber-300 font-bold tracking-wider mt-1.5 uppercase drop-shadow">
+                        ✦ CRAFT BECOMES UNDENIABLE IN THE LIGHT ✦
+                      </div>
+                      <p className="text-[11px] text-amber-100/90 max-w-md mt-1 leading-relaxed drop-shadow">
+                        Sweep flashlight across darkness to reveal hidden typography, grid alignment & intention.
+                      </p>
                     </div>
                   </div>
 
-                  {/* Beam Controls */}
-                  <div className="absolute bottom-2 right-3 flex items-center gap-2 text-[9px] font-mono text-slate-400">
-                    <span>BEAM SIZE:</span>
-                    {[80, 130, 180].map((r) => (
+                  {/* Flashlight Controls Overlay Bar */}
+                  <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between text-[9px] font-mono text-slate-300 z-10">
+                    <div className="flex items-center gap-2">
+                      <span className="text-amber-400 font-bold flex items-center gap-1">
+                        <Flashlight className="w-3 h-3" />
+                        <span>FLASHLIGHT: {spotlightPos.x}px, {spotlightPos.y}px</span>
+                      </span>
+                      <span className="hidden sm:inline text-slate-500">·</span>
+                      <span className="hidden sm:inline text-slate-400">SOFT FEATHER FALLOFF</span>
+                    </div>
+
+                    <div className="flex items-center gap-2">
                       <button
-                        key={r}
-                        onClick={() => setSpotlightRadius(r)}
-                        className={`px-1.5 py-0.5 rounded cursor-pointer ${spotlightRadius === r ? 'bg-amber-500 text-black font-bold' : 'bg-slate-800'}`}
+                        onClick={() => {
+                          sound.playClick(1.2);
+                          setIsAutoSweep((s) => !s);
+                        }}
+                        className={`px-2 py-0.5 rounded cursor-pointer transition-all flex items-center gap-1 ${
+                          isAutoSweep
+                            ? 'bg-amber-500 text-black font-black shadow-sm'
+                            : 'bg-slate-800/80 text-amber-300 border border-amber-500/30 hover:bg-slate-700'
+                        }`}
                       >
-                        {r}px
+                        <RotateCw className={`w-2.5 h-2.5 ${isAutoSweep ? 'animate-spin' : ''}`} />
+                        <span>{isAutoSweep ? 'SWEEPING...' : 'AUTO-SWEEP'}</span>
                       </button>
-                    ))}
+
+                      <div className="flex items-center gap-1 bg-slate-900/80 p-0.5 rounded border border-slate-700">
+                        <span className="px-1 text-slate-400">BEAM:</span>
+                        {[100, 150, 210].map((r) => (
+                          <button
+                            key={r}
+                            onClick={() => {
+                              sound.playClick(1.1);
+                              setSpotlightRadius(r);
+                            }}
+                            className={`px-1.5 py-0.5 rounded cursor-pointer transition-all ${
+                              spotlightRadius === r
+                                ? 'bg-amber-500 text-black font-bold'
+                                : 'text-slate-400 hover:text-white'
+                            }`}
+                          >
+                            {r}px
+                          </button>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
               )}
