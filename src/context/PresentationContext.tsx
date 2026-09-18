@@ -117,7 +117,14 @@ export const PresentationProvider: React.FC<{ children: React.ReactNode }> = ({ 
         return;
       }
 
-      if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.code === 'Space') {
+      const currentSlug = SLIDES_DATA[currentSlide]?.slug;
+      const disableSpaceNav =
+        currentSlug === 'tactile' ||
+        currentSlug === 'multipage-business' ||
+        currentSlug === 'single-scroll' ||
+        Boolean((e.target as HTMLElement)?.closest?.('.prevent-space-nav'));
+
+      if (e.key === 'ArrowRight' || e.key === 'PageDown' || (e.code === 'Space' && !disableSpaceNav)) {
         e.preventDefault();
         nextSlide();
       } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
@@ -138,7 +145,7 @@ export const PresentationProvider: React.FC<{ children: React.ReactNode }> = ({ 
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [nextSlide, prevSlide, toggleOverview, scheduleOpen, toggleFullscreen]);
+  }, [currentSlide, nextSlide, prevSlide, toggleOverview, scheduleOpen, toggleFullscreen]);
 
   // Trackpad / Wheel gesture
   useEffect(() => {

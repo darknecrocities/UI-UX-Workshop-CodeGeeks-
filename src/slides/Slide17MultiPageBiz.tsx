@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { sound } from '../audio/sound';
 import {
   Building2,
@@ -16,6 +16,18 @@ type ViewMode = 'CLEAN' | 'MESSY';
 export const Slide17MultiPageBiz: React.FC = () => {
   const [activeVisitor, setActiveVisitor] = useState<VisitorType>('CUSTOMER');
   const [viewMode, setViewMode] = useState<ViewMode>('CLEAN');
+
+  // Prevent spacebar from advancing slide on Slide 18
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.code === 'Space') {
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown, { capture: true });
+    return () => window.removeEventListener('keydown', handleKeyDown, { capture: true });
+  }, []);
 
   const visitors = [
     {

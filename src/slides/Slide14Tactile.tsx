@@ -126,21 +126,30 @@ export const Slide14Tactile: React.FC = () => {
   // Listen to actual physical computer keyboard events
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
-      // Don't intercept slide navigation keys like ArrowRight/Left or Space if modifier is pressed
+      // Don't intercept if typing in standard inputs
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+
+      if (e.code === 'Space') {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        handleKeyPress('Space', 'SPACEBAR');
+        return;
+      }
 
       const matchedKey = rows.flat().find((k) => k.code === e.code);
       if (matchedKey) {
-        // Prevent default browser scrolling on space/arrows inside keyboard testing
-        if (['Space', 'ArrowUp', 'ArrowDown'].includes(e.code)) {
+        if (['ArrowUp', 'ArrowDown', 'Backspace', 'Tab'].includes(e.code)) {
           e.preventDefault();
+          e.stopPropagation();
+          e.stopImmediatePropagation();
         }
         handleKeyPress(matchedKey.code, matchedKey.label);
       }
     };
 
-    window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
+    window.addEventListener('keydown', onKeyDown, { capture: true });
+    return () => window.removeEventListener('keydown', onKeyDown, { capture: true });
   }, [handleKeyPress]);
 
   return (
