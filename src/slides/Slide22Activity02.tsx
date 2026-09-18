@@ -16,6 +16,7 @@ import {
   User,
   Layers,
   Calendar,
+  Sliders,
 } from 'lucide-react';
 
 type WebsiteArchetype = 'business' | 'portfolio' | 'saas' | 'event';
@@ -221,16 +222,16 @@ const COLOR_PALETTES: ColorRulePalette[] = [
     textHex: '#0B132B',
     borderHex: '#E5E7EB',
     accentHex: '#2563EB',
-    desc: '90% clean architectural chalk, 10% midnight navy, cobalt accent',
+    desc: '90% clean architectural chalk, 10% midnight navy, cobalt signal',
   },
   {
     id: 'sand-bronze',
-    name: 'Sandstone & Bronze',
+    name: 'Sandstone & Earth Bronze',
     bgHex: '#EFECE6',
     textHex: '#1C1917',
     borderHex: '#DCD7CE',
     accentHex: '#854D0E',
-    desc: '90% warm sandstone, 10% stone black, warm bronze micro-accents',
+    desc: '90% warm sandstone, 10% stone black, earth bronze accents',
   },
   {
     id: 'obsidian-bone',
@@ -240,6 +241,78 @@ const COLOR_PALETTES: ColorRulePalette[] = [
     borderHex: '#262420',
     accentHex: '#F59E0B',
     desc: '90% obsidian charcoal, 10% crisp bone white, amber signal',
+  },
+  {
+    id: 'sage-pine',
+    name: 'Muted Sage & Deep Pine',
+    bgHex: '#EDF1ED',
+    textHex: '#12211A',
+    borderHex: '#D5DDD6',
+    accentHex: '#2D6A4F',
+    desc: '90% organic pale sage, 10% pine graphite, forest badge',
+  },
+  {
+    id: 'clay-espresso',
+    name: 'Warm Clay & Dark Espresso',
+    bgHex: '#F7F2EB',
+    textHex: '#1F1612',
+    borderHex: '#E7DFD4',
+    accentHex: '#B45309',
+    desc: '90% Tuscan clay, 10% roasted espresso, warm ochre highlight',
+  },
+  {
+    id: 'concrete-amber',
+    name: 'Concrete & Industrial Amber',
+    bgHex: '#ECEEF0',
+    textHex: '#12161A',
+    borderHex: '#D7DBDF',
+    accentHex: '#D97706',
+    desc: '90% ash gray concrete, 10% industrial iron, signal amber',
+  },
+  {
+    id: 'dusk-cyan',
+    name: 'Dusk Slate & Ice Cyan (Dark)',
+    bgHex: '#16181D',
+    textHex: '#F0F4F8',
+    borderHex: '#282C34',
+    accentHex: '#0EA5E9',
+    desc: '90% deep dusk velvet, 10% ice white, electric cyan focus',
+  },
+  {
+    id: 'alabaster-indigo',
+    name: 'Alabaster & Japanese Indigo',
+    bgHex: '#FAF8F5',
+    textHex: '#162035',
+    borderHex: '#E4DFD7',
+    accentHex: '#3B82F6',
+    desc: '90% soft alabaster, 10% sumi indigo, ultramarine focus',
+  },
+  {
+    id: 'linen-bordeaux',
+    name: 'French Linen & Bordeaux',
+    bgHex: '#F6F4F0',
+    textHex: '#291318',
+    borderHex: '#E6E0D6',
+    accentHex: '#BE123C',
+    desc: '90% French linen, 10% bordeaux wine, ruby pulse',
+  },
+  {
+    id: 'terminal-mint',
+    name: 'Pitch Black & Phosphor Mint (Dark)',
+    bgHex: '#0A0A0A',
+    textHex: '#EEEEEE',
+    borderHex: '#222222',
+    accentHex: '#10B981',
+    desc: '90% pure terminal pitch, 10% off-white, mint indicator',
+  },
+  {
+    id: 'swiss-monochrome',
+    name: 'Pure Swiss Monochrome & Red',
+    bgHex: '#FFFFFF',
+    textHex: '#000000',
+    borderHex: '#E0E0E0',
+    accentHex: '#E11D48',
+    desc: '90% stark white, 10% pure carbon ink, crimson dot',
   },
 ];
 
@@ -402,18 +475,54 @@ export const Slide22Activity02: React.FC = () => {
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;
 
+  const [isCustomColor, setIsCustomColor] = useState<boolean>(false);
+  const [customColors, setCustomColors] = useState({
+    bgHex: '#F5F1E8',
+    textHex: '#11100E',
+    borderHex: '#E2DDD5',
+    accentHex: '#C86432',
+  });
+
   const currentFont = useMemo(
     () => FONT_PAIRINGS.find((f) => f.id === selectedFontId) || FONT_PAIRINGS[0],
     [selectedFontId]
   );
-  const currentColor = useMemo(
-    () => COLOR_PALETTES.find((c) => c.id === selectedColorId) || COLOR_PALETTES[0],
-    [selectedColorId]
-  );
+  const currentColor = useMemo<ColorRulePalette>(() => {
+    if (isCustomColor) {
+      return {
+        id: 'custom',
+        name: 'Custom 2-Color Rule',
+        bgHex: customColors.bgHex,
+        textHex: customColors.textHex,
+        borderHex: customColors.borderHex,
+        accentHex: customColors.accentHex,
+        desc: 'Customized canvas background, primary contrast ink, and functional accent',
+      };
+    }
+    return COLOR_PALETTES.find((c) => c.id === selectedColorId) || COLOR_PALETTES[0];
+  }, [isCustomColor, customColors, selectedColorId]);
+
   const currentAnim = useMemo(
     () => ANIMATIONS.find((a) => a.id === selectedAnimId) || ANIMATIONS[0],
     [selectedAnimId]
   );
+
+  const handleSelectPresetColor = (palette: ColorRulePalette) => {
+    sound.playClick(1.1);
+    setIsCustomColor(false);
+    setSelectedColorId(palette.id);
+    setCustomColors({
+      bgHex: palette.bgHex,
+      textHex: palette.textHex,
+      borderHex: palette.borderHex,
+      accentHex: palette.accentHex,
+    });
+  };
+
+  const handleCustomColorChange = (key: 'bgHex' | 'textHex' | 'borderHex' | 'accentHex', val: string) => {
+    setIsCustomColor(true);
+    setCustomColors((prev) => ({ ...prev, [key]: val }));
+  };
 
   // Initialize prompt on load or archetype switch
   useEffect(() => {
@@ -746,18 +855,15 @@ export const Slide22Activity02: React.FC = () => {
                     <Palette className="w-3 h-3 text-[#C86432]" />
                     THE 2-COLOR RULE (CANVAS & INK)
                   </span>
-                  <span className="text-[9px] text-[#77736B]">90% / 10% Ratio</span>
+                  <span className="text-[9px] text-[#77736B]">12 Curated Styles + Custom</span>
                 </div>
-                <div className="grid grid-cols-2 gap-1.5">
+                <div className="grid grid-cols-2 gap-1.5 max-h-48 overflow-y-auto p-0.5 border border-[#11100E]/10 rounded-lg bg-[#EAE5DA]/50 prevent-slide-wheel">
                   {COLOR_PALETTES.map((c) => {
-                    const isSelected = selectedColorId === c.id;
+                    const isSelected = !isCustomColor && selectedColorId === c.id;
                     return (
                       <button
                         key={c.id}
-                        onClick={() => {
-                          sound.playClick(1.1);
-                          setSelectedColorId(c.id);
-                        }}
+                        onClick={() => handleSelectPresetColor(c)}
                         className={`p-2 rounded-lg border text-left cursor-pointer transition-all ${
                           isSelected
                             ? 'border-[#11100E] bg-[#11100E] text-[#F5F1E8] shadow-sm'
@@ -790,6 +896,112 @@ export const Slide22Activity02: React.FC = () => {
                       </button>
                     );
                   })}
+                </div>
+
+                {/* Custom 2-Color Rule Creator */}
+                <div className="mt-2 p-2 rounded-lg border border-[#11100E]/20 bg-white/70 space-y-1.5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-bold uppercase text-[#11100E] flex items-center gap-1">
+                      <Sliders className="w-3 h-3 text-[#11100E]" />
+                      CUSTOMIZE 2-COLOR PALETTE
+                    </span>
+                    {isCustomColor ? (
+                      <span className="px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-700 font-bold text-[9px] font-mono">
+                        ✓ ACTIVE CUSTOM
+                      </span>
+                    ) : (
+                      <span className="text-[9px] text-[#77736B] font-mono">
+                        Edit hex or pick below
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-1.5">
+                    {/* Canvas / Background */}
+                    <div>
+                      <label className="block text-[8px] uppercase text-[#77736B] font-bold mb-0.5">
+                        Canvas (90%)
+                      </label>
+                      <div className="flex items-center gap-1 border border-[#11100E]/20 rounded px-1.5 py-0.5 bg-white">
+                        <input
+                          type="color"
+                          value={customColors.bgHex}
+                          onChange={(e) => handleCustomColorChange('bgHex', e.target.value)}
+                          className="w-3.5 h-3.5 rounded border-0 cursor-pointer p-0 shrink-0"
+                          title="Pick Canvas Color"
+                        />
+                        <input
+                          type="text"
+                          value={customColors.bgHex}
+                          onChange={(e) => handleCustomColorChange('bgHex', e.target.value)}
+                          className="w-full text-[10px] font-mono text-[#11100E] outline-none prevent-space-nav"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Ink / Typography */}
+                    <div>
+                      <label className="block text-[8px] uppercase text-[#77736B] font-bold mb-0.5">
+                        Ink (10%)
+                      </label>
+                      <div className="flex items-center gap-1 border border-[#11100E]/20 rounded px-1.5 py-0.5 bg-white">
+                        <input
+                          type="color"
+                          value={customColors.textHex}
+                          onChange={(e) => handleCustomColorChange('textHex', e.target.value)}
+                          className="w-3.5 h-3.5 rounded border-0 cursor-pointer p-0 shrink-0"
+                          title="Pick Ink Color"
+                        />
+                        <input
+                          type="text"
+                          value={customColors.textHex}
+                          onChange={(e) => handleCustomColorChange('textHex', e.target.value)}
+                          className="w-full text-[10px] font-mono text-[#11100E] outline-none prevent-space-nav"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Functional Accent */}
+                    <div>
+                      <label className="block text-[8px] uppercase text-[#77736B] font-bold mb-0.5">
+                        Accent (1%)
+                      </label>
+                      <div className="flex items-center gap-1 border border-[#11100E]/20 rounded px-1.5 py-0.5 bg-white">
+                        <input
+                          type="color"
+                          value={customColors.accentHex}
+                          onChange={(e) => handleCustomColorChange('accentHex', e.target.value)}
+                          className="w-3.5 h-3.5 rounded border-0 cursor-pointer p-0 shrink-0"
+                          title="Pick Functional Accent Color"
+                        />
+                        <input
+                          type="text"
+                          value={customColors.accentHex}
+                          onChange={(e) => handleCustomColorChange('accentHex', e.target.value)}
+                          className="w-full text-[10px] font-mono text-[#11100E] outline-none prevent-space-nav"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Live Contrast Preview Bar */}
+                  <div
+                    className="px-2 py-1 rounded flex items-center justify-between text-[9px] font-mono border"
+                    style={{
+                      backgroundColor: customColors.bgHex,
+                      color: customColors.textHex,
+                      borderColor: customColors.borderHex,
+                    }}
+                  >
+                    <span>Preview: 90% Canvas + 10% Ink</span>
+                    <span className="font-bold flex items-center gap-1">
+                      <span
+                        className="w-2 h-2 rounded-full"
+                        style={{ backgroundColor: customColors.accentHex }}
+                      />
+                      1% Accent
+                    </span>
+                  </div>
                 </div>
               </div>
 
