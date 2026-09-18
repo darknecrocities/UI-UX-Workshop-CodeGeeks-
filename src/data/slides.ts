@@ -18,7 +18,7 @@ export const SLIDES_DATA: SlideMeta[] = [
   { id: 15, slug: 'tactile', title: 'REAL TOUCH & SOUND', section: 'FUNDAMENTALS', tagline: 'Make Software Feel Alive' },
   { id: 16, slug: 'xy-experiment', title: 'POSITION & FEEL', section: 'FUNDAMENTALS', tagline: 'Every Touch Has a Place' },
   { id: 17, slug: 'single-scroll', title: 'SINGLE-SCROLL FLOW', section: 'FUNDAMENTALS', tagline: 'Momentum for Events & Portfolios' },
-  { id: 18, slug: 'multipage-business', title: 'MULTI-PAGE ARCHITECTURE', section: 'FUNDAMENTALS', tagline: 'Proportional Value Without UI Clutter' },
+  { id: 18, slug: 'multipage-business', title: 'BUSINESS WEBSITES', section: 'FUNDAMENTALS', tagline: 'Show Clear Value, Not Clutter' },
   { id: 19, slug: 'prompt-skills', title: 'PROMPTING WITH TASTE', section: 'BUILDING WITH AI', tagline: 'Better Words, Better Screens' },
   { id: 20, slug: 'good-prompt', title: 'A GREAT PROMPT', section: 'BUILDING WITH AI', tagline: 'Clear Rules Beat Guesswork' },
   { id: 21, slug: 'decisions', title: 'DECIDE FIRST, CODE SECOND', section: 'BUILDING WITH AI', tagline: 'Good Choices Beat More Code' },

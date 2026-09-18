@@ -118,17 +118,17 @@ export const Slide16SingleScroll: React.FC = () => {
   };
 
   return (
-    <div className="w-full h-full flex flex-col justify-between p-6 sm:p-10 md:p-14 max-w-7xl mx-auto select-none font-mono">
+    <div className="w-full h-full flex flex-col justify-between p-6 sm:p-10 md:p-14 max-w-7xl mx-auto select-none">
       {/* Header */}
       <div className="flex items-center justify-between border-b border-[#11100E]/15 pb-3">
         <div className="flex items-center gap-2">
           <Compass className="w-4 h-4 text-[#11100E]" />
-          <span className="text-xs uppercase tracking-widest text-[#77736B]">
-            17 / PAGE ARCHITECTURE · THE CONTINUOUS FLOW
+          <span className="font-mono text-xs uppercase tracking-widest text-[#77736B]">
+            17 / Page Architecture · The Continuous Flow
           </span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#11100E] text-[#F5F1E8]">
+          <span className="font-mono px-2 py-0.5 rounded text-[10px] font-bold bg-[#11100E] text-[#F5F1E8]">
             SINGLE-SCROLL ARCHITECTURE
           </span>
         </div>
@@ -402,7 +402,7 @@ export const Slide16SingleScroll: React.FC = () => {
         <span>Single-scroll funnels eliminate route hesitation. Keep the destination in sight.</span>
         <div className="flex items-center gap-4">
           <span className="font-bold text-[#11100E]">NARRATIVE VELOCITY</span>
-          <span>17 / 28</span>
+          <span className="font-mono">17 / 28</span>
         </div>
       </div>
     </div>
