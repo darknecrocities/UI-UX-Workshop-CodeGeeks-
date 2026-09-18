@@ -8,16 +8,151 @@ import {
   Pause,
   RotateCcw,
   ExternalLink,
-  Sliders,
-  Edit3,
   Terminal,
-  Image as ImageIcon,
-  Eye,
   Type,
   Palette,
   Zap,
-  ArrowUpRight,
+  Building2,
+  User,
+  Layers,
+  Calendar,
 } from 'lucide-react';
+
+type WebsiteArchetype = 'business' | 'portfolio' | 'saas' | 'event';
+
+interface ArchetypeConfig {
+  id: WebsiteArchetype;
+  label: string;
+  tagline: string;
+  defaultName: string;
+  defaultRole: string;
+  defaultHeadline: string;
+  defaultItem1Title: string;
+  defaultItem1Desc: string;
+  defaultItem2Title: string;
+  defaultItem2Desc: string;
+  defaultItem3Title: string;
+  defaultItem3Desc: string;
+  defaultExtra: string;
+  defaultCta: string;
+  labels: {
+    name: string;
+    role: string;
+    headline: string;
+    itemsHeader: string;
+    itemTitle: string;
+    itemDesc: string;
+    extra: string;
+    cta: string;
+  };
+}
+
+const ARCHETYPES: Record<WebsiteArchetype, ArchetypeConfig> = {
+  business: {
+    id: 'business',
+    label: 'Business & B2B',
+    tagline: 'Clear Value Proposition · Client Trust · Zero Clutter',
+    defaultName: 'Apex Systems',
+    defaultRole: 'Enterprise Infrastructure & Cloud Security',
+    defaultHeadline: 'We engineer resilient cloud infrastructure for mission-critical operations. Zero downtime, zero bloat.',
+    defaultItem1Title: 'Cloud Architecture',
+    defaultItem1Desc: 'High-throughput distributed systems engineered for 99.999% uptime.',
+    defaultItem2Title: 'Enterprise Zero-Trust',
+    defaultItem2Desc: 'SOC-2 compliant end-to-end encryption pipelines and access controls.',
+    defaultItem3Title: 'Streaming Analytics',
+    defaultItem3Desc: 'Sub-second real-time event processing handling 20M+ queries daily.',
+    defaultExtra: 'Trusted by: Fintech Global, HealthData, Nexus AI · Metrics: 42% cloud cost reduction',
+    defaultCta: 'Schedule Executive Briefing · inquiries@apexsystems.io',
+    labels: {
+      name: 'Company / Firm Name',
+      role: 'Core Industry / Domain',
+      headline: 'Clear Value Proposition (No Jargon)',
+      itemsHeader: '3 Core Capabilities / Services',
+      itemTitle: 'Service / Offering',
+      itemDesc: 'Business Outcome / Impact',
+      extra: 'Social Proof, Clients & Proof Metrics',
+      cta: 'Primary CTA & Inquiries Email',
+    },
+  },
+  portfolio: {
+    id: 'portfolio',
+    label: 'Portfolio & Craft',
+    tagline: 'Personal Taste · Selected Works · Tactile Micro-Interactions',
+    defaultName: 'Arron Parejas',
+    defaultRole: 'Full-Stack Engineer & AI Toolmaker',
+    defaultHeadline: 'I craft tangible, low-latency web utilities and agentic workflows. Zero AI slop.',
+    defaultItem1Title: 'DomoSkills',
+    defaultItem1Desc: 'Open-source visual workflow composer and registry for AI agent tools.',
+    defaultItem2Title: 'DomoDomo',
+    defaultItem2Desc: 'High-speed browser utilities and keyboard-first developer shortcuts.',
+    defaultItem3Title: 'KeyPulse',
+    defaultItem3Desc: 'Physical-feeling tactile Web Audio synthesizer with millisecond feedback.',
+    defaultExtra: 'Stack: Next.js 14, TypeScript, Tailwind CSS, Web Audio, SQLite, Zustand',
+    defaultCta: 'Available for Select Projects · arron@domodomo.site · @arronparejas',
+    labels: {
+      name: 'Your Name',
+      role: 'Title / Discipline',
+      headline: 'Bio / Hero Statement (Punchy & Clear)',
+      itemsHeader: '3 Featured Case Studies / Projects',
+      itemTitle: 'Project Name',
+      itemDesc: '1-Line Value / Description',
+      extra: 'Tech Stack & Engineering Skills',
+      cta: 'Contact & Socials (Email, GitHub, X)',
+    },
+  },
+  saas: {
+    id: 'saas',
+    label: 'SaaS / Product',
+    tagline: 'High Conversion · Live Interactive Utility · Pricing Tiers',
+    defaultName: 'Kairo Focus',
+    defaultRole: 'Deep Work & Calendar Operating System',
+    defaultHeadline: 'The calm calendar built for deep focus blocks, not meeting clutter.',
+    defaultItem1Title: 'Acoustic Time-Blocking',
+    defaultItem1Desc: 'Physical mechanical switch feedback on every completed focus milestone.',
+    defaultItem2Title: 'Shielded Focus Zones',
+    defaultItem2Desc: 'Automated shields protecting 4-hour uninterrupted morning focus blocks.',
+    defaultItem3Title: 'Local-First Sync',
+    defaultItem3Desc: 'Zero-latency offline engine with end-to-end peer encrypted sync.',
+    defaultExtra: 'Pricing: Free Starter, Pro $12/mo (annual), Team $24/seat/mo · SOC2 Certified',
+    defaultCta: 'Start 14-Day Free Trial (No Card Required) · team@kairo.app',
+    labels: {
+      name: 'Product Name',
+      role: 'Product Category / Tagline',
+      headline: 'Value Proposition & One-Line Hook',
+      itemsHeader: '3 Key Product Features & Benefits',
+      itemTitle: 'Feature Name',
+      itemDesc: 'User Benefit & Tangible Outcome',
+      extra: 'Pricing Tiers, Guarantee & Security',
+      cta: 'Primary Conversion CTA & Contact',
+    },
+  },
+  event: {
+    id: 'event',
+    label: 'Event & Launch',
+    tagline: 'Momentum Single-Scroll · Keynote Speakers · Ticket Booking',
+    defaultName: 'NO AI SLOP 2026',
+    defaultRole: 'Annual Design & Engineering Keynote',
+    defaultHeadline: 'From Sketch to Ship: Human Taste and Craft in the Age of Generative AI.',
+    defaultItem1Title: 'The Anti-Slop Manifesto',
+    defaultItem1Desc: 'Why 90% of AI-generated interfaces look cheap, and how to fix them.',
+    defaultItem2Title: 'Live Build Challenge',
+    defaultItem2Desc: '60-minute paper sketch to working production web app challenge.',
+    defaultItem3Title: 'Brutal Design Critique',
+    defaultItem3Desc: 'Live audit of real-world digital products with tangible UX transformations.',
+    defaultExtra: 'Date: October 24, 2026 · Venue: SF Design District & Global Stream · 500 Seats',
+    defaultCta: 'Reserve Seat ($199 Early Bird) · tickets@noaislop.org',
+    labels: {
+      name: 'Event / Launch Name',
+      role: 'Event Type / Subtitle',
+      headline: 'Event Theme & Core Vision',
+      itemsHeader: '3 Key Sessions / Keynote Highlights',
+      itemTitle: 'Session / Speaker',
+      itemDesc: 'Session Topic & Takeaways',
+      extra: 'Date, Venue, Schedule & Capacity',
+      cta: 'Ticket Registration CTA & Email',
+    },
+  },
+};
 
 interface FontPairing {
   id: string;
@@ -25,7 +160,6 @@ interface FontPairing {
   heading: string;
   mono: string;
   desc: string;
-  fontClass: string;
 }
 
 interface ColorRulePalette {
@@ -46,20 +180,6 @@ interface AnimationStyle {
   desc: string;
 }
 
-interface PortfolioData {
-  name: string;
-  role: string;
-  bio: string;
-  proj1Title: string;
-  proj1Desc: string;
-  proj2Title: string;
-  proj2Desc: string;
-  proj3Title: string;
-  proj3Desc: string;
-  techStack: string;
-  contact: string;
-}
-
 const FONT_PAIRINGS: FontPairing[] = [
   {
     id: 'swiss-grotesk',
@@ -67,7 +187,6 @@ const FONT_PAIRINGS: FontPairing[] = [
     heading: 'Inter / Space Grotesk',
     mono: 'JetBrains Mono',
     desc: 'Tight tracking (-0.03em), bold weight, utilitarian clarity',
-    fontClass: 'font-sans',
   },
   {
     id: 'editorial-serif',
@@ -75,7 +194,6 @@ const FONT_PAIRINGS: FontPairing[] = [
     heading: 'Playfair Display / Instrument Serif',
     mono: 'Geist Mono',
     desc: 'High-contrast editorial serif paired with crisp hairline monospace',
-    fontClass: 'font-serif',
   },
   {
     id: 'tech-geometric',
@@ -83,7 +201,6 @@ const FONT_PAIRINGS: FontPairing[] = [
     heading: 'Syne / Archivo',
     mono: 'Fira Code',
     desc: 'Oversized display geometry for systems engineers and toolsmiths',
-    fontClass: 'font-sans',
   },
 ];
 
@@ -150,138 +267,123 @@ const ANIMATIONS: AnimationStyle[] = [
   },
 ];
 
-const PRESETS: { id: string; name: string; fontId: string; colorId: string; animId: string; data: PortfolioData }[] = [
-  {
-    id: 'minimalist-dev',
-    name: 'Minimalist Engineer',
-    fontId: 'swiss-grotesk',
-    colorId: 'parchment-charcoal',
-    animId: 'tactile-spring',
-    data: {
-      name: 'Arron Parejas',
-      role: 'Full-Stack Engineer & AI Toolmaker',
-      bio: 'I build tangible, low-latency developer tools and agentic web apps. Zero AI slop.',
-      proj1Title: 'DomoSkills',
-      proj1Desc: 'Open-source registry and visual workflow composer for agentic tools.',
-      proj2Title: 'DomoDomo',
-      proj2Desc: 'High-speed browser utilities and local keyboard-driven shortcuts.',
-      proj3Title: 'KeyPulse',
-      proj3Desc: 'Physical-feeling tactile Web Audio synthesizer with millisecond latency.',
-      techStack: 'Next.js 14, TypeScript, Tailwind CSS, Web Audio API, Zustand, SQLite',
-      contact: 'arron@domodomo.site · GitHub: @arronkian · X: @arronparejas',
-    },
-  },
-  {
-    id: 'product-designer',
-    name: 'Product Designer',
-    fontId: 'editorial-serif',
-    colorId: 'chalk-navy',
-    animId: 'calm-editorial',
-    data: {
-      name: 'Alex Rivera',
-      role: 'Staff Product & Interaction Designer',
-      bio: 'Designing software that feels physical, calm, and unmistakably human.',
-      proj1Title: 'Slate Design System',
-      proj1Desc: 'Accessible, token-driven component architecture for product teams.',
-      proj2Title: 'Kairo Focus',
-      proj2Desc: 'Minimalist time-blocking desktop app with tactile acoustic micro-interactions.',
-      proj3Title: 'Monolith Editorial',
-      proj3Desc: 'Independent publication exploring digital craftsmanship and humane tools.',
-      techStack: 'Figma, React, Tailwind CSS, Framer Motion, Radix UI, Accessible Tokens',
-      contact: 'alex@rivera.design · Read.cv: @alexrivera · Bluesky: @alex.rivera',
-    },
-  },
-  {
-    id: 'creative-ai',
-    name: 'Creative Technologist',
-    fontId: 'tech-geometric',
-    colorId: 'sand-bronze',
-    animId: 'zero-lag',
-    data: {
-      name: 'Jordan Chen',
-      role: 'Creative Developer & AI Systems Builder',
-      bio: 'Bridging generative AI with real-time browser graphics and responsive physical interfaces.',
-      proj1Title: 'Latent Canvas',
-      proj1Desc: 'Real-time multi-modal latent space explorer powered by WebGL shaders.',
-      proj2Title: 'PromptMatrix',
-      proj2Desc: 'Deterministic schema compiler for LLMs with zero hallucination rate.',
-      proj3Title: 'Kinetic Type Engine',
-      proj3Desc: 'Physical spring-driven variable typography playground in the browser.',
-      techStack: 'TypeScript, WebGL / Three.js, Tailwind CSS, Python, PyTorch, Gemini API',
-      contact: 'jordan@chen.ai · GitHub: @jordanchen · X: @jordan_ai',
-    },
-  },
-];
+interface FormState {
+  name: string;
+  role: string;
+  headline: string;
+  item1Title: string;
+  item1Desc: string;
+  item2Title: string;
+  item2Desc: string;
+  item3Title: string;
+  item3Desc: string;
+  extra: string;
+  cta: string;
+}
 
-const buildExpandedPrompt = (
-  data: PortfolioData,
+const buildCustomPrompt = (
+  archetypeKey: WebsiteArchetype,
+  form: FormState,
   font: FontPairing,
   palette: ColorRulePalette,
   anim: AnimationStyle
 ): string => {
-  return `You are a world-class Senior Design Technologist and Frontend Engineer who crafts award-winning, editorial-grade web experiences with zero AI slop.
+  const isBiz = archetypeKey === 'business';
+  const isSaas = archetypeKey === 'saas';
+  const isEvent = archetypeKey === 'event';
+  const roleName = isBiz
+    ? 'Principal Enterprise Design Technologist & B2B Web Architect'
+    : isSaas
+    ? 'Lead Product Designer & Frontend Systems Engineer'
+    : isEvent
+    ? 'Creative Director & Single-Scroll Experience Architect'
+    : 'Senior Design Technologist & Creative Engineer';
+
+  const objective = isBiz
+    ? `Build a clean, high-conversion B2B Business Website for "${form.name}" that highlights clear proportional value without overcomplicating the UI.`
+    : isSaas
+    ? `Build a high-conversion SaaS Landing Page and Interactive Product Tour for "${form.name}".`
+    : isEvent
+    ? `Build a momentum-driven Single-Scroll Event & Registration Website for "${form.name}".`
+    : `Build an editorial-grade Personal Portfolio and Case Study Showcase for "${form.name}".`;
+
+  return `You are a world-class ${roleName} who creates award-winning digital experiences with absolute zero AI slop.
 
 ### GOAL:
-Build a complete, single-file, production-ready interactive Personal Portfolio website for:
-- NAME: ${data.name}
-- TITLE / ROLE: ${data.role}
-- HERO STATEMENT: "${data.bio}"
+${objective}
+- BRAND / NAME: ${form.name}
+- DOMAIN / SUBTITLE: ${form.role}
+- CORE VALUE PROPOSITION: "${form.headline}"
 
 ### STRICT DESIGN SYSTEM & CONSTRAINTS (NO AI SLOP):
-1. NO EMOJIS: Do NOT use emojis (🚀, 💡, 🔥, ✨, 🧠, ⚡, 💻, 🎯, etc.) anywhere on the page—not in titles, not in bullet points, and not as pseudo-icons. Emojis look amateurish and scream "AI slop". Use clean semantic SVG icons (Lucide / Heroicons style) or pure typographic hierarchy.
+1. NO EMOJIS: Do NOT use emojis (🚀, 💡, 🔥, ✨, 🧠, ⚡, 💻, 🎯, etc.) anywhere on the page—not in headings, not in bullet points, and not as pseudo-icons. Emojis make websites look amateur and cheap. Use real semantic SVG icons (Lucide/Heroicons) or pure typography.
 2. NO GLOWY PURPLE OR GREEN GRADIENTS: Absolutely NO generic AI purple (#8B5CF6, #A855F7), violet neon drop-shadows, or neon green (#22C55E, #10B981) cards. Do NOT use blurry colored background blobs or over-saturated gradient borders.
-3. STRICT 2-COLOR RULE:
+3. THE 2-COLOR RULE (CANVAS & INK):
    - Primary Canvas Background: ${palette.bgHex} (Takes 90% visual weight)
    - Primary Contrast Ink: ${palette.textHex} (Used for all typography and structure)
-   - Hairline Divider Border: 1px subtle divider (${palette.borderHex})
-   - Single Functional Accent: ${palette.accentHex} (Used ONLY for live status indicator or key CTA link)
-   - Do NOT add a third or fourth accent color. Maintain stark, confident Swiss discipline.
+   - Hairline Divider: 1px clean border (${palette.borderHex})
+   - Single Functional Accent: ${palette.accentHex} (Used ONLY for live status badge or primary CTA button)
+   - Do NOT introduce arbitrary extra colors. Maintain disciplined Swiss editorial contrast.
 4. TYPOGRAPHY SYSTEM:
-   - Heading Pairing: ${font.heading} with tight tracking (-0.03em) and bold weight.
+   - Heading Typography: ${font.heading} with tight tracking (-0.03em) and bold weight.
    - Metadata / Tags: ${font.mono} in uppercase with wide letter-spacing (+0.08em).
    - Body Copy: Clean, high-legibility sans-serif with 160% line-height.
-   - Generous Whitespace: Let the layout breathe with an intentional 8px spacing rhythm.
+   - Strict 8px grid rhythm with generous intentional whitespace.
 5. ANIMATION & TACTILE MICRO-INTERACTIONS:
    - Interaction Style: ${anim.name} (${anim.speed}) with transition timing: ${anim.physics}.
-   - Interactive Buttons: Active state scale(0.98), hover lift -2px with crisp box-shadow.
-   - Project Cards: Smooth border color highlight and subtle link arrow animation on hover.
-   - Feedback: When clicking "Copy Email", display a smooth toast notification ("Email copied to clipboard!") that fades out automatically.
+   - Buttons: Active state scale(0.98), hover lift -2px with crisp box-shadow.
+   - Cards: Subtle border color highlight and smooth link arrow animation on hover.
+   - Interactive Feedback: Instant copy toast notification when clicking contact / email.
 
-### FEATURED PROJECTS TO SHOWCASE:
-1. ${data.proj1Title}: ${data.proj1Desc}
-2. ${data.proj2Title}: ${data.proj2Desc}
-3. ${data.proj3Title}: ${data.proj3Desc}
+### KEY CONTENT TO HIGHLIGHT:
+1. ${form.item1Title}: ${form.item1Desc}
+2. ${form.item2Title}: ${form.item2Desc}
+3. ${form.item3Title}: ${form.item3Desc}
 
-### TECH STACK & CREDENTIALS:
-${data.techStack}
+### SUPPORTING DATA & CREDENTIALS:
+${form.extra}
 
-### KEY SECTIONS TO IMPLEMENT:
-1. Minimal Sticky Header: Monogram/logo, live status dot ("AVAILABLE FOR WORK"), section links, and a tactile "Copy Email" button.
-2. Hero Section: Asymmetrical editorial layout with an oversized punchy headline, role credentials, and clean primary action buttons.
-3. Selected Works Grid: 3 project cards featuring project category pill, title, concise description, tech tags, and external link arrow icon.
-4. Experience & Tech Stack: Two-column layout with clean date ranges, organizations, and roles.
-5. Philosophy / Craft Rules: 3 short, sharp principles on design judgment, performance, and simplicity.
-6. Footer & Contact: Direct email copy interaction with toast feedback ("Email copied!"), GitHub, and social links:
-   ${data.contact}
+### PRIMARY CALL TO ACTION:
+${form.cta}
+
+### ARCHITECTURE & SECTIONS TO IMPLEMENT:
+1. Minimal Sticky Header: Brand mark, live availability/status indicator, section jump links, and primary CTA button.
+2. Hero Section: Asymmetrical layout featuring an oversized bold headline, clear value pitch, and direct action triggers.
+3. 3-Card Value / Capabilities Grid: Crisp cards with hairline borders, category tags, concise impact descriptions, and interactive hover states.
+4. Social Proof & Credentials Section: Structured 2-column layout showing metrics, trust signals, and outcomes.
+5. Interactive Feature / Demo / Case Study: Functional interactive tabs or preview drawer.
+6. Footer & Contact Bar: Direct email copy interaction with toast feedback ("Copied to clipboard!"), socials, and location/timezone.
 
 ### DELIVERABLE FORMAT:
-Provide the complete, self-contained HTML file with Tailwind CSS (via CDN) and vanilla JavaScript for interactivity (or a single React JSX component). Include working interactive state for the email copy button, project link hover states, and theme/sound toggle. Do NOT leave placeholder comments or "TODOs"—write all real markup and styles ready to preview immediately in Google AI Studio.`;
+Provide the complete, self-contained HTML file with Tailwind CSS (via CDN) and vanilla JavaScript for interactivity (or a single React JSX component). Include working interactive state for the CTA button, card hover states, and copy-to-clipboard toast. Do NOT leave placeholder comments or "TODOs"—write all real markup and styles ready to preview immediately in Google AI Studio.`;
 };
 
 export const Slide22Activity02: React.FC = () => {
-  const [selectedPresetId, setSelectedPresetId] = useState<string>('minimalist-dev');
-  const [formData, setFormData] = useState<PortfolioData>(PRESETS[0].data);
+  const [activeArchetype, setActiveArchetype] = useState<WebsiteArchetype>('business');
+
+  const [formData, setFormData] = useState<FormState>({
+    name: ARCHETYPES.business.defaultName,
+    role: ARCHETYPES.business.defaultRole,
+    headline: ARCHETYPES.business.defaultHeadline,
+    item1Title: ARCHETYPES.business.defaultItem1Title,
+    item1Desc: ARCHETYPES.business.defaultItem1Desc,
+    item2Title: ARCHETYPES.business.defaultItem2Title,
+    item2Desc: ARCHETYPES.business.defaultItem2Desc,
+    item3Title: ARCHETYPES.business.defaultItem3Title,
+    item3Desc: ARCHETYPES.business.defaultItem3Desc,
+    extra: ARCHETYPES.business.defaultExtra,
+    cta: ARCHETYPES.business.defaultCta,
+  });
+
   const [selectedFontId, setSelectedFontId] = useState<string>('swiss-grotesk');
   const [selectedColorId, setSelectedColorId] = useState<string>('parchment-charcoal');
   const [selectedAnimId, setSelectedAnimId] = useState<string>('tactile-spring');
 
-  // View mode for right pane: 'prompt' | 'demo-image' | 'live-preview'
-  const [rightViewMode, setRightViewMode] = useState<'prompt' | 'demo-image' | 'live-preview'>('prompt');
   const [leftTab, setLeftTab] = useState<'content' | 'design-system'>('content');
-  const [isRawEditor, setIsRawEditor] = useState<boolean>(false);
-  const [customPrompt, setCustomPrompt] = useState<string>('');
+
+  // Direct editable prompt text
+  const [promptCode, setPromptCode] = useState<string>('');
   const [copied, setCopied] = useState<boolean>(false);
-  const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   // Workshop Timer
   const [timeLeft, setTimeLeft] = useState<number>(3600); // 60 mins
@@ -313,49 +415,41 @@ export const Slide22Activity02: React.FC = () => {
     [selectedAnimId]
   );
 
-  const compiledPrompt = useMemo(() => {
-    return buildExpandedPrompt(formData, currentFont, currentColor, currentAnim);
-  }, [formData, currentFont, currentColor, currentAnim]);
+  // Initialize prompt on load or archetype switch
+  useEffect(() => {
+    const generated = buildCustomPrompt(activeArchetype, formData, currentFont, currentColor, currentAnim);
+    setPromptCode(generated);
+  }, [activeArchetype, formData, currentFont, currentColor, currentAnim]);
 
-  const activePromptText = useMemo(() => {
-    if (isRawEditor && customPrompt.trim().length > 0) {
-      return customPrompt;
-    }
-    return compiledPrompt;
-  }, [isRawEditor, customPrompt, compiledPrompt]);
-
-  const handleSelectPreset = (preset: typeof PRESETS[0]) => {
+  const handleSelectArchetype = (typeKey: WebsiteArchetype) => {
     sound.playClick(1.2);
-    setSelectedPresetId(preset.id);
-    setFormData({ ...preset.data });
-    setSelectedFontId(preset.fontId);
-    setSelectedColorId(preset.colorId);
-    setSelectedAnimId(preset.animId);
-    setCustomPrompt(
-      buildExpandedPrompt(
-        preset.data,
-        FONT_PAIRINGS.find((f) => f.id === preset.fontId) || FONT_PAIRINGS[0],
-        COLOR_PALETTES.find((c) => c.id === preset.colorId) || COLOR_PALETTES[0],
-        ANIMATIONS.find((a) => a.id === preset.animId) || ANIMATIONS[0]
-      )
-    );
+    setActiveArchetype(typeKey);
+    const arch = ARCHETYPES[typeKey];
+    const newForm: FormState = {
+      name: arch.defaultName,
+      role: arch.defaultRole,
+      headline: arch.defaultHeadline,
+      item1Title: arch.defaultItem1Title,
+      item1Desc: arch.defaultItem1Desc,
+      item2Title: arch.defaultItem2Title,
+      item2Desc: arch.defaultItem2Desc,
+      item3Title: arch.defaultItem3Title,
+      item3Desc: arch.defaultItem3Desc,
+      extra: arch.defaultExtra,
+      cta: arch.defaultCta,
+    };
+    setFormData(newForm);
   };
 
-  const handleFieldChange = (field: keyof PortfolioData, value: string) => {
-    setFormData((prev) => {
-      const updated = { ...prev, [field]: value };
-      if (!isRawEditor) {
-        setCustomPrompt(buildExpandedPrompt(updated, currentFont, currentColor, currentAnim));
-      }
-      return updated;
-    });
+  const handleFieldChange = (field: keyof FormState, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleCopyPrompt = useCallback(() => {
     sound.playSwitch(true);
-    navigator.clipboard.writeText(activePromptText).catch(() => {
+    navigator.clipboard.writeText(promptCode).catch(() => {
       const textarea = document.createElement('textarea');
-      textarea.value = activePromptText;
+      textarea.value = promptCode;
       document.body.appendChild(textarea);
       textarea.select();
       document.execCommand('copy');
@@ -363,20 +457,15 @@ export const Slide22Activity02: React.FC = () => {
     });
     setCopied(true);
     setTimeout(() => setCopied(false), 2400);
-  }, [activePromptText]);
-
-  const handleTestToast = () => {
-    sound.playTap();
-    setToastMessage(`Email copied: ${formData.contact.split('·')[0].trim() || 'hi@developer.dev'}`);
-    setTimeout(() => setToastMessage(null), 2500);
-  };
+  }, [promptCode]);
 
   const wordCount = useMemo(() => {
-    return activePromptText.trim().split(/\s+/).filter(Boolean).length;
-  }, [activePromptText]);
+    return promptCode.trim().split(/\s+/).filter(Boolean).length;
+  }, [promptCode]);
 
-  const charCount = activePromptText.length;
+  const charCount = promptCode.length;
   const approxTokens = Math.round(charCount / 4);
+  const currentLabels = ARCHETYPES[activeArchetype].labels;
 
   return (
     <div className="w-full h-full flex flex-col justify-between p-3 sm:p-6 md:p-7 max-w-7xl mx-auto select-none font-sans">
@@ -385,10 +474,10 @@ export const Slide22Activity02: React.FC = () => {
         <div className="flex items-center gap-2">
           <Code2 className="w-4 h-4 text-[#11100E]" />
           <span className="font-mono text-xs uppercase tracking-widest text-[#11100E] font-bold">
-            25 / Portfolio Prompt Sandbox
+            25 / Prompt Sandbox & Generator
           </span>
           <span className="text-[#77736B] text-xs font-mono hidden md:inline">
-            · 2-Color Rule & Swiss Precision
+            · {ARCHETYPES[activeArchetype].tagline}
           </span>
         </div>
 
@@ -422,62 +511,65 @@ export const Slide22Activity02: React.FC = () => {
         </div>
       </div>
 
-      {/* Subheader: Clean Headline and Mode Tabs */}
+      {/* Subheader: Clean Headline and Archetype Tabs */}
       <div className="pt-2 pb-2 shrink-0 flex flex-wrap items-center justify-between gap-2">
         <div>
           <h2 className="text-xl sm:text-2xl font-black tracking-tight text-[#11100E]">
-            DESIGN YOUR ZERO-SLOP PORTFOLIO
+            DESIGN YOUR ZERO-SLOP PROMPT
           </h2>
           <p className="text-xs text-[#77736B] font-medium mt-0.5">
-            Craft your custom portfolio prompt with strict 2-color discipline, typography pairings, and tactile animation physics.
+            Select a project type, adjust the specs, and edit the prompt code directly in the editor on the right.
           </p>
         </div>
 
-        {/* Right Pane View Switcher */}
-        <div className="flex items-center gap-1 bg-[#E8E3D8] p-0.5 rounded-lg border border-[#11100E]/10 font-mono text-[11px]">
+        {/* Archetype Selector Tabs */}
+        <div className="flex items-center gap-1 bg-[#E8E3D8] p-1 rounded-lg border border-[#11100E]/10 font-mono text-[11px]">
           <button
-            onClick={() => {
-              sound.playClick(1.0);
-              setRightViewMode('prompt');
-            }}
+            onClick={() => handleSelectArchetype('business')}
             className={`px-2.5 py-1 rounded-md flex items-center gap-1.5 transition-all cursor-pointer ${
-              rightViewMode === 'prompt'
+              activeArchetype === 'business'
                 ? 'bg-[#11100E] text-[#F5F1E8] font-bold shadow-sm'
                 : 'text-[#77736B] hover:text-[#11100E]'
             }`}
           >
-            <Terminal className="w-3 h-3" />
-            <span>PROMPT CODE</span>
+            <Building2 className="w-3 h-3" />
+            <span>BUSINESS</span>
           </button>
 
           <button
-            onClick={() => {
-              sound.playClick(1.0);
-              setRightViewMode('demo-image');
-            }}
+            onClick={() => handleSelectArchetype('portfolio')}
             className={`px-2.5 py-1 rounded-md flex items-center gap-1.5 transition-all cursor-pointer ${
-              rightViewMode === 'demo-image'
+              activeArchetype === 'portfolio'
                 ? 'bg-[#11100E] text-[#F5F1E8] font-bold shadow-sm'
                 : 'text-[#77736B] hover:text-[#11100E]'
             }`}
           >
-            <ImageIcon className="w-3 h-3" />
-            <span>DEMO MOCKUP</span>
+            <User className="w-3 h-3" />
+            <span>PORTFOLIO</span>
           </button>
 
           <button
-            onClick={() => {
-              sound.playClick(1.0);
-              setRightViewMode('live-preview');
-            }}
+            onClick={() => handleSelectArchetype('saas')}
             className={`px-2.5 py-1 rounded-md flex items-center gap-1.5 transition-all cursor-pointer ${
-              rightViewMode === 'live-preview'
+              activeArchetype === 'saas'
                 ? 'bg-[#11100E] text-[#F5F1E8] font-bold shadow-sm'
                 : 'text-[#77736B] hover:text-[#11100E]'
             }`}
           >
-            <Eye className="w-3 h-3" />
-            <span>LIVE INTERACTIVE</span>
+            <Layers className="w-3 h-3" />
+            <span>SAAS / APP</span>
+          </button>
+
+          <button
+            onClick={() => handleSelectArchetype('event')}
+            className={`px-2.5 py-1 rounded-md flex items-center gap-1.5 transition-all cursor-pointer ${
+              activeArchetype === 'event'
+                ? 'bg-[#11100E] text-[#F5F1E8] font-bold shadow-sm'
+                : 'text-[#77736B] hover:text-[#11100E]'
+            }`}
+          >
+            <Calendar className="w-3 h-3" />
+            <span>EVENT / FLOW</span>
           </button>
         </div>
       </div>
@@ -486,186 +578,168 @@ export const Slide22Activity02: React.FC = () => {
       <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-3 pb-2 items-stretch">
         {/* Left Column: Form & Design System Controls (5 cols) */}
         <div className="lg:col-span-5 flex flex-col justify-between rounded-xl border border-[#11100E]/15 bg-[#F5F1E8] shadow-sm overflow-hidden">
-          {/* Presets & Config Bar */}
-          <div className="p-2 border-b border-[#11100E]/15 bg-[#EFEBE0] flex items-center justify-between gap-1 shrink-0">
-            <div className="flex items-center gap-1">
-              <Sliders className="w-3.5 h-3.5 text-[#77736B]" />
-              <span className="font-mono text-[10px] font-bold text-[#11100E] uppercase">PRESETS</span>
+          {/* Sub-Tabs: Content vs Design System */}
+          <div className="px-3 pt-2.5 pb-1 border-b border-[#11100E]/10 bg-[#EFEBE0] flex items-center justify-between gap-2 text-xs font-mono shrink-0">
+            <div className="flex gap-3">
+              <button
+                onClick={() => {
+                  sound.playClick(1.0);
+                  setLeftTab('content');
+                }}
+                className={`pb-1 border-b-2 cursor-pointer font-bold transition-all ${
+                  leftTab === 'content'
+                    ? 'border-[#11100E] text-[#11100E]'
+                    : 'border-transparent text-[#77736B] hover:text-[#11100E]'
+                }`}
+              >
+                1. {ARCHETYPES[activeArchetype].label.toUpperCase()} DATA
+              </button>
+              <button
+                onClick={() => {
+                  sound.playClick(1.0);
+                  setLeftTab('design-system');
+                }}
+                className={`pb-1 border-b-2 cursor-pointer font-bold transition-all flex items-center gap-1 ${
+                  leftTab === 'design-system'
+                    ? 'border-[#11100E] text-[#11100E]'
+                    : 'border-transparent text-[#77736B] hover:text-[#11100E]'
+                }`}
+              >
+                <Palette className="w-3 h-3" />
+                <span>2. DESIGN SYSTEM & 2-COLOR RULE</span>
+              </button>
             </div>
-            <div className="flex items-center gap-1">
-              {PRESETS.map((p) => {
-                const isSelected = selectedPresetId === p.id;
-                return (
-                  <button
-                    key={p.id}
-                    onClick={() => handleSelectPreset(p)}
-                    className={`px-2 py-0.5 rounded text-[10px] font-mono transition-all cursor-pointer ${
-                      isSelected
-                        ? 'bg-[#11100E] text-[#F5F1E8] shadow-sm font-bold'
-                        : 'bg-[#F5F1E8] text-[#77736B] hover:text-[#11100E] border border-[#11100E]/10'
-                    }`}
-                  >
-                    {p.name.split(' ')[0]}
-                  </button>
-                );
-              })}
-            </div>
+            <span className="text-[10px] text-[#77736B] uppercase font-bold">
+              {ARCHETYPES[activeArchetype].id}
+            </span>
           </div>
 
-          {/* Left Sub-Tabs: Content vs Design System */}
-          <div className="px-3 pt-2 pb-1 border-b border-[#11100E]/10 flex gap-4 text-xs font-mono shrink-0">
-            <button
-              onClick={() => {
-                sound.playClick(1.0);
-                setLeftTab('content');
-              }}
-              className={`pb-1 border-b-2 cursor-pointer font-bold transition-all ${
-                leftTab === 'content'
-                  ? 'border-[#11100E] text-[#11100E]'
-                  : 'border-transparent text-[#77736B] hover:text-[#11100E]'
-              }`}
-            >
-              1. PORTFOLIO DATA
-            </button>
-            <button
-              onClick={() => {
-                sound.playClick(1.0);
-                setLeftTab('design-system');
-              }}
-              className={`pb-1 border-b-2 cursor-pointer font-bold transition-all flex items-center gap-1 ${
-                leftTab === 'design-system'
-                  ? 'border-[#11100E] text-[#11100E]'
-                  : 'border-transparent text-[#77736B] hover:text-[#11100E]'
-              }`}
-            >
-              <Palette className="w-3 h-3" />
-              <span>2. DESIGN SYSTEM & RULES</span>
-            </button>
-          </div>
-
-          {/* Tab 1: Portfolio Content Editor */}
+          {/* Tab 1: Project Content Form */}
           {leftTab === 'content' && (
             <div className="flex-1 min-h-0 overflow-y-auto p-3 space-y-2 font-mono text-xs prevent-slide-wheel">
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <label className="block text-[9px] font-bold uppercase text-[#77736B] mb-0.5">Your Name</label>
+                  <label className="block text-[9px] font-bold uppercase text-[#77736B] mb-0.5">
+                    {currentLabels.name}
+                  </label>
                   <input
                     type="text"
                     value={formData.name}
                     onChange={(e) => handleFieldChange('name', e.target.value)}
                     className="w-full px-2 py-1 rounded-lg border border-[#11100E]/20 bg-white text-[#11100E] text-xs font-sans focus:outline-none focus:border-[#11100E] prevent-space-nav"
-                    placeholder="e.g. Arron Parejas"
                   />
                 </div>
                 <div>
-                  <label className="block text-[9px] font-bold uppercase text-[#77736B] mb-0.5">Title / Role</label>
+                  <label className="block text-[9px] font-bold uppercase text-[#77736B] mb-0.5">
+                    {currentLabels.role}
+                  </label>
                   <input
                     type="text"
                     value={formData.role}
                     onChange={(e) => handleFieldChange('role', e.target.value)}
                     className="w-full px-2 py-1 rounded-lg border border-[#11100E]/20 bg-white text-[#11100E] text-xs font-sans focus:outline-none focus:border-[#11100E] prevent-space-nav"
-                    placeholder="e.g. Full-Stack Engineer"
                   />
                 </div>
               </div>
 
               <div>
                 <label className="block text-[9px] font-bold uppercase text-[#77736B] mb-0.5">
-                  Bio / Hero Statement
+                  {currentLabels.headline}
                 </label>
                 <textarea
                   rows={2}
-                  value={formData.bio}
-                  onChange={(e) => handleFieldChange('bio', e.target.value)}
+                  value={formData.headline}
+                  onChange={(e) => handleFieldChange('headline', e.target.value)}
                   className="w-full px-2 py-1 rounded-lg border border-[#11100E]/20 bg-white text-[#11100E] text-xs font-sans focus:outline-none focus:border-[#11100E] resize-none prevent-space-nav"
-                  placeholder="What do you build? Who is it for?"
                 />
               </div>
 
-              {/* 3 Featured Projects */}
+              {/* 3 Featured Items */}
               <div className="border-t border-[#11100E]/10 pt-1.5">
                 <span className="block text-[9px] font-bold uppercase text-[#77736B] mb-1">
-                  3 Featured Projects (Title & Impact)
+                  {currentLabels.itemsHeader}
                 </span>
                 <div className="space-y-1">
                   <div className="flex gap-1.5">
                     <input
                       type="text"
-                      value={formData.proj1Title}
-                      onChange={(e) => handleFieldChange('proj1Title', e.target.value)}
+                      value={formData.item1Title}
+                      onChange={(e) => handleFieldChange('item1Title', e.target.value)}
                       className="w-1/3 px-2 py-0.5 rounded border border-[#11100E]/20 bg-white text-[11px] font-bold font-sans text-[#11100E] prevent-space-nav"
-                      placeholder="Project 1"
+                      placeholder="Item 1"
                     />
                     <input
                       type="text"
-                      value={formData.proj1Desc}
-                      onChange={(e) => handleFieldChange('proj1Desc', e.target.value)}
+                      value={formData.item1Desc}
+                      onChange={(e) => handleFieldChange('item1Desc', e.target.value)}
                       className="w-2/3 px-2 py-0.5 rounded border border-[#11100E]/20 bg-white text-[11px] font-sans text-[#11100E] prevent-space-nav"
-                      placeholder="Short description"
+                      placeholder="Description & Impact"
                     />
                   </div>
                   <div className="flex gap-1.5">
                     <input
                       type="text"
-                      value={formData.proj2Title}
-                      onChange={(e) => handleFieldChange('proj2Title', e.target.value)}
+                      value={formData.item2Title}
+                      onChange={(e) => handleFieldChange('item2Title', e.target.value)}
                       className="w-1/3 px-2 py-0.5 rounded border border-[#11100E]/20 bg-white text-[11px] font-bold font-sans text-[#11100E] prevent-space-nav"
-                      placeholder="Project 2"
+                      placeholder="Item 2"
                     />
                     <input
                       type="text"
-                      value={formData.proj2Desc}
-                      onChange={(e) => handleFieldChange('proj2Desc', e.target.value)}
+                      value={formData.item2Desc}
+                      onChange={(e) => handleFieldChange('item2Desc', e.target.value)}
                       className="w-2/3 px-2 py-0.5 rounded border border-[#11100E]/20 bg-white text-[11px] font-sans text-[#11100E] prevent-space-nav"
-                      placeholder="Short description"
+                      placeholder="Description & Impact"
                     />
                   </div>
                   <div className="flex gap-1.5">
                     <input
                       type="text"
-                      value={formData.proj3Title}
-                      onChange={(e) => handleFieldChange('proj3Title', e.target.value)}
+                      value={formData.item3Title}
+                      onChange={(e) => handleFieldChange('item3Title', e.target.value)}
                       className="w-1/3 px-2 py-0.5 rounded border border-[#11100E]/20 bg-white text-[11px] font-bold font-sans text-[#11100E] prevent-space-nav"
-                      placeholder="Project 3"
+                      placeholder="Item 3"
                     />
                     <input
                       type="text"
-                      value={formData.proj3Desc}
-                      onChange={(e) => handleFieldChange('proj3Desc', e.target.value)}
+                      value={formData.item3Desc}
+                      onChange={(e) => handleFieldChange('item3Desc', e.target.value)}
                       className="w-2/3 px-2 py-0.5 rounded border border-[#11100E]/20 bg-white text-[11px] font-sans text-[#11100E] prevent-space-nav"
-                      placeholder="Short description"
+                      placeholder="Description & Impact"
                     />
                   </div>
                 </div>
               </div>
 
-              {/* Tech Stack & Contact */}
+              {/* Supporting Credentials & CTA */}
               <div className="grid grid-cols-2 gap-2 border-t border-[#11100E]/10 pt-1.5">
                 <div>
-                  <label className="block text-[9px] font-bold uppercase text-[#77736B] mb-0.5">Tech Stack</label>
+                  <label className="block text-[9px] font-bold uppercase text-[#77736B] mb-0.5">
+                    {currentLabels.extra}
+                  </label>
                   <input
                     type="text"
-                    value={formData.techStack}
-                    onChange={(e) => handleFieldChange('techStack', e.target.value)}
+                    value={formData.extra}
+                    onChange={(e) => handleFieldChange('extra', e.target.value)}
                     className="w-full px-2 py-1 rounded border border-[#11100E]/20 bg-white text-[11px] font-sans text-[#11100E] prevent-space-nav"
-                    placeholder="Next.js, Tailwind, TS..."
                   />
                 </div>
                 <div>
-                  <label className="block text-[9px] font-bold uppercase text-[#77736B] mb-0.5">Contact / Socials</label>
+                  <label className="block text-[9px] font-bold uppercase text-[#77736B] mb-0.5">
+                    {currentLabels.cta}
+                  </label>
                   <input
                     type="text"
-                    value={formData.contact}
-                    onChange={(e) => handleFieldChange('contact', e.target.value)}
+                    value={formData.cta}
+                    onChange={(e) => handleFieldChange('cta', e.target.value)}
                     className="w-full px-2 py-1 rounded border border-[#11100E]/20 bg-white text-[11px] font-sans text-[#11100E] prevent-space-nav"
-                    placeholder="email, x, github..."
                   />
                 </div>
               </div>
             </div>
           )}
 
-          {/* Tab 2: Design System & 2-Color Rule & Fonts & Animation */}
+          {/* Tab 2: Design System & 2-Color Rule */}
           {leftTab === 'design-system' && (
             <div className="flex-1 min-h-0 overflow-y-auto p-3 space-y-3 font-mono text-xs prevent-slide-wheel">
               {/* 2-Color Rule Selector */}
@@ -762,14 +836,14 @@ export const Slide22Activity02: React.FC = () => {
                 </div>
               </div>
 
-              {/* Animation & Micro-Interactions */}
+              {/* Animation Physics */}
               <div className="border-t border-[#11100E]/10 pt-2">
                 <div className="flex items-center justify-between mb-1">
                   <span className="text-[10px] font-bold uppercase text-[#11100E] flex items-center gap-1">
                     <Zap className="w-3 h-3 text-amber-600" />
                     ANIMATION & MICRO-INTERACTIONS
                   </span>
-                  <span className="text-[9px] text-[#77736B]">Physics & Springs</span>
+                  <span className="text-[9px] text-[#77736B]">Tactile Physics</span>
                 </div>
                 <div className="grid grid-cols-3 gap-1.5">
                   {ANIMATIONS.map((a) => {
@@ -799,38 +873,34 @@ export const Slide22Activity02: React.FC = () => {
             </div>
           )}
 
-          {/* Bottom Bar: Mode Toggle */}
+          {/* Bottom Bar: Live compile note */}
           <div className="p-2 border-t border-[#11100E]/15 bg-[#EFEBE0] text-[10px] font-mono text-[#77736B] flex items-center justify-between shrink-0">
-            <span>Live compilation into AI Studio prompt</span>
+            <span>Changes reflect directly in the prompt on the right ➔</span>
             <button
               onClick={() => {
-                sound.playClick(1.1);
-                setIsRawEditor((prev) => !prev);
+                sound.playTap();
+                handleSelectArchetype(activeArchetype);
               }}
               className="text-[#11100E] font-bold hover:underline cursor-pointer flex items-center gap-1"
             >
-              <Edit3 className="w-3 h-3" />
-              <span>{isRawEditor ? 'Return to Form' : 'Direct Edit Markdown'}</span>
+              <RotateCcw className="w-3 h-3" />
+              <span>Reset Template</span>
             </button>
           </div>
         </div>
 
-        {/* Right Column: Dynamic Pane (Prompt / Demo Image / Live Interactive) (7 cols) */}
+        {/* Right Column: Always-Editable Prompt Code Editor (7 cols) */}
         <div className="lg:col-span-7 flex flex-col justify-between rounded-xl border border-[#11100E] bg-[#11100E] text-[#F5F1E8] shadow-md overflow-hidden">
           {/* Header Bar */}
           <div className="px-3 py-2 border-b border-white/10 bg-black/40 flex items-center justify-between gap-2 shrink-0">
             <div className="flex items-center gap-2">
-              <Terminal className="w-3.5 h-3.5 text-[#D8D3C8]" />
+              <Terminal className="w-3.5 h-3.5 text-emerald-400" />
               <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-[#F5F1E8]">
-                {rightViewMode === 'prompt' && 'GOOGLE AI STUDIO PROMPT'}
-                {rightViewMode === 'demo-image' && 'HIGH-RESOLUTION PORTFOLIO DEMO MOCKUP'}
-                {rightViewMode === 'live-preview' && 'LIVE INTERACTIVE COMPONENT PREVIEW'}
+                PROMPT CODE (DIRECTLY EDITABLE)
               </span>
-              {rightViewMode === 'prompt' && (
-                <span className="text-[10px] font-mono text-white/40">
-                  {wordCount} words · ~{approxTokens} tokens
-                </span>
-              )}
+              <span className="text-[10px] font-mono text-white/40">
+                {wordCount} words · ~{approxTokens} tokens
+              </span>
             </div>
 
             {/* Quick Action Buttons */}
@@ -861,183 +931,32 @@ export const Slide22Activity02: React.FC = () => {
             </div>
           </div>
 
-          {/* VIEW 1: PROMPT CODE VIEWER / RAW EDITOR */}
-          {rightViewMode === 'prompt' && (
-            <div className="flex-1 min-h-0 relative p-3 overflow-y-auto prevent-slide-wheel bg-[#11100E]">
-              {isRawEditor ? (
-                <textarea
-                  value={activePromptText}
-                  onChange={(e) => setCustomPrompt(e.target.value)}
-                  className="w-full h-full min-h-[300px] bg-transparent text-[#F5F1E8] font-mono text-[11px] leading-relaxed resize-none focus:outline-none border-0 p-0 prevent-space-nav"
-                  placeholder="Write or edit prompt directly..."
-                />
-              ) : (
-                <pre className="font-mono text-[11px] text-[#D8D3C8] whitespace-pre-wrap leading-relaxed select-text font-normal">
-                  {activePromptText}
-                </pre>
-              )}
-            </div>
-          )}
-
-          {/* VIEW 2: DEMO IMAGE (MOCKUP OF GENERATED RESULT) */}
-          {rightViewMode === 'demo-image' && (
-            <div className="flex-1 min-h-0 relative p-3 overflow-y-auto prevent-slide-wheel bg-[#181715] flex flex-col items-center justify-center">
-              {/* Browser Window Frame */}
-              <div className="w-full max-w-2xl rounded-xl border border-white/15 bg-[#11100E] shadow-2xl overflow-hidden">
-                {/* Browser Title Bar */}
-                <div className="px-3 py-1.5 bg-black/60 border-b border-white/10 flex items-center justify-between font-mono text-[10px] text-white/50">
-                  <div className="flex items-center gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
-                  </div>
-                  <span className="text-white/80 font-bold tracking-wider">
-                    https://{formData.name.toLowerCase().replace(/\s+/g, '')}.dev
-                  </span>
-                  <div className="flex items-center gap-1 text-[9px] text-white/40">
-                    <span>100% SCALE</span>
-                  </div>
-                </div>
-
-                {/* Actual Generated Demo Image */}
-                <div className="relative group bg-[#F5F1E8] overflow-hidden">
-                  <img
-                    src="/assets/images/portfolio_demo.jpg"
-                    alt="Portfolio Demo Mockup"
-                    className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.01]"
-                  />
-                  {/* Subtle overlay indicator */}
-                  <div className="absolute top-2 right-2 px-2 py-0.5 rounded bg-black/80 text-white font-mono text-[9px] tracking-wider uppercase backdrop-blur-sm">
-                    Swiss Brutalism · 2-Color Rule
-                  </div>
-                </div>
-
-                {/* Mockup Annotation Bar */}
-                <div className="p-2.5 bg-[#11100E] border-t border-white/10 flex items-center justify-between text-[10px] font-mono text-[#D8D3C8]">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                    <span>Pure typography, 0 emojis, 0 purple/green gradients, 100% tactile responsive layout.</span>
-                  </div>
-                  <button
-                    onClick={() => setRightViewMode('prompt')}
-                    className="text-[#F5F1E8] underline hover:text-white cursor-pointer"
-                  >
-                    View Prompt ➔
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* VIEW 3: LIVE INTERACTIVE COMPONENT PREVIEW */}
-          {rightViewMode === 'live-preview' && (
-            <div
-              className="flex-1 min-h-0 relative p-4 overflow-y-auto prevent-slide-wheel flex flex-col justify-between transition-colors duration-300"
-              style={{
-                backgroundColor: currentColor.bgHex,
-                color: currentColor.textHex,
-              }}
-            >
-              {/* Toast Feedback */}
-              {toastMessage && (
-                <div className="absolute top-3 right-3 z-30 px-3 py-1.5 rounded-lg bg-[#11100E] text-[#F5F1E8] font-mono text-[10px] font-bold shadow-lg animate-bounce border border-white/20">
-                  ✓ {toastMessage}
-                </div>
-              )}
-
-              {/* Mini Website Header */}
-              <div
-                className="flex items-center justify-between pb-2.5 border-b shrink-0"
-                style={{ borderColor: currentColor.borderHex }}
-              >
-                <div className="flex items-center gap-2 font-mono text-xs font-black tracking-wider">
-                  <span
-                    className="w-2 h-2 rounded-full animate-pulse"
-                    style={{ backgroundColor: currentColor.accentHex }}
-                  />
-                  <span>{formData.name.toUpperCase()}</span>
-                </div>
-                <div className="flex items-center gap-2 font-mono text-[10px]">
-                  <span className="opacity-60 hidden sm:inline">WORK / ABOUT / CONTACT</span>
-                  <button
-                    onClick={handleTestToast}
-                    className="px-2.5 py-1 rounded border font-bold cursor-pointer transition-all hover:scale-105 active:scale-95 shadow-sm"
-                    style={{
-                      backgroundColor: currentColor.textHex,
-                      color: currentColor.bgHex,
-                      borderColor: currentColor.textHex,
-                    }}
-                  >
-                    COPY EMAIL
-                  </button>
-                </div>
-              </div>
-
-              {/* Mini Hero Area */}
-              <div className="my-auto py-3 space-y-2">
-                <div className="font-mono text-[9px] uppercase tracking-widest opacity-60">
-                  {formData.role} · {currentFont.name} · {currentColor.name}
-                </div>
-                <h1 className="text-xl sm:text-2xl font-black tracking-tight leading-tight">
-                  {formData.name.toUpperCase()} — {formData.role.toUpperCase()}.
-                </h1>
-                <p className="text-xs max-w-xl opacity-80 leading-relaxed font-sans font-medium">
-                  {formData.bio}
-                </p>
-
-                {/* 3 Interactive Project Cards */}
-                <div className="grid grid-cols-3 gap-2 pt-2">
-                  {[
-                    { title: formData.proj1Title, desc: formData.proj1Desc, tag: '01' },
-                    { title: formData.proj2Title, desc: formData.proj2Desc, tag: '02' },
-                    { title: formData.proj3Title, desc: formData.proj3Desc, tag: '03' },
-                  ].map((p) => (
-                    <div
-                      key={p.tag}
-                      onClick={() => sound.playClick(1.2)}
-                      className="p-2.5 rounded-lg border group cursor-pointer transition-all duration-150 hover:-translate-y-1 hover:shadow-md"
-                      style={{
-                        borderColor: currentColor.borderHex,
-                        backgroundColor: currentColor.bgHex === '#11100E' ? '#181715' : '#FFFFFF',
-                      }}
-                    >
-                      <div className="flex items-center justify-between text-[9px] font-mono opacity-50 mb-1">
-                        <span>{p.tag}</span>
-                        <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                      </div>
-                      <div className="font-bold text-[11px] truncate mb-0.5">{p.title}</div>
-                      <div className="text-[9px] opacity-70 line-clamp-2 leading-snug">{p.desc}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Mini Footer */}
-              <div
-                className="pt-2 border-t flex items-center justify-between text-[9px] font-mono opacity-60 shrink-0"
-                style={{ borderColor: currentColor.borderHex }}
-              >
-                <span>NO EMOJIS · 2-COLOR RULE APPLIED</span>
-                <span className="font-bold">CLICK CARDS TO TEST TACTILE FEEL</span>
-              </div>
-            </div>
-          )}
+          {/* Direct Live Textarea Editor */}
+          <div className="flex-1 min-h-0 relative p-3 overflow-hidden bg-[#11100E]">
+            <textarea
+              value={promptCode}
+              onChange={(e) => setPromptCode(e.target.value)}
+              className="w-full h-full bg-transparent text-[#F5F1E8] font-mono text-[11px] leading-relaxed resize-none focus:outline-none border-0 p-0 selection:bg-white/20 prevent-space-nav overflow-y-auto"
+              placeholder="Type or edit your prompt directly here..."
+              spellCheck={false}
+            />
+          </div>
 
           {/* Prompt Sandbox Footer Instructions */}
           <div className="px-3 py-2 border-t border-white/10 bg-black/30 flex items-center justify-between text-[10px] font-mono text-[#D8D3C8]/70 shrink-0">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>Paste into Gemini 2.0 Flash / 1.5 Pro in Google AI Studio to generate in 1-shot.</span>
+              <span>Click anywhere inside the box above to edit directly. Paste into Google AI Studio.</span>
             </div>
             <button
               onClick={() => {
                 sound.playTap();
-                handleSelectPreset(PRESETS[0]);
-                setIsRawEditor(false);
+                const fresh = buildCustomPrompt(activeArchetype, formData, currentFont, currentColor, currentAnim);
+                setPromptCode(fresh);
               }}
               className="hover:text-white underline cursor-pointer text-[#D8D3C8]/50"
             >
-              Reset Defaults
+              Recompile from Form
             </button>
           </div>
         </div>
@@ -1045,7 +964,7 @@ export const Slide22Activity02: React.FC = () => {
 
       {/* Slide Bottom Bar */}
       <div className="pt-1.5 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B] shrink-0">
-        <span>Prompting with Taste: Swiss Layout + Typography Hierarchy + 2-Color Rule</span>
+        <span>Prompting with Taste: Business & Portfolio Archetypes + 2-Color Rule</span>
         <span>25 / 28</span>
       </div>
     </div>
