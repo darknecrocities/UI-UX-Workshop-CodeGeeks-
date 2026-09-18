@@ -23,7 +23,7 @@ export const Slide17GoodPrompt: React.FC = () => {
         <div className="flex items-center gap-2">
           <Terminal className="w-4 h-4 text-[#11100E]" />
           <span className="font-mono text-xs uppercase tracking-widest text-[#77736B]">
-            18 / Prompt Transformation
+            21 / Prompt Transformation
           </span>
         </div>
         <h2 className="font-mono text-sm font-bold text-[#11100E]">WHAT MAKES A GREAT PROMPT</h2>
@@ -96,8 +96,8 @@ export const Slide17GoodPrompt: React.FC = () => {
 
       {/* Footer */}
       <div className="pt-3 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B]">
-        <span>The AI coding model is only as smart as the constraints you give it.</span>
-        <span>18 / 26</span>
+        <span>AI generates better code when you give it clear rules to follow.</span>
+        <span>21 / 30</span>
       </div>
     </div>
   );

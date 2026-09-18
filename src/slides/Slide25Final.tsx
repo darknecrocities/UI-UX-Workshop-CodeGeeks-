@@ -18,7 +18,7 @@ export const Slide25Final: React.FC = () => {
       <div className="flex items-center justify-between border-b border-[#11100E]/15 pb-4 font-mono text-xs text-[#77736B]">
         <div className="flex items-center gap-2">
           <Sparkles className="w-4 h-4 text-[#11100E]" />
-          <span className="tracking-widest uppercase font-bold text-[#11100E]">4-HOUR WORKSHOP WRAP-UP</span>
+          <span className="tracking-widest uppercase font-bold text-[#11100E]">30 / FINAL THOUGHT</span>
         </div>
         <span className="tracking-wider font-semibold text-[#11100E]">NO AI SLOP</span>
       </div>
@@ -82,12 +82,15 @@ export const Slide25Final: React.FC = () => {
           </a>
         </div>
 
-        <div className="text-right">
+        <div className="text-right flex flex-col items-end">
           <span className="text-[#77736B] text-[10px] uppercase tracking-widest block">
             WORKSHOP CONCLUDED
           </span>
           <span className="text-xs font-bold text-[#11100E] tracking-wider">
             FROM SKETCH TO SHIP.
+          </span>
+          <span className="text-[#77736B] text-[10px] font-mono mt-1">
+            30 / 30
           </span>
         </div>
       </div>

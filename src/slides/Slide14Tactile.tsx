@@ -159,7 +159,7 @@ export const Slide14Tactile: React.FC = () => {
         <div className="flex items-center gap-2">
           <Keyboard className="w-4 h-4 text-[#11100E]" />
           <span className="font-mono text-xs uppercase tracking-widest text-[#77736B]">
-            15 / Real Key Sounds & Physical Feel
+            16 / Real Touch & Sound
           </span>
         </div>
         <div className="flex items-center gap-2 font-mono text-xs">
@@ -290,7 +290,7 @@ export const Slide14Tactile: React.FC = () => {
       {/* Footer */}
       <div className="pt-2.5 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B]">
         <span>Good sounds make software feel real, responsive, and satisfying to use.</span>
-        <span>15 / 26</span>
+        <span>16 / 30</span>
       </div>
     </div>
   );

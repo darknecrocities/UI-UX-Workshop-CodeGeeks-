@@ -46,7 +46,7 @@ export const Slide18Decisions: React.FC = () => {
         <div className="flex items-center gap-2">
           <Target className="w-4 h-4 text-[#11100E]" />
           <span className="font-mono text-xs uppercase tracking-widest text-[#77736B]">
-            19 / Prompt Intent
+            22 / Making Choices First
           </span>
         </div>
         {/* Toggle bad vs good */}
@@ -166,8 +166,8 @@ export const Slide18Decisions: React.FC = () => {
 
       {/* Footer */}
       <div className="pt-3 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B]">
-        <span>When the AI understands why, it writes far better code than when told what.</span>
-        <span>19 / 26</span>
+        <span>Tell the AI why a feature exists, not just what to code.</span>
+        <span>22 / 30</span>
       </div>
     </div>
   );

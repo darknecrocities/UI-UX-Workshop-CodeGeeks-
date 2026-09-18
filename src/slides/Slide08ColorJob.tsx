@@ -70,7 +70,7 @@ export const Slide08ColorJob: React.FC = () => {
       name: 'Emerald Verified',
       hex: '#16A34A',
       job: 'SUCCESS / CONFIRMED',
-      roleDescription: 'Deployed environments, passing test suites, healthy metrics, and positive financial deltas.',
+      roleDescription: 'Deployed environments, passing test suites, healthy metrics, and saved changes.',
       bgClass: 'bg-[#16A34A]',
       textClass: 'text-white',
       contrastRatio: '5.1:1 against canvas',
@@ -81,7 +81,7 @@ export const Slide08ColorJob: React.FC = () => {
       name: 'Crimson Alert',
       hex: '#DC2626',
       job: 'DESTRUCTIVE / ERROR',
-      roleDescription: 'Critical failures, destructive purge events, irreversible actions, and security alerts.',
+      roleDescription: 'Critical failures, deleted items, urgent errors, and security alerts.',
       bgClass: 'bg-[#DC2626]',
       textClass: 'text-white',
       contrastRatio: '4.8:1 against canvas',
@@ -92,7 +92,7 @@ export const Slide08ColorJob: React.FC = () => {
       name: 'Amber Warning',
       hex: '#D97706',
       job: 'CAUTION / ATTENTION',
-      roleDescription: 'Non-blocking cautions, pending reviews, active tab indicators, and rate-limit thresholds.',
+      roleDescription: 'Non-blocking cautions, pending reviews, active tab indicators, and items needing attention.',
       bgClass: 'bg-[#D97706]',
       textClass: 'text-white',
       contrastRatio: '4.6:1 against dark ink',
@@ -102,8 +102,8 @@ export const Slide08ColorJob: React.FC = () => {
       id: 'TEAL',
       name: 'Teal Telemetry',
       hex: '#0D9488',
-      job: 'INFO & TELEMETRY',
-      roleDescription: 'Informational badges, runtime latency tags, live streaming indicators, and telemetry signals.',
+      job: 'INFO & STATUS',
+      roleDescription: 'Informational badges, status tags, live streaming indicators, and app details.',
       bgClass: 'bg-[#0D9488]',
       textClass: 'text-white',
       contrastRatio: '4.7:1 against canvas',
@@ -149,7 +149,7 @@ export const Slide08ColorJob: React.FC = () => {
       ruleTitle: 'Rule 04: Semantic Intent Is Sacred',
       ruleStandard: 'Red means destruction or error. Green means success. Blue means action. Amber means caution. Never swap.',
       badSlop: 'Using green for a generic "Cancel" button or red for an informational notification badge.',
-      uxImpact: 'Honors established user mental models, eliminating cognitive hesitation and misclicks.',
+      uxImpact: 'Honors established user habits, preventing confusion and accidental clicks.',
     },
     {
       id: 'MONOCHROME_DISCIPLINE',
@@ -574,7 +574,7 @@ export const Slide08ColorJob: React.FC = () => {
       {/* Footer */}
       <div className="pt-2.5 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B]">
         <span>Use color with purpose, not just for decoration.</span>
-        <span>08 / 26</span>
+        <span>08 / 30</span>
       </div>
     </div>
   );

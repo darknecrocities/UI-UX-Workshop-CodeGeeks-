@@ -212,8 +212,8 @@ export const Slide06Typography: React.FC = () => {
 
       {/* Footer */}
       <div className="pt-3 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B]">
-        <span>Great typography communicates 80% of the UI without images.</span>
-        <span>06 / 26</span>
+        <span>Clear text does most of the work. You don't need fancy decorations.</span>
+        <span>06 / 30</span>
       </div>
     </div>
   );

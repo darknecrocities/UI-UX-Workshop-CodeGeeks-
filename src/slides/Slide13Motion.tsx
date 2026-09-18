@@ -633,7 +633,7 @@ export const Slide13Motion: React.FC = () => {
           </div>
           <div>
             <span className="font-mono text-xs uppercase tracking-widest text-[#77736B]">
-              14 / Motion Physics & Website Transitions
+              15 / Motion Physics & Transitions
             </span>
             <div className="flex items-center gap-2 mt-0.5">
               <span className="font-bold text-xs text-[#11100E]">
@@ -1949,8 +1949,8 @@ export const Slide13Motion: React.FC = () => {
           SLIDE FOOTER
       ───────────────────────────────────────────────────────────── */}
       <div className="pt-2.5 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B]">
-        <span>Animation that explains state is UX. Transitions that guide attention elevate software to art.</span>
-        <span>14 / 26</span>
+        <span>Good animations explain changes. Bad animations just cause delays.</span>
+        <span>15 / 30</span>
       </div>
 
       {/* CSS Keyframes for Transitions & Shimmers */}

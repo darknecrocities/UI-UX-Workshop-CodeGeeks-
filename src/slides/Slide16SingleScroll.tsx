@@ -124,12 +124,12 @@ export const Slide16SingleScroll: React.FC = () => {
         <div className="flex items-center gap-2">
           <Compass className="w-4 h-4 text-[#11100E]" />
           <span className="font-mono text-xs uppercase tracking-widest text-[#77736B]">
-            17 / Page Architecture · The Continuous Flow
+            18 / Architecture · Single-Page Flow
           </span>
         </div>
         <div className="flex items-center gap-2">
           <span className="font-mono px-2 py-0.5 rounded text-[10px] font-bold bg-[#11100E] text-[#F5F1E8]">
-            SINGLE-SCROLL ARCHITECTURE
+            SINGLE-PAGE FLOW
           </span>
         </div>
       </div>
@@ -141,16 +141,15 @@ export const Slide16SingleScroll: React.FC = () => {
           <div>
             <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#11100E]/10 text-[#11100E] text-[10px] font-bold uppercase tracking-wider mb-2">
               <Zap className="w-3 h-3 text-[#11100E]" />
-              <span>Zero Drop-Off Narrative Momentum</span>
+              <span>Smooth Continuous Scrolling</span>
             </div>
             <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-[#11100E] leading-tight font-sans">
               ONE PAGE. ONE GOAL.
               <br />
-              <span className="text-[#77736B]">ZERO COGNITIVE FRICTION.</span>
+              <span className="text-[#77736B]">KEEP THE USER MOVING.</span>
             </h2>
             <p className="mt-2 text-xs sm:text-sm text-[#77736B] leading-relaxed">
-              Every extra page load loses <strong>20–40%</strong> of your visitors. When a visitor's decision is binary
-              (<em>"RSVP to event"</em> or <em>"Hire this person"</em>), a continuous single-scroll funnel guides attention with unbroken momentum.
+              Every extra click or page reload makes people leave. A clean, single-page layout lets people read and decide smoothly without interruption.
             </p>
           </div>
 
@@ -399,10 +398,10 @@ export const Slide16SingleScroll: React.FC = () => {
 
       {/* Footer / Progression */}
       <div className="flex items-center justify-between border-t border-[#11100E]/15 pt-3 text-xs text-[#77736B]">
-        <span>Single-scroll funnels eliminate route hesitation. Keep the destination in sight.</span>
+        <span>One clean page keeps people focused. No page loads, no lost momentum.</span>
         <div className="flex items-center gap-4">
-          <span className="font-bold text-[#11100E]">NARRATIVE VELOCITY</span>
-          <span className="font-mono">17 / 28</span>
+          <span className="font-bold text-[#11100E]">CLEAN MOMENTUM</span>
+          <span className="font-mono">18 / 30</span>
         </div>
       </div>
     </div>

@@ -669,8 +669,8 @@ export const Slide05Spectrum: React.FC = () => {
 
       {/* Footer */}
       <div className="pt-3 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B]">
-        <span>Style is a system of decisions — not a skin applied at the end.</span>
-        <span>05 / 26</span>
+        <span>Design styles are rules you stick to, not random decorations.</span>
+        <span>05 / 30</span>
       </div>
     </div>
   );

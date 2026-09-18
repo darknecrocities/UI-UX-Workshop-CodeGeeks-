@@ -53,7 +53,7 @@ export const Slide12Scalability: React.FC = () => {
         <div className="flex items-center gap-2">
           <Scale className="w-4 h-4 text-[#11100E]" />
           <span className="font-mono text-xs uppercase tracking-widest text-[#77736B]">
-            12 / System Scalability & Design Tokens
+            13 / Scalability · Design Tokens
           </span>
         </div>
         <div className="flex items-center gap-2 font-mono text-xs">
@@ -342,8 +342,8 @@ export const Slide12Scalability: React.FC = () => {
 
       {/* Footer */}
       <div className="pt-2.5 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B]">
-        <span>A design system is insurance. You pay upfront; it saves you every sprint.</span>
-        <span>12 / 26</span>
+        <span>Design tokens make changes painless. Update once, fix everywhere.</span>
+        <span>13 / 30</span>
       </div>
     </div>
   );

@@ -31,7 +31,7 @@ export const Slide21Activity02Brief: React.FC = () => {
         <div className="flex items-center gap-2">
           <Compass className="w-4 h-4 text-[#11100E]" />
           <span className="font-mono text-xs uppercase tracking-widest text-[#11100E] font-bold">
-            25 / Activity 02: What We're Doing
+            26 / Activity 02 Mission
           </span>
         </div>
         <div className="flex items-center gap-2 font-mono text-xs">
@@ -206,8 +206,8 @@ export const Slide21Activity02Brief: React.FC = () => {
 
       {/* Footer */}
       <div className="pt-3 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B] shrink-0">
-        <span>The quality of the prompt determines the quality of the first output.</span>
-        <span>25 / 29</span>
+        <span>A clear, simple prompt gives you a working app on the first try.</span>
+        <span>26 / 30</span>
       </div>
     </div>
   );

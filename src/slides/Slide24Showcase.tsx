@@ -57,7 +57,7 @@ export const Slide24Showcase: React.FC = () => {
         <div className="flex items-center gap-2">
           <Presentation className="w-4 h-4 text-[#11100E]" />
           <span className="font-mono text-xs uppercase tracking-widest text-[#77736B]">
-            25 / Review & Showcase
+            29 / Showcase
           </span>
         </div>
         <h2 className="font-mono text-sm font-bold text-[#11100E]">FROM SKETCH TO SHIP</h2>
@@ -120,8 +120,8 @@ export const Slide24Showcase: React.FC = () => {
 
       {/* Footer */}
       <div className="pt-3 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B]">
-        <span>You are not measured by how much you prompt, but by what you decide to keep.</span>
-        <span>25 / 26</span>
+        <span>You are not judged by how much AI code you make, but by what you choose to ship.</span>
+        <span>29 / 30</span>
       </div>
     </div>
   );

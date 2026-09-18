@@ -87,7 +87,7 @@ export const Slide07FontVoice: React.FC = () => {
       id: 'SAAS',
       label: 'High-Density SaaS',
       fontName: 'Geist / SF Pro Display',
-      context: 'Data tables, server metrics, telemetry, and developer tools.',
+      context: 'Data tables, server speeds, and live dashboards.',
       sampleText: 'Pipeline No. 894 · 12,480 events/sec · 99.98% uptime',
       fontFamilyClass: 'font-mono tracking-tight font-bold',
       icon: LayoutGrid,
@@ -343,7 +343,7 @@ export const Slide07FontVoice: React.FC = () => {
       {/* Footer */}
       <div className="pt-2.5 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B]">
         <span>Pick fonts that match your message and feel effortless to read.</span>
-        <span>07 / 26</span>
+        <span>07 / 30</span>
       </div>
     </div>
   );

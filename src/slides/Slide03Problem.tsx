@@ -1203,8 +1203,8 @@ export const Slide03Problem: React.FC = () => {
 
       {/* Footer */}
       <div className="pt-2.5 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B]">
-        <span>When anyone can generate UI in seconds, taste is your only moat.</span>
-        <span>03 / 29</span>
+        <span>When anyone can generate UI, good choices matter most.</span>
+        <span>03 / 30</span>
       </div>
     </div>
   );

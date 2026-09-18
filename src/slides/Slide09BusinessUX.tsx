@@ -51,7 +51,7 @@ export const Slide09BusinessUX: React.FC = () => {
             <span className="text-[#77736B]">BUT YOUR BUSINESS SHOULD SHAPE THE UX.</span>
           </h2>
           <p className="mt-2 text-sm sm:text-base text-[#77736B] font-medium">
-            Design decisions are business hypotheses in disguise. Click pairs to connect intent:
+            Every design choice impacts how people use and pay for your app. Click pairs to connect intent:
           </p>
         </div>
 
@@ -113,8 +113,8 @@ export const Slide09BusinessUX: React.FC = () => {
 
       {/* Footer */}
       <div className="pt-3 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B]">
-        <span>If a UI element does not serve user clarity or product health, delete it.</span>
-        <span>09 / 26</span>
+        <span>If a button or section does not help the user or the business, delete it.</span>
+        <span>09 / 30</span>
       </div>
     </div>
   );

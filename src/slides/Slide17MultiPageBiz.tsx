@@ -65,7 +65,7 @@ export const Slide17MultiPageBiz: React.FC = () => {
         <div className="flex items-center gap-2">
           <Building2 className="w-4 h-4 text-[#11100E]" />
           <span className="font-mono text-xs uppercase tracking-widest text-[#77736B]">
-            18 / Business Websites · Clear Structure
+            19 / Structure · Business Websites
           </span>
         </div>
         <div className="flex items-center gap-2">
@@ -377,7 +377,7 @@ export const Slide17MultiPageBiz: React.FC = () => {
         <span>Great business design answers questions fast. Keep it simple and honest.</span>
         <div className="flex items-center gap-4">
           <span className="font-bold text-[#11100E]">CLEAR VALUE</span>
-          <span className="font-mono">18 / 28</span>
+          <span className="font-mono">19 / 30</span>
         </div>
       </div>
     </div>

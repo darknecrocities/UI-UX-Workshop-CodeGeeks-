@@ -115,7 +115,7 @@ OUTPUT: Fully functional React + TypeScript + Vanilla/Tailwind CSS with cohesive
         <div className="flex items-center gap-2">
           <Cpu className="w-4 h-4 text-[#11100E]" />
           <span className="font-mono text-xs uppercase tracking-widest text-[#77736B]">
-            17 / Design Prompt Builder
+            20 / Prompting · Injecting Design Taste
           </span>
         </div>
         <div className="flex items-center gap-2 font-mono text-xs">
@@ -271,7 +271,7 @@ OUTPUT: Fully functional React + TypeScript + Vanilla/Tailwind CSS with cohesive
       {/* Footer */}
       <div className="pt-2.5 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B]">
         <span>Clear instructions in your prompt mean clean screens from the AI.</span>
-        <span>17 / 26</span>
+        <span>20 / 30</span>
       </div>
     </div>
   );

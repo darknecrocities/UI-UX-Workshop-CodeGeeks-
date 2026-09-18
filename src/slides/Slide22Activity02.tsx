@@ -583,7 +583,7 @@ export const Slide22Activity02: React.FC = () => {
         <div className="flex items-center gap-2">
           <Code2 className="w-4 h-4 text-[#11100E]" />
           <span className="font-mono text-xs uppercase tracking-widest text-[#11100E] font-bold">
-            26 / Prompt Sandbox & Generator
+            27 / Activity 02 Sandbox
           </span>
         </div>
 
@@ -1173,8 +1173,8 @@ export const Slide22Activity02: React.FC = () => {
 
       {/* Slide Bottom Bar */}
       <div className="pt-1.5 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B] shrink-0">
-        <span>Prompting with Taste: Business & Portfolio Archetypes + 2-Color Rule</span>
-        <span>26 / 29</span>
+        <span>Generate clean apps with clear prompts and zero slop.</span>
+        <span>27 / 30</span>
       </div>
     </div>
   );

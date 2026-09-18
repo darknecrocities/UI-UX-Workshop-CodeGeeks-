@@ -56,7 +56,7 @@ export const Slide23SlopAudit: React.FC = () => {
         <div className="flex items-center gap-2">
           <ShieldCheck className="w-4 h-4 text-[#11100E]" />
           <span className="font-mono text-xs uppercase tracking-widest text-[#77736B]">
-            24 / Quality Self-Audit
+            28 / Checking Your Work
           </span>
         </div>
         <div className="flex items-center gap-3 font-mono text-xs">
@@ -122,8 +122,8 @@ export const Slide23SlopAudit: React.FC = () => {
 
       {/* Footer */}
       <div className="pt-3 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B]">
-        <span>Honest self-critique is the final stage of any design process.</span>
-        <span>24 / 26</span>
+        <span>Test your own design before users do. Fix issues early.</span>
+        <span>28 / 30</span>
       </div>
     </div>
   );

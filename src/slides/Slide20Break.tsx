@@ -59,7 +59,7 @@ export const Slide20Break: React.FC = () => {
       <div className="flex items-center justify-between border-b border-[#11100E]/10 pb-4 font-mono text-xs text-[#77736B]">
         <div className="flex items-center gap-2">
           <Coffee className="w-4 h-4 text-[#11100E]" />
-          <span className="tracking-widest uppercase">Intermission · 15 Min</span>
+          <span className="tracking-widest uppercase">24 / Intermission · 15 Min</span>
         </div>
         <span>RECHARGE · HYDRATE · BREATHE</span>
       </div>
@@ -160,7 +160,7 @@ export const Slide20Break: React.FC = () => {
       {/* Footer */}
       <div className="pt-4 border-t border-[#11100E]/10 flex items-center justify-between font-mono text-xs text-[#77736B]">
         <span>The best ideas arrive when you stop forcing them.</span>
-        <span>21 / 26</span>
+        <span>24 / 30</span>
       </div>
     </div>
   );

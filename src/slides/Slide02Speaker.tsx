@@ -144,7 +144,7 @@ export const Slide02Speaker: React.FC = () => {
       {/* Footer */}
       <div className="pt-3 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B]">
         <span>Ship software that solves real friction.</span>
-        <span>Click cards to open live applications</span>
+        <span>02 / 30</span>
       </div>
     </div>
   );

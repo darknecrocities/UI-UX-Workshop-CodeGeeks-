@@ -50,7 +50,7 @@ export const Slide21Pipeline: React.FC = () => {
         <div className="flex items-center gap-2">
           <Wrench className="w-4 h-4 text-[#11100E]" />
           <span className="font-mono text-xs uppercase tracking-widest text-[#77736B]">
-            22 / Tools & Workflow
+            25 / Building with AI
           </span>
         </div>
         <h2 className="font-mono text-sm font-bold text-[#11100E]">BUILDING WITH AI TOOLS</h2>
@@ -151,8 +151,8 @@ export const Slide21Pipeline: React.FC = () => {
 
       {/* Footer */}
       <div className="pt-3 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B]">
-        <span>Tools don't make the designer. But knowing your tools removes friction.</span>
-        <span>22 / 26</span>
+        <span>Tools don't replace taste, but knowing them helps you ship faster.</span>
+        <span>25 / 30</span>
       </div>
     </div>
   );
