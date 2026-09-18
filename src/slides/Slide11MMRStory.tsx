@@ -51,7 +51,7 @@ export const Slide11MMRStory: React.FC = () => {
         <div className="flex items-center gap-2">
           <DollarSign className="w-4 h-4 text-[#11100E]" />
           <span className="font-mono text-xs uppercase tracking-widest text-[#11100E] font-bold">
-            11 / Founder Story · Student to $3,279 MMR
+            12 / Founder Story · Student to $3,279 MMR
           </span>
         </div>
         <div className="flex items-center gap-2 font-mono text-xs">
@@ -247,7 +247,7 @@ export const Slide11MMRStory: React.FC = () => {
       {/* Footer */}
       <div className="pt-2 border-t border-[#11100E]/15 flex items-center justify-between font-mono text-xs text-[#77736B] shrink-0">
         <span>Usefulness precedes revenue. Simple UI wins users.</span>
-        <span>11 / 29</span>
+        <span>12 / 30</span>
       </div>
     </div>
   );

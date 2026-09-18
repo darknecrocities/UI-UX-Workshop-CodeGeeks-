@@ -15,6 +15,7 @@ import { Slide07FontVoice } from './slides/Slide07FontVoice';
 import { Slide08ColorJob } from './slides/Slide08ColorJob';
 import { Slide09BusinessUX } from './slides/Slide09BusinessUX';
 import { Slide10Premium } from './slides/Slide10Premium';
+import { Slide10Shipathon } from './slides/Slide10Shipathon';
 import { Slide11MMRStory } from './slides/Slide11MMRStory';
 import { Slide12Scalability } from './slides/Slide12Scalability';
 import { SlideGridSystem } from './slides/SlideGridSystem';
@@ -46,6 +47,7 @@ const SLIDE_COMPONENTS: React.ComponentType[] = [
   Slide08ColorJob,
   Slide09BusinessUX,
   Slide10Premium,
+  Slide10Shipathon,
   Slide11MMRStory,
   Slide12Scalability,
   SlideGridSystem,
